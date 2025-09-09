@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article Page - News Demo</title>
+  <style>
+    /* --- GLOBAL --- */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background: #fafafa;
+      color: #333;
+    }
+    a { color: #0044cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* --- HEADER --- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: #052962;
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 { margin: 0; font-size: 1.5rem; }
+
+    nav a {
+      margin-left: 1rem;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    /* --- MAIN LAYOUT --- */
+    main {
+      display: flex;
+      gap: 2rem;
+      padding: 1rem 2rem;
+    }
+    .content { flex: 3; }
+    .sidebar { flex: 1; }
+
+    /* --- ARTICLE --- */
+    .article-title {
+      font-size: 2rem;
+      margin-bottom: .5rem;
+    }
+    .article-meta {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    .article-body img {
+      max-width: 100%;
+      margin: 1rem 0;
+    }
+    .article-body p {
+      text-align: justify; /* paragraphs justified */
+    }
+
+    /* --- SIDEBAR --- */
+    .sidebar .box {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .sidebar h3 { margin-top: 0; }
+    .sidebar ol { padding-left: 1.2rem; }
+
+    /* --- VIDEO EMBED --- */
+    .video-embed {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+    .video-embed iframe,
+    .video-embed video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* --- ADVERTISEMENT IMAGE --- */
+    .sidebar .box img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* --- NEXT ARTICLES --- */
+.next-articles-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.next-article a {
+  text-decoration: none;
+  color: #0044cc;
+  display: block;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.next-article a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.next-article img {
+  width: 100%;
+  height: 250px; /* consistent height */
+  object-fit: cover; /* crop without distortion */
+  display: block;
+}
+.next-article p {
+  margin: 0.5rem;
+  font-weight: bold;
+}
+@media(min-width: 768px) {
+  .next-articles-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+    /* --- RESPONSIVE GRID --- */
+    @media(min-width: 768px) {
+      .next-articles-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #222;
+      color: #fff;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>News Demo</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#">Opinion</a>
+      <a href="#">Analysis</a>
+      <a href="#">Economy</a>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <!-- ARTICLE -->
+    <div class="content">
+      <h2 class="article-title">‘Evolution, not revolution key to Brunei’s continued prosperity’</h2>
+      <p class="article-meta">By Waleed PD Mahdini • September 9, 2025</p>
+      <div class="article-body">
+        <p>“My first thought about Brunei-British relations is that it is in very good nick”, was how Mr Robert Fenn, the new British High Commissioner to Brunei Darussalam, aptly summarised the strong bilateral relations between the Sultanate and the United Kingdom in an exclusive interview with the Borneo Bulletin yesterday.</p>
+        <p>The British envoy was responding to the question about what his plans were to further develop this relationship, in which he said: “It ain’t broke, so don’t fix it. This is a phrase that I heard from many stakeholders in London, from the Ministry of Defence, Shell and from many vice-chancellors in UK universities.”</p>
+        <p>Mr Fenn also cited a timely quote from the Mayor of London, Boris Johnson, who had urged Londoners “particularly during Ramadhan, to find out more about Islam, increase your understanding and learning, even fast for a day with your Muslim neighbours and break your fast at the local mosque. I would be very surprised if you didn’t find that you share more in common than you thought”.</p>
+        <p>“There are valuable lessons that people of all backgrounds can learn from Islam, such as the importance of community spirit, family ties, compassion and helping the less fortunate, all of which lie at the very heart of the teachings of Ramadhan,” he added.</p>
+        <p>Even though the basis of the bilateral relation has always been firm, “I’m not complacent. I don’t take the strength of the relationship for granted”, the high commissioner said, adding that hard work from both parties is needed to keep the ties in tip-top shape.</p>
+        <img src="https://www.eyeonasia.gov.sg/images/asean-countries/Brunei%20snapshot%20cover%20iso.jpg" alt="Brunei Snapshot">
+        <p>Mr Fenn, who presented his letters of credentials to His Majesty the Sultan and Yang Di-Pertuan of Brunei Darussalam on August 7, after having served as the British Deputy High Commissioner to Cyprus, added that he had developed a catchphrase to summarise how best to further develop the strong bilateral relationship.</p>
+        <p>“Evolution, not revolution. I see both the UK and Brunei as organisms that can evolve, which is agile and can respond to change. As the theory of evolution suggests – which was a scientific theory that came from studies right here in Borneo by Alfred Russell Wallace, who was a contemporary of Charles Darwin – it’s not the biggest animals that thrive, it’s the animals that are most responsive to change that do, and I see both the UK and Brunei that can do just that,” the British High Commissioner said.</p>
+        <p>Oil and gas, education and defence are recognised as the main pillars in the bedrock of Brunei-British relations, in which “these sectors are in the hands of experts”, said Mr Fenn, deferring to the fact that “these highly technical areas should be developed through the hands of these experts”.</p>
+        <p>“Brunei has been an intelligent consumer of expertise, it has the best consultants and international partners, and I am proud that over the years, many of these partners have been British,” he said. Further highlighting his role here in Brunei, he added: “It’s my job to spot out opportunities to ensure that this relationship is not a two-way street. That it’s not just Bruneian students studying in UK but also for faculties, institutions and research centres in the UK to come to Brunei to study.”</p>
+        <p>“The UK has been the partner of choice for Brunei under its first economic paradigm that is oil and gas, so I want to ensure that the UK is also your partner of choice as you embark on your next economic paradigm,” affirmed Mr Fenn.</p>
+        <p>Mr Robert Fenn praised the example of the Brunei Economic Development Board that, “spots blockages in the (economic) diversification process, tackles it one by one and makes things happen”.</p>
+        <p>Touching briefly on what that next economic paradigm could be for the Sultanate, the high commissioner said: “We don’t know what that will look like yet, but there are already a number of niches that you are targeting in the global economy, through this concept of purity and authenticity, such as your Halal branding, Islamic banking and so on, which aims to deliver high-end products and services”.</p>
+        <p>“What’s important is not to impose some kind of ersatz, where the ideas that are proposed don’t fit here, so I urge Bruneians to have the self-confidence to be themselves and utilise a unique cocktail of an intelligent ‘pick and mix’ for your next economic paradigm,” he added.</p>
+
+
+        <!-- NEXT ARTICLES SECTION -->
+        <div class="next-articles">
+          <h3>Next Articles</h3>
+          <div class="next-articles-grid">
+            <div class="next-article">
+              <a href="article2.html">
+                <img src="https://ccitraining.edu/wp-content/uploads/2024/01/Difference-Between-ICT-and-IT.webp" alt="Next Article 1">
+                <p>Brunei’s Economy: Trends to Watch in 2025</p>
+              </a>
+            </div>
+            <div class="next-article">
+              <a href="article3.html">
+                <img src="https://assets.publishing.service.gov.uk/media/5be50fdc40f0b667a12171a6/s960_TE_meets_the_Sultan_Cover_photo_1.jpg" alt="Next Article 2">
+                <p>Inside the UK-Brunei Cultural Exchange Program</p>
+              </a>
+            </div>
+            <div class="next-article">
+              <a href="article4.html">
+                <img src="https://www.sdgbrunei.gov.bn/media/z5xfst1a/brunei-mampan-forum.png?width=1200&quality=85&rnd=133623131950030000" alt="Next Article 3">
+                <p>Sustainability: Brunei’s way forward</p>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="box">
+        <h3>Advertisement</h3>
+        <img src="https://media.tegna-media.com/assets/WOI/images/8b9a0239-cae0-4e66-81ba-6b3b65c324ac/8b9a0239-cae0-4e66-81ba-6b3b65c324ac_750x422.png" alt="Ad">
+      </div>
+
+      <div class="box">
+        <h3>Most Read</h3>
+        <ol>
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/XWq5kBlakcQ" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <li><a href="article.html">Opinion: Why the economy needs bold reforms</a></li>
+          <li><a href="article.html">Analysis: Global politics shifting in 2025</a></li>
+          <li><a href="article.html">Feature: Inside the tech that’s changing lives</a></li>
+          <li><a href="article.html">Report: Local communities adapting to change</a></li>
+        </ol>
+      </div>
+    </aside>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 News Demo. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
