@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TNBD</title>
+  <title>Guardian-Style News Template</title>
   <style>
     /* --- RESET --- */
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -22,38 +22,19 @@
     /* --- NAV DRAWER (MOBILE) --- */
     .nav-drawer { display:none; flex-direction:column; background:#f9f9f9; border-top:2px solid #eee; }
     .nav-drawer a { padding:0.75rem 1rem; border-bottom:1px solid #eee; color:#052962; font-weight:bold; }
-/* --- MOBILE STORY ONE-COLUMN (image top, summary full width) --- */
-@media (max-width: 767px) {
-  .secondary-stories .story {
-    display: grid;
-    grid-template-columns: 1fr; /* one column layout */
-    gap: 0.75rem;
-  }
-
-  .secondary-stories .story img {
-    width: 100%;
-    height: 180px; /* fixed height for consistent sizing */
-    object-fit: cover;
-    border-radius: 5px;
-  }
-
-  .secondary-stories .story .story-text {
-    grid-column: 1; /* force text below the image */
-  }
-}
 
     /* --- MAIN LAYOUT --- */
     main { display:flex; flex-direction:column; padding:1rem; flex:1; }
     .content { flex:3; }
     .sidebar { flex:1; margin-left:2rem; min-width:250px; display:flex; flex-direction:column; gap:1.5rem; }
 
-.sidebar-sticky {
-  position: sticky;
-  top: 1rem; /* distance from header */
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
+    .sidebar-sticky {
+      position: sticky;
+      top: 1rem; 
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
 
     /* --- TOP STORY --- */
     .top-story { margin-bottom:2rem; }
@@ -107,6 +88,10 @@
     .footer-links a { color:#fff; font-size:0.9rem; }
     .footer-bottom { text-align:center; font-size:0.8rem; border-top:1px solid rgba(255,255,255,0.2); padding-top:1rem; }
 
+    /* --- SEARCH BAR --- */
+    .search-form { display:inline-block; }
+    .search-form input { padding:0.3rem 0.5rem; border:1px solid #ccc; border-radius:3px; font-size:0.9rem; }
+
     /* --- RESPONSIVE --- */
     @media (min-width:768px) {
       nav { display:block; }
@@ -115,9 +100,30 @@
       main { flex-direction:row; }
     }
 
-    /* --- SEARCH BAR --- */
-    .search-form { display:inline-block; }
-    .search-form input { padding:0.3rem 0.5rem; border:1px solid #ccc; border-radius:3px; font-size:0.9rem; }
+    /* --- MOBILE SECONDARY STORIES --- */
+    @media (max-width: 767px) {
+      .secondary-stories {
+        grid-template-columns: 1fr !important;
+      }
+
+      .secondary-stories .story {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .secondary-stories .story img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+
+      .secondary-stories .story .story-text {
+        grid-column: 1;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -131,9 +137,9 @@
     <div class="hamburger" onclick="toggleNav()">☰</div>
     <nav>
       <ul>
-        <li><a href="analysispage1.html">Analysis</a></li>
-        <li><a href="opinionmainpage1.html">Opinion</a></li>
-        <li><a href="economymain1.html">Economy</a></li>
+        <li><a href="#">Analysis</a></li>
+        <li><a href="#">Opinion</a></li>
+        <li><a href="#">Economy</a></li>
         <li>
           <form action="#" method="get" class="search-form">
             <input type="text" placeholder="Search..." name="q">
@@ -150,136 +156,132 @@
     <a href="#">Economy</a>
   </div>
 
-  <!-- MAIN -->
+  <!-- MAIN CONTENT -->
   <main>
     <div class="content">
-
       <!-- TOP STORY -->
       <section class="top-story">
-        <img src="https://youcanleadbn.com/wp-content/uploads/2019/05/Sealnet-Project-Brunei-2019.jpg" alt="Top Story">
-        <h1>‘Believe in your own people,’ S’porean top official advises</h1>
-        <p>ONCE described by the Singaporean media as “the maverick who goes against the rules”, Mr Philip Yeo, Chairman of SPRING Singapore, which stands for Standards, Productivity and Innovation Board, under the Ministry of Trade and Industry, is charged with overseeing the sustainable development and competitiveness of Singaporean enterprises, as well as coordinate the nurturing of a pro-business environment with the authorities, as the city-state shifts towards an innovation-driven economy.
-
-</p>
-        <a href="article1.html" class="read-more">Read more →</a>
+        <img src="https://skyticket.com/guide/wp-content/uploads/2024/12/ae05c4a2-3c6fae00286fe574d032c25e222effab-1200x675.jpg" alt="Top Story">
+        <h1>‘Evolution, not revolution key to Brunei’s continued prosperity’</h1>
+        <p>“My first thought about Brunei-British relations is that it is in very good nick”, was how Mr Robert Fenn, the new British High Commissioner to Brunei Darussalam, aptly summarised the strong bilateral relations between the Sultanate and the United Kingdom in an exclusive interview with the Borneo Bulletin yesterday.</p>
+        <a href="full-top-story.html" class="read-more">Read more →</a>
       </section>
 
-<!-- ANALYSIS SECTION -->
-<div class="section-divider">Analysis</div>
-<section class="secondary-stories analysis-stories">
-  <article class="story">
-    <img src="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" alt="Top Story">
-    <div class="story-text">
-      <h2>Analysis: Achieving MDG as Asean Community</h2>
-      <p>HIS Royal Highness Prince Mohamed Bolkiah, Minister of Foreign Affairs and Trade, yesterday commended the United Nation's Millennium Development Goals...</p>
-      <a href="article3.html" class="read-more">Read more →</a>
-    </div>
-  </article>
-  <article class="story">
-    <img src="https://static.dw.com/image/17602616_605.jpg" alt="Top Story">
-    <div class="story-text">
-      <h2>Analysis: Bring back Muslim Culture</h2>
-      <p>DURING the opening of the Sixth Knowledge Convention on Tuesday...</p>
-      <a href="article2.html" class="read-more">Read more →</a>
-    </div>
-  </article>
-  <article class="story">
-    <img src="https://www.bruneitourism.com/wp-content/uploads/2020/04/ATV-Adventure-Brunei-2020.jpg" alt="Top Story">
-    <div class="story-text">
-      <h2>Brunei – Perfect place for family tourism</h2>
-      <p>BRUNEI Darussalam, on the whole received pleasant and gentle praises by many of the international media...</p>
-      <a href="article4.html" class="read-more">Read more →</a>
-    </div>
-  </article>
-</section>
+      <!-- ANALYSIS -->
+      <div class="section-divider">Analysis</div>
+      <section class="secondary-stories analysis-stories">
+        <article class="story">
+          <img src="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" alt="Top Story">
+          <div class="story-text">
+            <h2>Analysis: Achieving MDG as Asean Community</h2>
+            <p>HIS Royal Highness Prince Mohamed Bolkiah, Minister of Foreign Affairs and Trade, yesterday commended the United Nation's Millennium Development Goals...</p>
+            <a href="#" class="read-more">Read more →</a>
+          </div>
+        </article>
+        <article class="story">
+          <img src="https://static.dw.com/image/17602616_605.jpg" alt="Top Story">
+          <div class="story-text">
+            <h2>Analysis: Bring back Muslim Culture</h2>
+            <p>DURING the opening of the Sixth Knowledge Convention on Tuesday...</p>
+            <a href="article2.html" class="read-more">Read more →</a>
+          </div>
+        </article>
+        <article class="story">
+          <img src="https://www.bruneitourism.com/wp-content/uploads/2020/04/ATV-Adventure-Brunei-2020.jpg" alt="Top Story">
+          <div class="story-text">
+            <h2>Brunei – Perfect place for family tourism</h2>
+            <p>BRUNEI Darussalam, on the whole received pleasant and gentle praises by many of the international media...</p>
+            <a href="#" class="read-more">Read more →</a>
+          </div>
+        </article>
+      </section>
 
-<!-- OPINION SECTION -->
-<div class="section-divider">Opinion</div>
-<section class="secondary-stories opinion-stories">
-  <article class="story">
-    <img src="https://cms-image-bucket-productionv3-ap-northeast-1-a7d2.s3.ap-northeast-1.amazonaws.com/images/7/2/2/6/47856227-3-eng-GB/Cropped-1718779699AP24066235507389.jpg" alt="Opinion 1 Image">
-    <div class="story-text">
-      <h2>Brunei actively involved in regional fight against piracy</h2>
-      <p>“BRUNEI Darussalam is actively involved in Southeast Asia...”</p>
-      <a href="article5.html" class="read-more">Read more →</a>
-    </div>
-  </article>
-  <article class="story">
-    <img src="https://www.airforce-technology.com/wp-content/uploads/sites/6/2024/01/Brunei.jpg" alt="Opinion 2 Image">
-    <div class="story-text">
-      <h2>Brunei explores niche specialty</h2>
-      <p>ON THE sidelines of the Brunei Darussalam International Defence Exhibition yesterday...</p>
-      <a href="article6.html" class="read-more">Read more →</a>
-    </div>
-  </article>
-  <article class="story">
-    <img src="https://www.mofe.gov.bn/Images1/News/2023/(05.25)%2029th%20APEC.PNG" alt="Opinion 3 Image">
-    <div class="story-text">
-      <h2>Brunei may be small but we have a voice in APEC</h2>
-      <p>Speaking to the Borneo Bulletin in an exclusive interview on the eve of the much-anticipated Asia Pacific Economic Cooperation (Apec) CEO Summit...</p>
-      <a href="article7.html" class="read-more">Read more →</a>
-    </div>
-  </article>
-</section>
+      <!-- OPINION -->
+      <div class="section-divider">Opinion</div>
+      <section class="secondary-stories opinion-stories">
+        <article class="story">
+          <img src="https://cms-image-bucket-productionv3-ap-northeast-1-a7d2.s3.ap-northeast-1.amazonaws.com/images/7/2/2/6/47856227-3-eng-GB/Cropped-1718779699AP24066235507389.jpg" alt="Opinion 1 Image">
+          <div class="story-text">
+            <h2>Brunei actively involved in regional fight against piracy</h2>
+            <p>“BRUNEI Darussalam is actively involved in Southeast Asia...”</p>
+            <a href="#" class="read-more">Read more →</a>
+          </div>
+        </article>
+        <article class="story">
+          <img src="https://www.airforce-technology.com/wp-content/uploads/sites/6/2024/01/Brunei.jpg" alt="Opinion 2 Image">
+          <div class="story-text">
+            <h2>Brunei explores niche specialty</h2>
+            <p>ON THE sidelines of the Brunei Darussalam International Defence Exhibition yesterday...</p>
+            <a href="#" class="read-more">Read more →</a>
+          </div>
+        </article>
+        <article class="story">
+          <img src="https://www.mofe.gov.bn/Images1/News/2023/(05.25)%2029th%20APEC.PNG" alt="Opinion 3 Image">
+          <div class="story-text">
+            <h2>Brunei may be small but we have a voice in APEC</h2>
+            <p>Speaking to the Borneo Bulletin in an exclusive interview on the eve of the much-anticipated Asia Pacific Economic Cooperation (Apec) CEO Summit...</p>
+            <a href="#" class="read-more">Read more →</a>
+          </div>
+        </article>
+      </section>
 
-<!-- ECONOMY SECTION -->
-<div class="section-divider">Economy</div>
-<section class="secondary-stories economy-stories">
-  <article class="story">
-    <img src="https://thescoop.co/wp-content/uploads/2021/06/wp-1623774531751-1080x768.jpg" alt="Economy 1 Image">
-    <div class="story-text">
-      <h2>Providing jobs necessary duty</h2>
-      <p>Inaugurating the country’s first-ever five-day job fair...</p>
-      <a href="article8.html" class="read-more">Read more →</a>
-    </div>
-  </article>
-  <article class="story">
-    <img src="https://tadamon.community/uploads/images/IMG_7624-1280x768-1_news_thumbnail_b39f693b-6f58-4d74-9726-039a2fac6ea6.jpg?v=63879963264" alt="Economy 2 Image">
-    <div class="story-text">
-      <h2>Youths urged to develop greater sense of responsibility</h2>
-      <p>THE theme “My Country, Brunei Darussalam” certainly carries a very aptly patriotic message...</p>
-      <a href="article9.html" class="read-more">Read more →</a>
-    </div>
-  </article>
-  <article class="story">
-    <img src="https://www.moe.gov.bn/PublishingImages/Lists/Announcement/Latest%20News/SR%20Dato%20Othman%20(3).JPG" alt="Economy 3 Image">
-    <div class="story-text">
-      <h2>Education key to making future a better world</h2>
-      <p>ONE OF the 11 fellows of the Southeast Asian Press Alliance, Aquiles Zonio...</p>
-      <a href="article10.html" class="read-more">Read more →</a>
-    </div>
-  </article>
-</section>
+      <!-- ECONOMY -->
+      <div class="section-divider">Economy</div>
+      <section class="secondary-stories economy-stories">
+        <article class="story">
+          <img src="https://thescoop.co/wp-content/uploads/2021/06/wp-1623774531751-1080x768.jpg" alt="Economy 1 Image">
+          <div class="story-text">
+            <h2>Providing jobs necessary duty</h2>
+            <p>Inaugurating the country’s first-ever five-day job fair...</p>
+            <a href="#" class="read-more">Read more →</a>
+          </div>
+        </article>
+        <article class="story">
+          <img src="https://tadamon.community/uploads/images/IMG_7624-1280x768-1_news_thumbnail_b39f693b-6f58-4d74-9726-039a2fac6ea6.jpg?v=63879963264" alt="Economy 2 Image">
+          <div class="story-text">
+            <h2>Youths urged to develop greater sense of responsibility</h2>
+            <p>THE theme “My Country, Brunei Darussalam” certainly carries a very aptly patriotic message...</p>
+            <a href="#" class="read-more">Read more →</a>
+          </div>
+        </article>
+        <article class="story">
+          <img src="https://www.moe.gov.bn/PublishingImages/Lists/Announcement/Latest%20News/SR%20Dato%20Othman%20(3).JPG" alt="Economy 3 Image">
+          <div class="story-text">
+            <h2>Education key to making future a better world</h2>
+            <p>ONE OF the 11 fellows of the Southeast Asian Press Alliance, Aquiles Zonio...</p>
+            <a href="#" class="read-more">Read more →</a>
+          </div>
+        </article>
+      </section>
       <button id="loadMoreEconomy" style="margin:1rem 0; padding:0.5rem 1rem; font-size:1rem; cursor:pointer;">Load More</button>
-
     </div>
 
     <!-- SIDEBAR -->
-<aside class="sidebar">
-  <div class="sidebar-sticky">
-      <!-- ADVERTISEMENT -->
-      <div class="advertisement">
-        <h3>Advertisement</h3>
-        <a href="#">
-          <img src="https://cdn-gkgmn.nitrocdn.com/HxDrMqgpfrfMwMIyqdIclnyVmQsPpBQI/assets/images/optimized/rev-e68ff02/www.techwebspace.com/wp-content/uploads/2015/08/advertise-with-us.jpg" alt="Advertisement">
-        </a>
-      </div>
+    <aside class="sidebar">
+      <div class="sidebar-sticky">
+          <!-- ADVERTISEMENT -->
+          <div class="advertisement">
+            <h3>Advertisement</h3>
+            <a href="#">
+              <img src="https://cdn-gkgmn.nitrocdn.com/HxDrMqgpfrfMwMIyqdIclnyVmQsPpBQI/assets/images/optimized/rev-e68ff02/www.techwebspace.com/wp-content/uploads/2015/08/advertise-with-us.jpg" alt="Advertisement">
+            </a>
+          </div>
 
-      <!-- MOST READ -->
-      <div class="most-read">
-        <h3>Most Read</h3>
-        <div class="video-embed">
-          <iframe src="https://www.youtube.com/embed/XWq5kBlakcQ" frameborder="0" allowfullscreen></iframe>
-        </div>
+          <!-- MOST READ -->
+          <div class="most-read">
+            <h3>Most Read</h3>
+            <div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/XWq5kBlakcQ" frameborder="0" allowfullscreen></iframe>
+            </div>
 
-        <ol>
-          <li><a href="article5.html">Brunei actively involved in regional fight against piracy</a></li>
-          <li><a href="article8.html">Providing jobs necessary duty</a></li>
-          <li><a href="article7.html">Brunei may be small but we have a voice in APEC</a></li>
-          <li><a href="article6.html">Brunei explores niche specialty</a></li>
-          <li><a href="article9.html">Youths urged to develop greater sense of responsibility</a></li>
-        </ol>
-        </div>
+            <ol>
+              <li><a href="#">Breaking: Market trends hit unexpected highs</a></li>
+              <li><a href="#">Opinion: Why the economy needs bold reforms</a></li>
+              <li><a href="#">Analysis: Global politics shifting in 2025</a></li>
+              <li><a href="#">Feature: Inside the tech that’s changing lives</a></li>
+              <li><a href="#">Report: Local communities adapting to change</a></li>
+            </ol>
+          </div>
       </div>
     </aside>
   </main>
@@ -309,23 +311,8 @@
       document.querySelectorAll('.economy-stories .extra-story').forEach(function(story) {
         story.style.display = 'block';
       });
-      this.style.display = 'none'; // hide button after click
+      this.style.display = 'none';
     });
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
