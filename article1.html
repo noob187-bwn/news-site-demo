@@ -15,13 +15,6 @@
     }
     a { color: #0044cc; text-decoration: none; }
     a:hover { text-decoration: underline; }
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Article Title - The New Brunei Digest</title>
-  <style>
-    /* --- General Reset & Body --- */
-    body { font-family: Arial, sans-serif; margin: 0; background: #ffffff; }
 
     /* --- HEADER --- */
     header {
@@ -29,124 +22,137 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem;
-      border-bottom: 2px solid #ddd;
-      background: #f9f9f9;
+      background: #052962;
+      color: #fff;
       position: sticky;
       top: 0;
       z-index: 1000;
     }
-    .logo { display: flex; align-items: center; }
-    .logo img { height: 32px; margin-right: 0.5rem; }
-    .logo h1 { font-size: 1.5rem; margin: 0; }
-    nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
-    nav li { margin: 0 0.5rem; }
-    nav a { text-decoration: none; color: #333; }
+    header h1 { margin: 0; font-size: 1.5rem; }
 
-    /* --- HAMBURGER --- */
-    .hamburger { display: none; font-size: 1.5rem; cursor: pointer; }
-    .nav-drawer {
-      display: none;
-      position: absolute;
-      top: 60px;
-      left: 0;
-      width: 100%;
-      background: #f9f9f9;
-      border-top: 1px solid #ddd;
-      padding: 1rem;
+    nav a {
+      margin-left: 1rem;
+      color: #fff;
+      font-weight: bold;
     }
-    .nav-drawer ul { flex-direction: column; }
-    .nav-drawer li { margin: 0.5rem 0; }
 
     /* --- MAIN LAYOUT --- */
-    main { display: flex; flex-wrap: wrap; padding: 1rem; }
-    article { flex: 3; min-width: 250px; margin-right: 1.5rem; }
-    .sidebar { flex: 1; min-width: 200px; }
+    main {
+      display: flex;
+      gap: 2rem;
+      padding: 1rem 2rem;
+    }
+    .content { flex: 3; }
+    .sidebar { flex: 1; }
 
-    .most-read, .advertisement {
+    /* --- ARTICLE --- */
+    .article-title {
+      font-size: 2rem;
+      margin-bottom: .5rem;
+    }
+    .article-meta {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    .article-body img {
+      max-width: 100%;
+      margin: 1rem 0;
+    }
+    .article-body p {
+      text-align: justify;
+    }
+
+    /* --- SIDEBAR --- */
+    .sidebar .box {
+      background: #fff;
       border: 1px solid #ddd;
       padding: 1rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .sidebar h3 { margin-top: 0; }
+    .sidebar ol { padding-left: 1.2rem; }
+
+    /* --- VIDEO EMBED --- */
+    .video-embed {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+    .video-embed iframe,
+    .video-embed video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* --- ADVERTISEMENT IMAGE --- */
+    .sidebar .box img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* --- NEXT ARTICLES --- */
+    .next-articles-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .next-article a {
+      text-decoration: none;
+      color: #0044cc;
+      display: block;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      overflow: hidden;
       background: #fff;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .next-article a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .next-article img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+    .next-article p {
+      margin: 0.5rem;
+      font-weight: bold;
+    }
+    @media(min-width: 768px) {
+      .next-articles-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* --- RESPONSIVE (STACK SIDEBAR) --- */
+    @media(max-width: 768px) {
+      main {
+        flex-direction: column;
+      }
     }
 
     /* --- FOOTER --- */
     footer {
-      background: #333;
-      color: #fff;
-      padding: 1rem;
       text-align: center;
+      padding: 1rem;
+      background: #222;
+      color: #fff;
       margin-top: 2rem;
-    }
-
-    /* --- MOBILE VIEW --- */
-    @media (max-width: 767px) {
-      nav ul { display: none; }
-      .hamburger { display: block; }
-      main { flex-direction: column; }
-      article { margin-right: 0; }
-      .sidebar { margin-left: 0; margin-top: 1.5rem; }
     }
   </style>
 </head>
 <body>
-  <!-- HEADER -->
-  <header>
-    <div class="logo">
-      <img src="brunei-flag.png" alt="Brunei Flag">
-      <h1>The New Brunei Digest</h1>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="analysis.html">Analysis</a></li>
-        <li><a href="opinion.html">Opinion</a></li>
-      </ul>
-    </nav>
-    <span class="hamburger" onclick="toggleNav()">☰</span>
-  </header>
-
-  <!-- MOBILE NAV DRAWER -->
-  <div class="nav-drawer" id="navDrawer">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="analysis.html">Analysis</a></li>
-      <li><a href="opinion.html">Opinion</a></li>
-    </ul>
-  </div>
-
-  <!-- PAGE CONTENT -->
-  <main>
-    <article>
-      <h2>Article Title</h2>
-      <p>Full article text here...</p>
-    </article>
-    <aside class="sidebar">
-      <div class="most-read">
-        <h3>Most Read</h3>
-        <ul>
-          <li><a href="#">Story 1</a></li>
-          <li><a href="#">Story 2</a></li>
-        </ul>
-      </div>
-      <div class="advertisement">
-        <p>Advertisement</p>
-      </div>
-    </aside>
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>&copy; 2025 The New Brunei Digest. All Rights Reserved.</p>
-  </footer>
-
-  <!-- SCRIPT -->
-  <script>
-    function toggleNav() {
-      const drawer = document.getElementById('navDrawer');
-      drawer.style.display = (drawer.style.display === 'block') ? 'none' : 'block';
-    }
-  </script>
-</body><body>
 
   <!-- HEADER -->
   <header>
@@ -163,11 +169,11 @@
   <main>
     <!-- ARTICLE -->
     <div class="content">
-      <h2 class="article-title"> ‘Believe in your own people,’ S’porean top official advises</h2>
+      <h2 class="article-title">‘Believe in your own people,’ S’porean top official advises</h2>
       <p class="article-meta">By Waleed PD Mahdini • September 9, 2025</p>
       <div class="article-body">
 
-<p>ONCE described by the Singaporean media as “the maverick who goes against the rules”, Mr Philip Yeo, Chairman of SPRING Singapore, which stands for Standards, Productivity and Innovation Board, under the Ministry of Trade and Industry, is charged with overseeing the sustainable development and competitiveness of Singaporean enterprises, as well as coordinate the nurturing of a pro-business environment with the authorities, as the city-state shifts towards an innovation-driven economy. </p>
+  <p>ONCE described by the Singaporean media as “the maverick who goes against the rules”, Mr Philip Yeo, Chairman of SPRING Singapore, which stands for Standards, Productivity and Innovation Board, under the Ministry of Trade and Industry, is charged with overseeing the sustainable development and competitiveness of Singaporean enterprises, as well as coordinate the nurturing of a pro-business environment with the authorities, as the city-state shifts towards an innovation-driven economy. </p>
 
 <p>Recently invited to the country as a keynote speaker for the 29th Confederation of Asean Federation of Engineers Organisation (CAEFO), Mr Yeo spoke with the Bulletin to share in his advice and views for nation-building and future developments. </p>
 
@@ -220,8 +226,7 @@
 
 <p> “So you must take care of your young people, take care of how they serve and grow but you must also teach them to stand on their own two feet, through a lot of guidance and support by dedicated and committed mentors.” Asked where the best training ground was, he smiled and replied: “There is no school better than the real world and the real working life. My generation of Singaporeans was lucky because we had good bosses and this is also very important to have understanding and fair-minded bosses. But ultimately, my hope is that the future generations will also have bosses who support them to build and nurture the next generation.” </p>
 
-
-<!-- NEXT ARTICLES SECTION -->
+        <!-- NEXT ARTICLES SECTION -->
         <div class="next-articles">
           <h3>Next Articles</h3>
           <div class="next-articles-grid">
