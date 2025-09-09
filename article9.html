@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article Page - News Demo</title>
+  <style>
+    /* --- GLOBAL --- */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background: #fafafa;
+      color: #333;
+    }
+    a { color: #0044cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* --- HEADER --- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: #052962;
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 { margin: 0; font-size: 1.5rem; }
+
+    nav a {
+      margin-left: 1rem;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    /* --- MAIN LAYOUT --- */
+    main {
+      display: flex;
+      gap: 2rem;
+      padding: 1rem 2rem;
+    }
+    .content { flex: 3; }
+    .sidebar { flex: 1; }
+
+    /* --- ARTICLE --- */
+    .article-title {
+      font-size: 2rem;
+      margin-bottom: .5rem;
+    }
+    .article-meta {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    .article-body img {
+      max-width: 100%;
+      margin: 1rem 0;
+    }
+    .article-body p {
+      text-align: justify; /* paragraphs justified */
+    }
+
+    /* --- SIDEBAR --- */
+    .sidebar .box {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .sidebar h3 { margin-top: 0; }
+    .sidebar ol { padding-left: 1.2rem; }
+
+    /* --- VIDEO EMBED --- */
+    .video-embed {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+    .video-embed iframe,
+    .video-embed video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* --- ADVERTISEMENT IMAGE --- */
+    .sidebar .box img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* --- NEXT ARTICLES --- */
+.next-articles-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.next-article a {
+  text-decoration: none;
+  color: #0044cc;
+  display: block;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.next-article a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.next-article img {
+  width: 100%;
+  height: 250px; /* consistent height */
+  object-fit: cover; /* crop without distortion */
+  display: block;
+}
+.next-article p {
+  margin: 0.5rem;
+  font-weight: bold;
+}
+@media(min-width: 768px) {
+  .next-articles-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+    /* --- RESPONSIVE GRID --- */
+    @media(min-width: 768px) {
+      .next-articles-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #222;
+      color: #fff;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>News Demo</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#">Opinion</a>
+      <a href="#">Analysis</a>
+      <a href="#">Economy</a>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <!-- ARTICLE -->
+    <div class="content">
+      <h2 class="article-title"> Youths urged to develop greater sense of responsibility </h2>
+      <p class="article-meta">By Waleed PD Mahdini • September 9, 2025</p>
+      <div class="article-body">
+
+<p>THE theme "My Country, Brunei Darussalam" certainly carries a very aptly patriotic message to the citizens and residents of the country, which is angled towards a particular emphasis to the country's future generations of leaders - its youth. </p>
+<p>Speaking to the Bulletin yesterday, the Deputy Minister of Defence, Dato Paduka Hj Mustappa bin Hj Sirat, highlighted: "The theme is very relevant in that His Majesty the Sultan and Yang Di-Pertuan of Brunei Darussalam, in his National Day titah, listed out his vision for the country's progress and development to ensure improvements and continuity of the country's peace, stability and prosperity, of which the responsibility should be shouldered by each and every one of us. The message was strongly conveyed to the younger generation to pick up this responsibility by nurturing a sense of duty to the country and our people and play their roles as the future leaders of our country, under the leadership of the monarch." </p>
+
+    <img src="https://tadamon.community/uploads/images/IMG_7624-1280x768-1_news_thumbnail_b39f693b-6f58-4d74-9726-039a2fac6ea6.jpg?v=63879963264" alt="Economy 2 Image">
+
+<p>Speaking more towards the younger generations, Dato Hj Mustappa urged them "to heed His Majesty's call to look after our country by being fully responsible in utilising all the privileges that we, as citizens of Brunei Darussalam are lucky to have, such as the subsidies that the government provides to the people that should not be wasted".</p>
+<p>However, he noted that the government cannot go about it alone. </p>
+<p>"To ensure all this, we need to intensify our economy, through diversification, but we are still relying on oil and gas," he said. "This is where the younger generations have a greater role to play, in fact, a bigger role in diversifying our economy." </p>
+<p>He went on to say that "we've achieved another remarkable year by being united under the leadership of His Majesty, and we're busy actively implementing government policies to ensure that the citizens continue to enjoy the prosperity and welfare of the country".</p>
+<p>Dato Hj Mustappa acknowledged the countless numbers of younger citizens that work and strive everyday to improve upon the country's continued peace, progress and prosperity. But he also stressed the importance of feeling a "sense of pride and sense of belonging to a country that remains 'peaceful, prosperous and developed'".</p>
+<p>"This is our country. It's the only country we have and so we have a responsibility to look after it," said the deputy minister. </p>
+<p>"If not us, who else is going to be responsible for looking after it and taking care of it." </p>
+<p>Meanwhile, the Acting Deputy Commissioner of the Royal Brunei Police Force, Bahrin bin Mohd Noor took the opportunity to highlight the theme of this year's National Day Celebrations, "My Country, Brunei Darussalam", as being "very apt".</p>
+<p>He also urged all the citizens and residents of Brunei Darussalam, particularly the younger generations, to protect the country, to always remain loyal to the monarch and uphold and nurture the principles of the Malay, Muslim, Monarchy (Melayu Islam Beraja, MIB) national philosophy and, above all else, "to maintain a sense of belonging to each other and our country".</p>
+<p>Focusing further on the issue of law and order, especially in light of the recent report of increasing crime in some parts of the country, the Acting Deputy Commissioner said: "In this day and age, we are currently seeing many deteriorating social issues, particularly the experiences of crimes. I urge and hope that the youth continue to remain aware of avoiding and refraining from any criminal involvement." </p>
+
+
+<!-- NEXT ARTICLES SECTION -->
+        <div class="next-articles">
+          <h3>Next Articles</h3>
+          <div class="next-articles-grid">
+            <div class="next-article">
+              <a href="article2.html">
+                <img src="https://ccitraining.edu/wp-content/uploads/2024/01/Difference-Between-ICT-and-IT.webp" alt="Next Article 1">
+                <p>Brunei’s Economy: Trends to Watch in 2025</p>
+              </a>
+            </div>
+            <div class="next-article">
+              <a href="article3.html">
+                <img src="https://assets.publishing.service.gov.uk/media/5be50fdc40f0b667a12171a6/s960_TE_meets_the_Sultan_Cover_photo_1.jpg" alt="Next Article 2">
+                <p>Inside the UK-Brunei Cultural Exchange Program</p>
+              </a>
+            </div>
+            <div class="next-article">
+              <a href="article4.html">
+                <img src="https://www.sdgbrunei.gov.bn/media/z5xfst1a/brunei-mampan-forum.png?width=1200&quality=85&rnd=133623131950030000" alt="Next Article 3">
+                <p>Sustainability: Brunei’s way forward</p>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="box">
+        <h3>Advertisement</h3>
+        <img src="https://media.tegna-media.com/assets/WOI/images/8b9a0239-cae0-4e66-81ba-6b3b65c324ac/8b9a0239-cae0-4e66-81ba-6b3b65c324ac_750x422.png" alt="Ad">
+      </div>
+
+      <div class="box">
+        <h3>Most Read</h3>
+        <ol>
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/XWq5kBlakcQ" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <li><a href="article.html">Opinion: Why the economy needs bold reforms</a></li>
+          <li><a href="article.html">Analysis: Global politics shifting in 2025</a></li>
+          <li><a href="article.html">Feature: Inside the tech that’s changing lives</a></li>
+          <li><a href="article.html">Report: Local communities adapting to change</a></li>
+        </ol>
+      </div>
+    </aside>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 News Demo. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
