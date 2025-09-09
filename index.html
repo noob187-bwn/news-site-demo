@@ -22,6 +22,27 @@
     /* --- NAV DRAWER (MOBILE) --- */
     .nav-drawer { display:none; flex-direction:column; background:#f9f9f9; border-top:2px solid #eee; }
     .nav-drawer a { padding:0.75rem 1rem; border-bottom:1px solid #eee; color:#052962; font-weight:bold; }
+/* --- MOBILE STORY TWO-COLUMN --- */
+@media (max-width: 767px) {
+  .secondary-stories .story {
+    display: grid;
+    grid-template-columns: 100px 1fr; /* image left, summary right */
+    gap: 0.5rem;
+    align-items: start;
+  }
+  .secondary-stories .story img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+@media (max-width: 767px) {
+  .analysis-stories,
+  .opinion-stories,
+  .economy-stories {
+    grid-template-columns: 1fr !important; /* stack stories vertically on mobile */
+  }
+}
 
     /* --- MAIN LAYOUT --- */
     main { display:flex; flex-direction:column; padding:1rem; flex:1; }
@@ -140,78 +161,95 @@
         <img src="https://skyticket.com/guide/wp-content/uploads/2024/12/ae05c4a2-3c6fae00286fe574d032c25e222effab-1200x675.jpg" alt="Top Story">
         <h1>‘Evolution, not revolution key to Brunei’s continued prosperity’</h1>
         <p>“My first thought about Brunei-British relations is that it is in very good nick”, was how Mr Robert Fenn, the new British High Commissioner to Brunei Darussalam, aptly summarised the strong bilateral relations between the Sultanate and the United Kingdom in an exclusive interview with the Borneo Bulletin yesterday.</p>
-        <a href="article1.html" class="read-more">Read more →</a>
+        <a href="full-top-story.html" class="read-more">Read more →</a>
       </section>
 
-      <!-- ANALYSIS SECTION -->
-      <div class="section-divider">Analysis</div>
-      <section class="secondary-stories analysis-stories">
-        <article class="story">
-          <img src="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" alt="Top Story">
-          <h2>Analysis: Achieving MDG as Asean Community</h2>
-          <p>HIS Royal Highness Prince Mohamed Bolkiah, Minister of Foreign Affairs and Trade, yesterday commended the United Nation's Millennium Development Goals...</p>
-          <a href="article3.html" class="read-more">Read more →</a>
-        </article>
-        <article class="story">
-          <img src="https://static.dw.com/image/17602616_605.jpg" alt="Top Story">
-          <h2>Analysis: Bring back Muslim Culture</h2>
-          <p>DURING the opening of the Sixth Knowledge Convention on Tuesday...</p>
-          <a href="article2.html" class="read-more">Read more →</a>
-        </article>
-        <article class="story">
-          <img src="https://www.bruneitourism.com/wp-content/uploads/2020/04/ATV-Adventure-Brunei-2020.jpg" alt="Top Story">
-          <h2>Brunei – Perfect place for family tourism</h2>
-          <p>BRUNEI Darussalam, on the whole received pleasant and gentle praises by many of the international media...</p>
-          <a href="article4.html" class="read-more">Read more →</a>
-        </article>
-      </section>
+<!-- ANALYSIS SECTION -->
+<div class="section-divider">Analysis</div>
+<section class="secondary-stories analysis-stories">
+  <article class="story">
+    <img src="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" alt="Top Story">
+    <div class="story-text">
+      <h2>Analysis: Achieving MDG as Asean Community</h2>
+      <p>HIS Royal Highness Prince Mohamed Bolkiah, Minister of Foreign Affairs and Trade, yesterday commended the United Nation's Millennium Development Goals...</p>
+      <a href="#" class="read-more">Read more →</a>
+    </div>
+  </article>
+  <article class="story">
+    <img src="https://static.dw.com/image/17602616_605.jpg" alt="Top Story">
+    <div class="story-text">
+      <h2>Analysis: Bring back Muslim Culture</h2>
+      <p>DURING the opening of the Sixth Knowledge Convention on Tuesday...</p>
+      <a href="article2.html" class="read-more">Read more →</a>
+    </div>
+  </article>
+  <article class="story">
+    <img src="https://www.bruneitourism.com/wp-content/uploads/2020/04/ATV-Adventure-Brunei-2020.jpg" alt="Top Story">
+    <div class="story-text">
+      <h2>Brunei – Perfect place for family tourism</h2>
+      <p>BRUNEI Darussalam, on the whole received pleasant and gentle praises by many of the international media...</p>
+      <a href="#" class="read-more">Read more →</a>
+    </div>
+  </article>
+</section>
 
-      <!-- OPINION SECTION -->
-      <div class="section-divider">Opinion</div>
-      <section class="secondary-stories opinion-stories">
-        <article class="story">
-          <img src="https://cms-image-bucket-productionv3-ap-northeast-1-a7d2.s3.ap-northeast-1.amazonaws.com/images/7/2/2/6/47856227-3-eng-GB/Cropped-1718779699AP24066235507389.jpg" alt="Opinion 1 Image">
-          <h2>Brunei actively involved in regional fight against piracy</h2>
-          <p>“BRUNEI Darussalam is actively involved in Southeast Asia...”</p>
-          <a href="#" class="read-more">Read more →</a>
-        </article>
-        <article class="story">
-          <img src="https://www.airforce-technology.com/wp-content/uploads/sites/6/2024/01/Brunei.jpg" alt="Opinion 2 Image">
-          <h2>Brunei explores niche specialty</h2>
-          <p>ON THE sidelines of the Brunei Darussalam International Defence Exhibition yesterday...</p>
-          <a href="#" class="read-more">Read more →</a>
-        </article>
-        <article class="story">
-          <img src="https://www.mofe.gov.bn/Images1/News/2023/(05.25)%2029th%20APEC.PNG" alt="Opinion 3 Image">
-          <h2>Brunei may be small but we have a voice in APEC</h2>
-          <p>Speaking to the Borneo Bulletin in an exclusive interview on the eve of the much-anticipated Asia Pacific Economic Cooperation (Apec) CEO Summit...</p>
-          <a href="#" class="read-more">Read more →</a>
-        </article>
-      </section>
+<!-- OPINION SECTION -->
+<div class="section-divider">Opinion</div>
+<section class="secondary-stories opinion-stories">
+  <article class="story">
+    <img src="https://cms-image-bucket-productionv3-ap-northeast-1-a7d2.s3.ap-northeast-1.amazonaws.com/images/7/2/2/6/47856227-3-eng-GB/Cropped-1718779699AP24066235507389.jpg" alt="Opinion 1 Image">
+    <div class="story-text">
+      <h2>Brunei actively involved in regional fight against piracy</h2>
+      <p>“BRUNEI Darussalam is actively involved in Southeast Asia...”</p>
+      <a href="#" class="read-more">Read more →</a>
+    </div>
+  </article>
+  <article class="story">
+    <img src="https://www.airforce-technology.com/wp-content/uploads/sites/6/2024/01/Brunei.jpg" alt="Opinion 2 Image">
+    <div class="story-text">
+      <h2>Brunei explores niche specialty</h2>
+      <p>ON THE sidelines of the Brunei Darussalam International Defence Exhibition yesterday...</p>
+      <a href="#" class="read-more">Read more →</a>
+    </div>
+  </article>
+  <article class="story">
+    <img src="https://www.mofe.gov.bn/Images1/News/2023/(05.25)%2029th%20APEC.PNG" alt="Opinion 3 Image">
+    <div class="story-text">
+      <h2>Brunei may be small but we have a voice in APEC</h2>
+      <p>Speaking to the Borneo Bulletin in an exclusive interview on the eve of the much-anticipated Asia Pacific Economic Cooperation (Apec) CEO Summit...</p>
+      <a href="#" class="read-more">Read more →</a>
+    </div>
+  </article>
+</section>
 
-      <!-- ECONOMY SECTION -->
-      <div class="section-divider">Economy</div>
-      <section class="secondary-stories economy-stories">
-        <article class="story">
-          <img src="https://thescoop.co/wp-content/uploads/2021/06/wp-1623774531751-1080x768.jpg" alt="Economy 1 Image">
-          <h2>Providing jobs necessary duty</h2>
-          <p>Inaugurating the country’s first-ever five-day job fair...</p>
-          <a href="#" class="read-more">Read more →</a>
-        </article>
-        <article class="story">
-          <img src="https://tadamon.community/uploads/images/IMG_7624-1280x768-1_news_thumbnail_b39f693b-6f58-4d74-9726-039a2fac6ea6.jpg?v=63879963264" alt="Economy 2 Image">
-          <h2>Youths urged to develop greater sense of responsibility</h2>
-          <p>THE theme “My Country, Brunei Darussalam” certainly carries a very aptly patriotic message...</p>
-          <a href="#" class="read-more">Read more →</a>
-        </article>
-        <article class="story">
-          <img src="https://www.moe.gov.bn/PublishingImages/Lists/Announcement/Latest%20News/SR%20Dato%20Othman%20(3).JPG" alt="Economy 3 Image">
-          <h2>Education key to making future a better world</h2>
-          <p>ONE OF the 11 fellows of the Southeast Asian Press Alliance, Aquiles Zonio...</p>
-          <a href="#" class="read-more">Read more →</a>
-        </article>
-      </section>
-
+<!-- ECONOMY SECTION -->
+<div class="section-divider">Economy</div>
+<section class="secondary-stories economy-stories">
+  <article class="story">
+    <img src="https://thescoop.co/wp-content/uploads/2021/06/wp-1623774531751-1080x768.jpg" alt="Economy 1 Image">
+    <div class="story-text">
+      <h2>Providing jobs necessary duty</h2>
+      <p>Inaugurating the country’s first-ever five-day job fair...</p>
+      <a href="#" class="read-more">Read more →</a>
+    </div>
+  </article>
+  <article class="story">
+    <img src="https://tadamon.community/uploads/images/IMG_7624-1280x768-1_news_thumbnail_b39f693b-6f58-4d74-9726-039a2fac6ea6.jpg?v=63879963264" alt="Economy 2 Image">
+    <div class="story-text">
+      <h2>Youths urged to develop greater sense of responsibility</h2>
+      <p>THE theme “My Country, Brunei Darussalam” certainly carries a very aptly patriotic message...</p>
+      <a href="#" class="read-more">Read more →</a>
+    </div>
+  </article>
+  <article class="story">
+    <img src="https://www.moe.gov.bn/PublishingImages/Lists/Announcement/Latest%20News/SR%20Dato%20Othman%20(3).JPG" alt="Economy 3 Image">
+    <div class="story-text">
+      <h2>Education key to making future a better world</h2>
+      <p>ONE OF the 11 fellows of the Southeast Asian Press Alliance, Aquiles Zonio...</p>
+      <a href="#" class="read-more">Read more →</a>
+    </div>
+  </article>
+</section>
       <button id="loadMoreEconomy" style="margin:1rem 0; padding:0.5rem 1rem; font-size:1rem; cursor:pointer;">Load More</button>
 
     </div>
@@ -276,8 +314,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
