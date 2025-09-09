@@ -101,28 +101,31 @@
     }
 
     /* --- MOBILE SECONDARY STORIES --- */
-    @media (max-width: 767px) {
-      .secondary-stories {
-        grid-template-columns: 1fr !important;
-      }
+   @media (max-width: 767px) {
+  /* Make all secondary stories full-width stacked */
+  .secondary-stories {
+    display: block !important; /* stop the grid */
+  }
 
-      .secondary-stories .story {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-      }
+  .secondary-stories .story {
+    display: flex;
+    flex-direction: column; /* photo on top, text below */
+    margin-bottom: 1.5rem;
+  }
 
-      .secondary-stories .story img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 5px;
-      }
+  .secondary-stories .story img {
+    width: 100%;
+    height: auto; /* let image scale naturally */
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+  }
 
-      .secondary-stories .story .story-text {
-        grid-column: 1;
-      }
-    }
+  .secondary-stories .story .story-text {
+    grid-column: auto; /* reset any grid settings */
+  }
+}
+
 
   </style>
 </head>
@@ -316,3 +319,4 @@
   </script>
 </body>
 </html>
+
