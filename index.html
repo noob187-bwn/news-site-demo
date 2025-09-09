@@ -22,22 +22,23 @@
     /* --- NAV DRAWER (MOBILE) --- */
     .nav-drawer { display:none; flex-direction:column; background:#f9f9f9; border-top:2px solid #eee; }
     .nav-drawer a { padding:0.75rem 1rem; border-bottom:1px solid #eee; color:#052962; font-weight:bold; }
-/* --- MOBILE STORY ONE-COLUMN (better layout) --- */
+/* --- MOBILE STORY ONE-COLUMN (image top, summary full width) --- */
 @media (max-width: 767px) {
   .secondary-stories .story {
     display: grid;
-    grid-template-columns: 1fr; /* single column */
-    gap: 0.5rem;
+    grid-template-columns: 1fr; /* one column layout */
+    gap: 0.75rem;
   }
 
   .secondary-stories .story img {
     width: 100%;
-    height: auto;
+    height: 180px; /* fixed height for consistent sizing */
     object-fit: cover;
+    border-radius: 5px;
   }
 
-  .secondary-stories .story p {
-    grid-column: 1; /* text spans full width below */
+  .secondary-stories .story .story-text {
+    grid-column: 1; /* force text below the image */
   }
 }
 
@@ -313,6 +314,7 @@
   </script>
 </body>
 </html>
+
 
 
 
