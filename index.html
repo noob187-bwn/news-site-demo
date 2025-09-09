@@ -22,25 +22,22 @@
     /* --- NAV DRAWER (MOBILE) --- */
     .nav-drawer { display:none; flex-direction:column; background:#f9f9f9; border-top:2px solid #eee; }
     .nav-drawer a { padding:0.75rem 1rem; border-bottom:1px solid #eee; color:#052962; font-weight:bold; }
-/* --- MOBILE STORY TWO-COLUMN --- */
+/* --- MOBILE STORY ONE-COLUMN (better layout) --- */
 @media (max-width: 767px) {
   .secondary-stories .story {
     display: grid;
-    grid-template-columns: 100px 1fr; /* image left, summary right */
+    grid-template-columns: 1fr; /* single column */
     gap: 0.5rem;
-    align-items: start;
   }
+
   .secondary-stories .story img {
     width: 100%;
     height: auto;
     object-fit: cover;
   }
-}
-@media (max-width: 767px) {
-  .analysis-stories,
-  .opinion-stories,
-  .economy-stories {
-    grid-template-columns: 1fr !important; /* stack stories vertically on mobile */
+
+  .secondary-stories .story p {
+    grid-column: 1; /* text spans full width below */
   }
 }
 
@@ -316,6 +313,7 @@
   </script>
 </body>
 </html>
+
 
 
 
