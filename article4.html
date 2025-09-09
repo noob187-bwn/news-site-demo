@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article Page - News Demo</title>
+  <style>
+    /* --- GLOBAL --- */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background: #fafafa;
+      color: #333;
+    }
+    a { color: #0044cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* --- HEADER --- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: #052962;
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 { margin: 0; font-size: 1.5rem; }
+
+    nav a {
+      margin-left: 1rem;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    /* --- MAIN LAYOUT --- */
+    main {
+      display: flex;
+      gap: 2rem;
+      padding: 1rem 2rem;
+    }
+    .content { flex: 3; }
+    .sidebar { flex: 1; }
+
+    /* --- ARTICLE --- */
+    .article-title {
+      font-size: 2rem;
+      margin-bottom: .5rem;
+    }
+    .article-meta {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    .article-body img {
+      max-width: 100%;
+      margin: 1rem 0;
+    }
+    .article-body p {
+      text-align: justify; /* paragraphs justified */
+    }
+
+    /* --- SIDEBAR --- */
+    .sidebar .box {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .sidebar h3 { margin-top: 0; }
+    .sidebar ol { padding-left: 1.2rem; }
+
+    /* --- VIDEO EMBED --- */
+    .video-embed {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+    .video-embed iframe,
+    .video-embed video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* --- ADVERTISEMENT IMAGE --- */
+    .sidebar .box img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* --- NEXT ARTICLES --- */
+.next-articles-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.next-article a {
+  text-decoration: none;
+  color: #0044cc;
+  display: block;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.next-article a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.next-article img {
+  width: 100%;
+  height: 250px; /* consistent height */
+  object-fit: cover; /* crop without distortion */
+  display: block;
+}
+.next-article p {
+  margin: 0.5rem;
+  font-weight: bold;
+}
+@media(min-width: 768px) {
+  .next-articles-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+    /* --- RESPONSIVE GRID --- */
+    @media(min-width: 768px) {
+      .next-articles-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #222;
+      color: #fff;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>News Demo</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#">Opinion</a>
+      <a href="#">Analysis</a>
+      <a href="#">Economy</a>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <!-- ARTICLE -->
+    <div class="content">
+      <h2 class="article-title">Brunei – Perfect place for family tourism</h2>
+      <p class="article-meta">By Waleed PD Mahdini • September 9, 2025</p>
+      <div class="article-body">
+<p>BRUNEI Darussalam, on the whole received pleasant and gentle praises by many of the international media that ranged from China to the Middle East, covering the week-long Asean Tourism Forum (ATF), but the issue of visa on arrival was also acknowledged to be a sticking point in the country's bid to improve its inbound tourist volume.</p>
+
+<p>Motaz Othman, an area manager for the Islamic Tourism Magazine, who hails from Jordan but is based in London, pointed out "There is a big image for Brunei in the Islamic world because everybody knows that Brunei is committed to its Islamic culture".</p>
+
+          <img src="https://www.bruneitourism.com/wp-content/uploads/2020/04/ATV-Adventure-Brunei-2020.jpg" alt="Top Story">
+
+
+<p>Having attended many previous ATF meetings in Europe and Asia, "I consider Brunei a perfect sample of Islamic tourism for European, African, and American tourists because Brunei offers clean, responsible tourism and it is all family-related. You have it all here. Unlike other tourist destinations, even those of Muslim countries, there is no big problem with drugs, gambling, alcohol or prostitution. So you have a very good sample for the world. I believe this is a perfect situation." </p>
+
+<p>However, despite the many positive benefits that Brunei offers as a unique tourist destination from an Islamic point of view, he narrated a story to prove his point of what he considered to be the main stumbling block to furthering Brunei's tourism goals. </p>
+
+<p>"A friend of mine, who is a tour operator, was invited to this ATF as a hosted buyer, and as it was a prestigious destination, his wife wanted to fly out and accompany him to Brunei. But when they applied for a visa at the Brunei Embassy in Amman, she was refused a visa, with officials citing that she had to be 'invited'. How can this be? Is it so complicated to facilitate visas for tourists?" </p>
+
+<p>He went on to say that the Middle East market is a big bonus not only for Brunei, but also for Asean tourism. "It's perfect. We have similar food and cultures with the Asean countries." </p>
+
+<p>Motaz used the comparison of Malaysia, explaining why it continues to be so successful in attracting millions of tourists from the Middle East. </p>
+
+<p>"It is unfair to compare Brunei to Malaysia because it is a much bigger country and it also offers many other alternatives. Here in Brunei, I believe that the authorities are looking for some class tourism and not just mass tourism. You are targeting rich people, with families, who want to enjoy a safe, peaceful destination. Malaysia attracts the eyes of Arabs and people from the Middle East because they have big promotions and huge alternatives. For instance, out of an Islamic family, the women prefer shopping, the children like to be engaged in a lot of activities and the men can go for other alternatives. Brunei has very limited alternatives for this class of people. Even your Royal Brunei Airlines only flies to Dubai and Jeddah. Yes, a lot is being done, but you are not yet a tourist destination." </p>
+
+<p>He went on to surmise that it was "because of a prestige issue that you are targeting Europeans". Brunei has focused itself onto the eco-tourism niche. "Many Europeans are fed up of going to bars, clubs and that kind of entertainment when they visit foreign countries, but there is a growing interest in enjoying nature nowadays. And Brunei is doing well with eco-tourism. It is not opening up the country for everyone and thus it is able to keep its country clean along with its culture and heritage." </p>
+
+
+<!-- NEXT ARTICLES SECTION -->
+        <div class="next-articles">
+          <h3>Next Articles</h3>
+          <div class="next-articles-grid">
+            <div class="next-article">
+              <a href="article2.html">
+                <img src="https://ccitraining.edu/wp-content/uploads/2024/01/Difference-Between-ICT-and-IT.webp" alt="Next Article 1">
+                <p>Brunei’s Economy: Trends to Watch in 2025</p>
+              </a>
+            </div>
+            <div class="next-article">
+              <a href="article3.html">
+                <img src="https://assets.publishing.service.gov.uk/media/5be50fdc40f0b667a12171a6/s960_TE_meets_the_Sultan_Cover_photo_1.jpg" alt="Next Article 2">
+                <p>Inside the UK-Brunei Cultural Exchange Program</p>
+              </a>
+            </div>
+            <div class="next-article">
+              <a href="article4.html">
+                <img src="https://www.sdgbrunei.gov.bn/media/z5xfst1a/brunei-mampan-forum.png?width=1200&quality=85&rnd=133623131950030000" alt="Next Article 3">
+                <p>Sustainability: Brunei’s way forward</p>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="box">
+        <h3>Advertisement</h3>
+        <img src="https://media.tegna-media.com/assets/WOI/images/8b9a0239-cae0-4e66-81ba-6b3b65c324ac/8b9a0239-cae0-4e66-81ba-6b3b65c324ac_750x422.png" alt="Ad">
+      </div>
+
+      <div class="box">
+        <h3>Most Read</h3>
+        <ol>
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/XWq5kBlakcQ" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <li><a href="article.html">Opinion: Why the economy needs bold reforms</a></li>
+          <li><a href="article.html">Analysis: Global politics shifting in 2025</a></li>
+          <li><a href="article.html">Feature: Inside the tech that’s changing lives</a></li>
+          <li><a href="article.html">Report: Local communities adapting to change</a></li>
+        </ol>
+      </div>
+    </aside>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 News Demo. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
