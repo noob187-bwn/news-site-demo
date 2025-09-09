@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article Page - News Demo</title>
+  <style>
+    /* --- GLOBAL --- */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background: #fafafa;
+      color: #333;
+    }
+    a { color: #0044cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* --- HEADER --- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: #052962;
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 { margin: 0; font-size: 1.5rem; }
+
+    nav a {
+      margin-left: 1rem;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    /* --- MAIN LAYOUT --- */
+    main {
+      display: flex;
+      gap: 2rem;
+      padding: 1rem 2rem;
+    }
+    .content { flex: 3; }
+    .sidebar { flex: 1; }
+
+    /* --- ARTICLE --- */
+    .article-title {
+      font-size: 2rem;
+      margin-bottom: .5rem;
+    }
+    .article-meta {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    .article-body img {
+      max-width: 100%;
+      margin: 1rem 0;
+    }
+    .article-body p {
+      text-align: justify; /* paragraphs justified */
+    }
+
+    /* --- SIDEBAR --- */
+    .sidebar .box {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .sidebar h3 { margin-top: 0; }
+    .sidebar ol { padding-left: 1.2rem; }
+
+    /* --- VIDEO EMBED --- */
+    .video-embed {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+    .video-embed iframe,
+    .video-embed video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* --- ADVERTISEMENT IMAGE --- */
+    .sidebar .box img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* --- NEXT ARTICLES --- */
+.next-articles-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.next-article a {
+  text-decoration: none;
+  color: #0044cc;
+  display: block;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.next-article a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.next-article img {
+  width: 100%;
+  height: 250px; /* consistent height */
+  object-fit: cover; /* crop without distortion */
+  display: block;
+}
+.next-article p {
+  margin: 0.5rem;
+  font-weight: bold;
+}
+@media(min-width: 768px) {
+  .next-articles-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+    /* --- RESPONSIVE GRID --- */
+    @media(min-width: 768px) {
+      .next-articles-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #222;
+      color: #fff;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>News Demo</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#">Opinion</a>
+      <a href="#">Analysis</a>
+      <a href="#">Economy</a>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <!-- ARTICLE -->
+    <div class="content">
+      <h2 class="article-title">Achieving MDG as Asean Community</h2>
+      <p class="article-meta">By Waleed PD Mahdini • September 9, 2025</p>
+      <div class="article-body">
+<p>HIS Royal Highness Prince Mohamed Bolkiah, Minister of Foreign Affairs and Trade, yesterday commended the United Nation's Millennium Development Goals that have brought about "new confidence in the future" and which has "taught us a lot about ourselves".</p>
+
+<p>HRH delivered a statement during the High-Level Plenary Meeting of the UN's 65th annual General Assembly on the MDGs at the UN Headquarters in New York in which HRH outlined the Sultanate's progress towards achieving the goals and stressed the need for small, developing nations to achieve deeper levels of regional and international cooperation in order to reach the 2015 target date.</p>
+
+<p>"We have learned how the Millennium Development Goals can bring our people together, our governments, our business people, our professionals and our families and communities. So far, the goals have done this very successfully. We are starting to feel new confidence in the future and I think we are less frightened by its many challenges," remarked HRH about its overall goal.</p>
+          <img src="https://alchetron.com/cdn/mohamed-bolkiah-prince-of-brunei-e1596f14-b92b-4106-a224-f09cf63ace4-resize-750.jpeg" alt="Top Story">
+
+<p>HRH went on to point out that as a result "our government has strengthened policy and legislation. Our public and private sectors are working together in health and education and all ministries have set long-term programmes of development".</p>
+
+<p>Adding all these to the country's comprehensive housing programmes and its commitment to the rule of law, "we can see that work towards the goals has done a great deal to strengthen social welfare".</p>
+
+<p>But the pursuit of the MDGs has also taught the people and government of Brunei Darussalam another important lesson, HRH said- one that "has taught us a lot about ourselves".</p>
+
+<p>Acknowledging the fact that Brunei is a small, developing nation and that "we cannot do everything on our own", HRH highlighted the importance of the Sultanate's membership in the Asean regional organisation. "It has a great role to play and I think this is because it also has a development target," which HRH noted is presenting challenges to all of its 10-members to truly become an "Asean Community".</p>
+
+<p>In fact, the establishment of Asean's three pillars for a single community shares the same immediate target date as the eight goals of the UN MDGs, which is 2015, HRH noted.</p>
+
+<p>"Our method is to establish what we describe as 'connectivity' and I am sure that nothing will give us stronger 'connection' than achieving the Millennium Goals together as partners," HRH went on to emphasise, adding: "After all, the goals are at the heart of any real community and the lesson here is an inspiring one. It shows they can be both a national and regional guide."</p>
+
+<p>But HRH also noted the difficulties in what he termed as "a lesson that we are still trying to learn" - that concerning the natural environment in general and, specifically, bio-diversity - whereby "we are finding it difficult to reach the targets".</p>
+
+<p>Despite the fact that the Sultanate is signatory to key international agreements on the environment, "we have a very real problem", noted HRH, which he summed up quite simply: "We don't know enough.</p>
+
+<p>"Statistics often contradict each other. Basic facts are frequently disputed. Even when we are satisfied with the information we get, we cannot implement recommendations. We can do the planning and pass the legislation. We can even provide much of the physical infrastructure but there is very little else we can do if we don't have enough highly skilled people," HRH listed out to the assembled audience of world leaders and statesmen.</p>
+
+<p>"This is always going to be a big problem because of our low population and our small domestic market," HRH added, pointing to the fact that "unless this situation changes, some of the goals will be very hard to achieve".</p>
+
+<p>But then HRH underscored, in his opinion, the true benefit of the MDGs. Noting, "success cannot depend entirely on each individual country", HRH called for "deep levels of cooperation, especially sharing ideas and expertise", which HRH highlighted "as the biggest single lesson we have learned in the last 10 years" and reaffirmed that Brunei Darussalam "will do whatever we can to strengthen these efforts".</p>
+
+<p>Adopted by world leaders in 2000 and set to be achieved by 2015, the MDGs are both global and local, which are customised by each country to suit their specific development needs. They provide a framework for the entire international community to work together towards a common end - by simply ensuring that human development reaches everyone, everywhere.</p>
+
+<p>The UN's Development Programme believes: "If these goals are achieved, world poverty will be cut by half, tens of millions of lives will be saved, and billions more people will have the opportunity to benefit from the global economy."</p>
+
+<p>The eight goals of the UN Millennium Development Goals are eradicating extreme poverty and hunger; achieving universal primary education; promoting gender equality and empowering women; reducing child mortality; improving maternal health; combating HIV/AIDS, malaria and other diseases; ensuring environmental sustainability and developing a global partnership for development.</p>        <!-- NEXT ARTICLES SECTION -->
+        <div class="next-articles">
+          <h3>Next Articles</h3>
+          <div class="next-articles-grid">
+            <div class="next-article">
+              <a href="article2.html">
+                <img src="https://ccitraining.edu/wp-content/uploads/2024/01/Difference-Between-ICT-and-IT.webp" alt="Next Article 1">
+                <p>Brunei’s Economy: Trends to Watch in 2025</p>
+              </a>
+            </div>
+            <div class="next-article">
+              <a href="article3.html">
+                <img src="https://assets.publishing.service.gov.uk/media/5be50fdc40f0b667a12171a6/s960_TE_meets_the_Sultan_Cover_photo_1.jpg" alt="Next Article 2">
+                <p>Inside the UK-Brunei Cultural Exchange Program</p>
+              </a>
+            </div>
+            <div class="next-article">
+              <a href="article4.html">
+                <img src="https://www.sdgbrunei.gov.bn/media/z5xfst1a/brunei-mampan-forum.png?width=1200&quality=85&rnd=133623131950030000" alt="Next Article 3">
+                <p>Sustainability: Brunei’s way forward</p>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="box">
+        <h3>Advertisement</h3>
+        <img src="https://media.tegna-media.com/assets/WOI/images/8b9a0239-cae0-4e66-81ba-6b3b65c324ac/8b9a0239-cae0-4e66-81ba-6b3b65c324ac_750x422.png" alt="Ad">
+      </div>
+
+      <div class="box">
+        <h3>Most Read</h3>
+        <ol>
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/XWq5kBlakcQ" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <li><a href="article.html">Opinion: Why the economy needs bold reforms</a></li>
+          <li><a href="article.html">Analysis: Global politics shifting in 2025</a></li>
+          <li><a href="article.html">Feature: Inside the tech that’s changing lives</a></li>
+          <li><a href="article.html">Report: Local communities adapting to change</a></li>
+        </ol>
+      </div>
+    </aside>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 News Demo. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
