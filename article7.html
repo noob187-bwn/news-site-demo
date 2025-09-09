@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article Page - News Demo</title>
+  <style>
+    /* --- GLOBAL --- */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background: #fafafa;
+      color: #333;
+    }
+    a { color: #0044cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* --- HEADER --- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: #052962;
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 { margin: 0; font-size: 1.5rem; }
+
+    nav a {
+      margin-left: 1rem;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    /* --- MAIN LAYOUT --- */
+    main {
+      display: flex;
+      gap: 2rem;
+      padding: 1rem 2rem;
+    }
+    .content { flex: 3; }
+    .sidebar { flex: 1; }
+
+    /* --- ARTICLE --- */
+    .article-title {
+      font-size: 2rem;
+      margin-bottom: .5rem;
+    }
+    .article-meta {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    .article-body img {
+      max-width: 100%;
+      margin: 1rem 0;
+    }
+    .article-body p {
+      text-align: justify; /* paragraphs justified */
+    }
+
+    /* --- SIDEBAR --- */
+    .sidebar .box {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .sidebar h3 { margin-top: 0; }
+    .sidebar ol { padding-left: 1.2rem; }
+
+    /* --- VIDEO EMBED --- */
+    .video-embed {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+    .video-embed iframe,
+    .video-embed video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* --- ADVERTISEMENT IMAGE --- */
+    .sidebar .box img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* --- NEXT ARTICLES --- */
+.next-articles-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.next-article a {
+  text-decoration: none;
+  color: #0044cc;
+  display: block;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.next-article a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.next-article img {
+  width: 100%;
+  height: 250px; /* consistent height */
+  object-fit: cover; /* crop without distortion */
+  display: block;
+}
+.next-article p {
+  margin: 0.5rem;
+  font-weight: bold;
+}
+@media(min-width: 768px) {
+  .next-articles-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+    /* --- RESPONSIVE GRID --- */
+    @media(min-width: 768px) {
+      .next-articles-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #222;
+      color: #fff;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>News Demo</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#">Opinion</a>
+      <a href="#">Analysis</a>
+      <a href="#">Economy</a>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <!-- ARTICLE -->
+    <div class="content">
+      <h2 class="article-title">Brunei may be small, but we have a voice in Apec</h2>
+      <p class="article-meta">By Waleed PD Mahdini • September 9, 2025</p>
+      <div class="article-body">
+
+<p>"APEC is not the answer to everything," said Dato Paduka Timothy Ong, Acting Chairman of the Brunei Economic Development Board, "but it is a rare club that includes the three biggest economies of the world, which gives prestige and value and that in itself is the beauty and the real value that comes with the membership itself."
+<p>Speaking to the Borneo Bulletin in an exclusive interview on the eve of the much-anticipated Asia Pacific Economic Cooperation (Apec) CEO Summit, which is witnessing the biggest attendance so far ever since its inception some 13 years ago, Dato Timothy explained the advantages that Brunei Darussalam's membership of the 21-member organisation brings.
+<p>"Despite being the smallest member in Apec, which is reflected because of the size of our economy, trade flows and physical size of it, but in per capita terms, we are significant, in fact close to those of Apec's developed countries. The beauty is that in Apec, we participate as equals and we are considered as a very useful member of the grouping because we are an active and positive member.
+<p>"This is the official recognition that our officials get, which is one of its strengths. Although we are a small country, we get a voice in a group that accounts for half of the trade in the world's economy."
+
+    <img src="https://www.mofe.gov.bn/Images1/News/2023/(05.25)%2029th%20APEC.PNG" alt="Opinion 3 Image">
+
+<p>As one of Brunei's prominent economist, Dato Timothy further explained, "Apec is all about conducting trade policies. It's about learning from each other. But we cannot dictate what Apec can do. It cannot change conditions in each member country directly. What we do is we sit down, we look at the common problems, we compare notes and this produces a pressure - a certain kind of peer group pressure - to change because if you want to be the slowest to change or develop, that's fine too. The reports that the ministers present are not secret and this exercises transparency, which can be quite powerful. This is what Apec's approach is like." </p>
+<p>The BEDB Acting Chairman however clarified: "Apec cannot legislate each economy. Each economy joins without surrendering any of its sovereignty. We join because of common challenges, such as environmental concerns, where unless we have a framework with which to talk to each other in a healthy and constructive way about our common problems, where more of our problems in this globalised world are interconnected." </p>
+<p>As if to further emphasise his point, Dato Timothy used Brunei's hosting of Apec in 2000 as a good example: "This immediately established our credentials as it showed that other countries were comfortable to come over. These major economies would not have done so if they weren't. And that's why Singapore treats it so big." </p>
+<p>Asked what benefits that local SMEs can really attain from its membership, Dato Timothy replied: "There is a lot that we can learn from Apec. But, having said that, there is a lot that we have to do for ourselves. Apec cannot do miracles. For instance, some of the ideas that we learnt from Apec can be seen through the BEDB creating facilities at the iCentre to help ICT start-ups with overall venture capital start-ups to invest in, attracting foreign direct investments with the methanol plant to create spin-offs for local businesses, similar to those made by BLNG or Shell. Similarly, the Ministry of Industry and Primary Resources also offers schemes for SMEs where preferences are given to locals." </p>
+<p>Throughout the 20 years of its growing establishment, the 21-nation organisation has also received its fair share of criticisms of being described as another "talking shop".</p>
+<p>As a moderator for the second session of the Apec CEO Leaders Summit, entitled 'Looking at the global economy: Is the crisis really over?', Brunei's BEBD Acting Chairman said: "I disagree that Apec is just a talking shop, but I happen to agree that we have to talk, that to solve problems we need to talk. And for 21-member economies to talk, it will take some time in order to solve our common problems. These suggestions are healthy. It shows the efforts that we care for our region and conducting things between ourselves." </p>
+<p>Dato Timothy added, "Since 1989, for better or for worse, every time we meet, we grumble, we complain, but still we meet. Still the Presidents of the US and China come to town and they wouldn't do it if it wasn't important." </p>
+<p>When asked what he expected to be discussed during the second session of the Apec CEO summit, the BEDB Acting Chairman said: "We'll be asking what's next. Is it a recovery? Is it just a bubble? The stock market is up, property markets have recovered, but unemployment is still high. To me this shows that something is still wrong. So we need to sit and talk. We need to make sense of it and plan for the short, medium and long-term. </p>
+<p>"Frankly, not one of us knows the answers. What the global financial crisis proved to us was that we know much less than what we actually thought we did. Even people like Allen Greenspan. We all have a limited knowledge as human beings. </p>
+<p>"But this summit will hopefully provide the views of thousands of delegates and business leaders to provide us with a better picture of what we are doing." </p>
+<p>One of the highlights of the Apec meetings is the 20th anniversary celebration, and the Bulletin asked Dato Timothy what his hopes, dreams and ambitions were for the next 20 years for Apec. </p>
+<p>"What we set out to do in Bogor for developed countries by 2010 and developing countries by 2020 is falling behind. For me, it would have to be if we could renew our commitment towards these goals. Success in life is focusing on a few things. If you try to do too many things, you can't. I see Apec as playing a supporting role for one vision of promoting trade liberalisation and we're making real progress within the next 10 years. Twenty years would be too long. What we should do is accelerate our goals instead in which trade and investment can flow freely." </p>
+<p>But he went on to poignantly emphasise the Pacific Rim's other role. "In a world that is so divided on religious, cultural, economic and political grounds, Apec's relevancy is its economic focus and sustainability where every member country is indeed separated by its religious, cultural, economic and political persuasion, so Apec is something that we need. We shall continue to keep making it better. We all have faults. But an organisation that keeps these countries together is basically very important as we can learn from our problems and share in the solutions with each other and find a common stance." </p>
+
+
+
+
+<!-- NEXT ARTICLES SECTION -->
+        <div class="next-articles">
+          <h3>Next Articles</h3>
+          <div class="next-articles-grid">
+            <div class="next-article">
+              <a href="article2.html">
+                <img src="https://ccitraining.edu/wp-content/uploads/2024/01/Difference-Between-ICT-and-IT.webp" alt="Next Article 1">
+                <p>Brunei’s Economy: Trends to Watch in 2025</p>
+              </a>
+            </div>
+            <div class="next-article">
+              <a href="article3.html">
+                <img src="https://assets.publishing.service.gov.uk/media/5be50fdc40f0b667a12171a6/s960_TE_meets_the_Sultan_Cover_photo_1.jpg" alt="Next Article 2">
+                <p>Inside the UK-Brunei Cultural Exchange Program</p>
+              </a>
+            </div>
+            <div class="next-article">
+              <a href="article4.html">
+                <img src="https://www.sdgbrunei.gov.bn/media/z5xfst1a/brunei-mampan-forum.png?width=1200&quality=85&rnd=133623131950030000" alt="Next Article 3">
+                <p>Sustainability: Brunei’s way forward</p>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="box">
+        <h3>Advertisement</h3>
+        <img src="https://media.tegna-media.com/assets/WOI/images/8b9a0239-cae0-4e66-81ba-6b3b65c324ac/8b9a0239-cae0-4e66-81ba-6b3b65c324ac_750x422.png" alt="Ad">
+      </div>
+
+      <div class="box">
+        <h3>Most Read</h3>
+        <ol>
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/XWq5kBlakcQ" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <li><a href="article.html">Opinion: Why the economy needs bold reforms</a></li>
+          <li><a href="article.html">Analysis: Global politics shifting in 2025</a></li>
+          <li><a href="article.html">Feature: Inside the tech that’s changing lives</a></li>
+          <li><a href="article.html">Report: Local communities adapting to change</a></li>
+        </ol>
+      </div>
+    </aside>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 News Demo. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
