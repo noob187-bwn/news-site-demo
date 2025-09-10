@@ -60,7 +60,7 @@
       margin: 1rem 0;
     }
     .article-body p {
-      text-align: justify; /* paragraphs justified */
+      text-align: justify;
     }
 
     /* --- SIDEBAR --- */
@@ -100,44 +100,45 @@
     }
 
     /* --- NEXT ARTICLES --- */
-.next-articles-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-.next-article a {
-  text-decoration: none;
-  color: #0044cc;
-  display: block;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  overflow: hidden;
-  background: #fff;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.next-article a:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-.next-article img {
-  width: 100%;
-  height: 250px; /* consistent height */
-  object-fit: cover; /* crop without distortion */
-  display: block;
-}
-.next-article p {
-  margin: 0.5rem;
-  font-weight: bold;
-}
-@media(min-width: 768px) {
-  .next-articles-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-    /* --- RESPONSIVE GRID --- */
+    .next-articles-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .next-article a {
+      text-decoration: none;
+      color: #0044cc;
+      display: block;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      overflow: hidden;
+      background: #fff;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .next-article a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .next-article img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+    .next-article p {
+      margin: 0.5rem;
+      font-weight: bold;
+    }
     @media(min-width: 768px) {
       .next-articles-grid {
         grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* --- RESPONSIVE (STACK SIDEBAR) --- */
+    @media(max-width: 768px) {
+      main {
+        flex-direction: column;
       }
     }
 
@@ -163,6 +164,7 @@
       <a href="#">Economy</a>
     </nav>
   </header>
+
 
   <!-- MAIN -->
   <main>
@@ -254,4 +256,5 @@
 
 </body>
 </html>
+
 
