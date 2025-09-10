@@ -14,6 +14,7 @@
     /* --- HEADER --- */
     header { display:flex; justify-content:space-between; align-items:center; padding:1rem; border-bottom:2px solid #052962; background:#052962; position:sticky; top:0; z-index:10; }
     .logo { font-size:1.5rem; font-weight:bold; color:#ffffff; }
+    .center-logo { position:absolute; left:50%; transform:translateX(-50%); }
     nav { display:none; }
     nav ul { display:flex; gap:1rem; list-style:none; align-items:center; }
     nav li { font-weight:bold; color:#ffffff; }
@@ -22,19 +23,15 @@
     /* --- NAV DRAWER (MOBILE) --- */
     .nav-drawer { display:none; flex-direction:column; background:#f9f9f9; border-top:2px solid #eee; }
     .nav-drawer a { padding:0.75rem 1rem; border-bottom:1px solid #eee; color:#052962; font-weight:bold; }
+    .nav-drawer .search-form { padding:0.75rem 1rem; }
+    .nav-drawer .search-form input { width:100%; padding:0.4rem; border:1px solid #ccc; border-radius:3px; }
 
     /* --- MAIN LAYOUT --- */
     main { display:flex; flex-direction:column; padding:1rem; flex:1; }
     .content { flex:3; }
     .sidebar { flex:1; margin-left:2rem; min-width:250px; display:flex; flex-direction:column; gap:1.5rem; }
 
-    .sidebar-sticky {
-      position: sticky;
-      top: 1rem; 
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
+    .sidebar-sticky { position: sticky; top: 1rem; display: flex; flex-direction: column; gap: 1.5rem; }
 
     /* --- TOP STORY --- */
     .top-story { margin-bottom:2rem; }
@@ -44,31 +41,16 @@
     /* --- SECTION DIVIDER --- */
     .section-divider { margin:2rem 0 1rem; font-size:1.5rem; font-weight:bold; color:#052962; border-bottom:3px solid #052962; padding-bottom:0.25rem; }
 
-    
-    .story-meta {
-  font-size: 0.85rem;
-  color: #666;
-  margin: 0.3rem 0 0.5rem; /* space between photo and title */
-  font-style: italic; /* optional */
-}
-
+    .story-meta { font-size: 0.85rem; color: #666; margin: 0.3rem 0 0.5rem; font-style: italic; }
 
     /* --- SECONDARY STORIES --- */
     .secondary-stories { display:grid; gap:1rem; }
     .story { border-bottom:1px solid #eee; padding-bottom:1rem; }
     .story h2 { font-size:1.2rem; margin:0.5rem 0; color:#333; }
-    .secondary-stories .story img {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      border-radius: 5px;
-      margin-bottom: 0.5rem;
-    }
+    .secondary-stories .story img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 5px; margin-bottom: 0.5rem; }
 
     /* --- GRID COLUMNS (section-specific) --- */
-    .analysis-stories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-    .opinion-stories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-    .economy-stories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .analysis-stories, .opinion-stories, .economy-stories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 
     /* --- READ MORE LINK --- */
     .read-more { display:inline-block; margin-top:0.5rem; font-weight:bold; color:#052962; text-decoration:none; }
@@ -107,68 +89,146 @@
       .hamburger { display:none; }
       .nav-drawer { display:none !important; }
       main { flex-direction:row; }
+      .center-logo { position:static; transform:none; } /* centered logo adjustment */
     }
-
-    /* --- MOBILE SECONDARY STORIES --- */
-   @media (max-width: 767px) {
-  /* Make all secondary stories full-width stacked */
-  .secondary-stories {
-    display: block !important; /* stop the grid */
-  }
-
-  .secondary-stories .story {
-    display: flex;
-    flex-direction: column; /* photo on top, text below */
-    margin-bottom: 1.5rem;
-  }
-
-  .secondary-stories .story img {
-    width: 100%;
-    height: auto; /* let image scale naturally */
-    object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 0.5rem;
-  }
-
-  .secondary-stories .story .story-text {
-    grid-column: auto; /* reset any grid settings */
-  }
+/* --- MOBILE MENU SEPARATORS --- */
+.mobile-menu a:not(:last-child)::after {
+  content: " |";
+  margin-left: 0.25rem;
+  color: #ffffff;
 }
 
+/* --- STACK HEADER ON MOBILE --- */
+@media (max-width: 767px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+  }
 
+  .center-logo {
+    position: static;
+    transform: none;
+  }
+
+  .mobile-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+
+  .hamburger {
+    order: 3;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+}    /* --- MOBILE SECONDARY STORIES --- */
+    @media (max-width: 767px) {
+      .secondary-stories { display: block !important; }
+      .secondary-stories .story { display: flex; flex-direction: column; margin-bottom: 1.5rem; }
+      .secondary-stories .story img { width: 100%; height: auto; object-fit: cover; border-radius: 5px; margin-bottom: 0.5rem; }
+      .secondary-stories .story .story-text { grid-column: auto; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="logo">The New Brunei Digest</div>
-    <div class="center-logo">
-      <img src="https://www.information.gov.bn/PublishingImages/aboutINFO/benderbrunei1.jpg" alt="Site Logo" style="height:50px; width:auto;">
-    </div>
-    <div class="hamburger" onclick="toggleNav()">☰</div>
-    <nav>
-      
-      <ul>
-        <li><a href="#">Analysis</a></li>
-        <li><a href="#">Opinion</a></li>
-        <li><a href="#">Economy</a></li>
-        <li>
-          <form action="#" method="get" class="search-form">
-            <input type="text" placeholder="Search..." name="q">
-          </form>
-        </li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- MOBILE NAV -->
-  <div class="nav-drawer" id="navDrawer">
-    <a href="#">Analysis</a>
-    <a href="#">Opinion</a>
-    <a href="#">Economy</a>
+<!-- HEADER -->
+<header>
+  <!-- Logo + Site Title -->
+  <div class="logo-container">
+    <img src="https://www.information.gov.bn/PublishingImages/aboutINFO/benderbrunei1.jpg" alt="Site Logo" class="site-logo">
+    <span class="site-title">The New Brunei Digest</span>
   </div>
 
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <a href="#">Home</a>
+    <a href="#">Opinion</a>
+    <a href="#">Analysis</a>
+    <a href="#">Economy</a>
+  </nav>
+
+  <!-- Search Bar -->
+  <form class="search-form" action="#" method="get">
+    <input type="text" placeholder="Search..." name="q">
+  </form>
+</header>
+
+<!-- CSS -->
+<style>
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  background: #052962;
+  border-bottom: 2px solid #fff;
+  flex-wrap: wrap;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.site-logo {
+  height: 40px;
+  width: auto;
+}
+
+.site-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.main-nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.main-nav a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.main-nav a:not(:last-child)::after {
+  content: " |";
+  margin-left: 0.25rem;
+  color: #fff;
+}
+
+.search-form input {
+  padding: 0.35rem 0.5rem;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .main-nav {
+    justify-content: center;
+  }
+
+  .search-form {
+    text-align: center;
+  }
+}
+</style>
   <!-- MAIN CONTENT -->
   <main>
     <div class="content">
@@ -344,6 +404,7 @@ Motaz Othman, an area manager for the Islamic Tourism Magazine, who hails from J
   </script>
 </body>
 </html>
+
 
 
 
