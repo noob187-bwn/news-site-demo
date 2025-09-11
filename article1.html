@@ -3,65 +3,163 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Article Page - News Demo</title>
+  <title>Article Page - The New Brunei Digest</title>
   <style>
-    /* --- GLOBAL --- */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      background: #fafafa;
-      color: #333;
-    }
-    a { color: #0044cc; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    /* --- RESET --- */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: Arial, Helvetica, sans-serif; background:#fafafa; color:#111; line-height:1.6; }
 
-    /* --- HEADER --- */
+    a { text-decoration: none; color: inherit; }
+    img { max-width:100%; display:block; }
+
+    /* --- HEADER (Uniform with main) --- */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem;
+      padding: 0.8rem 1rem;
       background: #052962;
-      color: #fff;
+      border-bottom: 2px solid #fff;
+      flex-wrap: wrap;
       position: sticky;
       top: 0;
       z-index: 1000;
     }
-    header h1 { margin: 0; font-size: 1.5rem; }
 
-    nav a {
-      margin-left: 1rem;
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .site-logo {
+      height: 40px;
+      width: auto;
+    }
+
+    .site-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+
+    .main-nav a {
       color: #fff;
       font-weight: bold;
+      text-decoration: none;
+    }
+
+    .main-nav a:not(:last-child)::after {
+      content: " |";
+      margin-left: 0.25rem;
+      color: #fff;
+    }
+
+    .search-form input {
+      padding: 0.35rem 0.5rem;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 767px) {
+      header { flex-direction: column; align-items: stretch; gap: 0.5rem; }
+      .main-nav { justify-content: center; }
+      .search-form { text-align: center; }
     }
 
     /* --- MAIN LAYOUT --- */
-    main {
-      display: flex;
-      gap: 2rem;
-      padding: 1rem 2rem;
-    }
+    main { display: flex; gap: 2rem; padding: 1rem 2rem; }
     .content { flex: 3; }
     .sidebar { flex: 1; }
+    
+    .scroll-section {
+  display: flex;
+  flex-wrap: nowrap;           /* important: keeps boxes horizontal */
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE 10+ */
+  justify-content: start;      /* default for mobile */
+}
+
+/* Hide scrollbar for Chrome, Safari, Edge */
+.scroll-section::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-box {
+  flex: 0 0 auto;
+  min-width: 250px;            /* width of each box */
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: left;
+  position: relative;
+  scroll-snap-align: start;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-decoration: none;       /* remove underline from links */
+  color: inherit;              /* keep text color */
+}
+
+/* Circular photo in top-right corner */
+.scroll-box .photo {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.scroll-box .photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.scroll-box h3 {
+  margin: 30px 0 5px 0; /* space below photo */
+  font-size: 18px;
+}
+
+.scroll-box p {
+  margin: 0;
+  color: #555;
+  font-size: 14px;
+}
+
+/* Center scroll-section on desktop */
+@media (min-width: 768px) {
+  .scroll-section {
+    justify-content: center;
+  }
+}
+
 
     /* --- ARTICLE --- */
-    .article-title {
-      font-size: 2rem;
-      margin-bottom: .5rem;
-    }
-    .article-meta {
-      font-size: 0.9rem;
-      color: #666;
-      margin-bottom: 1rem;
-    }
-    .article-body img {
-      max-width: 100%;
-      margin: 1rem 0;
-    }
+    .article-title { font-size: 2rem; margin-bottom: .5rem; color:#052962; }
+    .article-meta { font-size: 0.9rem; color: #666; margin-bottom: 1rem; }
+    .article-body img { max-width: 100%; margin: 1rem 0; }
+    .article-body p { text-align: justify; }
     .article-body p {
-      text-align: justify;
-    }
+  margin-bottom: 1rem;  /* adds space between paragraphs */
+  text-align: justify;
+}
+
 
     /* --- SIDEBAR --- */
     .sidebar .box {
@@ -70,34 +168,12 @@
       padding: 1rem;
       margin-bottom: 1.5rem;
     }
-    .sidebar h3 { margin-top: 0; }
+    .sidebar h3 { margin-top: 0; color:#052962; }
     .sidebar ol { padding-left: 1.2rem; }
 
     /* --- VIDEO EMBED --- */
-    .video-embed {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      margin: 1rem 0;
-    }
-    .video-embed iframe,
-    .video-embed video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    /* --- ADVERTISEMENT IMAGE --- */
-    .sidebar .box img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 4px;
-      display: block;
-      margin: 0 auto;
-    }
+    .video-embed { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 1rem 0; }
+    .video-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
     /* --- NEXT ARTICLES --- */
     .next-articles-grid {
@@ -111,7 +187,6 @@
       display: block;
       border: 1px solid #ddd;
       border-radius: 4px;
-      overflow: hidden;
       background: #fff;
       transition: transform 0.2s, box-shadow 0.2s;
     }
@@ -119,56 +194,72 @@
       transform: translateY(-3px);
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-    .next-article img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      display: block;
-    }
-    .next-article p {
-      margin: 0.5rem;
-      font-weight: bold;
-    }
+    .next-article img { width: 100%; height: 250px; object-fit: cover; }
+    .next-article p { margin: 0.5rem; font-weight: bold; }
     @media(min-width: 768px) {
-      .next-articles-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
+      .next-articles-grid { grid-template-columns: repeat(3, 1fr); }
     }
-    
 
     /* --- RESPONSIVE (STACK SIDEBAR) --- */
-    @media(max-width: 768px) {
-      main {
-        flex-direction: column;
-      }
-    }
+    @media(max-width: 768px) { main { flex-direction: column; } }
 
-    
     /* --- FOOTER --- */
     footer {
       text-align: center;
       padding: 1rem;
-      background: #222;
+      background: #052962;
       color: #fff;
       margin-top: 2rem;
     }
   </style>
 </head>
 <body>
-  
 
   <!-- HEADER -->
   <header>
-    <h1>News Demo</h1>
-    <nav>
+    <div class="logo-container">
+      <img src="https://www.information.gov.bn/PublishingImages/aboutINFO/benderbrunei1.jpg" alt="Site Logo" class="site-logo">
+      <span class="site-title">The New Brunei Digest</span>
+    </div>
+    <nav class="main-nav">
       <a href="index.html">Home</a>
       <a href="#">Opinion</a>
       <a href="#">Analysis</a>
       <a href="#">Economy</a>
     </nav>
+    <form class="search-form" action="#" method="get">
+      <input type="text" placeholder="Search..." name="q">
+    </form>
   </header>
-  
 
+  <!-- Horizontal Scroll Section -->
+<div class="scroll-section">
+  <a href="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" class="scroll-box">
+    <div class="photo">
+      <img src="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" alt="Photo 1">
+    </div>
+    <h3>Analysis</h3>
+    <p>Achieving MDG as </p> <p>ASEAN COMMUNITY</p>
+  </a>
+
+  <a href="https://example.com/page2" class="scroll-box">
+    <div class="photo">
+      <img src="https://cms-image-bucket-productionv3-ap-northeast-1-a7d2.s3.ap-northeast-1.amazonaws.com/images/7/2/2/6/47856227-3-eng-GB/Cropped-1718779699AP24066235507389.jpg" alt="Photo 2">
+    </div>
+    <h3>Opinion</h3>
+    <p>Brunei actively involved</p><p>in regional fight against piracy</p>
+  </a>
+
+  <a href="https://example.com/page3" class="scroll-box">
+    <div class="photo">
+      <img src="https://thescoop.co/wp-content/uploads/2021/06/wp-1623774531751-1080x768.jpg" alt="Photo 3">
+    </div>
+    <h3>Economy</h3>
+    <p>Providing jobs necessary duty</p>
+  </a>
+</div>
+
+  
   <!-- MAIN -->
   <main>
     <!-- ARTICLE -->
@@ -176,8 +267,7 @@
       <h2 class="article-title">‘Believe in your own people,’ S’porean top official advises</h2>
       <p class="article-meta">By Waleed PD Mahdini • September 9, 2025</p>
       <div class="article-body">
-
-  <p>ONCE described by the Singaporean media as “the maverick who goes against the rules”, Mr Philip Yeo, Chairman of SPRING Singapore, which stands for Standards, Productivity and Innovation Board, under the Ministry of Trade and Industry, is charged with overseeing the sustainable development and competitiveness of Singaporean enterprises, as well as coordinate the nurturing of a pro-business environment with the authorities, as the city-state shifts towards an innovation-driven economy. </p>
+        <p>ONCE described by the Singaporean media as “the maverick who goes against the rules”, Mr Philip Yeo, Chairman of SPRING Singapore, which stands for Standards, Productivity and Innovation Board, under the Ministry of Trade and Industry, is charged with overseeing the sustainable development and competitiveness of Singaporean enterprises, as well as coordinate the nurturing of a pro-business environment with the authorities, as the city-state shifts towards an innovation-driven economy. </p>
 
 <p>Recently invited to the country as a keynote speaker for the 29th Confederation of Asean Federation of Engineers Organisation (CAEFO), Mr Yeo spoke with the Bulletin to share in his advice and views for nation-building and future developments. </p>
 
@@ -230,31 +320,6 @@
 
 <p> “So you must take care of your young people, take care of how they serve and grow but you must also teach them to stand on their own two feet, through a lot of guidance and support by dedicated and committed mentors.” Asked where the best training ground was, he smiled and replied: “There is no school better than the real world and the real working life. My generation of Singaporeans was lucky because we had good bosses and this is also very important to have understanding and fair-minded bosses. But ultimately, my hope is that the future generations will also have bosses who support them to build and nurture the next generation.” </p>
 
-        <!-- NEXT ARTICLES SECTION -->
-        <div class="next-articles">
-          <h3>Next Articles</h3>
-          <div class="next-articles-grid">
-            <div class="next-article">
-              <a href="article2.html">
-                <img src="https://ccitraining.edu/wp-content/uploads/2024/01/Difference-Between-ICT-and-IT.webp" alt="Next Article 1">
-                <p>Brunei’s Economy: Trends to Watch in 2025</p>
-              </a>
-            </div>
-            <div class="next-article">
-              <a href="article3.html">
-                <img src="https://assets.publishing.service.gov.uk/media/5be50fdc40f0b667a12171a6/s960_TE_meets_the_Sultan_Cover_photo_1.jpg" alt="Next Article 2">
-                <p>Inside the UK-Brunei Cultural Exchange Program</p>
-              </a>
-            </div>
-            <div class="next-article">
-              <a href="article4.html">
-                <img src="https://www.sdgbrunei.gov.bn/media/z5xfst1a/brunei-mampan-forum.png?width=1200&quality=85&rnd=133623131950030000" alt="Next Article 3">
-                <p>Sustainability: Brunei’s way forward</p>
-              </a>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
 
@@ -264,13 +329,20 @@
         <h3>Advertisement</h3>
         <img src="https://media.tegna-media.com/assets/WOI/images/8b9a0239-cae0-4e66-81ba-6b3b65c324ac/8b9a0239-cae0-4e66-81ba-6b3b65c324ac_750x422.png" alt="Ad">
       </div>
-
       <div class="box">
+
+<div class="video-embed">
+  <iframe 
+    src="https://www.youtube.com/embed/VIDEO_ID" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+</div>
+
         <h3>Most Read</h3>
         <ol>
-          <div class="video-embed">
-            <iframe src="https://www.youtube.com/embed/XWq5kBlakcQ" frameborder="0" allowfullscreen></iframe>
-          </div>
           <li><a href="article.html">Opinion: Why the economy needs bold reforms</a></li>
           <li><a href="article.html">Analysis: Global politics shifting in 2025</a></li>
           <li><a href="article.html">Feature: Inside the tech that’s changing lives</a></li>
@@ -282,10 +354,8 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>&copy; 2025 News Demo. All rights reserved.</p>
+    <p>&copy; 2025 The New Brunei Digest. All rights reserved.</p>
   </footer>
 
 </body>
 </html>
-
-
