@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,39 +5,188 @@
   <style>
     /* --- RESET --- */
     * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: Arial, Helvetica, sans-serif; background:#ffffff; color:#111; line-height:1.6; display:flex; flex-direction:column; min-height:100vh; }
+    body { font-family: Georgia, Helvetica, sans-serif; background:#ffffff; color:#111; line-height:1.6; display:flex; flex-direction:column; min-height:100vh; }
     a { text-decoration: none; color: inherit; }
     img { max-width:100%; display:block; }
 
+    /* --- HORIZONTAL SCROLL --- */
+    .scroll-section {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      justify-content: start;
+    }
+    .scroll-section::-webkit-scrollbar { display: none; }
+
+    .scroll-box {
+      flex: 0 0 auto;
+      min-width: 250px;
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+      scroll-snap-align: start;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    /* Circular photo on top-right corner */
+    .scroll-box .photo {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    /* Adjust heading and paragraph spacing so it doesn't overlap photo */
+    .scroll-box h3 {
+      margin: 0 0 5px 0;
+      padding-right: 90px;
+      font-size: 1rem;
+      color: #052962;
+    }
+    .scroll-box p {
+      padding-right: 90px;
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    /* Center scroll-section on desktop */
+    @media (min-width: 768px) {
+      .scroll-section { justify-content: center; }
+    }
+
     /* --- HEADER --- */
-    header { display:flex; justify-content:space-between; align-items:center; padding:1rem; border-bottom:2px solid #052962; background:#052962; position:sticky; top:0; z-index:10; }
-    .logo { font-size:1.5rem; font-weight:bold; color:#ffffff; }
-    .center-logo { position:absolute; left:50%; transform:translateX(-50%); }
-    nav { display:none; }
-    nav ul { display:flex; gap:1rem; list-style:none; align-items:center; }
-    nav li { font-weight:bold; color:#ffffff; }
-    .hamburger { font-size:1.5rem; cursor:pointer; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 1rem;
+      background: #052962;
+      border-bottom: 2px solid #fff;
+      flex-wrap: wrap;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .site-logo { height: 40px; width: auto; }
+    .site-title { font-size: 1.5rem; font-weight: bold; color: #fff; }
 
-    /* --- NAV DRAWER (MOBILE) --- */
-    .nav-drawer { display:none; flex-direction:column; background:#f9f9f9; border-top:2px solid #eee; }
-    .nav-drawer a { padding:0.75rem 1rem; border-bottom:1px solid #eee; color:#052962; font-weight:bold; }
-    .nav-drawer .search-form { padding:0.75rem 1rem; }
-    .nav-drawer .search-form input { width:100%; padding:0.4rem; border:1px solid #ccc; border-radius:3px; }
+    .main-nav {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+    .main-nav a {
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .main-nav a:not(:last-child)::after {
+      content: " |";
+      margin-left: 0.25rem;
+      color: #fff;
+    }
 
+    .search-form input {
+      padding: 0.35rem 0.5rem;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+    }
+
+    /* --- TOP STORY VERTICAL BAR --- */
+.top-story-container {
+  display: flex;
+  align-items: stretch; /* keeps bar full height */
+  gap: 15px;
+  padding-top: 20px; /* add some space from top so bar doesn’t touch photo */
+}
+
+.vertical-bar {
+  width: 4px;
+  background-color: #FF6600;
+  border-radius: 2px;
+  margin-top: 20px; /* optional: extra spacing from top */
+}
+/* --- TOP STORY VERTICAL BAR GAP FOR MOBILE --- */
+@media (max-width: 767px) {
+  .top-story-container {
+    flex-direction: column; /* stack content on mobile */
+    padding-top: 15px;      /* space from top/photo */
+  }
+
+  .vertical-bar {
+    align-self: flex-start; /* bar aligns to top of content */
+    margin-top: 15px;       /* gap from photo */
+    height: 50px;           /* adjust height as needed */
+  }
+
+  .top-story-content {
+    margin-left: 0;         /* remove horizontal spacing for mobile */
+  }
+}
+/* --- TOP STORY VERTICAL BAR FIX FOR MOBILE --- */
+@media (max-width: 767px) {
+  .top-story-container {
+    flex-direction: row;      /* bar + headline side by side */
+    align-items: flex-start;  /* align top of bar with headline */
+    margin-top: 10px;         /* space between photo and bar/headline */
+  }
+
+  .vertical-bar {
+    height: auto;             /* match headline height */
+    min-height: 120px;         /* ensures bar is visible */
+  }
+
+  .top-story-content {
+    margin-left: 10px;        /* space between bar and headline */
+  }
+}
+/* --- SECONDARY SECTION HEADINGS WITH VERTICAL BAR --- */
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* space between bar and text */
+  margin: 1.5rem 0 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #052962; /* same header blue */
+}
+
+.section-heading::before {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 1.5em; /* matches text height */
+  background-color: #FF6600; /* same color as top-story bar */
+  border-radius: 2px;
+}
     /* --- MAIN LAYOUT --- */
     main { display:flex; flex-direction:column; padding:1rem; flex:1; }
     .content { flex:3; }
     .sidebar { flex:1; margin-left:2rem; min-width:250px; display:flex; flex-direction:column; gap:1.5rem; }
-
     .sidebar-sticky { position: sticky; top: 1rem; display: flex; flex-direction: column; gap: 1.5rem; }
 
     /* --- TOP STORY --- */
     .top-story { margin-bottom:2rem; }
     .top-story img { border-radius:5px; }
     .top-story h1 { font-size:1.8rem; margin:0.5rem 0; color:#052962; }
-
-    /* --- SECTION DIVIDER --- */
-    .section-divider { margin:2rem 0 1rem; font-size:1.5rem; font-weight:bold; color:#052962; border-bottom:3px solid #052962; padding-bottom:0.25rem; }
 
     .story-meta { font-size: 0.85rem; color: #666; margin: 0.3rem 0 0.5rem; font-style: italic; }
 
@@ -49,7 +196,7 @@
     .story h2 { font-size:1.2rem; margin:0.5rem 0; color:#333; }
     .secondary-stories .story img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 5px; margin-bottom: 0.5rem; }
 
-    /* --- GRID COLUMNS (section-specific) --- */
+    /* --- GRID COLUMNS --- */
     .analysis-stories, .opinion-stories, .economy-stories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 
     /* --- READ MORE LINK --- */
@@ -79,61 +226,27 @@
     .footer-links a { color:#fff; font-size:0.9rem; }
     .footer-bottom { text-align:center; font-size:0.8rem; border-top:1px solid rgba(255,255,255,0.2); padding-top:1rem; }
 
-    /* --- SEARCH BAR --- */
-    .search-form { display:inline-block; }
-    .search-form input { padding:0.3rem 0.5rem; border:1px solid #ccc; border-radius:3px; font-size:0.9rem; }
-
     /* --- RESPONSIVE --- */
     @media (min-width:768px) {
       nav { display:block; }
       .hamburger { display:none; }
-      .nav-drawer { display:none !important; }
       main { flex-direction:row; }
-      .center-logo { position:static; transform:none; } /* centered logo adjustment */
     }
-/* --- MOBILE MENU SEPARATORS --- */
-.mobile-menu a:not(:last-child)::after {
-  content: " |";
-  margin-left: 0.25rem;
-  color: #ffffff;
-}
-
-/* --- STACK HEADER ON MOBILE --- */
-@media (max-width: 767px) {
-  header {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    position: relative;
-  }
-
-  .center-logo {
-    position: static;
-    transform: none;
-  }
-
-  .mobile-menu {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.25rem;
-  }
-
-  .hamburger {
-    order: 3;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-}    /* --- MOBILE SECONDARY STORIES --- */
     @media (max-width: 767px) {
+      header { flex-direction: column; align-items: stretch; gap: 0.5rem; }
+      .main-nav { justify-content: center; }
+      .search-form { text-align: center; }
       .secondary-stories { display: block !important; }
       .secondary-stories .story { display: flex; flex-direction: column; margin-bottom: 1.5rem; }
       .secondary-stories .story img { width: 100%; height: auto; object-fit: cover; border-radius: 5px; margin-bottom: 0.5rem; }
       .secondary-stories .story .story-text { grid-column: auto; }
     }
+
+    /* --- MOBILE MENU SEPARATORS --- */
+    .mobile-menu a:not(:last-child)::after { content: " |"; margin-left: 0.25rem; color: #ffffff; }
+
   </style>
-</head>
-<body>
+</head><body>
 
 <!-- HEADER -->
 <header>
@@ -229,21 +342,54 @@ header {
   }
 }
 </style>
+<!-- HORIZONTAL SCROLL SECTION -->
+<div class="scroll-section">
+  <a href="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" class="scroll-box">
+    <div class="photo">
+      <img src="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" alt="Photo 1">
+    </div>
+    <h3>Analysis</h3>
+    <p>Achieving MDG as ASEAN COMMUNITY</p>
+  </a>
+
+  <a href="https://example.com/page2" class="scroll-box">
+    <div class="photo">
+      <img src="https://cms-image-bucket-productionv3-ap-northeast-1-a7d2.s3.ap-northeast-1.amazonaws.com/images/7/2/2/6/47856227-3-eng-GB/Cropped-1718779699AP24066235507389.jpg" alt="Photo 2">
+    </div>
+    <h3>Opinion</h3>
+    <p>Brunei actively involved in regional fight against piracy</p>
+  </a>
+
+  <a href="https://example.com/page3" class="scroll-box">
+    <div class="photo">
+      <img src="https://thescoop.co/wp-content/uploads/2021/06/wp-1623774531751-1080x768.jpg" alt="Photo 3">
+    </div>
+    <h3>Economy</h3>
+    <p>Providing jobs necessary duty</p>
+  </a>
+</div>
   <!-- MAIN CONTENT -->
   <main>
     <div class="content">
       <!-- TOP STORY -->
       <section class="top-story">
         <img src="https://english.news.cn/20250225/cb119d3c4c1f43e29885a570226f739b/20250225cb119d3c4c1f43e29885a570226f739b_ChkhgeE007010_20250225_CBMFN0A002.JPG" alt="Top Story">
+<section class="top-story">
+  <div class="top-story-container">
+    <div class="vertical-bar"></div>
+    <div class="top-story-content">
         <h1>‘Believe in your own people,’ S’porean top official advises</h1>
-        <div class="story-meta">By Waleed PD Mahdini, Sept 09, 2025</div>
+</div>
+  </div>
+</section>        <div class="story-meta">By Waleed PD Mahdini, Sept 09, 2025</div>
   <p>ONCE described by the Singaporean media as “the maverick who goes against the rules”, Mr Philip Yeo, Chairman of SPRING Singapore, which stands for Standards, Productivity and Innovation Board, under the Ministry of Trade and Industry, is charged with overseeing the sustainable development and competitiveness of Singaporean enterprises, as well as coordinate the nurturing of a pro-business environment with the authorities, as the city-state shifts towards an innovation-driven economy. </p>
 </p>
         <a href="article1.html" class="read-more">Read more →</a>
+
       </section>
 
       <!-- ANALYSIS -->
-      <div class="section-divider">Analysis</div>
+      <h2 class="section-heading">Analysis</h2>
       <section class="secondary-stories analysis-stories">
         <article class="story">
           <img src="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" alt="Top Story">
@@ -279,7 +425,7 @@ Motaz Othman, an area manager for the Islamic Tourism Magazine, who hails from J
       </section>
 
       <!-- OPINION -->
-      <div class="section-divider">Opinion</div>
+<h2 class="section-heading">Opinion</h2>
       <section class="secondary-stories opinion-stories">
         <article class="story">
           <img src="https://cms-image-bucket-productionv3-ap-northeast-1-a7d2.s3.ap-northeast-1.amazonaws.com/images/7/2/2/6/47856227-3-eng-GB/Cropped-1718779699AP24066235507389.jpg" alt="Opinion 1 Image">
@@ -311,7 +457,7 @@ Motaz Othman, an area manager for the Islamic Tourism Magazine, who hails from J
       </section>
 
       <!-- ECONOMY -->
-      <div class="section-divider">Economy</div>
+<h2 class="section-heading">Economy</h2>
       <section class="secondary-stories economy-stories">
         <article class="story">
           <img src="https://thescoop.co/wp-content/uploads/2021/06/wp-1623774531751-1080x768.jpg" alt="Economy 1 Image">
@@ -404,7 +550,6 @@ Motaz Othman, an area manager for the Islamic Tourism Magazine, who hails from J
   </script>
 </body>
 </html>
-
 
 
 
