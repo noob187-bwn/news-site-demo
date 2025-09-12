@@ -207,44 +207,37 @@
       main { flex-direction:row; }
     }
 @media (max-width: 767px) {
-  header { 
-    flex-direction: column; 
-    align-items: center; /* center everything horizontally */
-    gap: 0.5rem; 
-  }
-  
-  .logo-container {
-    justify-content: center; /* center logo + title */
-    text-align: center;
-  }
-  
-  .main-nav { 
-    justify-content: center; /* center nav links */
-    text-align: center; 
-    flex-wrap: nowrap; /* keep links on a single line */
+  header {
+    flex-direction: column;
+    align-items: center; /* centers logo, nav, and search horizontally */
+    gap: 0.5rem;
   }
 
-  .search-form { 
+  .logo-container {
+    justify-content: center; /* centers logo + title in one line */
+    text-align: center;
+  }
+
+  .main-nav {
+    justify-content: center; /* centers nav links */
+    text-align: center;
+    flex-wrap: nowrap; /* keeps nav links on a single line */
+  }
+
+  .search-form {
     text-align: center; 
-    width: 100%; /* optional: make search input span the header width */
-    display: flex;
+    width: 100%; 
+    display: flex; 
     justify-content: center;
   }
 
   .search-form input {
-    width: 80%; /* adjust as needed */
+    width: 80%; /* optional: controls search input size on mobile */
     max-width: 300px;
   }
 
-  .secondary-stories { 
-    display: block !important; 
-  }
-  .secondary-stories .story { 
-    display: flex  </style>
-</head>
-<body>
-
-<!-- HEADER -->
+  /* Remove the pipe after last nav link on mobile */
+  .main-nav a:not(:last-child)::after {<!-- HEADER -->
 <header>
   <div class="logo-container">
     <img src="https://www.information.gov.bn/PublishingImages/aboutINFO/benderbrunei1.jpg" alt="Site Logo" class="site-logo">
