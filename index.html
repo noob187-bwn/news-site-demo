@@ -5,7 +5,12 @@
   <style>
     /* --- RESET --- */
     * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: Georgia, Helvetica, sans-serif; background:#ffffff; color:#111; line-height:1.6; display:flex; flex-direction:column; min-height:100vh; }
+    body { font-family: Georgia, Helvetica, sans-serif; background:#ffffff; 
+color:#111; 
+line-height:1.6; 
+display:flex; 
+flex-direction:column; 
+min-height:100vh; }
     a { text-decoration: none; color: inherit; }
     img { max-width:100%; display:block; }
 
@@ -429,6 +434,16 @@ color: #FFD700
 @media (max-width: 767px) {
   .top-story-overlay-desktop {
     display: none;
+  }
+}
+@media (max-width: 767px) {
+  body {
+    display: block; /* reset flex for mobile */
+    min-height: auto; /* remove extra height */
+  }
+
+  main {
+    padding: 1rem; /* match Secondary Page */
   }
 }
   </style>
