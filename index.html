@@ -229,9 +229,23 @@ main {
     .story h2 { font-size:1.2rem; margin:0.5rem 0; color:#333; }
     .secondary-stories .story img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 5px; margin-bottom: 0.5rem; }
 
-    /* --- GRID COLUMNS --- */
-    .analysis-stories, .opinion-stories, .economy-stories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+/* --- GRID COLUMNS FOR ANALYSIS, OPINION, ECONOMY --- */
+.analysis-stories,
+.opinion-stories,
+.economy-stories {
+  display: grid !important; /* ensure it overrides block */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
 
+/* Mobile: stack in 1 column */
+@media (max-width: 767px) {
+  .analysis-stories,
+  .opinion-stories,
+  .economy-stories {
+    grid-template-columns: 1fr;
+  }
+}
     /* --- READ MORE LINK --- */
     .read-more { display:inline-block; margin-top:0.5rem; font-weight:bold; color:#052962; text-decoration:none; }
     .read-more:hover { text-decoration:underline; }
@@ -274,7 +288,6 @@ main {
       .hamburger { display:none; }
       main { flex-direction:row; }
     }
-      .secondary-stories { display: block !important; }
       .secondary-stories .story { display: flex; flex-direction: column; margin-bottom: 1.5rem; }
       .secondary-stories .story img { width: 100%; height: auto; object-fit: cover; border-radius: 5px; margin-bottom: 0.5rem; }
       .secondary-stories .story .story-text { grid-column: auto; }
@@ -783,5 +796,4 @@ Motaz Othman, an area manager for the Islamic Tourism Magazine, who hails from J
   </script>
 </body>
 </html>
-
 
