@@ -273,14 +273,6 @@ main {
       .hamburger { display:none; }
       main { flex-direction:row; }
     }
-    @media (max-width: 767px) {
-      header { flex-direction: column; 
-align-items: 
-stretch; 
-}
-}
-      .main-nav { justify-content: center; }
-      .search-form { text-align: center; }
       .secondary-stories { display: block !important; }
       .secondary-stories .story { display: flex; flex-direction: column; margin-bottom: 1.5rem; }
       .secondary-stories .story img { width: 100%; height: auto; object-fit: cover; border-radius: 5px; margin-bottom: 0.5rem; }
@@ -481,7 +473,7 @@ header {
 
   <!-- Navigation -->
   <nav class="main-nav">
-    <a href="#">Home</a>
+    <a href="#">Test</a>
     <a href="#">Opinion</a>
     <a href="#">Analysis</a>
     <a href="#">Economy</a>
@@ -539,7 +531,6 @@ header {
   font-size: 0.9rem;
 }
 
-/* Responsive */
 @media (max-width: 767px) {
   header {
     flex-direction: column;
@@ -547,15 +538,24 @@ header {
     gap: 0.5rem;
   }
 
+  .logo-container {
+    justify-content: flex-start; /* optional, can leave as default */
+  }
+
   .main-nav {
     justify-content: center;
+    width: 100%;
   }
 
   .search-form {
+    width: 100%;
     text-align: center;
+    margin-top: 0;
   }
 }
 </style>
+
+
 <!-- HORIZONTAL SCROLL SECTION -->
 <div class="scroll-section">
   <a href="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" class="scroll-box">
