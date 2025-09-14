@@ -483,7 +483,7 @@ color: #FFD700
 
   <!-- Navigation -->
   <nav class="main-nav">
-    <a href="#">Test</a>
+    <a href="#">Home</a>
     <a href="#">Opinion</a>
     <a href="#">Analysis</a>
     <a href="#">Economy</a>
@@ -541,42 +541,33 @@ color: #FFD700
   font-size: 0.9rem;
 }
 
-/* --- MOBILE HEADER FIX (max-width: 767px) --- */
 @media (max-width: 767px) {
   header {
-    flex-direction: column;      /* stack logo, nav, search vertically */
-    align-items: stretch;        /* full width */
-    gap: 0.5rem;                 /* spacing between elements */
-    padding: 0.5rem 1rem;
-  }
-
-  .logo-container {
-    display: flex;
-    justify-content: flex-start; /* logo on left */
+    flex-direction: column;
     align-items: center;
-    width: 100%;
     gap: 0.5rem;
   }
 
   .main-nav {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;     /* center menu items */
-    width: 100%;
-    text-align: center;
-    margin-top: 0.25rem;
-  }
-
-  .main-nav a {
-    margin: 0 0.25rem;
+    justify-content: center;
+    gap: 0.5rem;
   }
 
   .search-form {
-    display: flex;
-    justify-content: center;
     width: 100%;
-    margin-top: 0.5rem;
+    text-align: center;
   }
+
+  .search-form input {
+    width: 90%;
+    max-width: 300px;
+  }
+}
+header > * {
+  max-width: 100%;
+  box-sizing: border-box;
 }
 </style>
 
