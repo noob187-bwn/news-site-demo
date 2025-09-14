@@ -432,40 +432,43 @@ color: #FFD700
     display: none;
   }
 }
+/* --- CLEAN MOBILE HEADER FIX --- */
 @media (max-width: 767px) {
   header {
     flex-direction: column !important;
     align-items: stretch !important;
     gap: 0.5rem !important;
-  }
-
-.logo-container, 
-  .main-nav, 
-  .search-form {
-    width: 100% !important;  /* forces full width */
-    display: flex !important; 
-    justify-content: center;  /* nav and search centered */
-    text-align: center;
+    padding: 0.5rem 1rem !important;
   }
 
   .logo-container {
-    justify-content: flex-start !important; /* logo left-aligned */
+    display: flex !important;
+    justify-content: flex-start !important; /* logo left */
+    align-items: center !important;
+    width: 100% !important;
+    gap: 0.5rem !important;
   }
 
   .main-nav {
-    flex-wrap: wrap;          /* allow links to wrap */
+    display: flex !important;
+    flex-wrap: wrap !important;
     justify-content: center !important;
-  }
-
-  .search-form {
-    margin-top: 0.5rem !important; 
+    width: 100% !important;
+    text-align: center !important;
+    margin-top: 0.25rem !important;
   }
 
   .main-nav a {
-    margin: 0 0.25rem;       /* small horizontal spacing */
+    margin: 0 0.25rem !important;
   }
-}
-</style>
+
+  .search-form {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin-top: 0.5rem !important;
+  }
+}</style>
 </head>
 <body>
 
@@ -479,7 +482,7 @@ color: #FFD700
 
   <!-- Navigation -->
   <nav class="main-nav">
-    <a href="#">Test</a>
+    <a href="#">Home</a>
     <a href="#">Opinion</a>
     <a href="#">Analysis</a>
     <a href="#">Economy</a>
