@@ -434,24 +434,35 @@ color: #FFD700
 }
 @media (max-width: 767px) {
   header {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.5rem;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.5rem !important;
+  }
+
+.logo-container, 
+  .main-nav, 
+  .search-form {
+    width: 100% !important;  /* forces full width */
+    display: flex !important; 
+    justify-content: center;  /* nav and search centered */
+    text-align: center;
   }
 
   .logo-container {
-    justify-content: flex-start;
+    justify-content: flex-start !important; /* logo left-aligned */
   }
 
   .main-nav {
-    justify-content: center; /* center links under logo */
-    width: 100%;
+    flex-wrap: wrap;          /* allow links to wrap */
+    justify-content: center !important;
   }
 
   .search-form {
-    width: 100%;
-    text-align: center;
-    margin-top: 0.5rem; /* small gap below nav */
+    margin-top: 0.5rem !important; 
+  }
+
+  .main-nav a {
+    margin: 0 0.25rem;       /* small horizontal spacing */
   }
 }
 </style>
@@ -468,7 +479,7 @@ color: #FFD700
 
   <!-- Navigation -->
   <nav class="main-nav">
-    <a href="#">Home</a>
+    <a href="#">Test</a>
     <a href="#">Opinion</a>
     <a href="#">Analysis</a>
     <a href="#">Economy</a>
