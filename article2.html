@@ -3,65 +3,206 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Article Page - News Demo</title>
+  <title>Article Page - The New Brunei Digest</title>
   <style>
-    /* --- GLOBAL --- */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      background: #fafafa;
-      color: #333;
-    }
-    a { color: #0044cc; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    /* --- RESET --- */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: Arial, Helvetica, sans-serif; background:#fafafa; color:#111; line-height:1.6; }
 
-    /* --- HEADER --- */
+    a { text-decoration: none; color: inherit; }
+    img { max-width:100%; display:block; }
+
+    /* --- HEADER (Uniform with main) --- */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem;
+      padding: 0.8rem 1rem;
       background: #052962;
-      color: #fff;
+      border-bottom: 2px solid #fff;
+      flex-wrap: wrap;
       position: sticky;
       top: 0;
       z-index: 1000;
     }
-    header h1 { margin: 0; font-size: 1.5rem; }
 
-    nav a {
-      margin-left: 1rem;
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .site-logo {
+      height: 40px;
+      width: auto;
+    }
+
+    .site-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+
+    .main-nav a {
       color: #fff;
       font-weight: bold;
+      text-decoration: none;
+    }
+
+    .main-nav a:not(:last-child)::after {
+      content: " |";
+      margin-left: 0.25rem;
+      color: #fff;
+    }
+
+    .search-form input {
+      padding: 0.35rem 0.5rem;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 767px) {
+      header { flex-direction: column; align-items: stretch; gap: 0.5rem; }
+      .main-nav { justify-content: center; }
+      .search-form { text-align: center; }
+    }
+
+    .related-box a.read-more {
+      margin: 0.5rem 1rem 1rem 1rem;
+      font-weight: bold;
+      color: #0044cc;
+      text-decoration: none;
     }
 
     /* --- MAIN LAYOUT --- */
-    main {
-      display: flex;
-      gap: 2rem;
-      padding: 1rem 2rem;
+    main { 
+      display: flex; 
+      gap: 2rem; 
+      padding: 1rem 2rem; 
     }
     .content { flex: 3; }
-    .sidebar { flex: 1; }
+    .sidebar { 
+      flex: 1; 
+      display: flex;          /* make sidebar a flex column container */
+      flex-direction: column; 
+      gap: 1.5rem;           /* optional spacing between boxes */
+    }    
+    .scroll-section {
+      display: flex;
+      flex-wrap: nowrap;           /* important: keeps boxes horizontal */
+      overflow-x: auto;
+      gap: 20px;
+      padding: 20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;       /* Firefox */
+      -ms-overflow-style: none;    /* IE 10+ */
+      justify-content: start;      /* default for mobile */
+    }
+
+    /* Hide scrollbar for Chrome, Safari, Edge */
+    .scroll-section::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scroll-box {
+      flex: 0 0 auto;
+      min-width: 250px;            /* width of each box */
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: left;
+      position: relative;
+      scroll-snap-align: start;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-decoration: none;       /* remove underline from links */
+      color: inherit;              /* keep text color */
+    }
+
+    /* Circular photo in top-right corner */
+    .scroll-box .photo {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .scroll-box .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .scroll-box h3 {
+      margin: 30px 0 5px 0; /* space below photo */
+      font-size: 18px;
+    }
+
+    .scroll-box p {
+      margin: 0;
+      color: #555;
+      font-size: 14px;
+    }
+
+    /* Center scroll-section on desktop */
+    @media (min-width: 768px) {
+      .scroll-section {
+        justify-content: center;
+      }
+    }
+
 
     /* --- ARTICLE --- */
-    .article-title {
-      font-size: 2rem;
-      margin-bottom: .5rem;
-    }
-    .article-meta {
-      font-size: 0.9rem;
-      color: #666;
-      margin-bottom: 1rem;
-    }
-    .article-body img {
-      max-width: 100%;
-      margin: 1rem 0;
-    }
+    .article-title { font-size: 2rem; margin-bottom: .5rem; color:#052962; }
+    .article-meta { font-size: 0.9rem; color: #666; margin-bottom: 1rem; }
+    .article-body img { 
+  display: block;
+  max-width: 100%; 
+  margin: 1rem auto; }
+    .article-body p { text-align: justify; }
     .article-body p {
-      text-align: justify;
+  margin-bottom: 1rem;  /* adds space between paragraphs */
+  text-align: justify;
+}
+
+    /* --- TOPLINE: Category | Search word --- */
+    .article-topline {
+      display:flex;
+      align-items:center;
+      gap:0.6rem;
+      margin: 1rem 0;
+      color: #444;
+      font-size: 0.95rem;
+      flex-wrap:wrap;
     }
+
+    .article-topline .category {
+      background: #e9f3ff;
+      color: #052962;
+      padding: 0.18rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid rgba(5,41,98,0.08);
+      font-weight: 700;
+      cursor: pointer;
+      display:inline-block;
+    }
+
+    .article-topline .divider { color:#9aa6b2; }
+
+    .article-topline .search-link { color:#052962; font-weight:600; }
 
     /* --- SIDEBAR --- */
     .sidebar .box {
@@ -70,34 +211,12 @@
       padding: 1rem;
       margin-bottom: 1.5rem;
     }
-    .sidebar h3 { margin-top: 0; }
+    .sidebar h3 { margin-top: 0; color:#052962; }
     .sidebar ol { padding-left: 1.2rem; }
 
     /* --- VIDEO EMBED --- */
-    .video-embed {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      margin: 1rem 0;
-    }
-    .video-embed iframe,
-    .video-embed video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    /* --- ADVERTISEMENT IMAGE --- */
-    .sidebar .box img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 4px;
-      display: block;
-      margin: 0 auto;
-    }
+    .video-embed { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 1rem 0; }
+    .video-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
     /* --- NEXT ARTICLES --- */
     .next-articles-grid {
@@ -111,7 +230,6 @@
       display: block;
       border: 1px solid #ddd;
       border-radius: 4px;
-      overflow: hidden;
       background: #fff;
       transition: transform 0.2s, box-shadow 0.2s;
     }
@@ -119,100 +237,374 @@
       transform: translateY(-3px);
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-    .next-article img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      display: block;
-    }
-    .next-article p {
-      margin: 0.5rem;
-      font-weight: bold;
-    }
+    .next-article img { width: 100%; height: 250px; object-fit: cover; }
+    .next-article p { margin: 0.5rem; font-weight: bold; }
     @media(min-width: 768px) {
-      .next-articles-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
+      .next-articles-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
     /* --- RESPONSIVE (STACK SIDEBAR) --- */
-    @media(max-width: 768px) {
-      main {
-        flex-direction: column;
+    @media(max-width: 768px) { 
+      main { 
+        flex-direction: column;   /* stack content above sidebar on mobile */
+      }
+      
+      .related-articles { 
+        order: 3;                 /* move related articles below Most Read */
+        margin-top: 1rem; 
       }
     }
-
     /* --- FOOTER --- */
     footer {
       text-align: center;
       padding: 1rem;
-      background: #222;
+      background: #052962;
       color: #fff;
       margin-top: 2rem;
     }
+
+/* RELATED ARTICLES / END-OF-ARTICLE BOXES */
+.related-articles {
+  margin: 2rem 0;
+}
+
+.related-articles h3 {
+  color: #052962;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* boxes now wider */
+  gap: 1rem;
+  justify-content: start;
+}
+.related-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  max-width: 100%;   /* allow box to grow up to grid width */
+}
+.related-box img {
+  width: 100%;       /* fills the box width */
+  height: 180px;     /* keep consistent height */
+  object-fit: cover; /* fill box nicely */
+  border-radius: 4px 4px 0 0;
+  display: block;
+}
+.related-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;      /* spacing between elements inside box */
+  padding: 1rem;    /* <-- add this line to create space inside the box */
+  border: 1px solid #052962; /* optional, if you want a border */
+  border-radius: 4px; /* optional, rounded corners */
+}
+
+.related-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.related-box img {
+  width: 100%;
+  height: 180px;      /* fixed height for all images */
+  object-fit: contain;  /* fills box, crops edges if necessary */
+  border-radius: 4px 4px 0 0;
+  display: block;
+}
+/* --- HEADLINE --- */
+.article-headline {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0.5rem 0 1rem 0;
+  line-height: 1.2;
+}
+@media (max-width: 767px) {
+  .article-headline {
+    font-size: 1.8rem;
+  }
+}
+/* --- STRAPLINE --- */
+.article-strapline {
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-style: italic;
+  color: #444;
+  margin: 1rem 0;
+  text-align: left;
+}
+/* --- ARTICLE PHOTO & CAPTION --- */
+.article-photo {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.article-photo img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+  margin: 0 auto;
+}
+
+.article-photo figcaption {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+/* --- SHARE BUTTON --- */
+.share-container {
+  margin: 1rem 0;
+}
+
+.share-btn {
+  background: #0044cc;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.share-btn:hover {
+  background: #0033a0;
+}
+.photo-container {
+  position: relative;
+  width: 100%;
+}
+
+.photo-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+}
+
+.overlay-box {
+  position: absolute;
+  bottom: 20px;          
+  left: 20px;            
+  background: rgba(5, 41, 98, 0.8); 
+  color: #ffcc00;
+  padding: 1rem 1.2rem;
+  border-radius: 6px;
+  max-width: 90%;        
+}
+
+.overlay-box h1 {
+  margin: 0 0 0.5rem 0;
+color: #ffffff
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.overlay-box p {
+  margin: 0;
+  font-size: 1rem;
+color: #ffffff
+}
+
+@media (max-width: 767px) {
+  .overlay-box {
+    bottom: 10px;
+    left: 10px;
+    padding: 0.8rem;
+  }
+
+  .overlay-box h1 {
+    font-size: 1.5rem;
+  }
+
+  .overlay-box p {
+    font-size: 0.9rem;
+  }
+}
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .overlay-box {
+    bottom: 10px;
+    left: 10px;
+    padding: 0.8rem;
+  }
+
+  .overlay-box h2 {
+    font-size: 1.2rem;
+  }
+
+  .overlay-box p {
+    font-size: 0.9rem;
+  }
+}
+.related-articles {
+  margin: 2rem auto;       /* keep vertical spacing, center horizontally */
+  max-width: 1000px;       /* limits how wide the box can go */
+  padding: 0 1rem;         /* optional, prevents touching edges on small screens */
+  box-sizing: border-box;
+}
+/* Middle-article ad container */
+.article-body .article-ad .box {
+  max-width: 350px;      /* limits box width on desktop */
+  margin: 1rem auto;     /* centers the box */
+  padding: 1rem;         /* optional, inner spacing */
+  border: 1px solid #ddd;/* optional, keeps the border */
+  border-radius: 6px;    /* optional, rounded corners */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* optional, subtle shadow */
+  text-align: center;    /* center text & image inside */
+}
+footer {
+  background: #052962;
+  color: #fff;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #ffcc00; /* highlight on hover */
+}
+
+.footer-bottom {
+  font-size: 0.85rem;
+  color: #ccc;
+}
   </style>
 </head>
 <body>
 
   <!-- HEADER -->
   <header>
-    <h1>News Demo</h1>
-    <nav>
+    <div class="logo-container">
+      <img src="https://www.information.gov.bn/PublishingImages/aboutINFO/benderbrunei1.jpg" alt="Site Logo" class="site-logo">
+      <span class="site-title">The New Brunei Digest</span>
+    </div>
+    <nav class="main-nav">
       <a href="index.html">Home</a>
       <a href="#">Opinion</a>
       <a href="#">Analysis</a>
       <a href="#">Economy</a>
     </nav>
+<form class="search-form" action="#" method="get">
+  <input type="text" placeholder="Search..." name="q">
+  <button type="submit">Go</button>
+</form>
   </header>
 
+  <!-- Horizontal Scroll Section -->
+<div class="scroll-section">
+  <a href="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" class="scroll-box">
+    <div class="photo">
+      <img src="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" alt="Photo 1">
+    </div>
+    <h3>Analysis</h3>
+    <p>Achieving MDG as </p> <p>ASEAN COMMUNITY</p>
+  </a>
 
+  <a href="https://example.com/page2" class="scroll-box">
+    <div class="photo">
+      <img src="https://cms-image-bucket-productionv3-ap-northeast-1-a7d2.s3.ap-northeast-1.amazonaws.com/images/7/2/2/6/47856227-3-eng-GB/Cropped-1718779699AP24066235507389.jpg" alt="Photo 2">
+    </div>
+    <h3>Opinion</h3>
+    <p>Brunei actively involved</p><p>in regional fight against piracy</p>
+  </a>
+
+  <a href="https://example.com/page3" class="scroll-box">
+    <div class="photo">
+      <img src="https://thescoop.co/wp-content/uploads/2021/06/wp-1623774531751-1080x768.jpg" alt="Photo 3">
+    </div>
+    <h3>Economy</h3>
+    <p>Providing jobs necessary duty</p>
+  </a>
+</div>
+
+  
   <!-- MAIN -->
   <main>
     <!-- ARTICLE -->
     <div class="content">
-      <h2 class="article-title">‘Bring Back Muslim Culture</h2>
+
+      <!-- NEW: Category | Search word (below the horizontal scroll) -->
+      <div class="article-topline">
+        <a href="/category/People " class="category" data-slug="People">People</a>
+        <span class="divider">|</span>
+        <a id="search-link" class="search-link" href="/search?q="> <span class="search-word">Brunei tourism</span></a>
+      </div>
+<figure class="article-photo">
+  <div class="photo-container">
+    <img src="https://static.dw.com/image/17602616_605.jpg" alt="Top Story"> 
+
+    <div class="overlay-box">
+      <h1 class="article-headline">‘‘Bring Back Muslim Culture.’ </h1>
+      <p class="article-strapline">Balai Kenangan welcomes public</p>
+    </div>
+  </div>
+  <figcaption>
+Worshippers pray at SOAS Mosque
+  </figcaption>
+</figure>
       <p class="article-meta">By Waleed PD Mahdini • September 9, 2025</p>
+<div class="share-container">
+  <button class="share-btn" onclick="shareArticle()">
+    🔗 Share this article
+  </button>
+</div>
       <div class="article-body">
 <p>DURING the opening of the Sixth Knowledge Convention on Tuesday, His Majesty the Sultan and Yang Di-Pertuan of Brunei Darussalam consented to view the centerpiece of this year's exhibits, namely the Exhibition Gallery set up by the Balai Kenangan of Al-Marhum Sultan Haji Omar 'Ali Saifuddien Sa'adul Khairi Waddien. </p>
 <p>The Balai Kenangan, which comes under the Office of His Majesty the Sultan and Yang Di-Pertuan of Brunei Darussalam had painstakingly recreated an original concept to showcase this year that captures the symbiosis between the latest in information technology and the ancient teachings of Islam. </p>
 <p>"The crux of this whole concept is to bring us back the ancient time of Islam in Andalusia, Spain," explained Hj Johari Hj Achee, Chairman of the Exhibition Gallery, "when Islam had a foothold in Spain for about four centuries." Taking the Bulletin through the design and concept of the Exhibition Gallery, Hj Johari pointed out, "If you look at the mosques and gardens there, you will find water features to be the main elements, and we have interpreted this in the main design of the exhibition." Indeed, the whole gallery was designed to resemble such a garden, with green carpets to resemble the fauna and a decorated carpet with the typical Muslim-Andalusian motifs for visitors to walk on, trailing a path around the exhibits. There are five water fountains that surround a waterfall, which is engraved with the 'Iqra' - the first verse in the al-Quran. </p>
 <p>As one walks into the gallery, the first thing one notices and most prominent attraction is the golden dome, which was inspired by the iconic golden dome of the Sultan Omar 'Ali Saifuddien Mosque in the capital. "The dome is supported by six pillars, which symbolises the six foundations of Islamic faith," said Hj Johari. Furthermore, built-in directly into the foundations of each of the six pillars are glass cabinet, each containing antique and priceless al-Qurans from His Majesty's and Al-Marhum's personal collection which are 65 in total, "to represent the 65th birthday anniversary of His Majesty". Under the arch of the magnificently recreated dome of the SOAS Mosque are fine engravings and etchings of the 99 names of Allah the Almighty. </p>
-          <img src="https://static.dw.com/image/17602616_605.jpg" alt="Top Story">
+  <div class="related-articles">
+    <h3>Related Articles</h3>
+    <div class="related-grid">
+      <div class="related-box">
+        <img src="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" alt="Article 1">
+        <h4>Brunei – Perfect place for family tourism </h4>
+        <p>BRUNEI Darussalam, on the whole received pleasant and gentle praises by many of the international media that ranged from China to the Middle East, covering the week-long Asean Tourism Forum (ATF), but the issue of visa on arrival was also acknowledged to be a sticking point in the country's bid to improve its inbound tourist volume.</p>
+<a href="article.html" class="read-more">Read More →</a>
+      </div>
+</div>
+</div>
 
 <p>To further illustrate the immense planning and thought that has gone into this exhibit is the fact that each of these 65 holy books have been especially opened to particular pages that highlight certain verses that depict 65 branches of knowledge "from an ocean of knowledge in the al-Quran to signify education, administration, agriculture, health, medicine, international relations, defence, trade, development, astronomy and so on".</p>
 <p>Another interesting feature of the centrepiece is the 'pabarahan', which is an open incense burner that was also specially designed by a Bruneian and painted in gold laid with green marble where the monarch consented to officiate the gallery by dropping dark brown slivers of local and imported gaharu, or frankincense, into the 'pabarahan'. </p>
 <p>As soon as the first wisps of vapour arose from the burner and the sweet aromas of the gaharu filled the gallery, a zikir group of 82 specially-selected people performed the 'Al-Asmaa' Al-Husnaa' zikir. The chairman pointed out that the main intention of all this was to also invoke the five senses of the human body - sight, hearing, smell, touch and taste. </p>
 <p>"In this atmosphere and nuance of Islamic values and culture, His Majesty was surrounded by these 82 people, who ranged from a six-year-old to an 80-year-old man. But the most unique quality of them all was the fact that they were selected out of 350 people, people who are near to the al-Quran," said Hj Johari. Fifteen comprised of national Qari and Qariah champions from 1962 until the present day; 13 local 'Hafiz', 20 students from the Sultan Haji Hassanal Bolkiah Tahfiz Al-Quran Institute and 20 pupils from the Al-Falaah Religious School. The 'Al-Asmaa' Al-Husnaa' zikir that they recited was also specially composed and rearranged by a Bruneian from the Tahfiz Institute to present to the monarch. In addition to the many firsts presented during the opening, following the zikir recital, His Majesty consented to sprinkle 'bunga rampai' onto the group "which is the first time that I can remember His Majesty doing this".</p>
+    <aside class="sidebar">
+<div class="article-ad">
+      <div class="box">
+        <h3>Advertisement</h3>
+        <img src="https://bibd.com.bn/wp-content/uploads/2025/05/A4-Size-21cm-x-29.7cm_b9193f353332aa880dd5cb6417bd0361-724x1024.jpg" alt="Ad">
+      </div>
+</div>
+
+
 <p>With all five senses completely awakened during Tuesday's opening, from the sounds of the 82 people that included the voices of women and children to the smell and taste of the burning incense to the sights of the displays and exhibits that one could touch, "it was completely mesmerising and some even had goosebumps just taking this all in", noted Hj Johari. </p>
 <p>"We wanted to make a whole new concept this year and do away with what has become the usual norm these days of officiating an event by touching the plasma ball. In the olden days, burning the gaharu was tradition during major events. So we are hoping to revive this unique Brunei and Islamic culture. The sprinkling of the 'bunga rampai' has also these days all too often been misconceptualised because it should only be sprinkled on people, and certainly not on cars, boats or trucks," explained Hj Johari. </p>
 <p>The former senior newsman also noted that this new focus was hoped to help support the efforts by the Forestry Department and the country's economic diversification of making 'gaharu' wood a viable local commercial product. </p>
 <p>Another first during the opening was the launch of a special DVD containing the newly-arranged 'Al-Asmaa' Al-Husnaa' zikir, Raatib Al-Attaas and the special prayer to protect the monarch and the country, which are handed out to visitors until the exhibition ends on July 31. </p>
-
-
-        <!-- NEXT ARTICLES SECTION -->
-        <div class="next-articles">
-          <h3>Next Articles</h3>
-          <div class="next-articles-grid">
-            <div class="next-article">
-              <a href="article2.html">
-                <img src="https://ccitraining.edu/wp-content/uploads/2024/01/Difference-Between-ICT-and-IT.webp" alt="Next Article 1">
-                <p>Brunei’s Economy: Trends to Watch in 2025</p>
-              </a>
-            </div>
-            <div class="next-article">
-              <a href="article3.html">
-                <img src="https://assets.publishing.service.gov.uk/media/5be50fdc40f0b667a12171a6/s960_TE_meets_the_Sultan_Cover_photo_1.jpg" alt="Next Article 2">
-                <p>Inside the UK-Brunei Cultural Exchange Program</p>
-              </a>
-            </div>
-            <div class="next-article">
-              <a href="article4.html">
-                <img src="https://www.sdgbrunei.gov.bn/media/z5xfst1a/brunei-mampan-forum.png?width=1200&quality=85&rnd=133623131950030000" alt="Next Article 3">
-                <p>Sustainability: Brunei’s way forward</p>
-              </a>
-            </div>
-          </div>
-        </div>
 
       </div>
     </div>
@@ -221,31 +613,94 @@
     <aside class="sidebar">
       <div class="box">
         <h3>Advertisement</h3>
-        <img src="https://media.tegna-media.com/assets/WOI/images/8b9a0239-cae0-4e66-81ba-6b3b65c324ac/8b9a0239-cae0-4e66-81ba-6b3b65c324ac_750x422.png" alt="Ad">
+        <img src="https://scontent.fbwn3-1.fna.fbcdn.net/v/t39.30808-6/514504262_24404917332438698_1307660574282399762_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=_WUtmTAGZkwQ7kNvwGfBZiF&_nc_oc=AdlgSM3F3uSA3c_5YNju06RMi2DubUsXiGHCbFrhDgVUifZxIs0Cc0g1HXJTMMjfjec&_nc_zt=23&_nc_ht=scontent.fbwn3-1.fna&_nc_gid=A6LGMv3IPES5UGVyxTjZKg&oh=00_AfbGqtiug6stIImYT90ikR2l8UHE1fgH4sdWDyJo2p0w8g&oe=68CC81E3" alt="Ad">
       </div>
-
       <div class="box">
+
+<div class="video-embed">
+  <iframe 
+    src="https://www.youtube.com/embed/VIDEO_ID" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+</div>
+
         <h3>Most Read</h3>
         <ol>
-          <div class="video-embed">
-            <iframe src="https://www.youtube.com/embed/XWq5kBlakcQ" frameborder="0" allowfullscreen></iframe>
-          </div>
-         <li><a href="article5.html">Brunei actively involved in regional fight against piracy</a></li>
-          <li><a href="article8.html">Providing jobs necessary duty</a></li>
-          <li><a href="article7.html">Brunei may be small but we have a voice in APEC</a></li>
-          <li><a href="article6.html">Brunei explores niche specialty</a></li>
-          <li><a href="article9.html">Youths urged to develop greater sense of responsibility</a></li>
+          <li><a href="article.html">Opinion: Why the economy needs bold reforms</a></li>
+          <li><a href="article.html">Analysis: Global politics shifting in 2025</a></li>
+          <li><a href="article.html">Feature: Inside the tech that’s changing lives</a></li>
+          <li><a href="article.html">Report: Local communities adapting to change</a></li>
         </ol>
       </div>
     </aside>
   </main>
+<div class="content">
 
+
+</div> <!-- end of content -->
   <!-- FOOTER -->
-  <footer>
-    <p>&copy; 2025 News Demo. All rights reserved.</p>
+<footer>
+  <div class="footer-links">
+    <a href="#">About Us</a>
+    <a href="#">Contact</a>
+    <a href="#">Advertise</a>
+    <a href="#">Careers</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+  </div>
+  <div class="footer-bottom">&copy; 2025 The New Brunei Digest. All rights reserved.</div>
+</footer>
+    <p>&copy; 2025 The New Brunei Digest. All rights reserved.</p>
   </footer>
 
+  <script>
+    // Auto-populate the search word from URL ?q= parameter (if present)
+    document.addEventListener('DOMContentLoaded', function(){
+      try{
+        const params = new URLSearchParams(window.location.search);
+        const q = params.get('q');
+        const searchWordEl = document.querySelector('.search-word');
+        const searchLink = document.getElementById('search-link');
+        const divider = document.querySelector('.article-topline .divider');
+        if(q && searchWordEl){
+          searchWordEl.textContent = q;
+          if(searchLink) searchLink.href = '/search?q=' + encodeURIComponent(q);
+        } else {
+          // hide divider & search if no search term provided
+          if(divider) divider.style.display = 'none';
+          if(searchLink) searchLink.style.display = 'none';
+        }
+
+        // Make the category pill clickable (navigates to a category page)
+        const cat = document.querySelector('.article-topline .category');
+        if(cat){
+          cat.addEventListener('click', function(){
+            var slug = cat.dataset.slug || 'tourism';
+            window.location.href = '/category/' + slug;
+          });
+        }
+      }catch(e){ console.warn('Category/search init error', e); }
+    });
+  </script>
+<script>
+function shareArticle() {
+  const shareData = {
+    title: document.title,
+    text: "Check out this article from The New Brunei Digest!",
+    url: window.location.href
+  };
+
+  if (navigator.share) {
+    navigator.share(shareData).catch(console.error);
+  } else {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      alert("Link copied to clipboard!");
+    });
+  }
+}
+</script>
 </body>
 </html>
-
-
