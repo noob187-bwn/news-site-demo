@@ -433,32 +433,27 @@ color: #FFD700
   }
 }
 @media (max-width: 767px) {
-  body {
-    display: block; /* reset flex for mobile */
-    min-height: auto; /* remove extra height */
-  }
-
-  main {
-    padding: 1rem; /* match Secondary Page */
-  }
-header {
+  header {
     flex-direction: column;
-    align-items: stretch; /* make children span full width */
+    align-items: stretch;
+    gap: 0.5rem;
   }
 
   .logo-container {
-    justify-content: flex-start; /* left-align logo */
+    justify-content: flex-start;
   }
 
   .main-nav {
-    justify-content: flex-start; /* left-align nav */
-    width: 100%; /* full width */
+    justify-content: center; /* center links under logo */
+    width: 100%;
   }
 
   .search-form {
-    width: 100%; /* full width search bar */
-    margin-top: 0; /* remove extra spacing */
-}  
+    width: 100%;
+    text-align: center;
+    margin-top: 0.5rem; /* small gap below nav */
+  }
+}
 </style>
 </head>
 <body>
@@ -473,7 +468,7 @@ header {
 
   <!-- Navigation -->
   <nav class="main-nav">
-    <a href="#">Test</a>
+    <a href="#">Home</a>
     <a href="#">Opinion</a>
     <a href="#">Analysis</a>
     <a href="#">Economy</a>
