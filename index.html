@@ -1,20 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TNBD</title>
+  <title>The New Brunei Digest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
-    /* --- RESET --- */
+    /* Reset + Body */
     * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: Georgia, Helvetica, sans-serif; background:#ffffff; 
-color:#111; 
-line-height:1.6; 
-display:flex; 
-flex-direction:column; 
-min-height:100vh; }
-    a { text-decoration: none; color: inherit; }
-    img { max-width:100%; display:block; }
+    body {
+      font-family: Georgia, Helvetica, sans-serif;
+      background:#ffffff;
+      color:#111;
+      line-height:1.6;
+    }
 
-    /* --- HORIZONTAL SCROLL --- */
+    /* Center page on desktop */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 1rem;
+      border-bottom: 2px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #fff;
+    }
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .site-title {
+      text-align: center;
+      font-weight: bold;
+      line-height: 1.2;
+    }
+    .site-title-small {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: #111;
+      display: block;
+    }
+    .site-title-main {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: #444;
+      display: block;
+    }
+    .site-logo {
+      height: 40px;
+      width: auto;
+    }
+
+    /* HORIZONTAL SCROLL SECTION */
     .scroll-section {
       display: flex;
       flex-wrap: nowrap;
@@ -24,776 +73,501 @@ min-height:100vh; }
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
-      -ms-overflow-style: none;
       justify-content: start;
     }
     .scroll-section::-webkit-scrollbar { display: none; }
-
     .scroll-box {
       flex: 0 0 auto;
       min-width: 250px;
       background: #f9f9f9;
       border-radius: 12px;
       padding: 20px;
-      position: relative;
       text-decoration: none;
       color: inherit;
       scroll-snap-align: start;
       box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     }
+    .scroll-tag {
+      display: inline-block;
+      background: #052962;
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .scroll-box h3 {
+      margin: 30px 0 5px 0;
+      font-size: 18px;
+      color:#052962;
+    }
 
-    /* Circular photo on top-right corner */
-.scroll-box .photo {
-  position: absolute;
-  top: -20px;
-  right: -20px;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
+    /* Newspaper 3-column grid */
+    main {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr; /* Opinion | Top+Economy | Analysis */
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .center-column {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+@media (max-width: 767px) {
+  /* Switch main grid to stacked layout */
+  main {
+    display: flex;
+    flex-direction: column; /* stack everything vertically */
+    gap: 1.5rem;
+  }
 
-.scroll-box .photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+  /* Reorder sections for mobile */
+  .ad-right { order: 0; }
+  .top-story-section { order: 1; }
+  .economy-section { order: 2; }
+  .opinion-section { order: 3; }
+  .trending-box { order: 4; }
+  .analysis-section { order: 5; }
 
-.scroll-box h3 {
-  margin: 30px 0 5px 0; /* space below photo */
-  font-size: 18px;
-}
-
-.scroll-box p {
-  margin: 0;
-  color: #555;
-  font-size: 14px;
-}
-
-/* Center scroll-section on desktop */
-@media (min-width: 768px) {
-  .scroll-section {
-    justify-content: center;
+  /* Ensure ad scales properly */
+  .ad-right {
+    max-width: 90%;
+    margin: 0 auto 1rem auto;
+  }
+  .ad-right img {
+    width: 100%;
+    height: auto;
+    max-width: 320px;
+    max-height: 160px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
   }
 }
-    /* --- HEADER --- */
-    header {
-font-family: 'Roboto', Helvetica, sans-serif;
+    /* Section Headings */
+    .section-heading {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 0.8rem 1rem;
+      gap: 10px;
+      margin: 1rem 0;
+      font-size: 1.4rem;
+      font-weight: bold;
       background: #052962;
-      border-bottom: 2px solid #fff;
-      flex-wrap: wrap;
-position: sticky;
-top: 0;
-z-index: 1000;
-    }
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .site-logo { height: 40px; width: auto; }
-    .site-title { font-size: 1.5rem; font-weight: bold; color: #fff; }
-
-    .main-nav {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      text-align: center;
-    }
-    .main-nav a {
       color: #fff;
+      padding: 0.4rem 0.6rem;
+      border-radius: 4px;
+    }
+    .section-heading::before {
+      content: "";
+      width: 4px;
+      height: 1.5em;
+      background: #FF6600;
+      border-radius: 2px;
+    }
+
+    /* Stories */
+    .story img {
+      width: 100%;
+      border-radius: 5px;
+      margin-bottom: 0.5rem;
+    }
+    .story h2 {
+      font-size: 1.1rem;
+      margin: 0.5rem 0;
+      color:#052962;
+    }
+    .story-meta {
+      font-size: 0.8rem;
+      font-style: italic;
+      color: #666;
+      margin-bottom: 0.3rem;
+    }
+    .read-more {
+      display:inline-block;
+      margin-top:0.5rem;
+      font-weight:bold;
+      color:#052962;
+      text-decoration:none;
+    }
+    .read-more:hover { text-decoration:underline; }
+
+    /* Top Story */
+    .top-story {
+      position: relative;
+    }
+    .top-story img {
+      width: 100%;
+      border-radius: 5px;
+      display: block;
+    }
+    .top-story-overlay-desktop {
+      position: relative;
+      margin-top: -4rem;
+      background: rgba(5, 41, 98, 0.85);
+      color: #fff;
+      padding: 1.5rem;
+      border-radius: 0 0 5px 5px;
+    }
+    .top-story-overlay-desktop h1 {
+      color: #FFD700;
+      margin-bottom: 0.5rem;
+      font-size: 1.6rem;
+    }
+    .top-story-overlay-desktop p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .top-story-overlay-desktop .read-more {
+      color:#fff;
+      text-decoration: underline;
+    }
+
+    /* Mobile Overlay — fixed */
+    @media (max-width: 767px) {
+      .top-story-overlay-desktop { display:none; }
+      .top-story-overlay {
+        position: relative;             /* sit below image */
+        width: 100%;
+        background: rgba(5,41,98,0.85);
+        padding: 1rem;
+        border-radius: 0 0 8px 8px;     /* only bottom rounded */
+        color: #fff;
+        margin-top: 0;                  /* no overlap */
+        box-sizing: border-box;
+      }
+      .top-story-overlay h1 {
+        font-size: 1.2rem;
+        color: #FFD700;
+        margin-bottom: 0.5rem;
+      }
+      .top-story-overlay p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+      .top-story-overlay .read-more {
+        color: #FFD700;
+        text-decoration: underline;
+      }
+    }
+    @media (min-width: 768px) {
+      .top-story-overlay { display:none; }
+    }
+
+    /* Advertisement */
+    .advertisement {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 0.5rem;
+      margin: 1rem 0;
+      background: #f9f9f9;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #666;
+    }
+    .advertisement span {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      color: #999;
+      font-size: 0.75rem;
+    }
+.advertisement {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  background: #f9f9f9;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.advertisement span {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #999;
+  font-size: 0.75rem;
+}
+
+.advertisement img {
+  width: 100%;        /* fills sidebar column */
+  height: auto;       /* keeps ratio */
+  border-radius: 4px;
+  display: block;
+  object-fit: contain; /* ensures it never stretches weirdly */
+}
+    /* Trending Box */
+    .trending-box {
+      border: 2px solid #052962;
+      border-radius: 8px;
+      padding: 1rem;
+      background: #f0f4f9;
+      margin-top: 2rem;
+    }
+    .trending-box h2 {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #052962;
+    }
+    .trending-video {
+      width: 100%;
+      height: 200px;
+      margin-bottom: 1rem;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .trending-video iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .trending-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .trending-list li {
+      margin-bottom: 0.5rem;
+    }
+    .trending-list a {
+      color: #052962;
       font-weight: bold;
       text-decoration: none;
     }
-    .main-nav a:not(:last-child)::after {
-      content: " |";
-      margin-left: 0.25rem;
+    .trending-list a:hover {
+      text-decoration: underline;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #052962;
       color: #fff;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
     }
-
-    .search-form input {
-      padding: 0.35rem 0.5rem;
-      border-radius: 3px;
-      border: 1px solid #ccc;
-      font-size: 0.9rem;
+    .footer-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-
-    /* --- TOP STORY VERTICAL BAR --- */
-.top-story-container {
-  display: flex;
-  align-items: stretch; /* keeps bar full height */
-  gap: 15px;
-  padding-top: 20px; /* add some space from top so bar doesn’t touch photo */
-}
-
-.vertical-bar {
-  width: 4px;
-  background-color: #FF6600;
-  border-radius: 2px;
-  margin-top: 20px; /* optional: extra spacing from top */
-}
-/* --- TOP STORY VERTICAL BAR GAP FOR MOBILE --- */
-@media (max-width: 767px) {
-  .top-story-container {
-    flex-direction: column; /* stack content on mobile */
-    padding-top: 15px;      /* space from top/photo */
-  }
-
-  .vertical-bar {
-    align-self: flex-start; /* bar aligns to top of content */
-    margin-top: 15px;       /* gap from photo */
-    height: 50px;           /* adjust height as needed */
-  }
-
-  .top-story-content {
-    margin-left: 0;         /* remove horizontal spacing for mobile */
-  }
-}
-/* --- TOP STORY VERTICAL BAR FIX FOR MOBILE --- */
-@media (max-width: 767px) {
-  .top-story-container {
-    flex-direction: row;      /* bar + headline side by side */
-    align-items: flex-start;  /* align top of bar with headline */
-    margin-top: 10px;         /* space between photo and bar/headline */
-  }
-
-  .vertical-bar {
-    height: auto;             /* match headline height */
-    min-height: 120px;         /* ensures bar is visible */
-  }
-
-  .top-story-content {
-    margin-left: 10px;        /* space between bar and headline */
-  }
-}
-/* --- SECONDARY SECTION HEADINGS WITH VERTICAL BAR --- */
-.section-heading {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* space between bar and text */
-  margin: 1.5rem 0 1rem;
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #052962; /* same header blue */
-}
-
-.section-heading::before {
-  content: "";
-  display: block;
-  width: 4px;
-  height: 1.5em; /* matches text height */
-  background-color: #FF6600; /* same color as top-story bar */
-  border-radius: 2px;
-}
-    /* --- MAIN LAYOUT --- */
-main {
-  padding: 1rem;
-  flex: 1;
-}
-
-/* Desktop/tablet: side-by-side layout */
-@media (min-width: 768px) {
-  main {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-  }
-  .content {
-    flex: 3;
-  }
-  .sidebar {
-    flex: 1;
-    margin-left: 2rem;
-  }
-}
-    .content { flex:3; }
-    .sidebar { flex:1; margin-left:2rem; min-width:250px; display:flex; flex-direction:column; gap:1.5rem; }
-    .sidebar-sticky { position: sticky; top: 1rem; display: flex; flex-direction: column; gap: 1.5rem; }
-
-    /* --- TOP STORY --- */
-    .top-story { margin-bottom:2rem; }
-    .top-story img { border-radius:5px; }
-    .top-story h1 { font-size:1.8rem; margin:0.5rem 0; color:#052962; }
-
-    .story-meta { font-size: 0.85rem; color: #666; margin: 0.3rem 0 0.5rem; font-style: italic; }
-
-    /* --- SECONDARY STORIES --- */
-    .secondary-stories { display:grid; gap:1rem; }
-    .story { border-bottom:1px solid #eee; padding-bottom:1rem; }
-    .story h2 { font-size:1.2rem; margin:0.5rem 0; color:#333; }
-    .secondary-stories .story img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 5px; margin-bottom: 0.5rem; }
-
-/* --- GRID COLUMNS FOR ANALYSIS, OPINION, ECONOMY --- */
-.analysis-stories,
-.opinion-stories,
-.economy-stories {
-  display: grid !important; /* ensure it overrides block */
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-}
-
-/* Mobile: stack in 1 column */
-@media (max-width: 767px) {
-  .analysis-stories,
-  .opinion-stories,
-  .economy-stories {
-    grid-template-columns: 1fr;
-  }
-}
-    /* --- READ MORE LINK --- */
-    .read-more { display:inline-block; margin-top:0.5rem; font-weight:bold; color:#052962; text-decoration:none; }
-    .read-more:hover { text-decoration:underline; }
-/* Make only the Read more in mobile overlay white */
-.top-story-overlay .read-more {
-  color: #fff;
-}
-
-.top-story-overlay .read-more:hover {
-  text-decoration: underline;
-  color: #fff; /* keep it white on hover too */
-}
-
-    /* --- VIDEO EMBED --- */
-    .video-embed { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; margin:1rem 0; }
-    .video-embed iframe, .video-embed video { position:absolute; top:0; left:0; width:100%; height:100%; }
-
-    /* --- ADVERTISEMENT --- */
-    .advertisement { padding:1rem; background:#f9f9f9; border:1px solid #ddd; border-radius:5px; text-align:center; position:sticky; top:1rem; z-index:5; }
-    .advertisement h3 { margin-bottom:0.5rem; font-size:1.2rem; color:#052962; }
-    .advertisement img { max-width:100%; height:auto; border-radius:5px; }
-
-    /* --- MOST READ --- */
-    .most-read { padding:1rem; background:#f1f1f1; border-radius:5px; position:sticky; top:1rem; z-index:5; }
-    .most-read h3 { margin-bottom:1rem; color:#052962; }
-    .most-read ol { list-style:decimal inside; }
-    .most-read li { margin:0.5rem 0; font-size:0.95rem; color:#333; }
-    .most-read li a { color:#052962; text-decoration:none; }
-    .most-read li a:hover { text-decoration:underline; }
-
-    /* --- FOOTER --- */
-    footer { background:#052962; color:#fff; padding:2rem 1rem; }
-    .footer-links { display:grid; grid-template-columns:repeat(auto-fit, minmax(120px,1fr)); gap:1rem; margin-bottom:1rem; }
-    .footer-links a { color:#fff; font-size:0.9rem; }
-    .footer-bottom { text-align:center; font-size:0.8rem; border-top:1px solid rgba(255,255,255,0.2); padding-top:1rem; }
-
-    /* --- RESPONSIVE --- */
-    @media (min-width:768px) {
-      nav { display:block; }
-      .hamburger { display:none; }
-      main { flex-direction:row; }
+    .footer-container h3, .footer-container h4 {
+      margin-bottom: 0.5rem;
     }
-      .secondary-stories .story { display: flex; flex-direction: column; margin-bottom: 1.5rem; }
-      .secondary-stories .story img { width: 100%; height: auto; object-fit: cover; border-radius: 5px; margin-bottom: 0.5rem; }
-      .secondary-stories .story .story-text { grid-column: auto; }
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
     }
-
-    /* --- MOBILE MENU SEPARATORS --- */
-    .mobile-menu a:not(:last-child)::after { content: " |"; margin-left: 0.25rem; color: #ffffff; }
-
-
-/* --- TOP STORY --- */
-.top-story { 
-  margin-bottom:2rem; 
-  position: relative; 
-}
-.top-story img { 
-  border-radius:5px; 
-  width: 100%; 
-  display: block; 
-}
-.top-story h1 { font-size:1.8rem; margin:0.5rem 0; color:#052962; }
-.story-meta { font-size: 0.85rem; color: #666; margin: 0.3rem 0 0.5rem; font-style: italic; }
-
-/* --- TOP STORY MOBILE OVERLAY (inside flow) --- */
-@media (max-width: 767px) {
-  .top-story-overlay {
-    position: relative; /* important: stays in flow */
-    margin: -15% auto 1rem auto; /* overlaps bottom of image slightly */
-    width: 90%;
-    background: rgba(5, 41, 98, 0.85);
-    color: #fff;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: center;
-    z-index: 2;
-  }
-
-  .top-story-overlay h1 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-    color: #FFD700;
-  }
-
-  .top-story-overlay .story-meta {
-    font-size: 0.75rem;
-    margin-bottom: 0.5rem;
-    color: #ddd;
-  }
-
-  .top-story-overlay p {
-    font-size: 0.85rem;
-    margin: 0;
-    line-height: 1.4;
-    color: #eee;
-  }
-}
-/* --- SECTION HEADINGS WITH VERTICAL BAR --- */
-.section-heading {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 1.5rem 0 1rem;
-  font-size: 1.4rem;
-  font-weight: bold;
-  background: #333;   /* dark grey background */
-  color: #fff;        /* white text */
-  padding: 0.5rem 0.8rem;
-  border-radius: 4px;
-}
-.section-heading::before {
-  content: "";
-  display: block;
-  width: 4px;
-  height: 1.5em;
-  background-color: #FF6600; /* orange bar */
-  border-radius: 2px;
-}
-/* Hide desktop text on mobile */
-@media (max-width: 767px) {
-  .desktop-story-text {
-    display: none;
-  }
-}
-
-/* Hide mobile overlay on desktop */
-@media (min-width: 768px) {
-  .top-story-overlay {
-    display: none;
-  }
-}
-/* Desktop top story overlay */
-@media (min-width: 768px) {
-  .top-story-overlay-desktop {
-display: flex;
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    background: rgba(5, 41, 98, 0.7); /* semi-transparent dark blue */
-    color: #FFD700; /* golden headline */
-    padding: 1rem 1.2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    z-index: 2;
-  }
-
-  .top-story-overlay-desktop h1 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    line-height: 1.2;
-color: #FFD700
-  }
-
-  .top-story-overlay-desktop .story-meta {
-    font-size: 0.85rem;
-    color: #fff;
-    margin-bottom: 0.5rem;
-    font-style: italic;
-  }
-
-  .top-story-overlay-desktop p {
-    font-size: 1rem;
-    color: #fff;
-    margin: 0 0 0.5rem 0;
-    line-height: 1.4;
-  }
-
-  .top-story-overlay-desktop .read-more {
-    color: #fff;
-    font-weight: bold;
-    text-decoration: underline;
-    align-self: flex-start;
-  }
-
-  /* hide mobile overlay on desktop */
-  .top-story-overlay {
-    display: none;
-  }
-
-  /* hide old desktop-story-text */
-  .desktop-story-text {
-    display: none;
-  }
-}
-/* Hide desktop overlay on mobile */
-@media (max-width: 767px) {
-  .top-story-overlay-desktop {
-    display: none;
-  }
-}
-/* --- CLEAN MOBILE HEADER FIX --- */
-@media (max-width: 767px) {
-  header {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.5rem;
-  }
-
-  .logo-container {
-    display: flex;
-    justify-content: flex-start; /* keep logo left */
-    align-items: center;
-    width: 100%;
-    gap: 0.5rem;
-  }
-
-  .main-nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    text-align: center;
-    margin-top: 0.25rem;
-  }
-
-  .search-form {
-    text-align: center;
-    width: 100%;
-    margin-top: 0.5rem;
-  }
-}
-
-</style>
+    footer a:hover {
+      color: #FFD700;
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header>
-  <!-- Logo + Site Title -->
-  <div class="logo-container">
-    <img src="https://www.information.gov.bn/PublishingImages/aboutINFO/benderbrunei1.jpg" alt="Site Logo" class="site-logo">
-    <span class="site-title">The New Brunei Digest</span>
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-container">
+      <div class="site-title">
+        <div class="site-title-small">The</div>
+        <div class="site-title-main">New Brunei Digest</div>
+      </div>
+      <img src="https://www.information.gov.bn/PublishingImages/aboutINFO/benderbrunei1.jpg" alt="Site Logo" class="site-logo">
+    </div>
+  </header>
+
+  <!-- SCROLL SECTION -->
+  <div class="scroll-section">
+    <a href="analysispage1.html" class="scroll-box">
+      <div class="scroll-tag">Analysis</div>
+      <h3>For your daily dose of perspective</h3>
+    </a>
+    <a href="opinionmain1.html" class="scroll-box">
+      <div class="scroll-tag">Opinion</div>
+      <h3>Explore the collective thought</h3>
+    </a>
+    <a href="economymain1.html" class="scroll-box">
+      <div class="scroll-tag">Economy</div>
+      <h3>What the bottom line means</h3>
+    </a>
   </div>
 
-  <!-- Navigation -->
-  <nav class="main-nav">
-    <a href="#">Home</a>
-    <a href="#">Opinion</a>
-    <a href="#">Analysis</a>
-    <a href="#">Economy</a>
-  </nav>
-
-  <!-- Search Bar -->
-  <form class="search-form" action="#" method="get">
-    <input type="text" placeholder="Search..." name="q">
-  </form>
-</header>
-
-<!-- CSS -->
-<style>
-
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.site-logo {
-  height: 40px;
-  width: auto;
-}
-
-.site-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #fff;
-}
-
-.main-nav {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  text-align: center;
-}
-
-.main-nav a {
-  color: #fff;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.main-nav a:not(:last-child)::after {
-  content: " |";
-  margin-left: 0.25rem;
-  color: #fff;
-}
-
-.search-form input {
-  padding: 0.35rem 0.5rem;
-  border-radius: 3px;
-  border: 1px solid #ccc;
-  font-size: 0.9rem;
-}
-
-@media (max-width: 767px) {
-  header {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .main-nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem;
-  }
-
-  .search-form {
-    width: 100%;
-    text-align: center;
-  }
-
-  .search-form input {
-    width: 90%;
-    max-width: 300px;
-  }
-}
-header > * {
-  max-width: 100%;
-  box-sizing: border-box;
-}
-</style>
-
-
-<!-- HORIZONTAL SCROLL SECTION -->
-<div class="scroll-section">
-  <a href="article3.html" class="scroll-box">
-    <div class="photo">
-      <img src="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" alt="Photo 1">
-    </div>
-    <h3>Analysis</h3>
-    <p>Achieving MDG as ASEAN COMMUNITY</p>
-  </a>
-
-  <a href="article5.html" class="scroll-box">
-    <div class="photo">
-      <img src="https://cms-image-bucket-productionv3-ap-northeast-1-a7d2.s3.ap-northeast-1.amazonaws.com/images/7/2/2/6/47856227-3-eng-GB/Cropped-1718779699AP24066235507389.jpg" alt="Photo 2">
-    </div>
-    <h3>Opinion</h3>
-    <p>Brunei actively involved in regional fight against piracy</p>
-  </a>
-
-  <a href="article8.html" class="scroll-box">
-    <div class="photo">
-      <img src="https://thescoop.co/wp-content/uploads/2021/06/wp-1623774531751-1080x768.jpg" alt="Photo 3">
-    </div>
-    <h3>Economy</h3>
-    <p>Providing jobs necessary duty</p>
-  </a>
-</div>
-  <!-- MAIN CONTENT -->
+  <!-- MAIN GRID -->
   <main>
-    <div class="content">
-      <!-- TOP STORY -->
-<section class="top-story">
-  <!-- Top story image -->
-<section class="top-story">
-  <img src="https://english.news.cn/20250225/cb119d3c4c1f43e29885a570226f739b/20250225cb119d3c4c1f43e29885a570226f739b_ChkhgeE007010_20250225_CBMFN0A002.JPG" alt="Top Story">
+    <!-- Left Column: Opinion -->
+<section class="opinion-section">    
+  <h2 class="section-heading">Opinion</h2>
 
-  <!-- Overlay for mobile -->
-  <div class="top-story-overlay">
-    <h1>‘Believe in your own people,’ S’porean top official advises</h1>
-    <div class="story-meta">By Waleed PD Mahdini, Sept 09, 2025</div>
-<p> ONCE described by the Singaporean media as “the maverick who goes against the rules”, Mr Philip Yeo, Chairman of SPRING Singapore, which stands for Standards, Productivity and Innovation Board, under the Ministry of Trade and Industry, is charged with overseeing the sustainable development and competitiveness of Singaporean enterprises, as well as coordinate the nurturing of a pro-business environment with the authorities, as the city-state shifts towards an innovation-driven economy.</p>
-<a href="article1.html" class="read-more">Read more →</a>
-  </div>
+  <article class="story">
+    <img src="https://cms-image-bucket-productionv3-ap-northeast-1-a7d2.s3.ap-northeast-1.amazonaws.com/images/7/2/2/6/47856227-3-eng-GB/Cropped-1718779699AP24066235507389.jpg" alt="Opinion Story">
+    <h2>Brunei actively involved in regional fight against piracy</h2>
+    <div class="story-meta">By Waleed PD Mahdini, Sept 12 2025</div>
+    <p>"BRUNEI Darussalam is actively involved in Southeast Asia," confirmed a source yesterday about the regional efforts to curb unconventional petty thefts occurring in the South China Sea.</p>
+    <a href="article5.html" class="read-more">Read more →</a>
+  </article>
 
-  <!-- Desktop text content -->
-<div class="top-story-overlay-desktop">
-<h1>‘Believe in your own people,’ S’porean top official advises</h1>
-    <div class="story-meta">By Waleed PD Mahdini, Sept 09, 2025</div>
-    <p>ONCE described by the Singaporean media as “the maverick who goes against the rules”, Mr Philip Yeo, Chairman of SPRING Singapore, which stands for Standards, Productivity and Innovation Board, under the Ministry of Trade and Industry, is charged with overseeing the sustainable development and competitiveness of Singaporean enterprises, as well as coordinate the nurturing of a pro-business environment with the authorities, as the city-state shifts towards an innovation-driven economy.</p>
-    <a href="article1.html" class="read-more">Read more →</a>
-  </div>
+  <article class="story">
+    <img src="https://www.airforce-technology.com/wp-content/uploads/sites/6/2024/01/Brunei.jpg" alt="Opinion Story">
+    <h2>Brunei explores niche specialty</h2>
+    <div class="story-meta">By Waleed PD Mahdini, Sept 12 2025</div>
+    <p>ON THE sidelines of the Brunei Darussalam International Defence Exhibition yesterday, one of the distinguished panel of speakers commented on the uniqueness of BRIDEX, as well as the force-multiplying benefits and prestige that it draws for the Sultanate.</p>
+    <a href="article6.html" class="read-more">Read more →</a>
+  </article>
+
+  <article class="story">
+    <img src="https://www.mofe.gov.bn/Images1/News/2023/(05.25)%2029th%20APEC.PNG" alt="Opinion Story">
+    <h2>Brunei may be small but we have a voice in APEC</h2>
+    <div class="story-meta">By Waleed PD Mahdini, Sept 12 2025</div>
+    <p>"APEC is not the answer to everything," said Dato Paduka Timothy Ong, Acting Chairman of the Brunei Economic Development Board, "but it is a rare club that includes the three biggest economies of the world, which gives prestige and value and that in itself is the beauty and the real value that comes with the membership itself."</p>
+    <a href="article7.html" class="read-more">Read more →</a>
+  </article>
 </section>
-      
+    <!-- Center Column: Top Story + Economy -->
+    <div class="center-column">
+      <section class="top-story-section">
+        <div class="top-story">
+          <img src="https://youcanleadbn.com/wp-content/uploads/2019/05/Sealnet-Project-Brunei-2019.jpg" alt="Top Story">
+          <div class="top-story-overlay-desktop">
+            <h1>’Believe in your own people’</h1>
+            <div class="story-meta">By Waleed PD Mahdini, Sept 15 2025</div>
+            <p>ONCE described by the Singaporean media as “the maverick who goes against the rules”, Mr Philip Yeo, Chairman of SPRING Singapore, which stands for Standards, Productivity and Innovation Board, under the Ministry of Trade and Industry, is charged with overseeing the sustainable development and competitiveness of Singaporean enterprises, as well as coordinate the nurturing of a pro-business environment with the authorities, as the city-state shifts towards an innovation-driven economy.</p>
+            <a href="article1.html" class="read-more">Read more →</a>
 
-      <!-- ANALYSIS -->
-      <h2 class="section-heading">Analysis</h2>
-      <section class="secondary-stories analysis-stories">
-        <article class="story">
-          <img src="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" alt="Top Story">
-          <div class="story-text">
-            <h2>Analysis: Achieving MDG as Asean Community</h2>
-            <div class="story-meta">By Waleed PD Mahdini, Sept 09, 2025</div>
-            <p>HIS Royal Highness Prince Mohamed Bolkiah, Minister of Foreign Affairs and Trade, yesterday commended the United Nation's Millennium Development Goals that have brought about "new confidence in the future" and which has "taught us a lot about ourselves".</p>
-            <a href="article3.html" class="read-more">Read more →</a>
           </div>
-        </article>
-        <article class="story">
-          <img src="https://static.dw.com/image/17602616_605.jpg" alt="Top Story">
-          <div class="story-text">
-            <h2>Analysis: Bring back Muslim Culture</h2>
-               <div class="story-meta">By Waleed PD Mahdini, Sept 09, 2025</div>
-            <p>DURING the opening of the Sixth Knowledge Convention on Tuesday, His Majesty the Sultan and Yang Di-Pertuan of Brunei Darussalam consented to view the centerpiece of this year's exhibits, namely the Exhibition Gallery set up by the Balai Kenangan of Al-Marhum Sultan Haji Omar 'Ali Saifuddien Sa'adul Khairi Waddien.</p>
-            <a href="article2.html" class="read-more">Read more →</a>
+          <div class="top-story-overlay">
+            <h1>’Believe in your own people’</h1>
+            <div class="story-meta">By Waleed PD Mahdini, Sept 15 2025</div>
+            <p> ONCE described by the Singaporean media as “the maverick who goes against the rules”, Mr Philip Yeo, Chairman of SPRING Singapore, which stands for Standards, Productivity and Innovation Board, under the Ministry of Trade and Industry, is charged with overseeing the sustainable development and competitiveness of Singaporean enterprises, as well as coordinate the nurturing of a pro-business environment with the authorities, as the city-state shifts towards an innovation-driven economy.</p>
+            <a href="article1.html" class="read-more">Read more →</a>
           </div>
-        </article>
-        <article class="story">
-          <img src="https://www.bruneitourism.com/wp-content/uploads/2020/04/ATV-Adventure-Brunei-2020.jpg" alt="Top Story">
-          <div class="story-text">
-            <div class="story-meta">By Waleed PD Mahdini, Sept 09, 2025</div>
-            <h2>Brunei – Perfect place for family tourism</h2>
-            <p>BRUNEI Darussalam, on the whole received pleasant and gentle praises by many of the international media that ranged from China to the Middle East, covering the week-long Asean Tourism Forum (ATF), but the issue of visa on arrival was also acknowledged to be a sticking point in the country's bid to improve its inbound tourist volume.
+        </div>
+<section class="economy-section">
+  <h2 class="section-heading">Economy</h2>
 
-Motaz Othman, an area manager for the Islamic Tourism Magazine, who hails from Jordan but is based in London, pointed out "There is a big image for Brunei in the Islamic world because everybody knows that Brunei is committed to its Islamic culture".
+  <article class="story">
+    <img src=" https://thescoop.co/wp-content/uploads/2021/06/wp-1623774531751-1080x768.jpg" alt="Economy Story 1">
+    <h2>Providing jobs necessary duty</h2>
+    <div class="story-meta">By Waleed PD Mahdini, Sept 8 2025</div>
+    <p> “HAVING a job is not only about earning a living but equally important it is about honour and it is about self-respect and self-esteem,” said Pehin Datu Singamanteri Colonel (Rtd) Dato Seri Setia (Dr) Awg Hj Mohd Yasmin bin Hj Umar, Minister of Energy at the Prime Minister’s Office, as he laid emphasis on the focus and goal of the Oil & Gas Job Fair 2011 yesterday.</p>
+    <a href="article8.html" class="read-more">Read more →</a>
+  </article>
 
-</p>
-            <a href="article4.html" class="read-more">Read more →</a>
-          </div>
-        </article>
+  <!-- Advertisement -->
+  <div class="advertisement">
+    <span>Advertisement</span>
+    <img src="https://image.adsoftheworld.com/y87w2iq3pchn44hoxl174qsdns4n" alt="Advertisement">
+  </div>
+
+  <article class="story">
+    <img src=" https://www.moe.gov.bn/PublishingImages/Lists/Announcement/Latest%20News/SR%20Dato%20Othman%20(3).JPG" alt="Economy Story 2">
+    <h2>Education key to making future a better world</h2>
+    <div class="story-meta">By Waleed PD Mahdini, Sept 9 2025</div>
+    <p> ONE OF the 11 fellows of the Southeast Asian Press Alliance, Aquiles Zonio, who hails from Mindanao, Philippines, is in the country to learn more about the local situation regarding freedom of the press. Having invested 25 years in the media profession, Zonio, a correspondent for the Mindanao Bureau of the Philippine Daily Enquirer met up with the Bulletin to share his findings and ask a few questions of his own.</p>
+    <a href="article10.html" class="read-more">Read more →</a>
+    <img src=" https://tadamon.community/uploads/images/IMG_7624-1280x768-1_news_thumbnail_b39f693b-6f58-4d74-9726-039a2fac6ea6.jpg?v=63879963264" alt="Economy Story 2">
+
+</article>
+    <h2>Youths urged to develop greater sense of responsibility</h2>
+    <div class="story-meta">By Waleed PD Mahdini, Sept 9 2025</div>
+    <p> THE theme "My Country, Brunei Darussalam" certainly carries a very aptly patriotic message to the citizens and residents of the country, which is angled towards a particular emphasis to the country's future generations of leaders - its youth.</p>
+    <a href="article9.html" class="read-more">Read more →</a>
+
+  </article>
+</section>
       </section>
-
-      <!-- OPINION -->
-<h2 class="section-heading">Opinion</h2>
-      <section class="secondary-stories opinion-stories">
-        <article class="story">
-          <img src="https://cms-image-bucket-productionv3-ap-northeast-1-a7d2.s3.ap-northeast-1.amazonaws.com/images/7/2/2/6/47856227-3-eng-GB/Cropped-1718779699AP24066235507389.jpg" alt="Opinion 1 Image">
-          <div class="story-text">
-            <h2>Brunei actively involved in regional fight against piracy</h2>
-               <div class="story-meta">By Waleed PD Mahdini, Sept 09, 2025</div>
-            <p>"BRUNEI Darussalam is actively involved in Southeast Asia," confirmed a source yesterday about the regional efforts to curb unconventional petty thefts occurring in the South China Sea.”</p>
-            <a href="article5.html" class="read-more">Read more →</a>
-          </div>
-        </article>
-        <article class="story">
-          <img src="https://www.airforce-technology.com/wp-content/uploads/sites/6/2024/01/Brunei.jpg" alt="Opinion 2 Image">
-          <div class="story-text">
-            <h2>Brunei explores niche specialty</h2>
-               <div class="story-meta">By Waleed PD Mahdini, Sept 09, 2025</div>
-            <p>ON THE sidelines of the Brunei Darussalam International Defence Exhibition yesterday, one of the distinguished panel of speakers commented on the uniqueness of BRIDEX, as well as the force-multiplying benefits and prestige that it draws for the Sultanate.</p>
-            <a href="article6.html" class="read-more">Read more →</a>
-          </div>
-        </article>
-        <article class="story">
-          <img src="https://www.mofe.gov.bn/Images1/News/2023/(05.25)%2029th%20APEC.PNG" alt="Opinion 3 Image">
-          <div class="story-text">
-            <h2>Brunei may be small but we have a voice in APEC</h2>
-            <div class="story-meta">By Waleed PD Mahdini, Sept 09, 2025</div>
-            <p>"APEC is not the answer to everything," said Dato Paduka Timothy Ong, Acting Chairman of the Brunei Economic Development Board, "but it is a rare club that includes the three biggest economies of the world, which gives prestige and value and that in itself is the beauty and the real value that comes with the membership itself."</p>
-            <a href="article7.html" class="read-more">Read more →</a>
-          </div>
-        </article>
-      </section>
-
-      <!-- ECONOMY -->
-<h2 class="section-heading">Economy</h2>
-      <section class="secondary-stories economy-stories">
-        <article class="story">
-          <img src="https://thescoop.co/wp-content/uploads/2021/06/wp-1623774531751-1080x768.jpg" alt="Economy 1 Image">
-          <div class="story-text">
-            <h2>Providing jobs necessary duty</h2>
-               <div class="story-meta">By Waleed PD Mahdini, Sept 09, 2025</div>
-            <p>“HAVING a job is not only about earning a living but equally important it is about honour and it is about self-respect and self-esteem,” said Pehin Datu Singamanteri Colonel (Rtd) Dato Seri Setia (Dr) Awg Hj Mohd Yasmin bin Hj Umar, Minister of Energy at the Prime Minister’s Office, as he laid emphasis on the focus and goal of the Oil & Gas Job Fair 2011 yesterday.</p>
-            <a href="article8.html" class="read-more">Read more →</a>
-          </div>
-        </article>
-        <article class="story">
-          <img src="https://tadamon.community/uploads/images/IMG_7624-1280x768-1_news_thumbnail_b39f693b-6f58-4d74-9726-039a2fac6ea6.jpg?v=63879963264" alt="Economy 2 Image">
-          <div class="story-text">
-            <h2>Youths urged to develop greater sense of responsibility</h2>
-               <div class="story-meta">By Waleed PD Mahdini, Sept 09, 2025</div>
-            <p>THE theme "My Country, Brunei Darussalam" certainly carries a very aptly patriotic message to the citizens and residents of the country, which is angled towards a particular emphasis to the country's future generations of leaders - its youth.</p>
-            <a href="article9.html" class="read-more">Read more →</a>
-          </div>
-        </article>
-        <article class="story">
-          <img src="https://www.moe.gov.bn/PublishingImages/Lists/Announcement/Latest%20News/SR%20Dato%20Othman%20(3).JPG" alt="Economy 3 Image">
-          <div class="story-text">
-            <h2>Education key to making future a better world</h2>
-               <div class="story-meta">By Waleed PD Mahdini, Sept 09, 2025</div>
-            <p>ONE OF the 11 fellows of the Southeast Asian Press Alliance, Aquiles Zonio, who hails from Mindanao, Philippines, is in the country to learn more about the local situation regarding freedom of the press. Having invested 25 years in the media profession, Zonio, a correspondent for the Mindanao Bureau of the Philippine Daily Enquirer met up with the Bulletin to share his findings and ask a few questions of his own.</p>
-            <a href="article10.html" class="read-more">Read more →</a>
-          </div>
-        </article>
-      </section>
-      <button id="loadMoreEconomy" style="margin:1rem 0; padding:0.5rem 1rem; font-size:1rem; cursor:pointer;">Load More</button>
     </div>
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-      <div class="sidebar-sticky">
-          <!-- ADVERTISEMENT -->
-          <div class="advertisement">
-            <h3>Advertisement</h3>
-            <a href="#">
-              <img src="https://cdn-gkgmn.nitrocdn.com/HxDrMqgpfrfMwMIyqdIclnyVmQsPpBQI/assets/images/optimized/rev-e68ff02/www.techwebspace.com/wp-content/uploads/2015/08/advertise-with-us.jpg" alt="Advertisement">
-            </a>
-          </div>
+    <!-- Right Column: Analysis -->
+<section class="analysis-section">
+  <h2 class="section-heading">Analysis</h2>
 
-          <!-- MOST READ -->
-          <div class="most-read">
-            <h3>Most Read</h3>
-            <div class="video-embed">
-              <iframe src="https://www.youtube.com/embed/XWq5kBlakcQ" frameborder="0" allowfullscreen></iframe>
-            </div>
+  <article class="story">
+    <img src="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" alt="Analysis Story 1">
+    <h2>Achieving MDG as ASEAN community</h2>
+    <div class="story-meta">By Waleed PD Mahdini, Sept 10 2025</div>
+    <p>HIS Royal Highness Prince Mohamed Bolkiah, Minister of Foreign Affairs and Trade, yesterday commended the United Nation's Millennium Development Goals that have brought about "new confidence in the future" and which has "taught us a lot about ourselves".</p>
+    <a href="article3.html" class="read-more">Read more →</a>
+  </article>
 
-            <ol>
-              <li><a href="article5.html">Brunei actively involved in regional fight against piracy</a></li>
+  <!-- Advertisement -->
+<div class="advertisement ad-right">
+  <span>Advertisement</span>
+  <img src=" https://bibd.com.bn/wp-content/uploads/2025/05/A4-Size-21cm-x-29.7cm_b9193f353332aa880dd5cb6417bd0361-724x1024.jpg " alt="Advertisement">
+</div>
+  
+
+  <article class="story">
+    <img src="https://static.dw.com/image/17602616_605.jpg" alt="Analysis Story 2">
+    <h2>Bring back Muslim culture</h2>
+    <div class="story-meta">By Waleed PD Mahdini, Sept 10 2025</div>
+    <p>DURING the opening of the Sixth Knowledge Convention on Tuesday, His Majesty the Sultan and Yang Di-Pertuan of Brunei Darussalam consented to view the centerpiece of this year's exhibits, namely the Exhibition Gallery set up by the Balai Kenangan of Al-Marhum Sultan Haji Omar 'Ali Saifuddien Sa'adul Khairi Waddien.</p>
+    <a href="article2.html" class="read-more">Read more →</a>
+  </article>
+
+  <article class="story">
+    <img src="https://www.bruneitourism.com/wp-content/uploads/2020/04/ATV-Adventure-Brunei-2020.jpg" alt="Analysis Story 3">
+    <h2>Brunei – perfect place for family tourism</h2>
+    <div class="story-meta">By Waleed PD Mahdini, Sept 10 2025</div>
+    <p>BRUNEI Darussalam, on the whole received pleasant and gentle praises by many of the international media that ranged from China to the Middle East, covering the week-long Asean Tourism Forum (ATF), but the issue of visa on arrival was also acknowledged to be a sticking point in the country's bid to improve its inbound tourist volume. Motaz Othman, an area manager for the Islamic Tourism Magazine, who hails from Jordan but is based in London, pointed out "There is a big image for Brunei in the Islamic world because everybody knows that Brunei is committed to its Islamic culture".</p>
+    <a href="article4.html" class="read-more">Read more →</a>
+  </article>
+      <!-- Trending Box -->
+      <section class="trending-box">
+        <h2>Trending</h2>
+        <div class="trending-video">
+          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Trending Video" allowfullscreen></iframe>
+        </div>
+        <ul class="trending-list">
           <li><a href="article8.html">Providing jobs necessary duty</a></li>
+          <li><a href="article9.html">Youths urged to develop greater sense of responsibility</a></li>
+          <li><a href="article10.html">Education key to making future a better world</a></li>
           <li><a href="article7.html">Brunei may be small but we have a voice in APEC</a></li>
           <li><a href="article6.html">Brunei explores niche specialty</a></li>
-          <li><a href="article9.html">Youths urged to develop greater sense of responsibility</a></li>
-            </ol>
-          </div>
-      </div>
-    </aside>
+        </ul>
+      </section>
+    </section>
   </main>
+</div>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-links">
-      <a href="#">About Us</a>
-      <a href="#">Contact</a>
-      <a href="#">Advertise</a>
-      <a href="#">Careers</a>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-about">
+      <h3>The New Brunei Digest</h3>
+      <p>Delivering news, insights, and perspectives on Brunei and beyond.</p>
     </div>
-    <div class="footer-bottom">&copy; 2025 The New Brunei Digest. All rights reserved.</div>
-  </footer>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="opinionmain1.html">Opinion</a></li>
+        <li><a href="economymain1.html">Economy</a></li>
+        <li><a href="analysismain1.html">Analysis</a></li>
+      </ul>
+    </div>
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <ul>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Twitter</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">YouTube</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 The New Brunei Digest. All rights reserved.</p>
+  </div>
+</footer>
 
-  <!-- JS -->
-  <script>
-    function toggleNav() {
-      const navDrawer = document.getElementById("navDrawer");
-      navDrawer.style.display = navDrawer.style.display === "flex" ? "none" : "flex";
-    }
-
-    // Load More for Economy
-    document.getElementById('loadMoreEconomy').addEventListener('click', function() {
-      document.querySelectorAll('.economy-stories .extra-story').forEach(function(story) {
-        story.style.display = 'block';
-      });
-      this.style.display = 'none';
-    });
-  </script>
 </body>
 </html>
-
