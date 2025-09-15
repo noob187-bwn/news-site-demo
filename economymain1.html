@@ -1,44 +1,273 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Analysis - The New Brunei Digest</title>
+  <title>TNBD</title>
   <style>
+    /* --- RESET --- */
     * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: Arial, Helvetica, sans-serif; background:#fff; color:#111; line-height:1.6; display:flex; flex-direction:column; min-height:100vh; }
-    a { text-decoration:none; color:inherit; }
+    body { font-family: Georgia, Helvetica, sans-serif; background:#ffffff; 
+color:#111; 
+line-height:1.6; 
+display:flex; 
+flex-direction:column; 
+min-height:100vh; }
+    a { text-decoration: none; color: inherit; }
     img { max-width:100%; display:block; }
 
-    /* HEADER */
-    header { display:flex; justify-content:space-between; align-items:center; padding:1rem; border-bottom:2px solid #052962; background:#052962; position:sticky; top:0; z-index:10; }
-    .logo { font-size:1.5rem; font-weight:bold; color:#fff; }
-    nav { display:none; }
-    nav ul { display:flex; gap:1rem; list-style:none; align-items:center; }
-    nav li { font-weight:bold; color:#fff; }
-    .hamburger { font-size:1.5rem; cursor:pointer; }
+    /* --- HORIZONTAL SCROLL --- */
+    .scroll-section {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      justify-content: start;
+    }
+    .scroll-section::-webkit-scrollbar { display: none; }
 
-    /* NAV DRAWER MOBILE */
-    .nav-drawer { display:none; flex-direction:column; background:#f9f9f9; border-top:2px solid #eee; }
-    .nav-drawer a { padding:0.75rem 1rem; border-bottom:1px solid #eee; color:#052962; font-weight:bold; }
+    .scroll-box {
+      flex: 0 0 auto;
+      min-width: 250px;
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+      scroll-snap-align: start;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
 
-    /* MAIN LAYOUT */
-    main { display:flex; flex-direction:column; padding:1rem; flex:1; }
+    /* Circular photo on top-right corner */
+.scroll-box .photo {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.scroll-box .photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.scroll-box h3 {
+  margin: 30px 0 5px 0; /* space below photo */
+  font-size: 18px;
+}
+
+.scroll-box p {
+  margin: 0;
+  color: #555;
+  font-size: 14px;
+}
+
+/* Center scroll-section on desktop */
+@media (min-width: 768px) {
+  .scroll-section {
+    justify-content: center;
+  }
+}
+    /* --- HEADER --- */
+    header {
+font-family: 'Roboto', Helvetica, sans-serif;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 1rem;
+      background: #052962;
+      border-bottom: 2px solid #fff;
+      flex-wrap: wrap;
+position: sticky;
+top: 0;
+z-index: 1000;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .site-logo { height: 40px; width: auto; }
+    .site-title { font-size: 1.5rem; font-weight: bold; color: #fff; }
+
+    .main-nav {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+    .main-nav a {
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .main-nav a:not(:last-child)::after {
+      content: " |";
+      margin-left: 0.25rem;
+      color: #fff;
+    }
+
+    .search-form input {
+      padding: 0.35rem 0.5rem;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+    }
+
+    /* --- TOP STORY VERTICAL BAR --- */
+.top-story-container {
+  display: flex;
+  align-items: stretch; /* keeps bar full height */
+  gap: 15px;
+  padding-top: 20px; /* add some space from top so bar doesn’t touch photo */
+}
+
+.vertical-bar {
+  width: 4px;
+  background-color: #FF6600;
+  border-radius: 2px;
+  margin-top: 20px; /* optional: extra spacing from top */
+}
+/* --- TOP STORY VERTICAL BAR GAP FOR MOBILE --- */
+@media (max-width: 767px) {
+  .top-story-container {
+    flex-direction: column; /* stack content on mobile */
+    padding-top: 15px;      /* space from top/photo */
+  }
+
+  .vertical-bar {
+    align-self: flex-start; /* bar aligns to top of content */
+    margin-top: 15px;       /* gap from photo */
+    height: 50px;           /* adjust height as needed */
+  }
+
+  .top-story-content {
+    margin-left: 0;         /* remove horizontal spacing for mobile */
+  }
+}
+/* --- TOP STORY VERTICAL BAR FIX FOR MOBILE --- */
+@media (max-width: 767px) {
+  .top-story-container {
+    flex-direction: row;      /* bar + headline side by side */
+    align-items: flex-start;  /* align top of bar with headline */
+    margin-top: 10px;         /* space between photo and bar/headline */
+  }
+
+  .vertical-bar {
+    height: auto;             /* match headline height */
+    min-height: 120px;         /* ensures bar is visible */
+  }
+
+  .top-story-content {
+    margin-left: 10px;        /* space between bar and headline */
+  }
+}
+/* --- SECONDARY SECTION HEADINGS WITH VERTICAL BAR --- */
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* space between bar and text */
+  margin: 1.5rem 0 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #052962; /* same header blue */
+}
+
+.section-heading::before {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 1.5em; /* matches text height */
+  background-color: #FF6600; /* same color as top-story bar */
+  border-radius: 2px;
+}
+    /* --- MAIN LAYOUT --- */
+main {
+  padding: 1rem;
+  flex: 1;
+}
+
+/* Desktop/tablet: side-by-side layout */
+@media (min-width: 768px) {
+  main {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .content {
+    flex: 3;
+  }
+  .sidebar {
+    flex: 1;
+    margin-left: 2rem;
+  }
+}
     .content { flex:3; }
     .sidebar { flex:1; margin-left:2rem; min-width:250px; display:flex; flex-direction:column; gap:1.5rem; }
+    .sidebar-sticky { position: sticky; top: 1rem; display: flex; flex-direction: column; gap: 1.5rem; }
 
-    .sidebar-sticky { position:sticky; top:1rem; display:flex; flex-direction:column; gap:1.5rem; }
-
-    /* TOP STORY */
+    /* --- TOP STORY --- */
     .top-story { margin-bottom:2rem; }
     .top-story img { border-radius:5px; }
     .top-story h1 { font-size:1.8rem; margin:0.5rem 0; color:#052962; }
 
-    /* SECONDARY STORIES */
-    .secondary-stories { display:grid; gap:1rem; grid-template-columns:repeat(3, 1fr); }
+    .story-meta { font-size: 0.85rem; color: #666; margin: 0.3rem 0 0.5rem; font-style: italic; }
+
+    /* --- SECONDARY STORIES --- */
+    .secondary-stories { display:grid; gap:1rem; }
     .story { border-bottom:1px solid #eee; padding-bottom:1rem; }
     .story h2 { font-size:1.2rem; margin:0.5rem 0; color:#333; }
-    .story img { width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:5px; margin-bottom:0.5rem; }
+    .secondary-stories .story img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 5px; margin-bottom: 0.5rem; }
+
+/* --- GRID COLUMNS FOR ANALYSIS, OPINION, ECONOMY --- */
+.analysis-stories,
+.opinion-stories,
+.economy-stories {
+  display: grid !important; /* ensure it overrides block */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+/* Mobile: stack in 1 column */
+@media (max-width: 767px) {
+  .analysis-stories,
+  .opinion-stories,
+  .economy-stories {
+    grid-template-columns: 1fr;
+  }
+}
+    /* --- READ MORE LINK --- */
+    .read-more { display:inline-block; margin-top:0.5rem; font-weight:bold; color:#052962; text-decoration:none; }
+    .read-more:hover { text-decoration:underline; }
+/* Make only the Read more in mobile overlay white */
+.top-story-overlay .read-more {
+  color: #fff;
+}
+
+.top-story-overlay .read-more:hover {
+  text-decoration: underline;
+  color: #fff; /* keep it white on hover too */
+}
+
+    /* --- VIDEO EMBED --- */
+    .video-embed { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; margin:1rem 0; }
+    .video-embed iframe, .video-embed video { position:absolute; top:0; left:0; width:100%; height:100%; }
+
+    /* --- ADVERTISEMENT --- */
+    .advertisement { padding:1rem; background:#f9f9f9; border:1px solid #ddd; border-radius:5px; text-align:center; position:sticky; top:1rem; z-index:5; }
+    .advertisement h3 { margin-bottom:0.5rem; font-size:1.2rem; color:#052962; }
+    .advertisement img { max-width:100%; height:auto; border-radius:5px; }
+
     /* --- MOST READ --- */
     .most-read { padding:1rem; background:#f1f1f1; border-radius:5px; position:sticky; top:1rem; z-index:5; }
     .most-read h3 { margin-bottom:1rem; color:#052962; }
@@ -47,120 +276,445 @@
     .most-read li a { color:#052962; text-decoration:none; }
     .most-read li a:hover { text-decoration:underline; }
 
+    /* --- FOOTER --- */
+    footer { background:#052962; color:#fff; padding:2rem 1rem; }
+    .footer-links { display:grid; grid-template-columns:repeat(auto-fit, minmax(120px,1fr)); gap:1rem; margin-bottom:1rem; }
+    .footer-links a { color:#fff; font-size:0.9rem; }
+    .footer-bottom { text-align:center; font-size:0.8rem; border-top:1px solid rgba(255,255,255,0.2); padding-top:1rem; }
 
-    /* READ MORE */
-    .read-more { display:inline-block; margin-top:0.5rem; font-weight:bold; color:#052962; text-decoration:none; }
-    .read-more:hover { text-decoration:underline; }
-
-    /* MOBILE LAYOUT */
-    @media (max-width: 767px) {
-      .secondary-stories { grid-template-columns:1fr; }
-      .secondary-stories .story { display:grid; grid-template-columns:100px 1fr; gap:0.5rem; align-items:start; }
-      .secondary-stories .story img { width:100%; height:auto; object-fit:cover; }
-    }
-
-    /* DESKTOP NAV */
+    /* --- RESPONSIVE --- */
     @media (min-width:768px) {
       nav { display:block; }
       .hamburger { display:none; }
-      .nav-drawer { display:none !important; }
       main { flex-direction:row; }
     }
+      .secondary-stories .story { display: flex; flex-direction: column; margin-bottom: 1.5rem; }
+      .secondary-stories .story img { width: 100%; height: auto; object-fit: cover; border-radius: 5px; margin-bottom: 0.5rem; }
+      .secondary-stories .story .story-text { grid-column: auto; }
+    }
 
-  </style>
+    /* --- MOBILE MENU SEPARATORS --- */
+    .mobile-menu a:not(:last-child)::after { content: " |"; margin-left: 0.25rem; color: #ffffff; }
+
+
+/* --- TOP STORY --- */
+.top-story { 
+  margin-bottom:2rem; 
+  position: relative; 
+}
+.top-story img { 
+  border-radius:5px; 
+  width: 100%; 
+  display: block; 
+}
+.top-story h1 { font-size:1.8rem; margin:0.5rem 0; color:#052962; }
+.story-meta { font-size: 0.85rem; color: #666; margin: 0.3rem 0 0.5rem; font-style: italic; }
+
+/* --- TOP STORY MOBILE OVERLAY (inside flow) --- */
+@media (max-width: 767px) {
+  .top-story-overlay {
+    position: relative; /* important: stays in flow */
+    margin: -15% auto 1rem auto; /* overlaps bottom of image slightly */
+    width: 90%;
+    background: rgba(5, 41, 98, 0.85);
+    color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    z-index: 2;
+  }
+
+  .top-story-overlay h1 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+    color: #FFD700;
+  }
+
+  .top-story-overlay .story-meta {
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+    color: #ddd;
+  }
+
+  .top-story-overlay p {
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.4;
+    color: #eee;
+  }
+}
+/* --- SECTION HEADINGS WITH VERTICAL BAR --- */
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 1.5rem 0 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  background: #333;   /* dark grey background */
+  color: #fff;        /* white text */
+  padding: 0.5rem 0.8rem;
+  border-radius: 4px;
+}
+.section-heading::before {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 1.5em;
+  background-color: #FF6600; /* orange bar */
+  border-radius: 2px;
+}
+/* Hide desktop text on mobile */
+@media (max-width: 767px) {
+  .desktop-story-text {
+    display: none;
+  }
+}
+
+/* Hide mobile overlay on desktop */
+@media (min-width: 768px) {
+  .top-story-overlay {
+    display: none;
+  }
+}
+/* Desktop top story overlay */
+@media (min-width: 768px) {
+  .top-story-overlay-desktop {
+display: flex;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(5, 41, 98, 0.7); /* semi-transparent dark blue */
+    color: #FFD700; /* golden headline */
+    padding: 1rem 1.2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    z-index: 2;
+  }
+
+  .top-story-overlay-desktop h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+color: #FFD700
+  }
+
+  .top-story-overlay-desktop .story-meta {
+    font-size: 0.85rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+  }
+
+  .top-story-overlay-desktop p {
+    font-size: 1rem;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.4;
+  }
+
+  .top-story-overlay-desktop .read-more {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: underline;
+    align-self: flex-start;
+  }
+
+  /* hide mobile overlay on desktop */
+  .top-story-overlay {
+    display: none;
+  }
+
+  /* hide old desktop-story-text */
+  .desktop-story-text {
+    display: none;
+  }
+}
+/* Hide desktop overlay on mobile */
+@media (max-width: 767px) {
+  .top-story-overlay-desktop {
+    display: none;
+  }
+}
+/* --- CLEAN MOBILE HEADER FIX --- */
+@media (max-width: 767px) {
+  header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .logo-container {
+    display: flex;
+    justify-content: flex-start; /* keep logo left */
+    align-items: center;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .main-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    margin-top: 0.25rem;
+  }
+
+  .search-form {
+    text-align: center;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}
+
+</style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="logo">The New Brunei Digest</div>
-    <div class="hamburger" onclick="toggleNav()">☰</div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="analysis.html">Opinion</a></li>
-        <li><a href="#">Analysis</a></li>
-        <li><a href="#">Economy</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- MOBILE NAV -->
-  <div class="nav-drawer" id="navDrawer">
-    <a href="index.html">Home</a>
-    <a href="analysis.html">Analysis</a>
-    <a href="#">Opinion</a>
-    <a href="#">Economy</a>
+<!-- HEADER -->
+<header>
+  <!-- Logo + Site Title -->
+  <div class="logo-container">
+    <img src="https://www.information.gov.bn/PublishingImages/aboutINFO/benderbrunei1.jpg" alt="Site Logo" class="site-logo">
+    <span class="site-title">The New Brunei Digest</span>
   </div>
 
-  <!-- MAIN -->
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <a href="#">Home</a>
+    <a href="#">Opinion</a>
+    <a href="#">Analysis</a>
+    <a href="#">Economy</a>
+  </nav>
+
+  <!-- Search Bar -->
+  <form class="search-form" action="#" method="get">
+    <input type="text" placeholder="Search..." name="q">
+  </form>
+</header>
+
+<!-- CSS -->
+<style>
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.site-logo {
+  height: 40px;
+  width: auto;
+}
+
+.site-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.main-nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.main-nav a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.main-nav a:not(:last-child)::after {
+  content: " |";
+  margin-left: 0.25rem;
+  color: #fff;
+}
+
+.search-form input {
+  padding: 0.35rem 0.5rem;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 767px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .main-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .search-form {
+    width: 100%;
+    text-align: center;
+  }
+
+  .search-form input {
+    width: 90%;
+    max-width: 300px;
+  }
+}
+header > * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+</style>
+
+
+<!-- HORIZONTAL SCROLL SECTION -->
+<div class="scroll-section">
+  <a href="article3.html" class="scroll-box">
+    <div class="photo">
+      <img src="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" alt="Photo 1">
+    </div>
+    <h3>Analysis</h3>
+    <p>Achieving MDG as ASEAN COMMUNITY</p>
+  </a>
+
+  <a href="article5.html" class="scroll-box">
+    <div class="photo">
+      <img src="https://cms-image-bucket-productionv3-ap-northeast-1-a7d2.s3.ap-northeast-1.amazonaws.com/images/7/2/2/6/47856227-3-eng-GB/Cropped-1718779699AP24066235507389.jpg" alt="Photo 2">
+    </div>
+    <h3>Opinion</h3>
+    <p>Brunei actively involved in regional fight against piracy</p>
+  </a>
+
+  <a href="article8.html" class="scroll-box">
+    <div class="photo">
+  <img src="https://thescoop.co/wp-content/uploads/2021/06/wp-1623774531751-1080x768.jpg" alt="Top Story">
+          </div>
+    <h3>Economy</h3>
+    <p>Providing jobs necessary duty</p>
+  </a>
+</div>
+  <!-- MAIN CONTENT -->
   <main>
     <div class="content">
-
       <!-- TOP STORY -->
-      <section class="top-story">
-        <img src=" https://thescoop.co/wp-content/uploads/2021/06/wp-1623774531751-1080x768.jpg="Top Story Image">
-        <h1> Providing jobs necessary duty</h1>
-<p>“HAVING a job is not only about earning a living but equally important it is about honour and it is about self-respect and self-esteem,” said Pehin Datu Singamanteri Colonel (Rtd) Dato Seri Setia (Dr) Awg Hj Mohd Yasmin bin Hj Umar, Minister of Energy at the Prime Minister’s Office, as he laid emphasis on the focus and goal of the Oil & Gas Job Fair 2011 yesterday..</p>
+<section class="top-story">
+  <!-- Top story image -->
+<section class="top-story">
+  <img src="https://thescoop.co/wp-content/uploads/2021/06/wp-1623774531751-1080x768.jpg" alt="Top Story">
 
-        <a href="article8.html" class="read-more">Read more →</a>
-      </section>
+  <!-- Overlay for mobile -->
+  <div class="top-story-overlay">
+    <h1>Providing jobs necessary duty</h1>
+    <div class="story-meta">By Waleed PD Mahdini, Sept 09, 2025</div>
+<p> Inaugurating the country’s first-ever five-day job fair, which is being held at the BRIDEX Exhibition Hall and specifically geared for the oil and gas industry, the Energy Minister at the Prime Minister’s Office set the scene for what the event was all about by emphasising that Brunei’s peace and prosperity were blessings from Allah the Almighty from which “we cannot be complacent or take it for granted” and that these blessings were also “the result of the hard work, wisdom and leadership of His Majesty the Sultan and Yang Di-Pertuan of Brunei Darussalam”. </p>
+<a href="article1.html" class="read-more">Read more →</a>
+  </div>
 
-      <!-- SECONDARY STORIES -->
-      <section class="secondary-stories">
+  <!-- Desktop text content -->
+<div class="top-story-overlay-desktop">
+<h1>Providing jobs necessary duty</h1>
+    <div class="story-meta">By Waleed PD Mahdini, Sept 09, 2025</div>
+    <p> Inaugurating the country’s first-ever five-day job fair, which is being held at the BRIDEX Exhibition Hall and specifically geared for the oil and gas industry, the Energy Minister at the Prime Minister’s Office set the scene for what the event was all about by emphasising that Brunei’s peace and prosperity were blessings from Allah the Almighty from which “we cannot be complacent or take it for granted” and that these blessings were also “the result of the hard work, wisdom and leadership of His Majesty the Sultan and Yang Di-Pertuan of Brunei Darussalam”.</p>
+    <a href="article8.html" class="read-more">Read more →</a>
+  </div>
+</section>
+      
+      <!-- ANALYSIS -->
+      <h2 class="section-heading">More on Economy</h2>
+      <section class="secondary-stories analysis-stories">
         <article class="story">
-    <img src="https://tadamon.community/uploads/images/IMG_7624-1280x768-1_news_thumbnail_b39f693b-6f58-4d74-9726-039a2fac6ea6.jpg?v=63879963264" alt="Opinion 2 Image">
+          <img src="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" alt="Top Story">
           <div class="story-text">
-            <h2>Youth urged to develop greater sense of responsibility</h2>
-<p>THE theme "My Country, Brunei Darussalam" certainly carries a very aptly patriotic message to the citizens and residents of the country, which is angled towards a particular emphasis to the country's future generations of leaders - its youth. </p>
-
+            <h2>Economy: Youths urged to develop greater sense of responsibility</h2>
+            <div class="story-meta">By Waleed PD Mahdini, Sept 09, 2025</div>
+            <p> THE theme "My Country, Brunei Darussalam" certainly carries a very aptly patriotic message to the citizens and residents of the country, which is angled towards a particular emphasis to the country's future generations of leaders - its youth.</p>
             <a href="article9.html" class="read-more">Read more →</a>
           </div>
         </article>
         <article class="story">
-              <img src="https://www.moe.gov.bn/PublishingImages/Lists/Announcement/Latest%20News/SR%20Dato%20Othman%20(3).JPG" alt="Opinion 3 Image">
+          <img src=" https://www.moe.gov.bn/PublishingImages/Lists/Announcement/Latest%20News/SR%20Dato%20Othman%20(3).JPG" alt="Top Story">
           <div class="story-text">
-            <h2>Education key to making future a better world</h2>
-<p>ONE OF the 11 fellows of the Southeast Asian Press Alliance, Aquiles Zonio, who hails from Mindanao, Philippines, is in the country to learn more about the local situation regarding freedom of the press. Having invested 25 years in the media profession, Zonio, a correspondent for the Mindanao Bureau of the Philippine Daily Enquirer met up with the Bulletin to share his findings and ask a few questions of his own.
-
-            <a href="article7.html" class="read-more">Read more →</a>
+            <h2>Analysis: Education key to making world better place</h2>
+               <div class="story-meta">By Waleed PD Mahdini, Sept 09, 2025</div>
+            <p> ONE OF the 11 fellows of the Southeast Asian Press Alliance, Aquiles Zonio, who hails from Mindanao, Philippines, is in the country to learn more about the local situation regarding freedom of the press. Having invested 25 years in the media profession, Zonio, a correspondent for the Mindanao Bureau of the Philippine Daily Enquirer met up with the Bulletin to share his findings and ask a few questions of his own.</p>
+            <a href="article10.html" class="read-more">Read more →</a>
           </div>
         </article>
-      </section>
-
-    </div>
 
     <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="sidebar-sticky">
-        <div class="advertisement">
-          <h3>Advertisement</h3>
-          <img src="https://media.tegna-media.com/assets/WOI/images/8b9a0239-cae0-4e66-81ba-6b3b65c324ac/8b9a0239-cae0-4e66-81ba-6b3b65c324ac_750x422.png" alt="Advertisement">
-        </div>
-        <div class="most-read">
-          <h3>Most Read</h3>
-          <div class="video-embed">
-            <iframe src="https://www.youtube.com/embed/XWq5kBlakcQ" frameborder="0" allowfullscreen></iframe>
-          </div>
+          <!-- ADVERTISEMENT -->
+    <aside class="sidebar">
+<div class="article-ad">
+      <div class="box">
+        <h3>Advertisement</h3>
+        <img src="https://bibd.com.bn/wp-content/uploads/2025/05/A4-Size-21cm-x-29.7cm_b9193f353332aa880dd5cb6417bd0361-724x1024.jpg" alt="Ad">
+      </div>
+</div>
 
-          <ol>
-<li><a href="article5.html">Brunei actively involved in regional fight against piracy</a></li>
+          <!-- MOST READ -->
+          <div class="most-read">
+            <h3>Most Read</h3>
+            <div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/XWq5kBlakcQ" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <ol>
+              <li><a href="article5.html">Brunei actively involved in regional fight against piracy</a></li>
           <li><a href="article8.html">Providing jobs necessary duty</a></li>
           <li><a href="article7.html">Brunei may be small but we have a voice in APEC</a></li>
           <li><a href="article6.html">Brunei explores niche specialty</a></li>
-          <li><a href="article9.html">Youths urged to develop greater sense of responsibility</a></li>          </ol>
-        </div>
+          <li><a href="article9.html">Youths urged to develop greater sense of responsibility</a></li>
+            </ol>
+          </div>
       </div>
     </aside>
-
   </main>
 
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-links">
+      <a href="#">About Us</a>
+      <a href="#">Contact</a>
+      <a href="#">Advertise</a>
+      <a href="#">Careers</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+    <div class="footer-bottom">&copy; 2025 The New Brunei Digest. All rights reserved.</div>
+  </footer>
+
+  <!-- JS -->
   <script>
     function toggleNav() {
       const navDrawer = document.getElementById("navDrawer");
       navDrawer.style.display = navDrawer.style.display === "flex" ? "none" : "flex";
     }
-  </script>
 
+    // Load More for Economy
+    document.getElementById('loadMoreEconomy').addEventListener('click', function() {
+      document.querySelectorAll('.economy-stories .extra-story').forEach(function(story) {
+        story.style.display = 'block';
+      });
+      this.style.display = 'none';
+    });
+  </script>
 </body>
 </html>
+
+
