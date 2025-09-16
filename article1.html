@@ -85,8 +85,13 @@ header {
 
     /* ARTICLE */
     .article-column { display:flex; flex-direction:column; gap:1rem; }
-    .article-photo { position:relative; margin-bottom:1rem; }
-    .article-photo img { border-radius:6px; }
+.article-photo {
+  position: relative;
+  margin-bottom: 1rem;
+  overflow: visible;   /* allow overlay to extend beyond photo */
+}
+    .article-photo img { 
+border-radius:6px; }
     .overlay-box {
       position:absolute; bottom:0; left:0; right:0;
       background:rgba(5,41,98,0.85);
@@ -94,6 +99,20 @@ header {
       padding:1rem 1.2rem;
       border-radius:0 0 6px 6px;
     }
+@media (max-width: 767px) {
+  .overlay-box {
+    top: 75%;              /* start 1/4 from bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    border-radius: 8px;
+    bottom: auto;          /* prevent clipping */
+  }
+
+  .article-photo {
+    margin-bottom: 8rem;   /* extra space below photo to fit overlay */
+  }
+}
     .overlay-box h1 {
       color:#FFD700;
       font-size:2rem; margin-bottom:0.5rem; font-family:'Playfair Display',serif;
@@ -293,7 +312,7 @@ header {
 <!-- SCROLL SECTION -->
 <div class="scroll-wrapper">
   <div class="scroll-section">
-    <a href="analysispage1.html" class="scroll-box">
+    <a href="homepage1.html" class="scroll-box">
       <div class="scroll-tag">Home</div>
       <h3>Start your day <br> with information <br> you can trust</h3>
     </a>
@@ -349,28 +368,51 @@ header {
     <!-- Center: Article -->
     <div class="article-column">
       <figure class="article-photo">
-        <img src="https://static.dw.com/image/17602616_605.jpg" alt="Family tourism in Brunei">
+        <img src="https://youcanleadbn.com/wp-content/uploads/2019/05/Sealnet-Project-Brunei-2019.jpg" alt="Family tourism in Brunei">
         <div class="overlay-box">
-          <h1>Bring back Muslim culture</h1>
+          <h1>‘Believe in your own people.’</h1>
+          <p>The most important thing is to build your own capability.</p>
         </div>
       </figure>
       <p class="article-meta">By Waleed PD Mahdini • September 9, 2025</p>
       <div class="article-body">
-<p>DURING the opening of the Sixth Knowledge Convention on Tuesday, His Majesty the Sultan and Yang Di-Pertuan of Brunei Darussalam consented to view the centerpiece of this year's exhibits, namely the Exhibition Gallery set up by the Balai Kenangan of Al-Marhum Sultan Haji Omar 'Ali Saifuddien Sa'adul Khairi Waddien. </p>
-<p>The Balai Kenangan, which comes under the Office of His Majesty the Sultan and Yang Di-Pertuan of Brunei Darussalam had painstakingly recreated an original concept to showcase this year that captures the symbiosis between the latest in information technology and the ancient teachings of Islam. </p>
-<p>"The crux of this whole concept is to bring us back the ancient time of Islam in Andalusia, Spain," explained Hj Johari Hj Achee, Chairman of the Exhibition Gallery, "when Islam had a foothold in Spain for about four centuries." Taking the Bulletin through the design and concept of the Exhibition Gallery, Hj Johari pointed out, "If you look at the mosques and gardens there, you will find water features to be the main elements, and we have interpreted this in the main design of the exhibition." Indeed, the whole gallery was designed to resemble such a garden, with green carpets to resemble the fauna and a decorated carpet with the typical Muslim-Andalusian motifs for visitors to walk on, trailing a path around the exhibits. There are five water fountains that surround a waterfall, which is engraved with the 'Iqra' - the first verse in the al-Quran. </p>
-    <div class="article-ad">
+<p> “The legacy that we leave behind is built with the people. I told them that writing reports are easy but it is the action plans where the depth comes.” He then switched to the Singapore blueprint as a perfect example of achieving success. “In Singapore, we do a lot of things ourselves and we learn to make mistakes because in this process, we learn. We train and we invest in our people and we make a lot of sacrifices to build up this depth. You must seek out and develop a cadre of young people who are committed to doing it themselves. They must also have confidence so it is important to find good, interested people and let them grow, especially in a young country. But they must be allowed to make mistakes. That’s where you learn. That is the key.” </p>
+
+<p>Mr Yeo then elaborated this further by holding up his index finger to share in the three keys to making mistakes: “First, you have to admit your mistake. Second, apologise. Third rule, and this is the most important, don’t do it again,” he said with a knowing smile as he gestured with his three digits. “The key is to learn from it and not to repeat it again. If you don’t make allowances for making mistakes, how are you going to learn by yourself? That is why it is very important to find dedicated and committed young people but you must also delegate some authority to them. Otherwise, you will be left with doing everything yourself. That way, everyone learns.” </p>
+
+<div class="article-ad">
   <span>Advertisement</span>
   <img src=" https://bibd.com.bn/wp-content/uploads/2025/05/A4-Size-21cm-x-29.7cm_b9193f353332aa880dd5cb6417bd0361-724x1024.jpg " alt="Advertisement">
 </div>
+<p>Speaking about developing SMEs, Mr Yeo noted that “you must provide all kinds of incentives; you have to give them financing”. Pointing out that the last time he was in the Sultanate was in 1983; Mr Yeo reverted once again to the Singaporean example: “You need to build deliberate policies to build that depth and you have to get the government to be pro-active in order to meet the service capacity and delivery time. In fact there’s a lot of ‘hand-holding’.” </p>
 
-<p>As one walks into the gallery, the first thing one notices and most prominent attraction is the golden dome, which was inspired by the iconic golden dome of the Sultan Omar 'Ali Saifuddien Mosque in the capital. "The dome is supported by six pillars, which symbolises the six foundations of Islamic faith," said Hj Johari. Furthermore, built-in directly into the foundations of each of the six pillars are glass cabinet, each containing antique and priceless al-Qurans from His Majesty's and Al-Marhum's personal collection which are 65 in total, "to represent the 65th birthday anniversary of His Majesty". Under the arch of the magnificently recreated dome of the SOAS Mosque are fine engravings and etchings of the 99 names of Allah the Almighty. </p>
+<p>He has since extended this hand-holding further beyond the SMEs to the generations of Singaporean scholars. He recounted that during his tenure as the chairman of A*STAR, he set up a scholarship scheme to provide government-funded scholarships for 1,000 “straight A students who could study any subject, except for Law and Economics” each year, who have since specialised in life sciences – molecular biology, biochemistry, medicine, information technology and engineering. Asked why these subjects in particular, Mr Yeo replied with a grin, “Because I never studied Law or Economics.” </p>
 
-<p>To further illustrate the immense planning and thought that has gone into this exhibit is the fact that each of these 65 holy books have been especially opened to particular pages that highlight certain verses that depict 65 branches of knowledge "from an ocean of knowledge in the al-Quran to signify education, administration, agriculture, health, medicine, international relations, defence, trade, development, astronomy and so on".</p>
-<p>Another interesting feature of the centrepiece is the 'pabarahan', which is an open incense burner that was also specially designed by a Bruneian and painted in gold laid with green marble where the monarch consented to officiate the gallery by dropping dark brown slivers of local and imported gaharu, or frankincense, into the 'pabarahan'. </p>
-<p>As soon as the first wisps of vapour arose from the burner and the sweet aromas of the gaharu filled the gallery, a zikir group of 82 specially-selected people performed the 'Al-Asmaa' Al-Husnaa' zikir. The chairman pointed out that the main intention of all this was to also invoke the five senses of the human body - sight, hearing, smell, touch and taste. </p>
-<p>"In this atmosphere and nuance of Islamic values and culture, His Majesty was surrounded by these 82 people, who ranged from a six-year-old to an 80-year-old man. But the most unique quality of them all was the fact that they were selected out of 350 people, people who are near to the al-Quran," said Hj Johari. Fifteen comprised of national Qari and Qariah champions from 1962 until the present day; 13 local 'Hafiz', 20 students from the Sultan Haji Hassanal Bolkiah Tahfiz Al-Quran Institute and 20 pupils from the Al-Falaah Religious School. The 'Al-Asmaa' Al-Husnaa' zikir that they recited was also specially composed and rearranged by a Bruneian from the Tahfiz Institute to present to the monarch. In addition to the many firsts presented during the opening, following the zikir recital, His Majesty consented to sprinkle 'bunga rampai' onto the group "which is the first time that I can remember His Majesty doing this".</p>
-      </div>
+<p>Educated as an engineer, from which he moved onto a very successful career as an administrator and pioneering strategist for Singapore’s IT and biomedical sciences, one cannot help but appreciate the patience and personal commitment that he invests in each and every single scholarship student that is chosen. </p>
+
+<p>One of his most outstanding hallmarks is his passion in developing people. Over the course of his career he has sent thousands of Singaporeans to top universities around the world on government funded scholarships, where in return after completing their tertiary or post graduate studies, these scholars make a commitment to return and serve the Singapore government for six years. Well-known for personally interviewing each scholarship candidate, Mr Yeo takes great pains to remember every personal detail about their family background and also closely monitors their academic performance. During his regular business trips abroad, he would take the time to meet up with up whichever student is studying at that particular city to find out about their welfare and studies. </p>
+
+<p> “In fact, when they get married, most of them will invite me and I try to attend most of them, if I have the time. And each one I give them ‘ang pow’. You know, a thousand students a year, that’s a lot of ‘ang pow’, you know,” he said through a peal of laughter. </p>
+
+<p>As he continued to leaf through his memories of particular students, noting that most of them chose partners within the scholarship community to marry and settle down, the theme of his prodigiously niche specialty in creating ‘self-sufficient’ or ‘integrated’ communities comes to the fore.  </p>
+
+<p>His keynote speech at the 29th CAEFO was on what he calls “the Singaporean blueprint for sustainable engineering” through the development of “self-contained urbanisation”. Industry creates urbanisation, he pointed out, which is “happening everywhere and it is a fact of life”. As Brunei Darussalam is also beginning to fully embark on planning for its future land development, he presented two more successful Singaporean examples – Biopolis and Fusionopolis. </p>
+
+<p>Biopolis was the pioneering model for what would become an innovative blueprint that was emulated in other advanced countries for the designs of future cities – one that is a complete environment for “work, live and play”. Initiated in 2001 and officially launched in October 2003, the first phase of the futuristic city concept ‘Biopolis’ houses research institutes that specialises in genomics, bioinformatics, bioprocessing and bioengineering, which is part of the Singaporean government’s multibillion-dollar investment in biomedicine that is designed to nurture industries in biotechnology and pharmaceutical drugs. </p>
+
+<p> “With the technology available today, investing in the life sciences carries a big potential and even bigger opportunities as we try to improve our life sciences,” explained Mr Yeo. Now in its fourth phase, scheduled to be completed by the end of 2012, Biopolis has attracted some of the biggest names in biology to head its lavishly equipped facilities. </p>
+
+<p>In February 2003, Singapore launched another futuristic concept called Fusionopolis that served as an extension of an information technology hub, in synergy with Biopolis. Described by Nature Magazine during its official opening in October 2008 as: “Part laboratory, part resort and part architectural gem, Fusionopolis is Singapore’s newest mega-science facility … Fusionopolis is the physical science sequel to Biopolis. Housing six institutes … the buildings are meant to spur interdisciplinary research not only among its own institutes but also with Biopolis.” </p>
+
+<p>Explaining what Singaporean Prime Minister Lee Hsien Loong referred to Fusionopolis as “an entire integrated innovation ecosystem”, Mr Yeo highlighted that “for urbanisation, you must first create jobs. From there you can then create an environment for work, with these jobs, a place to live and to live to play”. In fact this ‘live, work, play’ theme is the central theme behind Mr Yeo’s vision for small clusters of self-contained “living cities”. He went on to point out: “With work, you have to ensure that it is economically vibrant. From there, people will want to settle down and live, and you have to ensure that it is environmentally friendly and provides all the amenities from transportation to all these other social amenities. Finally you must also have recreational and entertainment centres for play, which must be socially harmonious. Once you have achieved all three, only then you will get sustainable development.” </p>
+
+<p>This Singaporean blueprint has successfully been transplanted to other parts of the world. “We have been creating urbanisation for neighbouring countries,” said Mr Yeo. </p>
+
+<p>In 1991, Indonesia opened its Batamindo Industrial Park, which is home to 60,000 workers that also work there producing an export value of US$2billion. India followed suite in 1994 by opening up the International Technology Park in Bangalore in 1994 that is home to 27,000 IT personnel. Three such living cities have since been since created in Vietnam, named the Vietnam Singapore Industrial Park at Bac Ninh, Bin Duong and Hai Phong that collectively boasts just under 500 tenants and 100,000 workers that produce an export value of US$7billion. Singapore has also undertaken four similar projects in China – the Tianjin Eco City, the Wuxi Industrial Park, Suzhou Industrial Park and the Guangzhou Knowledge City. </p>
+
+<p>By understanding the mega trends of the day, which are rapid urbanisation, environmental improvement and social management, these future cities “must be sustainable, harmonious, convenient and resource efficient”, said Mr Yeo. </p>
+
+<p> “So you must take care of your young people, take care of how they serve and grow but you must also teach them to stand on their own two feet, through a lot of guidance and support by dedicated and committed mentors.” Asked where the best training ground was, he smiled and replied: “There is no school better than the real world and the real working life. My generation of Singaporeans was lucky because we had good bosses and this is also very important to have understanding and fair-minded bosses. But ultimately, my hope is that the future generations will also have bosses who support them to build and nurture the next generation.” </p>      </div>
     </div>
 
     <!-- Right Column: Sidebar -->
@@ -426,4 +468,3 @@ header {
 </script>
 </body>
 </html>
-
