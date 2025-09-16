@@ -85,8 +85,13 @@ header {
 
     /* ARTICLE */
     .article-column { display:flex; flex-direction:column; gap:1rem; }
-    .article-photo { position:relative; margin-bottom:1rem; }
-    .article-photo img { border-radius:6px; }
+.article-photo {
+  position: relative;
+  margin-bottom: 1rem;
+  overflow: visible;   /* allow overlay to extend beyond photo */
+}
+    .article-photo img { 
+border-radius:6px; }
     .overlay-box {
       position:absolute; bottom:0; left:0; right:0;
       background:rgba(5,41,98,0.85);
@@ -94,6 +99,20 @@ header {
       padding:1rem 1.2rem;
       border-radius:0 0 6px 6px;
     }
+@media (max-width: 767px) {
+  .overlay-box {
+    top: 75%;              /* start 1/4 from bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    border-radius: 8px;
+    bottom: auto;          /* prevent clipping */
+  }
+
+  .article-photo {
+    margin-bottom: 8rem;   /* extra space below photo to fit overlay */
+  }
+}
     .overlay-box h1 {
       color:#FFD700;
       font-size:2rem; margin-bottom:0.5rem; font-family:'Playfair Display',serif;
@@ -351,12 +370,13 @@ header {
       <figure class="article-photo">
         <img src="https://static.dw.com/image/17602616_605.jpg" alt="Family tourism in Brunei">
         <div class="overlay-box">
-          <h1>Bring back Muslim culture</h1>
+          <h1>‘Bring back Muslim Culture’</h1>
+          <p>Balai Khazanah opens door to history</p>
         </div>
       </figure>
       <p class="article-meta">By Waleed PD Mahdini • September 9, 2025</p>
       <div class="article-body">
-<p>DURING the opening of the Sixth Knowledge Convention on Tuesday, His Majesty the Sultan and Yang Di-Pertuan of Brunei Darussalam consented to view the centerpiece of this year's exhibits, namely the Exhibition Gallery set up by the Balai Kenangan of Al-Marhum Sultan Haji Omar 'Ali Saifuddien Sa'adul Khairi Waddien. </p>
+p>DURING the opening of the Sixth Knowledge Convention on Tuesday, His Majesty the Sultan and Yang Di-Pertuan of Brunei Darussalam consented to view the centerpiece of this year's exhibits, namely the Exhibition Gallery set up by the Balai Kenangan of Al-Marhum Sultan Haji Omar 'Ali Saifuddien Sa'adul Khairi Waddien. </p>
 <p>The Balai Kenangan, which comes under the Office of His Majesty the Sultan and Yang Di-Pertuan of Brunei Darussalam had painstakingly recreated an original concept to showcase this year that captures the symbiosis between the latest in information technology and the ancient teachings of Islam. </p>
 <p>"The crux of this whole concept is to bring us back the ancient time of Islam in Andalusia, Spain," explained Hj Johari Hj Achee, Chairman of the Exhibition Gallery, "when Islam had a foothold in Spain for about four centuries." Taking the Bulletin through the design and concept of the Exhibition Gallery, Hj Johari pointed out, "If you look at the mosques and gardens there, you will find water features to be the main elements, and we have interpreted this in the main design of the exhibition." Indeed, the whole gallery was designed to resemble such a garden, with green carpets to resemble the fauna and a decorated carpet with the typical Muslim-Andalusian motifs for visitors to walk on, trailing a path around the exhibits. There are five water fountains that surround a waterfall, which is engraved with the 'Iqra' - the first verse in the al-Quran. </p>
     <div class="article-ad">
@@ -370,7 +390,7 @@ header {
 <p>Another interesting feature of the centrepiece is the 'pabarahan', which is an open incense burner that was also specially designed by a Bruneian and painted in gold laid with green marble where the monarch consented to officiate the gallery by dropping dark brown slivers of local and imported gaharu, or frankincense, into the 'pabarahan'. </p>
 <p>As soon as the first wisps of vapour arose from the burner and the sweet aromas of the gaharu filled the gallery, a zikir group of 82 specially-selected people performed the 'Al-Asmaa' Al-Husnaa' zikir. The chairman pointed out that the main intention of all this was to also invoke the five senses of the human body - sight, hearing, smell, touch and taste. </p>
 <p>"In this atmosphere and nuance of Islamic values and culture, His Majesty was surrounded by these 82 people, who ranged from a six-year-old to an 80-year-old man. But the most unique quality of them all was the fact that they were selected out of 350 people, people who are near to the al-Quran," said Hj Johari. Fifteen comprised of national Qari and Qariah champions from 1962 until the present day; 13 local 'Hafiz', 20 students from the Sultan Haji Hassanal Bolkiah Tahfiz Al-Quran Institute and 20 pupils from the Al-Falaah Religious School. The 'Al-Asmaa' Al-Husnaa' zikir that they recited was also specially composed and rearranged by a Bruneian from the Tahfiz Institute to present to the monarch. In addition to the many firsts presented during the opening, following the zikir recital, His Majesty consented to sprinkle 'bunga rampai' onto the group "which is the first time that I can remember His Majesty doing this".</p>
-      </div>
+</div>
     </div>
 
     <!-- Right Column: Sidebar -->
