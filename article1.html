@@ -4,608 +4,335 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Article Page - The New Brunei Digest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
-    /* --- RESET --- */
+    /* RESET */
     * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: Georgia, Helvetica, sans-serif; background:#fafafa; color:#111; line-height:1.6; }
-
-    a { text-decoration: none; color: inherit; }
+    body { font-family: Georgia, Helvetica, sans-serif; background:#fafafa; color:#111; line-height:1.7; }
+    a { text-decoration:none; color:inherit; }
     img { max-width:100%; display:block; }
 
-    /* --- HEADER (Uniform with main) --- */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.8rem 1rem;
-      background: #052962;
-      border-bottom: 2px solid #fff;
-      flex-wrap: wrap;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .site-logo {
-      height: 40px;
-      width: auto;
-    }
-
-    .site-title {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #fff;
-    }
-
-    .main-nav {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      text-align: center;
-    }
-
-    .main-nav a {
-      color: #fff;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .main-nav a:not(:last-child)::after {
-      content: " |";
-      margin-left: 0.25rem;
-      color: #fff;
-    }
-
-    .search-form input {
-      padding: 0.35rem 0.5rem;
-      border-radius: 3px;
-      border: 1px solid #ccc;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 767px) {
-      header { flex-direction: column; align-items: stretch; gap: 0.5rem; }
-      .main-nav { justify-content: center; }
-      .search-form { text-align: center; }
-    }
-
-    .related-box a.read-more {
-      margin: 0.5rem 1rem 1rem 1rem;
-      font-weight: bold;
-      color: #0044cc;
-      text-decoration: none;
-    }
-
-    /* --- MAIN LAYOUT --- */
-    main { 
-      display: flex; 
-      gap: 2rem; 
-      padding: 1rem 2rem; 
-    }
-    .content { flex: 3; }
-    .sidebar { 
-      flex: 1; 
-      display: flex;          /* make sidebar a flex column container */
-      flex-direction: column; 
-      gap: 1.5rem;           /* optional spacing between boxes */
-    }    
-    .scroll-section {
-      display: flex;
-      flex-wrap: nowrap;           /* important: keeps boxes horizontal */
-      overflow-x: auto;
-      gap: 20px;
-      padding: 20px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;       /* Firefox */
-      -ms-overflow-style: none;    /* IE 10+ */
-      justify-content: start;      /* default for mobile */
-    }
-
-    /* Hide scrollbar for Chrome, Safari, Edge */
-    .scroll-section::-webkit-scrollbar {
-      display: none;
-    }
-
-    .scroll-box {
-      flex: 0 0 auto;
-      min-width: 250px;            /* width of each box */
-      background: #f9f9f9;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: left;
-      position: relative;
-      scroll-snap-align: start;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      text-decoration: none;       /* remove underline from links */
-      color: inherit;              /* keep text color */
-    }
-
-    /* Circular photo in top-right corner */
-    .scroll-box .photo {
-      position: absolute;
-      top: -20px;
-      right: -20px;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 2px solid #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-
-    .scroll-box .photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .scroll-box h3 {
-      margin: 30px 0 5px 0; /* space below photo */
-      font-size: 18px;
-    }
-
-    .scroll-box p {
-      margin: 0;
-      color: #555;
-      font-size: 14px;
-    }
-
-    /* Center scroll-section on desktop */
-    @media (min-width: 768px) {
-      .scroll-section {
-        justify-content: center;
-      }
-    }
-
-
-    /* --- ARTICLE --- */
-    .article-title { font-size: 2rem; margin-bottom: .5rem; color:#052962; }
-    .article-meta { font-size: 0.9rem; color: #666; margin-bottom: 1rem; }
-    .article-body img { 
-  display: block;
-  max-width: 100%; 
-  margin: 1rem auto; }
-    .article-body p { text-align: justify; }
-    .article-body p {
-  margin-bottom: 1rem;  /* adds space between paragraphs */
-  text-align: justify;
-}
-
-    /* --- TOPLINE: Category | Search word --- */
-    .article-topline {
-      display:flex;
-      align-items:center;
-      gap:0.6rem;
-      margin: 1rem 0;
-      color: #444;
-      font-size: 0.95rem;
-      flex-wrap:wrap;
-    }
-
-    .article-topline .category {
-      background: #e9f3ff;
-      color: #052962;
-      padding: 0.18rem 0.6rem;
-      border-radius: 4px;
-      border: 1px solid rgba(5,41,98,0.08);
-      font-weight: 700;
-      cursor: pointer;
-      display:inline-block;
-    }
-
-    .article-topline .divider { color:#9aa6b2; }
-
-    .article-topline .search-link { color:#052962; font-weight:600; }
-
-    /* --- SIDEBAR --- */
-    .sidebar .box {
-      background: #fff;
-      border: 1px solid #ddd;
-      padding: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    .sidebar h3 { margin-top: 0; color:#052962; }
-    .sidebar ol { padding-left: 1.2rem; }
-
-    /* --- VIDEO EMBED --- */
-    .video-embed { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 1rem 0; }
-    .video-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-    /* --- NEXT ARTICLES --- */
-    .next-articles-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-    .next-article a {
-      text-decoration: none;
-      color: #0044cc;
-      display: block;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      background: #fff;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .next-article a:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .next-article img { width: 100%; height: 250px; object-fit: cover; }
-    .next-article p { margin: 0.5rem; font-weight: bold; }
-    @media(min-width: 768px) {
-      .next-articles-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    /* --- RESPONSIVE (STACK SIDEBAR) --- */
-    @media(max-width: 768px) { 
-      main { 
-        flex-direction: column;   /* stack content above sidebar on mobile */
-      }
-      
-      .related-articles { 
-        order: 3;                 /* move related articles below Most Read */
-        margin-top: 1rem; 
-      }
-    }
-    /* --- FOOTER --- */
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #052962;
-      color: #fff;
-      margin-top: 2rem;
-    }
-
-/* RELATED ARTICLES / END-OF-ARTICLE BOXES */
-.related-articles {
-  margin: 2rem 0;
-}
-
-.related-articles h3 {
-  color: #052962;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-}
-
-.related-grid {
+/* HEADER (matches main page grid) */
+header {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* boxes now wider */
-  gap: 1rem;
+  grid-template-columns: 1fr 2fr 1fr; /* Opinion | Article | Sidebar */
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 2px solid #ddd;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo-container {
+  grid-column: 2;              /* keep masthead centered */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;                 /* reduce vertical spacing */
+}
+
+.site-title {
+  text-align: center;
+  font-weight: bold;
+  line-height: 1.1;            /* tighter line spacing */
+  margin-bottom: 0.2rem;       /* small space below titles */
+}
+
+.site-title-small {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;             /* slightly smaller */
+  color: #111;
+}
+
+.site-title-main {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;           /* slightly smaller */
+  color: #444;
+}
+
+.site-logo {
+  height: 35px;                /* reduce logo height */
+  margin: 0.2rem 0;            /* small spacing above/below */
+}
+
+.date-display {
+  font-size: 0.85rem;          /* smaller, like a dateline */
+  color: #052962;
+  font-style: italic;
+  margin-top: 0.2rem;          /* minimal gap */
+}
+    /* GRID LAYOUT */
+    main {
+      display:grid;
+      grid-template-columns:1fr 2fr 1fr; /* Opinion | Article | Sidebar */
+      gap:2rem;
+      margin:2rem auto;
+      max-width:1200px;
+      padding:0 1rem;
+    }
+    @media(max-width:767px){
+      main { display:flex; flex-direction:column; }
+      .article-column { order:1; }
+      .sidebar { order:2; display:flex; flex-direction:column; }
+      .left-column { order:3; } /* move Opinion Picks into sidebar flow */
+
+      /* Reorder inside sidebar */
+      .sidebar .box.advert { order:1; }   /* Advertisement */
+      .left-column { order:2; }           /* Opinion Picks (relocated) */
+      .sidebar .box.most-read { order:3; }/* Most Read */
+      .sidebar .trending-box { order:4; } /* Trending */
+    }
+
+    /* ARTICLE */
+    .article-column { display:flex; flex-direction:column; gap:1rem; }
+    .article-photo { position:relative; margin-bottom:1rem; }
+    .article-photo img { border-radius:6px; }
+    .overlay-box {
+      position:absolute; bottom:0; left:0; right:0;
+      background:rgba(5,41,98,0.85);
+      color:#fff;
+      padding:1rem 1.2rem;
+      border-radius:0 0 6px 6px;
+    }
+    .overlay-box h1 {
+      color:#FFD700;
+      font-size:2rem; margin-bottom:0.5rem; font-family:'Playfair Display',serif;
+    }
+    .overlay-box p {
+      font-size:1.1rem; font-style:italic; margin:0;
+    }
+    .article-meta { font-size:0.9rem; color:#666; margin:1rem 0; }
+    .article-body p { margin-bottom:1rem; text-align:justify; }
+
+    /* SIDEBAR */
+    .sidebar .box {
+      background:#fff; border:1px solid #ddd; padding:1rem;
+      border-radius:6px; margin-bottom:1.5rem;
+    }
+    .sidebar h3 { margin-bottom:0.5rem; color:#052962; }
+    .sidebar ol { padding-left:1.2rem; }
+
+    /* TRENDING BOX */
+    .trending-box {
+      border:2px solid #052962;
+      border-radius:8px;
+      padding:1rem;
+      background:#f0f4f9;
+    }
+    .trending-video {
+      width:100%; height:200px; margin-bottom:1rem;
+      border-radius:6px; overflow:hidden;
+    }
+    .trending-video iframe { width:100%; height:100%; border:none; }
+    .trending-list { list-style:none; padding:0; margin:0; }
+    .trending-list li { margin-bottom:0.5rem; }
+    .trending-list a { color:#052962; font-weight:bold; text-decoration:none; }
+    .trending-list a:hover { text-decoration:underline; }
+
+    /* FOOTER */
+    footer {
+      background:#052962; color:#fff; text-align:center;
+      padding:1.5rem 1rem; margin-top:2rem;
+    }
+    .footer-links {
+      display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;
+      margin-bottom:0.8rem;
+    }
+    .footer-links a { color:#fff; font-weight:bold; }
+    .footer-links a:hover { color:#FFD700; }
+    .footer-bottom { font-size:0.85rem; color:#ccc; }
+
+/* HORIZONTAL SCROLL SECTION */
+.scroll-wrapper {
+  max-width: 1200px;   /* same as main grid */
+  margin: 2rem auto;   /* same top/bottom spacing as main */
+  padding: 0 1rem;     /* same side padding as main */
+}
+
+.scroll-section {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
   justify-content: start;
 }
-.related-box {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  max-width: 100%;   /* allow box to grow up to grid width */
-}
-.related-box img {
-  width: 100%;       /* fills the box width */
-  height: 180px;     /* keep consistent height */
-  object-fit: cover; /* fill box nicely */
-  border-radius: 4px 4px 0 0;
-  display: block;
-}
-.related-box {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;      /* spacing between elements inside box */
-  padding: 1rem;    /* <-- add this line to create space inside the box */
-  border: 1px solid #052962; /* optional, if you want a border */
-  border-radius: 4px; /* optional, rounded corners */
-}
+.scroll-section::-webkit-scrollbar { display: none; }
 
-.related-box:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.related-box img {
-  width: 100%;
-  height: 180px;      /* fixed height for all images */
-  object-fit: contain;  /* fills box, crops edges if necessary */
-  border-radius: 4px 4px 0 0;
-  display: block;
-}
-/* --- HEADLINE --- */
-.article-headline {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin: 0.5rem 0 1rem 0;
-  line-height: 1.2;
-}
-@media (max-width: 767px) {
-  .article-headline {
-    font-size: 1.8rem;
-  }
-}
-/* --- STRAPLINE --- */
-.article-strapline {
-  font-size: 1.2rem;
-  font-weight: 500;
-  font-style: italic;
-  color: #444;
-  margin: 1rem 0;
-  text-align: left;
-}
-/* --- ARTICLE PHOTO & CAPTION --- */
-.article-photo {
-  margin: 1.5rem 0;
-  text-align: center;
-}
-
-.article-photo img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 6px;
-  display: block;
-  margin: 0 auto;
-}
-
-.article-photo figcaption {
-  font-size: 0.9rem;
-  color: #666;
-  margin-top: 0.5rem;
-  font-style: italic;
-}
-/* --- SHARE BUTTON --- */
-.share-container {
-  margin: 1rem 0;
-}
-
-.share-btn {
-  background: #0044cc;
-  color: #fff;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.share-btn:hover {
-  background: #0033a0;
-}
-.photo-container {
-  position: relative;
-  width: 100%;
-}
-
-.photo-container img {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  display: block;
-}
-
-.overlay-box {
-  position: absolute;
-  bottom: 20px;          
-  left: 20px;            
-  background: rgba(5, 41, 98, 0.8); 
-  color: #ffcc00;
-  padding: 1rem 1.2rem;
-  border-radius: 6px;
-  max-width: 90%;        
-}
-
-.overlay-box h1 {
-  margin: 0 0 0.5rem 0;
-color: #ffffff
-  font-size: 2rem;
-  line-height: 1.2;
-}
-
-.overlay-box p {
-  margin: 0;
-  font-size: 1rem;
-color: #ffffff
-}
-
-@media (max-width: 767px) {
-  .overlay-box {
-    bottom: 10px;
-    left: 10px;
-    padding: 0.8rem;
-  }
-
-  .overlay-box h1 {
-    font-size: 1.5rem;
-  }
-
-  .overlay-box p {
-    font-size: 0.9rem;
-  }
-}
-/* Mobile adjustments */
-@media (max-width: 767px) {
-  .overlay-box {
-    bottom: 10px;
-    left: 10px;
-    padding: 0.8rem;
-  }
-
-  .overlay-box h2 {
-    font-size: 1.2rem;
-  }
-
-  .overlay-box p {
-    font-size: 0.9rem;
-  }
-}
-.related-articles {
-  margin: 2rem auto;       /* keep vertical spacing, center horizontally */
-  max-width: 1000px;       /* limits how wide the box can go */
-  padding: 0 1rem;         /* optional, prevents touching edges on small screens */
-  box-sizing: border-box;
-}
-/* Middle-article ad container */
-.article-body .article-ad .box {
-  max-width: 350px;      /* limits box width on desktop */
-  margin: 1rem auto;     /* centers the box */
-  padding: 1rem;         /* optional, inner spacing */
-  border: 1px solid #ddd;/* optional, keeps the border */
-  border-radius: 6px;    /* optional, rounded corners */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* optional, subtle shadow */
-  text-align: center;    /* center text & image inside */
-}
-footer {
-  background: #052962;
-  color: #fff;
-  padding: 1.5rem 1rem;
-  text-align: center;
-  font-size: 0.9rem;
-}
-
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 0.8rem;
-}
-
-.footer-links a {
-  color: #fff;
+.scroll-box {
+  flex: 0 0 auto;
+  min-width: 250px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 20px;
   text-decoration: none;
-  transition: color 0.3s;
+  color: inherit;
+  scroll-snap-align: start;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
-.footer-links a:hover {
-  color: #ffcc00; /* highlight on hover */
+.scroll-tag {
+  display: inline-block;
+  background: #052962;   /* deep blue */
+  color: #fff;           /* white text */
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
 }
 
-.footer-bottom {
-  font-size: 0.85rem;
-  color: #ccc;
+.scroll-box h3 {
+  margin: 30px 0 5px 0;
+  font-size: 18px;
+  color: #052962;   /* blue font */
 }
-  </style>
+/* QUICK FACTS BOX */
+.quick-facts {
+  background: #fff;
+  border: 2px solid #052962;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+.quick-facts h3 {
+  margin-bottom: 0.8rem;
+  color: #052962;
+}
+.quick-facts p {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+.quick-facts strong {
+  color: #052962;
+}
+/* VOICES BOX WITH PORTRAIT PHOTOS */
+.voices {
+  background: #f0f4f9;
+  border: 2px solid #052962;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.voices h3 {
+  margin-bottom: 1rem;
+  color: #052962;
+}
+
+.voice-item {
+  margin-bottom: 1.5rem;
+}
+
+.voice-item img {
+  width: 200px;          /* narrow width */
+  height: 250px;         /* taller height = portrait */
+  object-fit: cover;    /* crop to fill */
+  border-radius: 6px;   /* slight rounding */
+  border: 2px solid #052962;
+  display: block;
+  margin: 0 auto 0.5rem; /* center horizontally */
+}
+
+.voice-item h4 {
+  margin: 0.3rem 0;
+  font-size: 1rem;
+  color: #052962;
+}
+
+.voice-item blockquote {
+  margin: 0;
+  font-style: italic;
+  color: #333;
+  font-size: 0.95rem;
+  line-height: 1.4;
+
+}
+</style>
 </head>
 <body>
 
   <!-- HEADER -->
-  <header>
-    <div class="logo-container">
-      <img src="https://www.information.gov.bn/PublishingImages/aboutINFO/benderbrunei1.jpg" alt="Site Logo" class="site-logo">
-      <span class="site-title">The New Brunei Digest</span>
+<header>
+  <div class="logo-container">
+    <div class="site-title">
+      <div class="site-title-small">The</div>
+      <div class="site-title-main">New Brunei Digest</div>
     </div>
-    <nav class="main-nav">
-      <a href="index.html">Home</a>
-      <a href="opinionmain1.html">Opinion</a>
-      <a href="analysismain1.html">Analysis</a>
-      <a href="economymain1.html">Economy</a>
-    </nav>
-<form class="search-form" action="#" method="get">
-  <input type="text" placeholder="Search..." name="q">
-  <button type="submit">Go</button>
-</form>
-  </header>
-
-  <!-- Horizontal Scroll Section -->
-<div class="scroll-section">
-  <a href="article3.html" class="scroll-box">
-    <div class="photo">
-      <img src="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" alt="Photo 1">
-    </div>
-    <h3>Analysis</h3>
-    <p>Achieving MDG as </p> <p>ASEAN COMMUNITY</p>
-  </a>
-
-  <a href="article5.html" class="scroll-box">
-    <div class="photo">
-      <img src="https://cms-image-bucket-productionv3-ap-northeast-1-a7d2.s3.ap-northeast-1.amazonaws.com/images/7/2/2/6/47856227-3-eng-GB/Cropped-1718779699AP24066235507389.jpg" alt="Photo 2">
-    </div>
-    <h3>Opinion</h3>
-    <p>Brunei actively involved</p><p>in regional fight against piracy</p>
-  </a>
-
-  <a href="article8.html" class="scroll-box">
-    <div class="photo">
-      <img src="https://thescoop.co/wp-content/uploads/2021/06/wp-1623774531751-1080x768.jpg" alt="Photo 3">
-    </div>
-    <h3>Economy</h3>
-    <p>Providing jobs necessary duty</p>
-  </a>
-</div>
-
-  
-  <!-- MAIN -->
-  <main>
-    <!-- ARTICLE -->
-    <div class="content">
-
-      <!-- NEW: Category | Search word (below the horizontal scroll) -->
-      <div class="article-topline">
-        <a href="/category/People " class="category" data-slug="People">People</a>
-        <span class="divider">|</span>
-        <a id="search-link" class="search-link" href="/search?q="> <span class="search-word">Brunei tourism</span></a>
-      </div>
-<figure class="article-photo">
-  <div class="photo-container">
-    <img src=" https://youcanleadbn.com/wp-content/uploads/2019/05/Sealnet-Project-Brunei-2019.jpg" alt="Family tourism in Brunei">
-
-    <div class="overlay-box">
-      <h1 class="article-headline">‘Believe in your own people.’ </h1>
-      <p class="article-strapline">The most important thing is to build your own capability.</p>
-    </div>
+    <img src="https://www.information.gov.bn/PublishingImages/aboutINFO/benderbrunei1.jpg"
+         alt="Logo" class="site-logo">
+  <div class="date-display" id="dateDisplay"></div>
   </div>
-  <figcaption>
-    Teachers and students waving flags during National Day celebrations
-  </figcaption>
-</figure>
+</header>
+<!-- SCROLL SECTION -->
+<div class="scroll-wrapper">
+  <div class="scroll-section">
+    <a href="analysispage1.html" class="scroll-box">
+      <div class="scroll-tag">Analysis</div>
+      <h3>For your daily dose of perspective</h3>
+    </a>
+    <a href="opinionmain1.html" class="scroll-box">
+      <div class="scroll-tag">Opinion</div>
+      <h3>Explore the collective thought</h3>
+    </a>
+    <a href="economymain1.html" class="scroll-box">
+      <div class="scroll-tag">Economy</div>
+      <h3>What the bottom line means</h3>
+    </a>
+  </div>
+</div>
+  <!-- MAIN GRID -->
+  <main>
+    <!-- Left Column (Opinion Picks) -->
+    <div class="left-column">
+      <div class="box opinion-picks">
+        <h3>Opinion Picks</h3>
+        <ul>
+          <li><a href="article5.html">Brunei actively involved in regional fight against piracy</a></li>
+          <li><a href="article6.html">Brunei explores niche specialty</a></li>
+          <li><a href="article7.html">Brunei may be small but we have a voice in APEC</a></li>
+        </ul>
+<br>
+<br>
+<div class="box voices">
+  <h3>Voices</h3>
+
+  <div class="voice-item">
+    <img src="https://babynamesinfo.com/wp-content/uploads/2024/09/Most-Popular-Bruneian-Names-for-Boys-788x491.jpg" alt="User 1">
+    <h4>Ahmad Z.</h4>
+    <blockquote>“Education is the foundation of Brunei’s growth.”</blockquote>
+  </div>
+
+</div>
+<br>
+<br>
+<div class="box quick-facts">
+  <h3>Quick Facts</h3>
+  <p>💡 Brunei ranks <strong>2nd in ASEAN</strong> for internet penetration (2025).</p>
+  <p>💡 Over <strong>70%</strong> of Bruneians shop online monthly.</p>
+  <p>💡 Brunei aims to reach <strong>net zero emissions by 2050</strong>.</p>
+</div>
+      </div>
+    </div>
+
+    <!-- Center: Article -->
+    <div class="article-column">
+      <figure class="article-photo">
+        <img src="https://youcanleadbn.com/wp-content/uploads/2019/05/Sealnet-Project-Brunei-2019.jpg" alt="Family tourism in Brunei">
+        <div class="overlay-box">
+          <h1>‘Believe in your own people.’</h1>
+          <p>The most important thing is to build your own capability.</p>
+        </div>
+      </figure>
       <p class="article-meta">By Waleed PD Mahdini • September 9, 2025</p>
-<div class="share-container">
-  <button class="share-btn" onclick="shareArticle()">
-    🔗 Share this article
-  </button>
-</div>
       <div class="article-body">
-        <p>ONCE described by the Singaporean media as “the maverick who goes against the rules”, Mr Philip Yeo, Chairman of SPRING Singapore, which stands for Standards, Productivity and Innovation Board, under the Ministry of Trade and Industry, is charged with overseeing the sustainable development and competitiveness of Singaporean enterprises, as well as coordinate the nurturing of a pro-business environment with the authorities, as the city-state shifts towards an innovation-driven economy. </p>
-
-<p>Recently invited to the country as a keynote speaker for the 29th Confederation of Asean Federation of Engineers Organisation (CAEFO), Mr Yeo spoke with the Bulletin to share in his advice and views for nation-building and future developments. </p>
-
-<p> “The most important thing is to build your own capability. You must invest in your own people, you have to bring your locals onboard but also make sure that the local government is onboard,” said Mr Yeo, who amongst his distinguished list of accomplishments is perhaps best known for being credited with personally sending thousands of young Singaporeans to top universities around the world on government scholarships. </p>
-  <div class="related-articles">
-    <h3>Related Articles</h3>
-    <div class="related-grid">
-      <div class="related-box">
-        <img src="https://www.bruneitourism.com/wp-content/uploads/2019/08/Ulu-Temburong-National-Park-600x437.jpg?_t=1565533276" alt="Article 1">
-        <h4>Brunei – Perfect place for family tourism </h4>
-        <p>BRUNEI Darussalam, on the whole received pleasant and gentle praises by many of the international media that ranged from China to the Middle East, covering the week-long Asean Tourism Forum (ATF), but the issue of visa on arrival was also acknowledged to be a sticking point in the country's bid to improve its inbound tourist volume.</p>
-<a href="article4.html" class="read-more">Read More →</a>
-      </div>
-</div>
-</div>
-<p> “Planning is important and all that but ultimately it is your own people who must run it. Have confidence in them. Don’t just depend on consultants,” he explained, adding: “They have no commitment; they are not willing to serve because once they finish their work, they are not bound to stay and follow through. It’s the implementation stage of any project where it is the most important and for this, it’s where your young talent comes in and that’s most important.” </p>
-
-<p>Mr Yeo first shot to prominence when he became the Permanent Secretary for Logistics, Technology Research and Development and Defence Industries at the Ministry of Defence, where he helped turn Singapore’s struggling manufacturer of munitions military into a successful international armaments supplier. </p>
-
-<p>He then moved on to become the Chairman of Singapore’s Economic Development Board in 1986, which oversees the city-states vast local and international investments, when Singapore’s focus began to zoom in on new areas of business opportunities and he oversaw the expansion of its aerospace, electronics and semiconductor industries and biomedical sciences, to name a few that has underpinned Singapore’s economic miracle. He has also been a passionate advocate in nurturing Singaporean SMEs and successfully encouraging its local companies to make direct investments abroad. He was also responsible for expanding Singapore’s economic links with strategic partners further afield from the Middle East, Latin America and Russia. </p>
-
-<p>Mr Yeo has also held many other prestigious posts in the Singaporean hierarchy, such as the Special Adviser for Economic Development in the Prime Minister’s Office and Chairman of the Agency for Science, Technology and Research or A*STAR that oversees Singapore’s scientific research, as well as chairing various public and private company boards. </p>
-
-<p>Following his keynote speech, Mr Yeo also shared that he met with his Bruneian counterpart, Dato Paduak Hj Ali Apong, Deputy Minister at the Prime Minister’s Office and Chairman of the Brunei Economic Development Board, as well as the Minister of Energy at the Prime Minister’s Office, the Minister of Development and the Minister of Industry and Primary Resources to share in his ideas and views. </p>
-    <aside class="sidebar">
-<div class="article-ad">
-      <div class="box">
-        <h3>Advertisement</h3>
-        <img src="https://bibd.com.bn/wp-content/uploads/2025/05/A4-Size-21cm-x-29.7cm_b9193f353332aa880dd5cb6417bd0361-724x1024.jpg" alt="Ad">
-      </div>
-</div>
-
-
 <p> “The legacy that we leave behind is built with the people. I told them that writing reports are easy but it is the action plans where the depth comes.” He then switched to the Singapore blueprint as a perfect example of achieving success. “In Singapore, we do a lot of things ourselves and we learn to make mistakes because in this process, we learn. We train and we invest in our people and we make a lot of sacrifices to build up this depth. You must seek out and develop a cadre of young people who are committed to doing it themselves. They must also have confidence so it is important to find good, interested people and let them grow, especially in a young country. But they must be allowed to make mistakes. That’s where you learn. That is the key.” </p>
 
 <p>Mr Yeo then elaborated this further by holding up his index finger to share in the three keys to making mistakes: “First, you have to admit your mistake. Second, apologise. Third rule, and this is the most important, don’t do it again,” he said with a knowing smile as he gestured with his three digits. “The key is to learn from it and not to repeat it again. If you don’t make allowances for making mistakes, how are you going to learn by yourself? That is why it is very important to find dedicated and committed young people but you must also delegate some authority to them. Otherwise, you will be left with doing everything yourself. That way, everyone learns.” </p>
@@ -638,110 +365,59 @@ footer {
 
 <p>By understanding the mega trends of the day, which are rapid urbanisation, environmental improvement and social management, these future cities “must be sustainable, harmonious, convenient and resource efficient”, said Mr Yeo. </p>
 
-<p> “So you must take care of your young people, take care of how they serve and grow but you must also teach them to stand on their own two feet, through a lot of guidance and support by dedicated and committed mentors.” Asked where the best training ground was, he smiled and replied: “There is no school better than the real world and the real working life. My generation of Singaporeans was lucky because we had good bosses and this is also very important to have understanding and fair-minded bosses. But ultimately, my hope is that the future generations will also have bosses who support them to build and nurture the next generation.” </p>
-
-      </div>
+<p> “So you must take care of your young people, take care of how they serve and grow but you must also teach them to stand on their own two feet, through a lot of guidance and support by dedicated and committed mentors.” Asked where the best training ground was, he smiled and replied: “There is no school better than the real world and the real working life. My generation of Singaporeans was lucky because we had good bosses and this is also very important to have understanding and fair-minded bosses. But ultimately, my hope is that the future generations will also have bosses who support them to build and nurture the next generation.” </p>      </div>
     </div>
 
-    <!-- SIDEBAR -->
+    <!-- Right Column: Sidebar -->
     <aside class="sidebar">
-      <div class="box">
+      <div class="box advert">
         <h3>Advertisement</h3>
-        <img src="https://scontent.fbwn3-1.fna.fbcdn.net/v/t39.30808-6/514504262_24404917332438698_1307660574282399762_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=_WUtmTAGZkwQ7kNvwGfBZiF&_nc_oc=AdlgSM3F3uSA3c_5YNju06RMi2DubUsXiGHCbFrhDgVUifZxIs0Cc0g1HXJTMMjfjec&_nc_zt=23&_nc_ht=scontent.fbwn3-1.fna&_nc_gid=A6LGMv3IPES5UGVyxTjZKg&oh=00_AfbGqtiug6stIImYT90ikR2l8UHE1fgH4sdWDyJo2p0w8g&oe=68CC81E3" alt="Ad">
+        <img src=" https://bibd.com.bn/wp-content/uploads/2025/05/A4-Size-21cm-x-29.7cm_b9193f353332aa880dd5cb6417bd0361-724x1024.jpg " alt="Ad">
       </div>
-      <div class="box">
 
-<div class="video-embed">
-  <iframe 
-    src="https://www.youtube.com/embed/VIDEO_ID" 
-    title="YouTube video player" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen>
-  </iframe>
-</div>
-
+      <div class="box most-read">
         <h3>Most Read</h3>
         <ol>
-           <li><a href="article5.html">Brunei actively involved in regional fight against piracy</a></li>
+          <li><a href="article5.html">Brunei actively involved in regional fight against piracy</a></li>
           <li><a href="article8.html">Providing jobs necessary duty</a></li>
           <li><a href="article7.html">Brunei may be small but we have a voice in APEC</a></li>
-          <li><a href="article6.html">Brunei explores niche specialty</a></li>
-          <li><a href="article9.html">Youths urged to develop greater sense of responsibility</a></li>
-
         </ol>
+      </div>
+
+      <div class="box trending-box">
+        <h3>Trending</h3>
+        <div class="trending-video">
+          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Trending Video" allowfullscreen></iframe>
+        </div>
+        <ul class="trending-list">
+          <li><a href="article2.html">Bring back Muslim culture</a></li>
+          <li><a href="article4.html">Brunei – perfect place for family tourism</a></li>
+          <li><a href="article8.html">Providing jobs necessary duty</a></li>
+          <li><a href="article9.html">Youths urged to develop greater sense of responsibility</a></li>
+          <li><a href="article10.html">Education key to making world better future</a></li>
+        </ul>
       </div>
     </aside>
   </main>
-<div class="content">
 
-
-</div> <!-- end of content -->
   <!-- FOOTER -->
-<footer>
-  <div class="footer-links">
+  <footer>
+    <div class="footer-links">
       <a href="about.html">About Us</a>
-    <a href="contact.html">Contact</a>
-    <a href="advert.html">Advertise</a>
-    <a href="career.html">Careers</a>
-    <a href="pp.html">Privacy Policy</a>
-    <a href="toc.html">Terms of Service</a>
-  </div>
-  <div class="footer-bottom">&copy; 2025 The New Brunei Digest. All rights reserved.</div>
-</footer>
-    <p>&copy; 2025 The New Brunei Digest. All rights reserved.</p>
+      <a href="contact.html">Contact</a>
+      <a href="advert.html">Advertise</a>
+      <a href="career.html">Careers</a>
+    </div>
+    <div class="footer-bottom">© 2025 The New Brunei Digest. All rights reserved.</div>
   </footer>
-
-  <script>
-    // Auto-populate the search word from URL ?q= parameter (if present)
-    document.addEventListener('DOMContentLoaded', function(){
-      try{
-        const params = new URLSearchParams(window.location.search);
-        const q = params.get('q');
-        const searchWordEl = document.querySelector('.search-word');
-        const searchLink = document.getElementById('search-link');
-        const divider = document.querySelector('.article-topline .divider');
-        if(q && searchWordEl){
-          searchWordEl.textContent = q;
-          if(searchLink) searchLink.href = '/search?q=' + encodeURIComponent(q);
-        } else {
-          // hide divider & search if no search term provided
-          if(divider) divider.style.display = 'none';
-          if(searchLink) searchLink.style.display = 'none';
-        }
-
-        // Make the category pill clickable (navigates to a category page)
-        const cat = document.querySelector('.article-topline .category');
-        if(cat){
-          cat.addEventListener('click', function(){
-            var slug = cat.dataset.slug || 'tourism';
-            window.location.href = '/category/' + slug;
-          });
-        }
-      }catch(e){ console.warn('Category/search init error', e); }
-    });
-  </script>
 <script>
-function shareArticle() {
-  const shareData = {
-    title: document.title,
-    text: "Check out this article from The New Brunei Digest!",
-    url: window.location.href
-  };
-
-  if (navigator.share) {
-    navigator.share(shareData).catch(console.error);
-  } else {
-    navigator.clipboard.writeText(window.location.href).then(() => {
-      alert("Link copied to clipboard!");
-    });
+  function updateDate() {
+    const dateEl = document.getElementById('dateDisplay');
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const today = new Date();
+    dateEl.textContent = today.toLocaleDateString('en-GB', options);
   }
-}
+  updateDate();
 </script>
 </body>
 </html>
-
-
-
-
-
