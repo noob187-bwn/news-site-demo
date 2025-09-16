@@ -228,7 +228,41 @@ border-radius:6px; }
 }
 .quick-facts strong {
   color: #052962;
+
 }
+.opinion-picks {
+  background: #fff;
+  border: 2px solid #052962;   /* deep blue border */
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.opinion-picks h3 {
+  margin-bottom: 0.8rem;
+  color: #052962;
+}
+
+.opinion-picks ul {
+  list-style: disc;         /* show bullets */
+  padding-left: 1.2rem;     /* indent nicely */
+  margin: 0;
+}
+
+.opinion-picks li {
+  margin-bottom: 0.3rem;    /* less vertical space between items */
+  line-height: 1.3;         /* tighter line spacing for wrapped lines */
+}
+.opinion-picks a {
+  color: #052962;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.opinion-picks a:hover {
+  text-decoration: underline;
+}
+
 /* VOICES BOX WITH PORTRAIT PHOTOS */
 .voices {
   background: #f0f4f9;
@@ -333,39 +367,37 @@ border-radius:6px; }
 </div>
   <!-- MAIN GRID -->
   <main>
-    <!-- Left Column (Opinion Picks) -->
-    <div class="left-column">
-      <div class="box opinion-picks">
-        <h3>Opinion Picks</h3>
-        <ul>
-          <li><a href="article5.html">Brunei actively involved in regional fight against piracy</a></li>
-          <li><a href="article6.html">Brunei explores niche specialty</a></li>
-          <li><a href="article7.html">Brunei may be small but we have a voice in APEC</a></li>
-        </ul>
-<br>
-<br>
-<div class="box voices">
-  <h3>Voices</h3>
+<div class="left-column">
 
-  <div class="voice-item">
-    <img src="https://babynamesinfo.com/wp-content/uploads/2024/09/Most-Popular-Bruneian-Names-for-Boys-788x491.jpg" alt="User 1">
-    <h4>Ahmad Z.</h4>
-    <blockquote>“Education is the foundation of Brunei’s growth.”</blockquote>
+  <!-- Opinion Picks -->
+  <div class="box opinion-picks">
+    <h3>Opinion Picks</h3>
+    <ul>
+      <li><a href="article5.html">Brunei actively involved in regional fight against piracy</a></li>
+      <li><a href="article6.html">Brunei explores niche specialty</a></li>
+      <li><a href="article7.html">Brunei may be small but we have a voice in APEC</a></li>
+    </ul>
   </div>
 
-</div>
-<br>
-<br>
-<div class="box quick-facts">
-  <h3>Quick Facts</h3>
-  <p>💡 Brunei ranks <strong>2nd in ASEAN</strong> for internet penetration (2025).</p>
-  <p>💡 Over <strong>70%</strong> of Bruneians shop online monthly.</p>
-  <p>💡 Brunei aims to reach <strong>net zero emissions by 2050</strong>.</p>
-</div>
-      </div>
+  <!-- Voices -->
+  <div class="box voices">
+    <h3>Voices</h3>
+    <div class="voice-item">
+      <img src="https://babynamesinfo.com/wp-content/uploads/2024/09/Most-Popular-Bruneian-Names-for-Boys-788x491.jpg" alt="User 1">
+      <h4>Ahmad Z.</h4>
+      <blockquote>“Education is the foundation of Brunei’s growth.”</blockquote>
     </div>
+  </div>
 
-    <!-- Center: Article -->
+  <!-- Quick Facts -->
+  <div class="box quick-facts">
+    <h3>Quick Facts</h3>
+    <p>💡 Brunei ranks <strong>2nd in ASEAN</strong> for internet penetration (2025).</p>
+    <p>💡 Over <strong>70%</strong> of Bruneians shop online monthly.</p>
+    <p>💡 Brunei aims to reach <strong>net zero emissions by 2050</strong>.</p>
+  </div>
+
+</div>    <!-- Center: Article -->
     <div class="article-column">
       <figure class="article-photo">
         <img src="https://youcanleadbn.com/wp-content/uploads/2019/05/Sealnet-Project-Brunei-2019.jpg" alt="Family tourism in Brunei">
@@ -468,4 +500,3 @@ border-radius:6px; }
 </script>
 </body>
 </html>
-
