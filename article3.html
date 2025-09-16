@@ -88,32 +88,39 @@ header {
 .article-photo {
   position: relative;
   margin-bottom: 1rem;
-  overflow: visible;   /* allow overlay to extend beyond photo */
+  overflow: hidden;           /* keep overlay inside */
+  padding-bottom: 8rem;       /* reserve space for overlay */
 }
-    .article-photo img { 
-border-radius:6px; }
-    .overlay-box {
-      position:absolute; bottom:0; left:0; right:0;
-      background:rgba(5,41,98,0.85);
-      color:#fff;
-      padding:1rem 1.2rem;
-      border-radius:0 0 6px 6px;
-    }
+
+.article-photo img { 
+  border-radius: 6px; 
+  display: block;
+  width: 100%;
+}
+
+.overlay-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5,41,98,0.85);
+  color: #fff;
+  padding: 1rem 1.2rem;
+  border-radius: 0 0 6px 6px;
+}
+
 @media (max-width: 767px) {
-  .overlay-box {
-    top: 75%;              /* start 1/4 from bottom */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    border-radius: 8px;
-    bottom: auto;          /* prevent clipping */
+  .article-photo {
+    padding-bottom: 12rem;    /* more space for taller overlay on mobile */
   }
 
-  .article-photo {
-    margin-bottom: 8rem;   /* extra space below photo to fit overlay */
+  .overlay-box {
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 8px;
   }
-}
-    .overlay-box h1 {
+}    .overlay-box h1 {
       color:#FFD700;
       font-size:2rem; margin-bottom:0.5rem; font-family:'Playfair Display',serif;
     }
@@ -228,7 +235,41 @@ border-radius:6px; }
 }
 .quick-facts strong {
   color: #052962;
+
 }
+.opinion-picks {
+  background: #fff;
+  border: 2px solid #052962;   /* deep blue border */
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.opinion-picks h3 {
+  margin-bottom: 0.8rem;
+  color: #052962;
+}
+
+.opinion-picks ul {
+  list-style: disc;         /* show bullets */
+  padding-left: 1.2rem;     /* indent nicely */
+  margin: 0;
+}
+
+.opinion-picks li {
+  margin-bottom: 0.3rem;    /* less vertical space between items */
+  line-height: 1.3;         /* tighter line spacing for wrapped lines */
+}
+.opinion-picks a {
+  color: #052962;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.opinion-picks a:hover {
+  text-decoration: underline;
+}
+
 /* VOICES BOX WITH PORTRAIT PHOTOS */
 .voices {
   background: #f0f4f9;
@@ -336,7 +377,20 @@ border-radius:6px; }
     margin-bottom: 0.8rem;
   }
 }
+.share-button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #052962; /* theme blue */
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
 
+.share-button:hover {
+  text-decoration: underline;
+}
 </style>
 </head>
 <body>
@@ -377,39 +431,37 @@ border-radius:6px; }
 </div>
   <!-- MAIN GRID -->
   <main>
-    <!-- Left Column (Opinion Picks) -->
-    <div class="left-column">
-      <div class="box opinion-picks">
-        <h3>Opinion Picks</h3>
-        <ul>
-          <li><a href="article5.html">Brunei actively involved in regional fight against piracy</a></li>
-          <li><a href="article6.html">Brunei explores niche specialty</a></li>
-          <li><a href="article7.html">Brunei may be small but we have a voice in APEC</a></li>
-        </ul>
-<br>
-<br>
-<div class="box voices">
-  <h3>Voices</h3>
+<div class="left-column">
 
-  <div class="voice-item">
-    <img src="https://babynamesinfo.com/wp-content/uploads/2024/09/Most-Popular-Bruneian-Names-for-Boys-788x491.jpg" alt="User 1">
-    <h4>Ahmad Z.</h4>
-    <blockquote>“Education is the foundation of Brunei’s growth.”</blockquote>
+  <!-- Opinion Picks -->
+  <div class="box opinion-picks">
+    <h3>Opinion Picks</h3>
+    <ul>
+      <li><a href="article5.html">Brunei actively involved in regional fight against piracy</a></li>
+      <li><a href="article6.html">Brunei explores niche specialty</a></li>
+      <li><a href="article7.html">Brunei may be small but we have a voice in APEC</a></li>
+    </ul>
   </div>
 
-</div>
-<br>
-<br>
-<div class="box quick-facts">
-  <h3>Quick Facts</h3>
-  <p>💡 Brunei ranks <strong>2nd in ASEAN</strong> for internet penetration (2025).</p>
-  <p>💡 Over <strong>70%</strong> of Bruneians shop online monthly.</p>
-  <p>💡 Brunei aims to reach <strong>net zero emissions by 2050</strong>.</p>
-</div>
-      </div>
+  <!-- Voices -->
+  <div class="box voices">
+    <h3>Voices</h3>
+    <div class="voice-item">
+      <img src="https://babynamesinfo.com/wp-content/uploads/2024/09/Most-Popular-Bruneian-Names-for-Boys-788x491.jpg" alt="User 1">
+      <h4>Ahmad Z.</h4>
+      <blockquote>“Education is the foundation of Brunei’s growth.”</blockquote>
     </div>
+  </div>
 
-    <!-- Center: Article -->
+  <!-- Quick Facts -->
+  <div class="box quick-facts">
+    <h3>Quick Facts</h3>
+    <p>💡 Brunei ranks <strong>2nd in ASEAN</strong> for internet penetration (2025).</p>
+    <p>💡 Over <strong>70%</strong> of Bruneians shop online monthly.</p>
+    <p>💡 Brunei aims to reach <strong>net zero emissions by 2050</strong>.</p>
+  </div>
+
+</div>    <!-- Center: Article -->
     <div class="article-column">
       <figure class="article-photo">
         <img src="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" alt="Family tourism in Brunei">
@@ -418,6 +470,11 @@ border-radius:6px; }
           <p>Millenium Development Goals brings future confidence</p>
         </div>
       </figure>
+<!-- Share Button -->
+<button class="share-button" onclick="copyLink()">
+  &#128257; Share
+</button>
+
       <p class="article-meta">By Waleed PD Mahdini • September 9, 2025</p>
       <div class="article-body">
 <p>HIS Royal Highness Prince Mohamed Bolkiah, Minister of Foreign Affairs and Trade, yesterday commended the United Nation's Millennium Development Goals that have brought about "new confidence in the future" and which has "taught us a lot about ourselves".</p>
@@ -447,20 +504,7 @@ border-radius:6px; }
 <p>"This is always going to be a big problem because of our low population and our small domestic market," HRH added, pointing to the fact that "unless this situation changes, some of the goals will be very hard to achieve".</p>
 
 <p>But then HRH underscored, in his opinion, the true benefit of the MDGs. Noting, "success cannot depend entirely on each individual country", HRH called for "deep levels of cooperation, especially sharing ideas and expertise", which HRH highlighted "as the biggest single lesson we have learned in the last 10 years" and reaffirmed that Brunei Darussalam "will do whatever we can to strengthen these efforts".</p>
-    <aside class="sidebar">
-<div class="article-ad">
-      <div class="box">
-        <h3>Advertisement</h3>
-        <img src="https://bibd.com.bn/wp-content/uploads/2025/05/A4-Size-21cm-x-29.7cm_b9193f353332aa880dd5cb6417bd0361-724x1024.jpg" alt="Ad">
-      </div>
-</div>
-
-
-<p>Adopted by world leaders in 2000 and set to be achieved by 2015, the MDGs are both global and local, which are customised by each country to suit their specific development needs. They provide a framework for the entire international community to work together towards a common end - by simply ensuring that human development reaches everyone, everywhere.</p>
-
-<p>The UN's Development Programme believes: "If these goals are achieved, world poverty will be cut by half, tens of millions of lives will be saved, and billions more people will have the opportunity to benefit from the global economy."</p>
-
-<p>The eight goals of the UN Millennium Development Goals are eradicating extreme poverty and hunger; achieving universal primary education; promoting gender equality and empowering women; reducing child mortality; improving maternal health; combating HIV/AIDS, malaria and other diseases; ensuring environmental sustainability and developing a global partnership for development.</p>              </div>
+  </div>
 <!-- Author Box -->
 <div class="author-box">
   <img src="https://bruneibebc.com/wp-content/uploads/2022/11/12-200x200.jpg" alt="Author Photo" class="author-photo">
@@ -468,9 +512,11 @@ border-radius:6px; }
     <h4>Waleed PD Mahdini</h4>
     <p>Waleed is a journalist with over 15 years of experience covering regional affairs, 
     economic policy, and cultural development in Brunei and ASEAN.</p>
+  </div>
+</div>
     </div>
-</div>
-</div>
+
+
     <!-- Right Column: Sidebar -->
     <aside class="sidebar">
       <div class="box advert">
@@ -522,7 +568,15 @@ border-radius:6px; }
   }
   updateDate();
 </script>
+<script>
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      alert("Link copied to clipboard!");
+    }).catch(err => {
+      console.error("Error copying link: ", err);
+    });
+  }
+</script>
 </body>
 </html>
-
 
