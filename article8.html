@@ -70,12 +70,49 @@ header {
       max-width:1200px;
       padding:0 1rem;
     }
-    @media(max-width:767px){
-      main { display:flex; flex-direction:column; }
-      .article-column { order:1; }
-      .sidebar { order:2; display:flex; flex-direction:column; }
-      .left-column { order:3; } /* move Opinion Picks into sidebar flow */
+@media(max-width:767px){
+  main { display:flex; flex-direction:column; }
+  .article-column { order:1; }
+  .sidebar { order:2; display:flex; flex-direction:column; }
+  .left-column { order:3; } /* move Opinion Picks into sidebar flow */
 
+  header {
+    display: flex;              /* switch grid → flex */
+    flex-direction: column;     /* stack items vertically */
+    align-items: center;        /* center horizontally */
+    justify-content: center;    /* center vertically */
+    text-align: center;         /* center text */
+    padding: 0.8rem 1rem;       /* less padding top/bottom */
+  }
+
+  .logo-container {
+    grid-column: auto;          
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;                /* reduced gap */
+  }
+
+  .site-title-small {
+    font-size: 1rem;
+    margin-bottom: 0.1rem;      /* tighter spacing */
+  }
+
+  .site-title-main {
+    font-size: 1.8rem;          /* slightly smaller for mobile */
+    margin-bottom: 0.2rem;      /* tighter spacing */
+  }
+
+  .site-logo {
+    height: 28px;               /* slightly smaller logo */
+    margin: 0.2rem 0;
+  }
+
+  .date-display {
+    margin-top: 0.3rem;         /* bring date closer */
+    font-size: 0.9rem;
+  }
+}
       /* Reorder inside sidebar */
       .sidebar .box.advert { order:1; }   /* Advertisement */
       .left-column { order:2; }           /* Opinion Picks (relocated) */
@@ -435,10 +472,10 @@ header {
 
   <!-- Opinion Picks -->
   <div class="box opinion-picks">
-    <h3>Economy Picks</h3>
+    <h3>Opinion Picks</h3>
     <ul>
-      <li><a href="article10.html">Education key to making future better world</a></li>
-      <li><a href="article9.html">Youths urged to develop greater sense of responsibility</a></li>
+      <li><a href="article5.html">Brunei actively involved in regional fight against piracy</a></li>
+      <li><a href="article6.html">Brunei explores niche specialty</a></li>
       <li><a href="article7.html">Brunei may be small but we have a voice in APEC</a></li>
     </ul>
   </div>
@@ -575,5 +612,4 @@ and be able to compete within the region”. It also serves to provide a platfor
 </script>
 </body>
 </html>
-
 
