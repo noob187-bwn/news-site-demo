@@ -88,32 +88,39 @@ header {
 .article-photo {
   position: relative;
   margin-bottom: 1rem;
-  overflow: visible;   /* allow overlay to extend beyond photo */
+  overflow: hidden;           /* keep overlay inside */
+  padding-bottom: 8rem;       /* reserve space for overlay */
 }
-    .article-photo img { 
-border-radius:6px; }
-    .overlay-box {
-      position:absolute; bottom:0; left:0; right:0;
-      background:rgba(5,41,98,0.85);
-      color:#fff;
-      padding:1rem 1.2rem;
-      border-radius:0 0 6px 6px;
-    }
+
+.article-photo img { 
+  border-radius: 6px; 
+  display: block;
+  width: 100%;
+}
+
+.overlay-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5,41,98,0.85);
+  color: #fff;
+  padding: 1rem 1.2rem;
+  border-radius: 0 0 6px 6px;
+}
+
 @media (max-width: 767px) {
-  .overlay-box {
-    top: 75%;              /* start 1/4 from bottom */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    border-radius: 8px;
-    bottom: auto;          /* prevent clipping */
+  .article-photo {
+    padding-bottom: 12rem;    /* more space for taller overlay on mobile */
   }
 
-  .article-photo {
-    margin-bottom: 8rem;   /* extra space below photo to fit overlay */
+  .overlay-box {
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 8px;
   }
-}
-    .overlay-box h1 {
+}    .overlay-box h1 {
       color:#FFD700;
       font-size:2rem; margin-bottom:0.5rem; font-family:'Playfair Display',serif;
     }
@@ -370,6 +377,20 @@ border-radius:6px; }
     margin-bottom: 0.8rem;
   }
 }
+.share-button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #052962; /* theme blue */
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.share-button:hover {
+  text-decoration: underline;
+}
 </style>
 </head>
 <body>
@@ -389,7 +410,7 @@ border-radius:6px; }
 <!-- SCROLL SECTION -->
 <div class="scroll-wrapper">
   <div class="scroll-section">
-    <a href="index.html" class="scroll-box">
+    <a href="homepage1.html" class="scroll-box">
       <div class="scroll-tag">Home</div>
       <h3>Start your day <br> with information <br> you can trust</h3>
     </a>
@@ -449,6 +470,10 @@ border-radius:6px; }
           <p>The most important thing is to build your own capability.</p>
         </div>
       </figure>
+<!-- Share Button -->
+<button class="share-button" onclick="copyLink()">
+  &#128257; Share
+</button>
       <p class="article-meta">By Waleed PD Mahdini • September 9, 2025</p>
       <div class="article-body">
 <p> “The legacy that we leave behind is built with the people. I told them that writing reports are easy but it is the action plans where the depth comes.” He then switched to the Singapore blueprint as a perfect example of achieving success. “In Singapore, we do a lot of things ourselves and we learn to make mistakes because in this process, we learn. We train and we invest in our people and we make a lot of sacrifices to build up this depth. You must seek out and develop a cadre of young people who are committed to doing it themselves. They must also have confidence so it is important to find good, interested people and let them grow, especially in a young country. But they must be allowed to make mistakes. That’s where you learn. That is the key.” </p>
@@ -488,7 +513,7 @@ border-radius:6px; }
 <p>By understanding the mega trends of the day, which are rapid urbanisation, environmental improvement and social management, these future cities “must be sustainable, harmonious, convenient and resource efficient”, said Mr Yeo. </p>
 
 <p> “So you must take care of your young people, take care of how they serve and grow but you must also teach them to stand on their own two feet, through a lot of guidance and support by dedicated and committed mentors.” Asked where the best training ground was, he smiled and replied: “There is no school better than the real world and the real working life. My generation of Singaporeans was lucky because we had good bosses and this is also very important to have understanding and fair-minded bosses. But ultimately, my hope is that the future generations will also have bosses who support them to build and nurture the next generation.” </p>     
- </div>
+  </div>
 <!-- Author Box -->
 <div class="author-box">
   <img src="https://bruneibebc.com/wp-content/uploads/2022/11/12-200x200.jpg" alt="Author Photo" class="author-photo">
@@ -499,6 +524,7 @@ border-radius:6px; }
   </div>
 </div>
     </div>
+
 
     <!-- Right Column: Sidebar -->
     <aside class="sidebar">
@@ -551,5 +577,15 @@ border-radius:6px; }
   }
   updateDate();
 </script>
+<script>
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      alert("Link copied to clipboard!");
+    }).catch(err => {
+      console.error("Error copying link: ", err);
+    });
+  }
+</script>
 </body>
 </html>
+
