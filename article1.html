@@ -327,6 +327,49 @@ border-radius:6px; }
     height: 200px;
   }
 }
+/* Author Box */
+.author-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 1.2rem;
+  background: #f0f4f9;           /* light blue background */
+  border-left: 4px solid #052962; /* theme accent line */
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.author-photo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #FFD700; /* golden accent */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.author-info h4 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-family: 'Playfair Display', serif;
+  color: #052962;
+}
+
+.author-info p {
+  margin: 0.4rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #444;
+}
+@media (max-width: 767px) {
+  .author-box {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .author-photo {
+    margin-bottom: 0.8rem;
+  }
+}
 </style>
 </head>
 <body>
@@ -444,7 +487,17 @@ border-radius:6px; }
 
 <p>By understanding the mega trends of the day, which are rapid urbanisation, environmental improvement and social management, these future cities “must be sustainable, harmonious, convenient and resource efficient”, said Mr Yeo. </p>
 
-<p> “So you must take care of your young people, take care of how they serve and grow but you must also teach them to stand on their own two feet, through a lot of guidance and support by dedicated and committed mentors.” Asked where the best training ground was, he smiled and replied: “There is no school better than the real world and the real working life. My generation of Singaporeans was lucky because we had good bosses and this is also very important to have understanding and fair-minded bosses. But ultimately, my hope is that the future generations will also have bosses who support them to build and nurture the next generation.” </p>      </div>
+<p> “So you must take care of your young people, take care of how they serve and grow but you must also teach them to stand on their own two feet, through a lot of guidance and support by dedicated and committed mentors.” Asked where the best training ground was, he smiled and replied: “There is no school better than the real world and the real working life. My generation of Singaporeans was lucky because we had good bosses and this is also very important to have understanding and fair-minded bosses. But ultimately, my hope is that the future generations will also have bosses who support them to build and nurture the next generation.” </p>     
+ </div>
+<!-- Author Box -->
+<div class="author-box">
+  <img src="https://bruneibebc.com/wp-content/uploads/2022/11/12-200x200.jpg" alt="Author Photo" class="author-photo">
+  <div class="author-info">
+    <h4>Waleed PD Mahdini</h4>
+    <p>Waleed is a journalist with over 15 years of experience covering regional affairs, 
+    economic policy, and cultural development in Brunei and ASEAN.</p>
+  </div>
+
     </div>
 
     <!-- Right Column: Sidebar -->
@@ -500,4 +553,3 @@ border-radius:6px; }
 </script>
 </body>
 </html>
-
