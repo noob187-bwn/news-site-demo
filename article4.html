@@ -377,7 +377,20 @@ header {
     margin-bottom: 0.8rem;
   }
 }
+.share-button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #052962; /* theme blue */
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
 
+.share-button:hover {
+  text-decoration: underline;
+}
 </style>
 </head>
 <body>
@@ -457,6 +470,11 @@ header {
           <p> “There is a big image for Brunei in the Islamic world because everybody knows that Brunei is committed to its Islamic culture” </p>
         </div>
       </figure>
+<!-- Share Button -->
+<button class="share-button" onclick="copyLink()">
+  &#128257; Share
+</button>
+
       <p class="article-meta">By Waleed PD Mahdini • September 9, 2025</p>
       <div class="article-body">
 <p>BRUNEI Darussalam, on the whole received pleasant and gentle praises by many of the international media that ranged from China to the Middle East, covering the week-long Asean Tourism Forum (ATF), but the issue of visa on arrival was also acknowledged to be a sticking point in the country's bid to improve its inbound tourist volume.</p>
@@ -483,7 +501,7 @@ header {
 
 <p>He went on to surmise that it was "because of a prestige issue that you are targeting Europeans". Brunei has focused itself onto the eco-tourism niche. "Many Europeans are fed up of going to bars, clubs and that kind of entertainment when they visit foreign countries, but there is a growing interest in enjoying nature nowadays. And Brunei is doing well with eco-tourism. It is not opening up the country for everyone and thus it is able to keep its country clean along with its culture and heritage." </p>
 
-      </div>
+  </div>
 <!-- Author Box -->
 <div class="author-box">
   <img src="https://bruneibebc.com/wp-content/uploads/2022/11/12-200x200.jpg" alt="Author Photo" class="author-photo">
@@ -494,6 +512,7 @@ header {
   </div>
 </div>
     </div>
+
 
     <!-- Right Column: Sidebar -->
     <aside class="sidebar">
@@ -546,5 +565,15 @@ header {
   }
   updateDate();
 </script>
+<script>
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      alert("Link copied to clipboard!");
+    }).catch(err => {
+      console.error("Error copying link: ", err);
+    });
+  }
+</script>
 </body>
 </html>
+
