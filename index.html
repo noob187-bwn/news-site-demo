@@ -21,7 +21,7 @@
       margin: 0 auto;
       padding: 0 1rem;
     }
-
+	
     /* HEADER */
 header {
   width: 100%;              /* stretch across screen */
@@ -46,6 +46,22 @@ header {
   color: #666;
   font-style: italic;
 }
+@media (max-width: 767px) {
+  header {
+    grid-template-columns: 1fr;   /* single column on mobile */
+    text-align: center;           /* center all content */
+  }
+
+  .logo-container {
+    grid-column: 1;               /* reset grid column */
+    align-items: center;          /* center items horizontally */
+  }
+
+  .date-display {
+    margin-top: 0.5rem;           /* add a bit of breathing space */
+    text-align: center;           /* force date text to center */
+  }
+}
     .site-title {
       text-align: center;
       font-weight: bold;
@@ -64,7 +80,7 @@ header {
       display: block;
     }
     .site-logo {
-      height: 40px;
+      height: 30px;
       width: auto;
     }
 
