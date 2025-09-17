@@ -21,47 +21,26 @@
       margin: 0 auto;
       padding: 0 1rem;
     }
-	
+
     /* HEADER */
-header {
-  width: 100%;              /* stretch across screen */
-  display: flex;
-  justify-content: space-between; /* spread content */
-  align-items: center;
-  padding: 1rem 2rem;        /* padding on left + right */
-  border-bottom: 2px solid #ddd;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: #fff;
-}
+    header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 1rem;
+      border-bottom: 2px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #fff;
+    }
     .logo-container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.3rem;
+      gap: 0.5rem;
     }
-.header-date {
-  font-size: 0.9rem;
-  color: #666;
-  font-style: italic;
-}
-@media (max-width: 767px) {
-  header {
-    grid-template-columns: 1fr;   /* single column on mobile */
-    text-align: center;           /* center all content */
-  }
-
-  .logo-container {
-    grid-column: 1;               /* reset grid column */
-    align-items: center;          /* center items horizontally */
-  }
-
-  .date-display {
-    margin-top: 0.5rem;           /* add a bit of breathing space */
-    text-align: center;           /* force date text to center */
-  }
-}
     .site-title {
       text-align: center;
       font-weight: bold;
@@ -76,11 +55,11 @@ header {
     .site-title-main {
       font-family: 'Playfair Display', serif;
       font-size: 2.5rem;
-      color: #052962;
+      color: #444;
       display: block;
     }
     .site-logo {
-      height: 30px;
+      height: 40px;
       width: auto;
     }
 
@@ -384,52 +363,62 @@ header {
       color: #FFD700;
       text-decoration: underline;
     }
-.header-inner {
-  max-width: 1200px;  /* same width as .container */
-  margin: 0 auto;
-  flex: 1;
-  display: flex;
-  justify-content: center; /* or space-between if adding date later */
-  align-items: center;
+@media (max-width: 767px) {
+  header {
+    flex-direction: column;   /* stack vertically */
+    padding: 0.8rem 1rem;     /* less padding */
+  }
+
+  .logo-container {
+    gap: 0.2rem;              /* tighter spacing */
+  }
+
+  .site-title-small {
+    font-size: 0.9rem;        /* smaller “The” */
+  }
+
+  .site-title-main {
+    font-size: 1.6rem;        /* smaller “New Brunei Digest” */
+  }
+
+  .site-logo {
+    height: 28px;             /* reduce logo */
+    margin: 0.2rem 0;
+  }
 }
   </style>
 </head>
 <body>
 
+<div class="container">
 
   <!-- HEADER -->
   <header>
-    <div class="header-inner">
-      <div class="logo-container">
-        <div class="site-title">
-          <div class="site-title-small">The</div>
-          <div class="site-title-main">New Brunei Digest</div>
-        </div>
-        <img src="https://www.information.gov.bn/PublishingImages/aboutINFO/benderbrunei1.jpg"
-             alt="Site Logo" class="site-logo">
-<div class="header-date" id="header-date"></div>
+    <div class="logo-container">
+      <div class="site-title">
+        <div class="site-title-small">The</div>
+        <div class="site-title-main">New Brunei Digest</div>
       </div>
+      <img src="https://www.information.gov.bn/PublishingImages/aboutINFO/benderbrunei1.jpg" alt="Site Logo" class="site-logo">
     </div>
   </header>
 
-  <!-- MAIN CONTENT CONTAINER -->
-  <div class="container">
+  <!-- SCROLL SECTION -->
+  <div class="scroll-section">
+    <a href="analysispage1.html" class="scroll-box">
+      <div class="scroll-tag">Analysis</div>
+      <h3>For your daily dose of perspective</h3>
+    </a>
+    <a href="opinionmain1.html" class="scroll-box">
+      <div class="scroll-tag">Opinion</div>
+      <h3>Explore the collective thought</h3>
+    </a>
+    <a href="economymain1.html" class="scroll-box">
+      <div class="scroll-tag">Economy</div>
+      <h3>What the bottom line means</h3>
+    </a>
+  </div>
 
-    <!-- SCROLL SECTION -->
-    <div class="scroll-section">
-      <a href="analysispage1.html" class="scroll-box">
-        <div class="scroll-tag">Analysis</div>
-        <h3>For your daily dose of perspective</h3>
-      </a>
-      <a href="opinionmain1.html" class="scroll-box">
-        <div class="scroll-tag">Opinion</div>
-        <h3>Explore the collective thought</h3>
-      </a>
-      <a href="economymain1.html" class="scroll-box">
-        <div class="scroll-tag">Economy</div>
-        <h3>What the bottom line means</h3>
-      </a>
-    </div>
   <!-- MAIN GRID -->
   <main>
     <!-- Left Column: Opinion -->
@@ -560,8 +549,6 @@ header {
     </section>
   </main>
 </div>
-</div>
-</body>
 
 <!-- FOOTER -->
 <footer>
@@ -593,14 +580,6 @@ header {
     <p>&copy; 2025 The New Brunei Digest. All rights reserved.</p>
   </div>
 </footer>
-<script>
-  const dateElement = document.getElementById("header-date");
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  const today = new Date().toLocaleDateString('en-US', options);
-  dateElement.textContent = today;
-</script>
+
 </body>
 </html>
-
-
-
