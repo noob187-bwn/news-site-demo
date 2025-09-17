@@ -5,290 +5,238 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Article Page - The New Brunei Digest</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-<style>
-/* RESET */
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: Georgia, Helvetica, sans-serif; background:#fafafa; color:#111; line-height:1.7; }
-a { text-decoration:none; color:inherit; }
-img { max-width:100%; display:block; }
+  <style>
+    /* RESET */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: Georgia, Helvetica, sans-serif; background:#fafafa; color:#111; line-height:1.7; }
+    a { text-decoration:none; color:inherit; }
+    img { max-width:100%; display:block; }
 
-/* HEADER (matches main page grid) */
+/* HEADER (match homepage) */
 header {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr; /* Opinion | Article | Sidebar */
+  display: flex;
+  justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   padding: 1rem;
   border-bottom: 2px solid #ddd;
-  background: #fff;
   position: sticky;
   top: 0;
   z-index: 1000;
+  background: #fff;
 }
 
 .logo-container {
-  grid-column: 2; /* keep masthead centered */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.2rem;
+  gap: 0.5rem;
 }
 
 .site-title {
   text-align: center;
   font-weight: bold;
   line-height: 1.1;
-  margin-bottom: 0.2rem;
 }
 
 .site-title-small {
   font-family: 'Playfair Display', serif;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #111;
+  display: block;
 }
 
 .site-title-main {
   font-family: 'Playfair Display', serif;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   color: #052962;
+  display: block;
 }
 
 .site-logo {
-  height: 35px;
-  margin: 0.2rem 0;
+  height: 40px;
+  width: auto;
 }
 
-.date-display {
-  margin-top: 0.5rem;
+/* DATE DISPLAY (match homepage) */
+.header-date {
+  font-size: 0.95rem;
+  font-style: italic;
+  margin-top: 0.3rem;
+  color: #666;
   text-align: center;
-  font-style: italic; /* italicised date */
 }
 
-/* GRID LAYOUT */
-main {
-  display:grid;
-  grid-template-columns:1fr 2fr 1fr;
-  gap:2rem;
-  margin:2rem auto;
-  max-width:1200px;
-  padding:0 1rem;
-}
-
-/* MOBILE HEADER + GRID REORDER */
-@media(max-width:767px){
+/* MOBILE HEADER */
+@media (max-width: 767px) {
   header {
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    gap:0.5rem;
+    flex-direction: column;
+    padding: 0.8rem 1rem;
+    text-align: center;
   }
-  .logo-container { grid-column:auto; }
-
-  main { display:flex; flex-direction:column; }
-  .article-column { order:1; }
-  .sidebar { order:2; display:flex; flex-direction:column; }
-  .left-column { order:3; }
-
-  .sidebar .box.advert { order:1; }
-  .left-column { order:2; }
-  .sidebar .box.most-read { order:3; }
-  .sidebar .trending-box { order:4; }
+  .logo-container { gap: 0.2rem; }
+  .site-title-small { font-size: 0.9rem; }
+  .site-title-main { font-size: 1.6rem; }
+  .site-logo { height: 28px; margin: 0.2rem 0; }
+  .header-date {
+    font-size: 0.85rem;
+    margin-top: 0.2rem;
+  }
 }
+    /* GRID LAYOUT */
+    main {
+      display:grid;
+      grid-template-columns:1fr 2fr 1fr; /* Opinion | Article | Sidebar */
+      gap:2rem;
+      margin:2rem auto;
+      max-width:1200px;
+      padding:0 1rem;
+    }
+    @media(max-width:767px){
+      main { display:flex; flex-direction:column; }
+      .article-column { order:1; }
+      .sidebar { order:2; display:flex; flex-direction:column; }
+      .left-column { order:3; } /* move Opinion Picks into sidebar flow */
 
-/* ARTICLE */
-.article-column {
-  display:flex;
-  flex-direction:column;
-  gap:1rem;
-}
+      /* Reorder inside sidebar */
+      .sidebar .box.advert { order:1; }   /* Advertisement */
+      .left-column { order:2; }           /* Opinion Picks (relocated) */
+      .sidebar .box.most-read { order:3; }/* Most Read */
+      .sidebar .trending-box { order:4; } /* Trending */
+    }
 
+    /* ARTICLE */
+    .article-column { display:flex; flex-direction:column; gap:1rem; }
 .article-photo {
   position: relative;
-  margin-bottom: 8rem; /* space so overlay can extend */
-  overflow: visible;
+  margin-bottom: 1rem;
+  overflow: hidden;           /* keep overlay inside */
+  padding-bottom: 8rem;       /* reserve space for overlay */
 }
-.article-photo img { border-radius:6px; }
+
+.article-photo img { 
+  border-radius: 6px; 
+  display: block;
+  width: 100%;
+}
 
 .overlay-box {
-  position:absolute;
-  top:75%; /* start 1/4 from bottom */
-  left:0;
-  right:0;
-  background:rgba(5,41,98,0.85);
-  color:#fff;
-  padding:1rem 1.2rem;
-  border-radius:6px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5,41,98,0.85);
+  color: #fff;
+  padding: 1rem 1.2rem;
+  border-radius: 0 0 6px 6px;
 }
-@media (max-width:767px){
+
+@media (max-width: 767px) {
+  .article-photo {
+    padding-bottom: 12rem;    /* more space for taller overlay on mobile */
+  }
+
   .overlay-box {
-    position: relative;     /* stays in flow so it pushes content */
-    margin-top: -25%;       /* starts 1/4 from bottom of photo */
-    background: rgba(5,41,98,0.85);
-    color:#fff;
-    padding: 1rem 1.2rem;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
     border-radius: 8px;
-
-    /* NEW: narrower width and centered */
-    max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
   }
-  .article-photo {
-    margin-bottom: 0;       /* overlay height controls spacing now */
-  }
-}
-/* Tighten overlay–share spacing */
-.article-photo {
-  margin-bottom: 0.5rem;  /* smaller than 8rem */
-}
+}    .overlay-box h1 {
+      color:#FFD700;
+      font-size:2rem; margin-bottom:0.5rem; font-family:'Playfair Display',serif;
+    }
+    .overlay-box p {
+      font-size:1.1rem; font-style:italic; margin:0;
+    }
+    .article-meta { font-size:0.9rem; color:#666; margin:1rem 0; }
+    .article-body p { margin-bottom:1rem; text-align:justify; }
 
-@media (max-width:767px){
-  .article-photo {
-    margin-bottom: 0.5rem; /* also smaller for mobile */
-  }
-}
-.overlay-box h1 {
-  color:#FFD700;
-  font-size:2rem;
-  margin-bottom:0.5rem;
-  font-family:'Playfair Display',serif;
-}
-.overlay-box p {
-  font-size:1.1rem;
-  font-style:italic;
-  margin:0;
-}
+    /* SIDEBAR */
+    .sidebar .box {
+      background:#fff; border:1px solid #ddd; padding:1rem;
+      border-radius:6px; margin-bottom:1.5rem;
+    }
+    .sidebar h3 { margin-bottom:0.5rem; color:#052962; }
+    .sidebar ol { padding-left:1.2rem; }
 
-.article-meta { font-size:0.9rem; color:#666; margin:1rem 0; }
-.article-body p { margin-bottom:1rem; text-align:justify; }
+    /* TRENDING BOX */
+    .trending-box {
+      border:2px solid #052962;
+      border-radius:8px;
+      padding:1rem;
+      background:#f0f4f9;
+    }
+    .trending-video {
+      width:100%; height:200px; margin-bottom:1rem;
+      border-radius:6px; overflow:hidden;
+    }
+    .trending-video iframe { width:100%; height:100%; border:none; }
+    .trending-list { list-style:none; padding:0; margin:0; }
+    .trending-list li { margin-bottom:0.5rem; }
+    .trending-list a { color:#052962; font-weight:bold; text-decoration:none; }
+    .trending-list a:hover { text-decoration:underline; }
 
-/* SHARE BUTTON */
-.share-button {
-  background:none;
-  border:none;
-  font-size:1rem;
-  cursor:pointer;
-  color:#052962;
-  display:flex;
-  align-items:center;
-  gap:0.4rem;
-}
-.share-button:hover { text-decoration:underline; }
-
-/* SIDEBAR */
-.sidebar .box {
-  background:#fff; border:1px solid #ddd; padding:1rem;
-  border-radius:6px; margin-bottom:1.5rem;
-}
-.sidebar h3 { margin-bottom:0.5rem; color:#052962; }
-.sidebar ol { padding-left:1.2rem; }
-
-/* TRENDING BOX */
-.trending-box {
-  border:2px solid #052962;
-  border-radius:8px;
-  padding:1rem;
-  background:#f0f4f9;
-}
-.trending-video {
-  width:100%; height:200px; margin-bottom:1rem;
-  border-radius:6px; overflow:hidden;
-}
-.trending-video iframe { width:100%; height:100%; border:none; }
-.trending-list { list-style:none; padding:0; margin:0; }
-.trending-list li { margin-bottom:0.5rem; }
-.trending-list a { color:#052962; font-weight:bold; text-decoration:none; }
-.trending-list a:hover { text-decoration:underline; }
-
-/* FOOTER */
-footer {
-  background:#052962; color:#fff; text-align:center;
-  padding:1.5rem 1rem; margin-top:2rem;
-}
-.footer-links {
-  display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;
-  margin-bottom:0.8rem;
-}
-.footer-links a { color:#fff; font-weight:bold; }
-.footer-links a:hover { color:#FFD700; }
-.footer-bottom { font-size:0.85rem; color:#ccc; }
+    /* FOOTER */
+    footer {
+      background:#052962; color:#fff; text-align:center;
+      padding:1.5rem 1rem; margin-top:2rem;
+    }
+    .footer-links {
+      display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;
+      margin-bottom:0.8rem;
+    }
+    .footer-links a { color:#fff; font-weight:bold; }
+    .footer-links a:hover { color:#FFD700; }
+    .footer-bottom { font-size:0.85rem; color:#ccc; }
 
 /* HORIZONTAL SCROLL SECTION */
 .scroll-wrapper {
-  max-width: 1200px;
-  margin: 2rem auto;    /* match homepage */
-  padding: 0 1rem;
+  max-width: 1200px;   /* same as main grid */
+  margin: 2rem auto;   /* same top/bottom spacing as main */
+  padding: 0 1rem;     /* same side padding as main */
 }
 
-/* HORIZONTAL SCROLL SECTION */
 .scroll-section {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
+  gap: 20px;
+  padding: 20px 0;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   justify-content: start;
-
-  background: #f5f7fb;   /* same as homepage */
-  padding: 16px;
-  gap: 16px;
-  border-radius: 8px;
 }
 .scroll-section::-webkit-scrollbar { display: none; }
 
 .scroll-box {
   flex: 0 0 auto;
-  min-width: 250px;      /* same as homepage */
-  background: #fff;
+  min-width: 250px;
+  background: #f9f9f9;
   border-radius: 12px;
   padding: 20px;
   text-decoration: none;
   color: inherit;
   scroll-snap-align: start;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.scroll-box:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 .scroll-tag {
   display: inline-block;
-  background: #052962;
-  color: #fff;
-  font-size: 16px;
+  background: #052962;   /* deep blue */
+  color: #fff;           /* white text */
+  font-size: 18px;
   font-weight: bold;
-  padding: 6px 10px;
+  padding: 5px 10px;
   border-radius: 4px;
   margin-bottom: 10px;
 }
 
-/* MOBILE overrides */
-@media (max-width: 767px) {
-  .scroll-section {
-    gap: 12px;
-    padding: 12px;
-  }
-  .scroll-box {
-    min-width: 180px;
-    padding: 12px;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-  }
-  .scroll-tag {
-    font-size: 14px;
-    font-weight: 600;
-    padding: 4px 12px;
-    border-radius: 20px;  /* pill shape */
-    margin-bottom: 8px;
-    letter-spacing: 0.5px;
-  }
-  .scroll-box h3 {
-    margin: 12px 0 4px 0;
-    font-size: 15px;
-  }
+.scroll-box h3 {
+  margin: 30px 0 5px 0;
+  font-size: 18px;
+  color: #052962;   /* blue font */
 }
 /* QUICK FACTS BOX */
 .quick-facts {
@@ -298,36 +246,53 @@ footer {
   padding: 1rem;
   margin-bottom: 1.5rem;
 }
-.quick-facts h3 { margin-bottom: 0.8rem; color: #052962; }
+.quick-facts h3 {
+  margin-bottom: 0.8rem;
+  color: #052962;
+}
 .quick-facts p {
   margin: 0.5rem 0;
   font-size: 0.95rem;
   line-height: 1.4;
 }
-.quick-facts strong { color: #052962; }
+.quick-facts strong {
+  color: #052962;
 
-/* OPINION PICKS */
+}
 .opinion-picks {
   background: #fff;
-  border: 2px solid #052962;
+  border: 2px solid #052962;   /* deep blue border */
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 1.5rem;
 }
-.opinion-picks h3 { margin-bottom: 0.8rem; color: #052962; }
+
+.opinion-picks h3 {
+  margin-bottom: 0.8rem;
+  color: #052962;
+}
+
 .opinion-picks ul {
-  list-style: disc;
-  padding-left: 1.2rem;
+  list-style: disc;         /* show bullets */
+  padding-left: 1.2rem;     /* indent nicely */
   margin: 0;
 }
-.opinion-picks li {
-  margin-bottom: 0.3rem;
-  line-height: 1.3;
-}
-.opinion-picks a { color: #052962; font-weight: bold; text-decoration: none; }
-.opinion-picks a:hover { text-decoration: underline; }
 
-/* VOICES BOX */
+.opinion-picks li {
+  margin-bottom: 0.3rem;    /* less vertical space between items */
+  line-height: 1.3;         /* tighter line spacing for wrapped lines */
+}
+.opinion-picks a {
+  color: #052962;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.opinion-picks a:hover {
+  text-decoration: underline;
+}
+
+/* VOICES BOX WITH PORTRAIT PHOTOS */
 .voices {
   background: #f0f4f9;
   border: 2px solid #052962;
@@ -336,21 +301,32 @@ footer {
   margin-bottom: 1.5rem;
   text-align: center;
 }
-.voices h3 { margin-bottom: 1rem; color: #052962; }
-.voice-item { margin-bottom: 1.5rem; }
+
+.voices h3 {
+  margin-bottom: 1rem;
+  color: #052962;
+}
+
+.voice-item {
+  margin-bottom: 1.5rem;
+}
+
 .voice-item img {
-  width: 200px; height: 250px;
-  object-fit: cover;
-  border-radius: 6px;
+  width: 200px;          /* narrow width */
+  height: 250px;         /* taller height = portrait */
+  object-fit: cover;    /* crop to fill */
+  border-radius: 6px;   /* slight rounding */
   border: 2px solid #052962;
   display: block;
-  margin: 0 auto 0.5rem;
+  margin: 0 auto 0.5rem; /* center horizontally */
 }
+
 .voice-item h4 {
   margin: 0.3rem 0;
   font-size: 1rem;
   color: #052962;
 }
+
 .voice-item blockquote {
   margin: 0;
   font-style: italic;
@@ -358,42 +334,46 @@ footer {
   font-size: 0.95rem;
   line-height: 1.4;
 }
-
-/* ARTICLE AD */
+/* Ad container - clean */
 .article-ad {
   text-align: center;
-  margin: 2rem 0;
-  max-width: 728px;
+  margin: 2rem 0;        /* spacing above/below */
+  max-width: 728px;      /* standard leaderboard width */
   margin-left: auto;
   margin-right: auto;
 }
+/* Fixed-size ad image */
 .article-ad img {
-  width: 728px; height: 250px;
-  object-fit: contain;
+  width: 728px;       /* fixed width */
+  height: 250px;       /* fixed height */
+  object-fit: contain; /* fit inside box without stretching */
   display: block;
   margin: 0 auto;
 }
 @media (max-width: 767px) {
-  .article-ad img { width: 400px; height: 200px; }
+  .article-ad img {
+    width: 400px;
+    height: 200px;
+  }
 }
-
-/* AUTHOR BOX */
+/* Author Box */
 .author-box {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
   margin: 2rem 0;
   padding: 1.2rem;
-  background: #f0f4f9;
-  border-left: 4px solid #052962;
+  background: #f0f4f9;           /* light blue background */
+  border-left: 4px solid #052962; /* theme accent line */
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 .author-photo {
-  width: 90px; height: 90px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #FFD700;
+  border: 3px solid #FFD700; /* golden accent */
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 .author-info h4 {
@@ -402,6 +382,7 @@ footer {
   font-family: 'Playfair Display', serif;
   color: #052962;
 }
+
 .author-info p {
   margin: 0.4rem 0 0;
   font-size: 0.95rem;
@@ -414,7 +395,23 @@ footer {
     align-items: center;
     text-align: center;
   }
-  .author-photo { margin-bottom: 0.8rem; }
+  .author-photo {
+    margin-bottom: 0.8rem;
+  }
+}
+.share-button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #052962; /* theme blue */
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.share-button:hover {
+  text-decoration: underline;
 }
 </style>
 </head>
@@ -429,7 +426,7 @@ footer {
     </div>
     <img src="https://www.information.gov.bn/PublishingImages/aboutINFO/benderbrunei1.jpg"
          alt="Logo" class="site-logo">
-  <div class="date-display" id="dateDisplay"></div>
+<div class="header-date"></div>
   </div>
 </header>
 <!-- SCROLL SECTION -->
@@ -437,20 +434,20 @@ footer {
   <div class="scroll-section">
     <a href="homepage1.html" class="scroll-box">
       <div class="scroll-tag">Home</div>
-      <h3>Start your day with <br> information you can trust</h3>
+      <h3>Start your day <br> with information <br> you can trust</h3>
     </a>
 
     <a href="analysispage1.html" class="scroll-box">
       <div class="scroll-tag">Analysis</div>
-      <h3>For your daily dose of perspective</h3>
+      <h3>For your <br> daily dose of perspective</h3>
     </a>
     <a href="opinionmain1.html" class="scroll-box">
       <div class="scroll-tag">Opinion</div>
-      <h3>Explore the collective thought</h3>
+      <h3>Explore the <br> collective thought</h3>
     </a>
     <a href="economymain1.html" class="scroll-box">
       <div class="scroll-tag">Economy</div>
-      <h3>What the bottom-line means</h3>
+      <h3>What the <br> bottom-line means</h3>
     </a>
   </div>
 </div>
@@ -489,10 +486,10 @@ footer {
 </div>    <!-- Center: Article -->
     <div class="article-column">
       <figure class="article-photo">
-        <img src="https://youcanleadbn.com/wp-content/uploads/2019/05/Sealnet-Project-Brunei-2019.jpg" alt="Family tourism in Brunei">
+        <img src="https://www.mofe.gov.bn/Images1/News/2023/(05.25)%2029th%20APEC.PNG" alt="Family tourism in Brunei">
         <div class="overlay-box">
-          <h1>‘Believe in your own people.’</h1>
-          <p>The most important thing is to build your own capability.</p>
+          <h1>Brunei explores niche specialty</h1>
+          <p> Sultanate has potential for wider market</p>
         </div>
       </figure>
 <!-- Share Button -->
@@ -500,45 +497,28 @@ footer {
   &#128257; Share
 </button>
       <p class="article-meta">By Waleed PD Mahdini • September 9, 2025</p>
+  
       <div class="article-body">
-<p> “The legacy that we leave behind is built with the people. I told them that writing reports are easy but it is the action plans where the depth comes.” He then switched to the Singapore blueprint as a perfect example of achieving success. “In Singapore, we do a lot of things ourselves and we learn to make mistakes because in this process, we learn. We train and we invest in our people and we make a lot of sacrifices to build up this depth. You must seek out and develop a cadre of young people who are committed to doing it themselves. They must also have confidence so it is important to find good, interested people and let them grow, especially in a young country. But they must be allowed to make mistakes. That’s where you learn. That is the key.” </p>
+<p>"BRUNEI Darussalam is actively involved in Southeast Asia," confirmed a source yesterday about the regional efforts to curb unconventional petty thefts occurring in the South China Sea. </p>
+<p>Despite the fact that Brunei's maritime law enforcement agency is not participating in the two-day conference this year, which is being attended by 150 participants from 24 countries, at the Langkawi International Maritime and Aerospace (LIMA) Exhibition 2009 International Maritime Conference, the Sultanate is one of 14 members of the Regional Cooperation Agreement in Combating Piracy and Armed Robbery against Ships in Asia (ReCAAP), when it joined in 2006. </p>
+<p>The Langkawi maritime conference is being held to find newer ways to curb this problem, which the Malaysian Defence Minister Datuk Seri Dr Ahmad Zahid Hamidi said, that if left unchecked, "would lead to high-tech piracy activities similar to the piracy in the Gulf of Aden".</p>
+<p>He went on to express: "This situation causes problems to the maritime patrol and enforcement activities because the pirates know that no country could impose its law in the water." </p>
 
-<p>Mr Yeo then elaborated this further by holding up his index finger to share in the three keys to making mistakes: “First, you have to admit your mistake. Second, apologise. Third rule, and this is the most important, don’t do it again,” he said with a knowing smile as he gestured with his three digits. “The key is to learn from it and not to repeat it again. If you don’t make allowances for making mistakes, how are you going to learn by yourself? That is why it is very important to find dedicated and committed young people but you must also delegate some authority to them. Otherwise, you will be left with doing everything yourself. That way, everyone learns.” </p>
+<p>Brunei's maritime boundaries are patrolled by the Royal Brunei Navy that "works very closely" with the Royal Brunei Marine Police, said the source, "especially in the deeper waters, as the Royal Brunei Marine Police as yet do not have the capabilities for deep-water operations".</p>
+<p>However, one of the joint responsibilities of the two maritime agencies is to prevent piracy but although there have been no reports or incidents of piracy or armed robbery in Brunei waters, the Royal Brunei Marine Police are still actively taking preventative measures to prepare against any unforeseen contingencies. </p>
+<p>"Through ReCAAP, we can learn of the experiences from other countries of dealing with piracy," said the source, "but more importantly, we are learning to come up with our own strategies whilst closely monitoring to see that the trends of piracy patterns do not spill over into Brunei's waters." </p>
+<p>The current extent to which Brunei's maritime patrols are focused on involve netting in illegal fishing activities from neighbouring countries, as well as "showing the flag" at the maritime borders. </p>
+<p>There have been several reports made by international news agencies, which have yet to be confirmed by the Ministry of Defence, of the acquisition of several new patrol boats for the Royal Brunei Navy. </p>
 
-<div class="article-ad">
+    <div class="article-ad">
   <span>Advertisement</span>
   <img src=" https://bibd.com.bn/wp-content/uploads/2025/05/A4-Size-21cm-x-29.7cm_b9193f353332aa880dd5cb6417bd0361-724x1024.jpg " alt="Advertisement">
 </div>
-<p>Speaking about developing SMEs, Mr Yeo noted that “you must provide all kinds of incentives; you have to give them financing”. Pointing out that the last time he was in the Sultanate was in 1983; Mr Yeo reverted once again to the Singaporean example: “You need to build deliberate policies to build that depth and you have to get the government to be pro-active in order to meet the service capacity and delivery time. In fact there’s a lot of ‘hand-holding’.” </p>
 
-<p>He has since extended this hand-holding further beyond the SMEs to the generations of Singaporean scholars. He recounted that during his tenure as the chairman of A*STAR, he set up a scholarship scheme to provide government-funded scholarships for 1,000 “straight A students who could study any subject, except for Law and Economics” each year, who have since specialised in life sciences – molecular biology, biochemistry, medicine, information technology and engineering. Asked why these subjects in particular, Mr Yeo replied with a grin, “Because I never studied Law or Economics.” </p>
-
-<p>Educated as an engineer, from which he moved onto a very successful career as an administrator and pioneering strategist for Singapore’s IT and biomedical sciences, one cannot help but appreciate the patience and personal commitment that he invests in each and every single scholarship student that is chosen. </p>
-
-<p>One of his most outstanding hallmarks is his passion in developing people. Over the course of his career he has sent thousands of Singaporeans to top universities around the world on government funded scholarships, where in return after completing their tertiary or post graduate studies, these scholars make a commitment to return and serve the Singapore government for six years. Well-known for personally interviewing each scholarship candidate, Mr Yeo takes great pains to remember every personal detail about their family background and also closely monitors their academic performance. During his regular business trips abroad, he would take the time to meet up with up whichever student is studying at that particular city to find out about their welfare and studies. </p>
-
-<p> “In fact, when they get married, most of them will invite me and I try to attend most of them, if I have the time. And each one I give them ‘ang pow’. You know, a thousand students a year, that’s a lot of ‘ang pow’, you know,” he said through a peal of laughter. </p>
-
-<p>As he continued to leaf through his memories of particular students, noting that most of them chose partners within the scholarship community to marry and settle down, the theme of his prodigiously niche specialty in creating ‘self-sufficient’ or ‘integrated’ communities comes to the fore.  </p>
-
-<p>His keynote speech at the 29th CAEFO was on what he calls “the Singaporean blueprint for sustainable engineering” through the development of “self-contained urbanisation”. Industry creates urbanisation, he pointed out, which is “happening everywhere and it is a fact of life”. As Brunei Darussalam is also beginning to fully embark on planning for its future land development, he presented two more successful Singaporean examples – Biopolis and Fusionopolis. </p>
-
-<p>Biopolis was the pioneering model for what would become an innovative blueprint that was emulated in other advanced countries for the designs of future cities – one that is a complete environment for “work, live and play”. Initiated in 2001 and officially launched in October 2003, the first phase of the futuristic city concept ‘Biopolis’ houses research institutes that specialises in genomics, bioinformatics, bioprocessing and bioengineering, which is part of the Singaporean government’s multibillion-dollar investment in biomedicine that is designed to nurture industries in biotechnology and pharmaceutical drugs. </p>
-
-<p> “With the technology available today, investing in the life sciences carries a big potential and even bigger opportunities as we try to improve our life sciences,” explained Mr Yeo. Now in its fourth phase, scheduled to be completed by the end of 2012, Biopolis has attracted some of the biggest names in biology to head its lavishly equipped facilities. </p>
-
-<p>In February 2003, Singapore launched another futuristic concept called Fusionopolis that served as an extension of an information technology hub, in synergy with Biopolis. Described by Nature Magazine during its official opening in October 2008 as: “Part laboratory, part resort and part architectural gem, Fusionopolis is Singapore’s newest mega-science facility … Fusionopolis is the physical science sequel to Biopolis. Housing six institutes … the buildings are meant to spur interdisciplinary research not only among its own institutes but also with Biopolis.” </p>
-
-<p>Explaining what Singaporean Prime Minister Lee Hsien Loong referred to Fusionopolis as “an entire integrated innovation ecosystem”, Mr Yeo highlighted that “for urbanisation, you must first create jobs. From there you can then create an environment for work, with these jobs, a place to live and to live to play”. In fact this ‘live, work, play’ theme is the central theme behind Mr Yeo’s vision for small clusters of self-contained “living cities”. He went on to point out: “With work, you have to ensure that it is economically vibrant. From there, people will want to settle down and live, and you have to ensure that it is environmentally friendly and provides all the amenities from transportation to all these other social amenities. Finally you must also have recreational and entertainment centres for play, which must be socially harmonious. Once you have achieved all three, only then you will get sustainable development.” </p>
-
-<p>This Singaporean blueprint has successfully been transplanted to other parts of the world. “We have been creating urbanisation for neighbouring countries,” said Mr Yeo. </p>
-
-<p>In 1991, Indonesia opened its Batamindo Industrial Park, which is home to 60,000 workers that also work there producing an export value of US$2billion. India followed suite in 1994 by opening up the International Technology Park in Bangalore in 1994 that is home to 27,000 IT personnel. Three such living cities have since been since created in Vietnam, named the Vietnam Singapore Industrial Park at Bac Ninh, Bin Duong and Hai Phong that collectively boasts just under 500 tenants and 100,000 workers that produce an export value of US$7billion. Singapore has also undertaken four similar projects in China – the Tianjin Eco City, the Wuxi Industrial Park, Suzhou Industrial Park and the Guangzhou Knowledge City. </p>
-
-<p>By understanding the mega trends of the day, which are rapid urbanisation, environmental improvement and social management, these future cities “must be sustainable, harmonious, convenient and resource efficient”, said Mr Yeo. </p>
-
-<p> “So you must take care of your young people, take care of how they serve and grow but you must also teach them to stand on their own two feet, through a lot of guidance and support by dedicated and committed mentors.” Asked where the best training ground was, he smiled and replied: “There is no school better than the real world and the real working life. My generation of Singaporeans was lucky because we had good bosses and this is also very important to have understanding and fair-minded bosses. But ultimately, my hope is that the future generations will also have bosses who support them to build and nurture the next generation.” </p>     
- </div>
+<p>If these reports are proved correct, it would surely provide a much-needed boost in terms of Brunei's offshore capabilities in conducting maritime surveillance patrols, especially with the well-known fact that the current naval platforms operated by the Royal Brunei Navy are now ageing and thus largely ill-equipped to handle deep-water operations. </p>
+<p>However, despite the close coordination and information sharing between the 14 Asian signatories of ReCAAP, the Malaysian defence minister pointed out the further complexity in their goals due to the fact that the Southeast Asian maritime boundaries are also being contested by four countries - Brunei, Malaysia, Philippines and Vietnam - and China were involved in overlapping claims to the Spratly Islands. </p>
+<p>"The five countries should not be too focused on their claims on the Spratly's," urged the Malaysian defence minister, adding that the four neighbouring countries bordering the south China Sea collaborate in conducting enforcement activities in the water. </p>    
+  </div>
 <!-- Author Box -->
 <div class="author-box">
   <img src="https://bruneibebc.com/wp-content/uploads/2022/11/12-200x200.jpg" alt="Author Photo" class="author-photo">
@@ -549,6 +529,7 @@ footer {
   </div>
 </div>
     </div>
+
 
     <!-- Right Column: Sidebar -->
     <aside class="sidebar">
@@ -593,13 +574,22 @@ footer {
     <div class="footer-bottom">© 2025 The New Brunei Digest. All rights reserved.</div>
   </footer>
 <script>
-  function updateDate() {
-    const dateEl = document.getElementById('dateDisplay');
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  document.addEventListener("DOMContentLoaded", function() {
+    const dateElement = document.querySelector(".header-date");
     const today = new Date();
-    dateEl.textContent = today.toLocaleDateString('en-GB', options);
+    const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+    dateElement.textContent = today.toLocaleDateString("en-US", options);
+  });
+</script>
+<script>
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      alert("Link copied to clipboard!");
+    }).catch(err => {
+      console.error("Error copying link: ", err);
+    });
   }
-  updateDate();
 </script>
 </body>
 </html>
+
