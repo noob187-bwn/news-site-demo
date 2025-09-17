@@ -7,207 +7,176 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     /* Reset + Body */
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: Georgia, Helvetica, sans-serif;
-      background:#ffffff;
-      color:#111;
-      line-height:1.6;
-    }
-
-    /* Center page on desktop */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    /* HEADER */
-    header {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      padding: 1rem;
-      border-bottom: 2px solid #ddd;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: #fff;
-    }
-    .logo-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .site-title {
-      text-align: center;
-      font-weight: bold;
-      line-height: 1.1;
-    }
-    .site-title-small {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      color: #111;
-      display: block;
-    }
-    .site-title-main {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      color: #444;
-      display: block;
-    }
-    .site-logo {
-      height: 40px;
-      width: auto;
-    }
-
-    /* HORIZONTAL SCROLL SECTION */
-    .scroll-section {
-      display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      gap: 20px;
-      padding: 20px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      justify-content: start;
-    }
-    .scroll-section::-webkit-scrollbar { display: none; }
-    .scroll-box {
-      flex: 0 0 auto;
-      min-width: 250px;
-      background: #f9f9f9;
-      border-radius: 12px;
-      padding: 20px;
-      text-decoration: none;
-      color: inherit;
-      scroll-snap-align: start;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    }
-    .scroll-tag {
-      display: inline-block;
-      background: #052962;
-      color: #fff;
-      font-size: 18px;
-      font-weight: bold;
-      padding: 5px 10px;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-    .scroll-box h3 {
-      margin: 30px 0 5px 0;
-      font-size: 18px;
-      color:#052962;
-    }
-
-    /* Newspaper 3-column grid */
-    main {
-      display: grid;
-      grid-template-columns: 1fr 2fr 1fr; /* Opinion | Top+Economy | Analysis */
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .center-column {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-@media (max-width: 767px) {
-  /* Switch main grid to stacked layout */
-  main {
-    display: flex;
-    flex-direction: column; /* stack everything vertically */
-    gap: 1.5rem;
-  }
-
-  /* Reorder sections for mobile */
-  .ad-right { order: 0; }
-  .top-story-section { order: 1; }
-  .economy-section { order: 2; }
-  .opinion-section { order: 3; }
-  .trending-box { order: 4; }
-  .analysis-section { order: 5; }
-
-  /* Ensure ad scales properly */
-  .ad-right {
-    max-width: 90%;
-    margin: 0 auto 1rem auto;
-  }
-  .ad-right img {
-    width: 100%;
-    height: auto;
-    max-width: 320px;
-    max-height: 160px;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto;
-  }
+/* Reset + Body */
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: Georgia, Helvetica, sans-serif;
+  background:#ffffff;
+  color:#111;
+  line-height:1.6;
 }
-    /* Section Headings */
-    .section-heading {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 1rem 0;
-      font-size: 1.4rem;
-      font-weight: bold;
-      background: #052962;
-      color: #fff;
-      padding: 0.4rem 0.6rem;
-      border-radius: 4px;
-    }
-    .section-heading::before {
-      content: "";
-      width: 4px;
-      height: 1.5em;
-      background: #FF6600;
-      border-radius: 2px;
-    }
 
-    /* Stories */
-    .story img {
-      width: 100%;
-      border-radius: 5px;
-      margin-bottom: 0.5rem;
-    }
-    .story h2 {
-      font-size: 1.1rem;
-      margin: 0.5rem 0;
-      color:#052962;
-    }
-    .story-meta {
-      font-size: 0.8rem;
-      font-style: italic;
-      color: #666;
-      margin-bottom: 0.3rem;
-    }
-    .read-more {
-      display:inline-block;
-      margin-top:0.5rem;
-      font-weight:bold;
-      color:#052962;
-      text-decoration:none;
-    }
-    .read-more:hover { text-decoration:underline; }
-
-/* Top Story */
-.top-story {
-  position: relative;
-  margin-bottom: 2rem;
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
-.top-story img {
-  width: 100%;
-  border-radius: 5px;
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem;
+  border-bottom: 2px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #fff;
+}
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.site-title {
+  text-align: center;
+  font-weight: bold;
+  line-height: 1.1;
+}
+.site-title-small {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: #111;
   display: block;
 }
+.site-title-main {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: #052962;
+  display: block;
+}
+.site-logo {
+  height: 40px;
+  width: auto;
+}
 
-/* Desktop + Mobile overlay (one consistent approach) */
+/* HORIZONTAL SCROLL SECTION */
+.scroll-section {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  justify-content: start;
+
+  background: #f5f7fb;  /* subtle grey-blue container */
+  padding: 16px;
+  gap: 16px;
+  border-radius: 8px;
+}
+.scroll-section::-webkit-scrollbar { display: none; }
+
+.scroll-box {
+  flex: 0 0 auto;
+  min-width: 250px;     /* desktop width */
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  scroll-snap-align: start;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.scroll-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.scroll-tag {
+  display: inline-block;
+  background: #052962;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.scroll-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+/* Grid Layout */
+main {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr; /* Opinion | Top+Economy | Analysis */
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.center-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Section Headings */
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 1rem 0;
+  font-size: 1.4rem;
+  font-weight: bold;
+  background: #052962;
+  color: #fff;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+}
+.section-heading::before {
+  content: "";
+  width: 4px;
+  height: 1.5em;
+  background: #FF6600;
+  border-radius: 2px;
+}
+
+/* Stories */
+.story img {
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+}
+.story h2 {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+  color:#052962;
+}
+.story-meta {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: #666;
+  margin-bottom: 0.3rem;
+}
+.read-more {
+  display:inline-block;
+  margin-top:0.5rem;
+  font-weight:bold;
+  color:#052962;
+  text-decoration:none;
+}
+.read-more:hover { text-decoration:underline; }
+
+/* Top Story */
+.top-story { position: relative; margin-bottom: 2rem; }
+.top-story img { width: 100%; border-radius: 5px; display: block; }
 .top-story-overlay-desktop {
-  position: relative;   /* stays in flow, pushes content */
-  margin-top: -25%;     /* pull it up so it overlaps bottom quarter */
+  position: relative;
+  margin-top: -25%;
   width: 85%;
   margin-left: auto;
   margin-right: auto;
@@ -231,43 +200,7 @@
   text-decoration: underline;
 }
 
-/* Tweak font sizes on smaller screens */
-/* Tweak font sizes on smaller screens */
-@media (max-width: 767px) {
-  .top-story-overlay-desktop {
-    margin-top: -20%;   /* less negative so it sits closer to 1/4 from bottom */
-    width: 90%;
-    padding: 1rem;
-  }
-  .top-story-overlay-desktop h1 {
-    font-size: 1.2rem;
-  }
-  .top-story-overlay-desktop p {
-    font-size: 0.9rem;
-    line-height: 1.4;
-  }
-  .top-story-overlay-desktop .read-more {
-    color: #FFD700;
-  }
-}
-    /* Advertisement */
-    .advertisement {
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      padding: 0.5rem;
-      margin: 1rem 0;
-      background: #f9f9f9;
-      text-align: center;
-      font-size: 0.8rem;
-      color: #666;
-    }
-    .advertisement span {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: bold;
-      color: #999;
-      font-size: 0.75rem;
-    }
+/* Advertisement */
 .advertisement {
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -278,7 +211,6 @@
   font-size: 0.8rem;
   color: #666;
 }
-
 .advertisement span {
   display: block;
   margin-bottom: 0.5rem;
@@ -286,122 +218,172 @@
   color: #999;
   font-size: 0.75rem;
 }
-
 .advertisement img {
-  width: 100%;        /* fills sidebar column */
-  height: auto;       /* keeps ratio */
+  width: 100%;
+  height: auto;
   border-radius: 4px;
   display: block;
-  object-fit: contain; /* ensures it never stretches weirdly */
+  object-fit: contain;
 }
-    /* Trending Box */
-    .trending-box {
-      border: 2px solid #052962;
-      border-radius: 8px;
-      padding: 1rem;
-      background: #f0f4f9;
-      margin-top: 2rem;
-    }
-    .trending-box h2 {
-      font-size: 1.4rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-      color: #052962;
-    }
-    .trending-video {
-      width: 100%;
-      height: 200px;
-      margin-bottom: 1rem;
-      border-radius: 6px;
-      overflow: hidden;
-    }
-    .trending-video iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-    .trending-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .trending-list li {
-      margin-bottom: 0.5rem;
-    }
-    .trending-list a {
-      color: #052962;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    .trending-list a:hover {
-      text-decoration: underline;
-    }
 
-    /* FOOTER */
-    footer {
-      background: #052962;
-      color: #fff;
-      padding: 2rem 1rem;
-      margin-top: 2rem;
-    }
-    .footer-container {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .footer-container h3, .footer-container h4 {
-      margin-bottom: 0.5rem;
-    }
-    footer a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    footer a:hover {
-      color: #FFD700;
-      text-decoration: underline;
-    }
+/* Trending Box */
+.trending-box {
+  border: 2px solid #052962;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #f0f4f9;
+  margin-top: 2rem;
+}
+.trending-box h2 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #052962;
+}
+.trending-video {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.trending-video iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.trending-list { list-style: none; padding: 0; margin: 0; }
+.trending-list li { margin-bottom: 0.5rem; }
+.trending-list a {
+  color: #052962;
+  font-weight: bold;
+  text-decoration: none;
+}
+.trending-list a:hover { text-decoration: underline; }
+
+/* FOOTER */
+footer {
+  background: #052962;
+  color: #fff;
+  padding: 2rem 1rem;
+  margin-top: 2rem;
+}
+.footer-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer-container h3, .footer-container h4 {
+  margin-bottom: 0.5rem;
+}
+footer a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+footer a:hover {
+  color: #FFD700;
+  text-decoration: underline;
+}
+
+/* ========================= */
+/* MEDIA QUERIES (Mobile)   */
+/* ========================= */
 @media (max-width: 767px) {
+  /* Header */
   header {
-    flex-direction: column;   /* stack vertically */
-    padding: 0.8rem 1rem;     /* less padding */
+    flex-direction: column;
+    padding: 0.8rem 1rem;
+    text-align: center;
+  }
+  .logo-container { gap: 0.2rem; }
+  .site-title-small { font-size: 0.9rem; }
+  .site-title-main { font-size: 1.6rem; }
+  .site-logo { height: 28px; margin: 0.2rem 0; }
+  .header-date, .date-display {
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-top: 0.2rem;
+    color: #666;
   }
 
-  .logo-container {
-    gap: 0.2rem;              /* tighter spacing */
+  /* Scroll Section */
+  .scroll-section {
+    gap: 12px;
+    padding: 12px;
   }
-
-  .site-title-small {
-    font-size: 0.9rem;        /* smaller “The” */
+  .scroll-box {
+    min-width: 180px;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   }
-
-  .site-title-main {
-    font-size: 1.6rem;        /* smaller “New Brunei Digest” */
+.scroll-tag {
+  display: inline-block;
+  background: #052962;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;  /* pill shape */
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+  .scroll-box h3 {
+    margin: 12px 0 4px 0;
+    font-size: 15px;
   }
-
-  .site-logo {
-    height: 28px;             /* reduce logo */
-    margin: 0.2rem 0;
+@media (max-width: 767px) {
+  .scroll-box {
+    min-width: 180px;
+    padding: 12px;
+  }
+  .scroll-tag {
+    font-size: 12px;
+    padding: 3px 8px;
   }
 }
-  </style>
+
+  /* Layout stack */
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .ad-right { order: 0; max-width: 90%; margin: 0 auto 1rem; }
+  .ad-right img {
+    width: 100%; height: auto; max-width: 320px; max-height: 160px;
+    object-fit: contain; display: block; margin: 0 auto;
+  }
+  .top-story-overlay-desktop {
+    margin-top: -20%;
+    width: 90%;
+    padding: 1rem;
+  }
+  .top-story-overlay-desktop h1 { font-size: 1.2rem; }
+  .top-story-overlay-desktop p { font-size: 0.9rem; line-height: 1.4; }
+  .top-story-overlay-desktop .read-more { color: #FFD700; }
+}</style>
 </head>
 <body>
 
 <div class="container">
 
   <!-- HEADER -->
-  <header>
-    <div class="logo-container">
-      <div class="site-title">
-        <div class="site-title-small">The</div>
-        <div class="site-title-main">New Brunei Digest</div>
-      </div>
-      <img src="https://www.information.gov.bn/PublishingImages/aboutINFO/benderbrunei1.jpg" alt="Site Logo" class="site-logo">
+<!-- HEADER -->
+<header>
+  <div class="logo-container">
+    <div class="site-title">
+      <div class="site-title-small">The</div>
+      <div class="site-title-main">New Brunei Digest</div>
     </div>
-  </header>
+    <img src="https://www.information.gov.bn/PublishingImages/aboutINFO/benderbrunei1.jpg" 
+         alt="Site Logo" class="site-logo">
+    <div class="header-date"></div> <!-- auto-filled with JS -->
+  </div>
+</header>
 
   <!-- SCROLL SECTION -->
   <div class="scroll-section">
@@ -580,6 +562,14 @@
     <p>&copy; 2025 The New Brunei Digest. All rights reserved.</p>
   </div>
 </footer>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const dateElement = document.querySelector(".header-date");
+    const today = new Date();
 
+    const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+    dateElement.textContent = today.toLocaleDateString("en-US", options);
+  });
+</script>
 </body>
 </html>
