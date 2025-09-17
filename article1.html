@@ -214,52 +214,81 @@ footer {
 .footer-bottom { font-size:0.85rem; color:#ccc; }
 
 /* HORIZONTAL SCROLL SECTION */
-/* HORIZONTAL SCROLL SECTION (refined to match main page) */
 .scroll-wrapper {
   max-width: 1200px;
-  margin: 1.5rem auto;   /* was 2rem */
-  padding: 0 0.5rem;     /* was 0 1rem */
+  margin: 2rem auto;    /* match homepage */
+  padding: 0 1rem;
 }
+
+/* HORIZONTAL SCROLL SECTION */
 .scroll-section {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
-  gap: 15px;             /* was 20px */
-  padding: 15px 0;       /* was 20px 0 */
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   justify-content: start;
+
+  background: #f5f7fb;   /* same as homepage */
+  padding: 16px;
+  gap: 16px;
+  border-radius: 8px;
 }
 .scroll-section::-webkit-scrollbar { display: none; }
 
 .scroll-box {
   flex: 0 0 auto;
-  min-width: 220px;      /* was 250px */
-  background: #f9f9f9;
-  border-radius: 10px;   /* was 12px */
-  padding: 15px;         /* was 20px */
+  min-width: 250px;      /* same as homepage */
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
   text-decoration: none;
   color: inherit;
   scroll-snap-align: start;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06); /* lighter shadow */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.scroll-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 .scroll-tag {
   display: inline-block;
   background: #052962;
   color: #fff;
-  font-size: 16px;       /* was 18px */
+  font-size: 16px;
   font-weight: bold;
-  padding: 4px 8px;      /* was 5px 10px */
+  padding: 6px 10px;
   border-radius: 4px;
-  margin-bottom: 8px;    /* was 10px */
+  margin-bottom: 10px;
 }
 
-.scroll-box h3 {
-  margin: 20px 0 5px 0;  /* was 30px */
-  font-size: 16px;       /* was 18px */
-  color: #052962;
+/* MOBILE overrides */
+@media (max-width: 767px) {
+  .scroll-section {
+    gap: 12px;
+    padding: 12px;
+  }
+  .scroll-box {
+    min-width: 180px;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .scroll-tag {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;  /* pill shape */
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+  .scroll-box h3 {
+    margin: 12px 0 4px 0;
+    font-size: 15px;
+  }
 }
 /* QUICK FACTS BOX */
 .quick-facts {
