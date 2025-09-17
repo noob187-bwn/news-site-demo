@@ -1,21 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Article Page - The New Brunei Digest</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <style>
-    /* RESET */
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: Georgia, Helvetica, sans-serif; background:#fafafa; color:#111; line-height:1.7; }
-    a { text-decoration:none; color:inherit; }
-    img { max-width:100%; display:block; }
+<style>
+/* RESET */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: Georgia, Helvetica, sans-serif; background:#fafafa; color:#111; line-height:1.7; }
+a { text-decoration:none; color:inherit; }
+img { max-width:100%; display:block; }
 
-/* HEADER (matches main page grid) */
+/* HEADER (grid like homepage) */
 header {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr; /* Opinion | Article | Sidebar */
+  grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
   padding: 1rem;
   border-bottom: 2px solid #ddd;
@@ -24,372 +17,268 @@ header {
   top: 0;
   z-index: 1000;
 }
-
 .logo-container {
-  grid-column: 2;              /* keep masthead centered */
+  grid-column: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.2rem;                 /* reduce vertical spacing */
+  gap: 0.2rem;
+}
+.site-title { text-align: center; font-weight: bold; line-height: 1.1; margin-bottom: 0.2rem; }
+.site-title-small { font-family: 'Playfair Display', serif; font-size: 1rem; color: #111; }
+.site-title-main { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #052962; }
+.site-logo { height: 35px; margin: 0.2rem 0; }
+.date-display { margin-top: 0.5rem; text-align: center; font-style: italic; }
+
+/* GRID LAYOUT */
+main {
+  display:grid;
+  grid-template-columns:1fr 2fr 1fr;
+  gap:2rem;
+  margin:2rem auto;
+  max-width:1200px;
+  padding:0 1rem;
 }
 
-.site-title {
-  text-align: center;
-  font-weight: bold;
-  line-height: 1.1;            /* tighter line spacing */
-  margin-bottom: 0.2rem;       /* small space below titles */
+/* MOBILE HEADER + GRID REORDER */
+@media(max-width:767px){
+  header {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:0.5rem;
+  }
+  .logo-container { grid-column:auto; }
+
+  main { display:flex; flex-direction:column; }
+  .article-column { order:1; }
+  .sidebar { order:2; display:flex; flex-direction:column; }
+  .left-column { order:3; }
+
+  .sidebar .box.advert { order:1; }
+  .left-column { order:2; }
+  .sidebar .box.most-read { order:3; }
+  .sidebar .trending-box { order:4; }
 }
 
-.site-title-small {
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;             /* slightly smaller */
-  color: #111;
-}
-
-.site-title-main {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.2rem;           /* slightly smaller */
-  color: #052962;
-}
-
-.site-logo {
-  height: 35px;                /* reduce logo height */
-  margin: 0.2rem 0;            /* small spacing above/below */
-}
-
-.date-display {
-    margin-top: 0.5rem;
-    text-align: center;
-}
-    /* GRID LAYOUT */
-    main {
-      display:grid;
-      grid-template-columns:1fr 2fr 1fr; /* Opinion | Article | Sidebar */
-      gap:2rem;
-      margin:2rem auto;
-      max-width:1200px;
-      padding:0 1rem;
-    }
-    @media(max-width:767px){
-      main { display:flex; flex-direction:column; }
-      .article-column { order:1; }
-      .sidebar { order:2; display:flex; flex-direction:column; }
-      .left-column { order:3; } /* move Opinion Picks into sidebar flow */
-
-      /* Reorder inside sidebar */
-      .sidebar .box.advert { order:1; }   /* Advertisement */
-      .left-column { order:2; }           /* Opinion Picks (relocated) */
-      .sidebar .box.most-read { order:3; }/* Most Read */
-      .sidebar .trending-box { order:4; } /* Trending */
-    }
-
-    /* ARTICLE */
-    .article-column { display:flex; flex-direction:column; gap:1rem; }
+/* ARTICLE */
+.article-column { display:flex; flex-direction:column; gap:1rem; }
 .article-photo {
   position: relative;
-  margin-bottom: 1rem;
-  overflow: hidden;           /* keep overlay inside */
-  padding-bottom: 8rem;       /* reserve space for overlay */
+  margin-bottom: 8rem; /* space for overlay */
+  overflow: visible;
 }
-
-.article-photo img { 
-  border-radius: 6px; 
-  display: block;
-  width: 100%;
-}
+.article-photo img { border-radius: 6px; width:100%; display:block; }
 
 .overlay-box {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  top: 75%; /* 1/4 from bottom */
+  left: 0; right: 0;
   background: rgba(5,41,98,0.85);
   color: #fff;
   padding: 1rem 1.2rem;
-  border-radius: 0 0 6px 6px;
+  border-radius: 6px;
 }
-
 @media (max-width: 767px) {
-  .article-photo {
-    padding-bottom: 12rem;    /* more space for taller overlay on mobile */
-  }
-
   .overlay-box {
-    width: 90%;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    margin-top: -25%;
+    background: rgba(5,41,98,0.85);
+    padding: 1rem 1.2rem;
     border-radius: 8px;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
-}    .overlay-box h1 {
-      color:#FFD700;
-      font-size:2rem; margin-bottom:0.5rem; font-family:'Playfair Display',serif;
-    }
-    .overlay-box p {
-      font-size:1.1rem; font-style:italic; margin:0;
-    }
-    .article-meta { font-size:0.9rem; color:#666; margin:1rem 0; }
-    .article-body p { margin-bottom:1rem; text-align:justify; }
-
-    /* SIDEBAR */
-    .sidebar .box {
-      background:#fff; border:1px solid #ddd; padding:1rem;
-      border-radius:6px; margin-bottom:1.5rem;
-    }
-    .sidebar h3 { margin-bottom:0.5rem; color:#052962; }
-    .sidebar ol { padding-left:1.2rem; }
-
-    /* TRENDING BOX */
-    .trending-box {
-      border:2px solid #052962;
-      border-radius:8px;
-      padding:1rem;
-      background:#f0f4f9;
-    }
-    .trending-video {
-      width:100%; height:200px; margin-bottom:1rem;
-      border-radius:6px; overflow:hidden;
-    }
-    .trending-video iframe { width:100%; height:100%; border:none; }
-    .trending-list { list-style:none; padding:0; margin:0; }
-    .trending-list li { margin-bottom:0.5rem; }
-    .trending-list a { color:#052962; font-weight:bold; text-decoration:none; }
-    .trending-list a:hover { text-decoration:underline; }
-
-    /* FOOTER */
-    footer {
-      background:#052962; color:#fff; text-align:center;
-      padding:1.5rem 1rem; margin-top:2rem;
-    }
-    .footer-links {
-      display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;
-      margin-bottom:0.8rem;
-    }
-    .footer-links a { color:#fff; font-weight:bold; }
-    .footer-links a:hover { color:#FFD700; }
-    .footer-bottom { font-size:0.85rem; color:#ccc; }
-
-/* HORIZONTAL SCROLL SECTION */
-.scroll-wrapper {
-  max-width: 1200px;   /* same as main grid */
-  margin: 2rem auto;   /* same top/bottom spacing as main */
-  padding: 0 1rem;     /* same side padding as main */
+  .article-photo { margin-bottom: 0; }
 }
+.overlay-box h1 {
+  color:#FFD700; font-size:2rem; margin-bottom:0.5rem;
+  font-family:'Playfair Display',serif;
+}
+.overlay-box p { font-size:1.1rem; font-style:italic; margin:0; }
 
+.article-meta { font-size:0.9rem; color:#666; margin:1rem 0; }
+.article-body p { margin-bottom:1rem; text-align:justify; }
+
+/* SHARE BUTTON */
+.share-button {
+  background:none; border:none; font-size:1rem; cursor:pointer;
+  color:#052962; display:flex; align-items:center; gap:0.4rem;
+}
+.share-button:hover { text-decoration:underline; }
+
+/* SIDEBAR */
+.sidebar .box {
+  background:#fff; border:1px solid #ddd; padding:1rem;
+  border-radius:6px; margin-bottom:1.5rem;
+}
+.sidebar h3 { margin-bottom:0.5rem; color:#052962; }
+.sidebar ol { padding-left:1.2rem; }
+
+/* TRENDING BOX */
+.trending-box {
+  border:2px solid #052962; border-radius:8px;
+  padding:1rem; background:#f0f4f9;
+}
+.trending-video {
+  width:100%; height:200px; margin-bottom:1rem;
+  border-radius:6px; overflow:hidden;
+}
+.trending-video iframe { width:100%; height:100%; border:none; }
+.trending-list { list-style:none; padding:0; margin:0; }
+.trending-list li { margin-bottom:0.5rem; }
+.trending-list a { color:#052962; font-weight:bold; text-decoration:none; }
+.trending-list a:hover { text-decoration:underline; }
+
+/* FOOTER */
+footer {
+  background:#052962; color:#fff; text-align:center;
+  padding:1.5rem 1rem; margin-top:2rem;
+}
+.footer-links {
+  display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;
+  margin-bottom:0.8rem;
+}
+.footer-links a { color:#fff; font-weight:bold; }
+.footer-links a:hover { color:#FFD700; }
+.footer-bottom { font-size:0.85rem; color:#ccc; }
+
+/* HORIZONTAL SCROLL (match Article2) */
+.scroll-wrapper {
+  max-width: 1200px;
+  margin: 1.5rem auto;
+  padding: 0 0.5rem;
+}
 .scroll-section {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
-  gap: 20px;
-  padding: 20px 0;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   justify-content: start;
+  background: #f5f7fb;
+  padding: 16px;
+  gap: 16px;
+  border-radius: 8px;
 }
 .scroll-section::-webkit-scrollbar { display: none; }
 
 .scroll-box {
   flex: 0 0 auto;
   min-width: 250px;
-  background: #f9f9f9;
+  background: #fff;
   border-radius: 12px;
-  padding: 20px;
+  padding: 20px; /* match Article2 */
   text-decoration: none;
   color: inherit;
   scroll-snap-align: start;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.scroll-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 .scroll-tag {
   display: inline-block;
-  background: #052962;   /* deep blue */
-  color: #fff;           /* white text */
-  font-size: 18px;
+  background: #052962;
+  color: #fff;
+  font-size: 16px;
   font-weight: bold;
-  padding: 5px 10px;
+  padding: 6px 10px;
   border-radius: 4px;
   margin-bottom: 10px;
 }
 
-.scroll-box h3 {
-  margin: 30px 0 5px 0;
-  font-size: 18px;
-  color: #052962;   /* blue font */
-}
-/* QUICK FACTS BOX */
-.quick-facts {
-  background: #fff;
-  border: 2px solid #052962;
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-}
-.quick-facts h3 {
-  margin-bottom: 0.8rem;
-  color: #052962;
-}
-.quick-facts p {
-  margin: 0.5rem 0;
-  font-size: 0.95rem;
-  line-height: 1.4;
-}
-.quick-facts strong {
-  color: #052962;
-
-}
-.opinion-picks {
-  background: #fff;
-  border: 2px solid #052962;   /* deep blue border */
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.opinion-picks h3 {
-  margin-bottom: 0.8rem;
-  color: #052962;
-}
-
-.opinion-picks ul {
-  list-style: disc;         /* show bullets */
-  padding-left: 1.2rem;     /* indent nicely */
-  margin: 0;
-}
-
-.opinion-picks li {
-  margin-bottom: 0.3rem;    /* less vertical space between items */
-  line-height: 1.3;         /* tighter line spacing for wrapped lines */
-}
-.opinion-picks a {
-  color: #052962;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.opinion-picks a:hover {
-  text-decoration: underline;
-}
-
-/* VOICES BOX WITH PORTRAIT PHOTOS */
-.voices {
-  background: #f0f4f9;
-  border: 2px solid #052962;
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.voices h3 {
-  margin-bottom: 1rem;
-  color: #052962;
-}
-
-.voice-item {
-  margin-bottom: 1.5rem;
-}
-
-.voice-item img {
-  width: 200px;          /* narrow width */
-  height: 250px;         /* taller height = portrait */
-  object-fit: cover;    /* crop to fill */
-  border-radius: 6px;   /* slight rounding */
-  border: 2px solid #052962;
-  display: block;
-  margin: 0 auto 0.5rem; /* center horizontally */
-}
-
-.voice-item h4 {
-  margin: 0.3rem 0;
-  font-size: 1rem;
-  color: #052962;
-}
-
-.voice-item blockquote {
-  margin: 0;
-  font-style: italic;
-  color: #333;
-  font-size: 0.95rem;
-  line-height: 1.4;
-}
-/* Ad container - clean */
-.article-ad {
-  text-align: center;
-  margin: 2rem 0;        /* spacing above/below */
-  max-width: 728px;      /* standard leaderboard width */
-  margin-left: auto;
-  margin-right: auto;
-}
-/* Fixed-size ad image */
-.article-ad img {
-  width: 728px;       /* fixed width */
-  height: 250px;       /* fixed height */
-  object-fit: contain; /* fit inside box without stretching */
-  display: block;
-  margin: 0 auto;
-}
+/* Mobile scroll tags become pill-shaped */
 @media (max-width: 767px) {
-  .article-ad img {
-    width: 400px;
-    height: 200px;
-  }
+  .scroll-section { gap: 12px; padding: 12px; }
+  .scroll-box { min-width: 180px; padding: 12px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .scroll-tag { font-size: 14px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 8px; letter-spacing: 0.5px; }
+  .scroll-box h3 { margin: 12px 0 4px 0; font-size: 15px; }
 }
-/* Author Box */
+
+/* QUICK FACTS */
+.quick-facts {
+  background:#fff; border:2px solid #052962; border-radius:8px;
+  padding:1rem; margin-bottom:1.5rem;
+}
+.quick-facts h3 { margin-bottom:0.8rem; color:#052962; }
+.quick-facts p { margin:0.5rem 0; font-size:0.95rem; line-height:1.4; }
+.quick-facts strong { color:#052962; }
+
+/* OPINION PICKS */
+.opinion-picks {
+  background:#fff; border:2px solid #052962; border-radius:8px;
+  padding:1rem; margin-bottom:1.5rem;
+}
+.opinion-picks h3 { margin-bottom:0.8rem; color:#052962; }
+.opinion-picks ul { list-style:disc; padding-left:1.2rem; margin:0; }
+.opinion-picks li { margin-bottom:0.3rem; line-height:1.3; }
+.opinion-picks a { color:#052962; font-weight:bold; text-decoration:none; }
+.opinion-picks a:hover { text-decoration:underline; }
+
+/* VOICES */
+.voices {
+  background:#f0f4f9; border:2px solid #052962; border-radius:8px;
+  padding:1rem; margin-bottom:1.5rem; text-align:center;
+}
+.voices h3 { margin-bottom:1rem; color:#052962; }
+.voice-item { margin-bottom:1.5rem; }
+.voice-item img {
+  width:200px; height:250px; object-fit:cover;
+  border-radius:6px; border:2px solid #052962;
+  display:block; margin:0 auto 0.5rem;
+}
+.voice-item h4 { margin:0.3rem 0; font-size:1rem; color:#052962; }
+.voice-item blockquote {
+  margin:0; font-style:italic; color:#333;
+  font-size:0.95rem; line-height:1.4;
+}
+
+/* AD BOX */
+.article-ad {
+  text-align:center; margin:2rem 0; max-width:728px;
+  margin-left:auto; margin-right:auto;
+}
+.article-ad img {
+  width:728px; height:250px; object-fit:contain;
+  display:block; margin:0 auto;
+}
+@media (max-width:767px) {
+  .article-ad img { width:400px; height:200px; }
+}
+
+/* AUTHOR BOX */
 .author-box {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  margin: 2rem 0;
-  padding: 1.2rem;
-  background: #f0f4f9;           /* light blue background */
-  border-left: 4px solid #052962; /* theme accent line */
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  display:flex; align-items:flex-start; gap:1rem;
+  margin:2rem 0; padding:1.2rem;
+  background:#f0f4f9;
+  border-left:4px solid #052962;
+  border-radius:6px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
 }
 .author-photo {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #FFD700; /* golden accent */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width:90px; height:90px; border-radius:50%;
+  object-fit:cover;
+  border:3px solid #FFD700;
+  box-shadow:0 2px 5px rgba(0,0,0,0.1);
 }
 .author-info h4 {
-  margin: 0;
-  font-size: 1.2rem;
-  font-family: 'Playfair Display', serif;
-  color: #052962;
+  margin:0; font-size:1.2rem;
+  font-family:'Playfair Display',serif;
+  color:#052962;
 }
-
 .author-info p {
-  margin: 0.4rem 0 0;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: #444;
+  margin:0.4rem 0 0; font-size:0.95rem; line-height:1.5; color:#444;
 }
-@media (max-width: 767px) {
-  .author-box {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  .author-photo {
-    margin-bottom: 0.8rem;
-  }
-}
-.share-button {
-  background: none;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-  color: #052962; /* theme blue */
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.share-button:hover {
-  text-decoration: underline;
+@media (max-width:767px){
+  .author-box { flex-direction:column; align-items:center; text-align:center; }
+  .author-photo { margin-bottom:0.8rem; }
 }
 </style>
 </head>
@@ -464,44 +353,51 @@ header {
 </div>    <!-- Center: Article -->
     <div class="article-column">
       <figure class="article-photo">
-        <img src="https://www.bruneitourism.com/wp-content/uploads/2020/04/ATV-Adventure-Brunei-2020.jpg" alt="Family tourism in Brunei">
+          <img src="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" alt="Top Story">
         <div class="overlay-box">
-          <h1>Brunei – Perfect place for family tourism</h1>
-          <p> “There is a big image for Brunei in the Islamic world because everybody knows that Brunei is committed to its Islamic culture” </p>
+          <h1>Achieving MDG as ASEAN community</h1>
+          <p> “We cannot do this on our own.” </p>
         </div>
       </figure>
 <!-- Share Button -->
 <button class="share-button" onclick="copyLink()">
   &#128257; Share
 </button>
-
       <p class="article-meta">By Waleed PD Mahdini • September 9, 2025</p>
       <div class="article-body">
-<p>BRUNEI Darussalam, on the whole received pleasant and gentle praises by many of the international media that ranged from China to the Middle East, covering the week-long Asean Tourism Forum (ATF), but the issue of visa on arrival was also acknowledged to be a sticking point in the country's bid to improve its inbound tourist volume.</p>
+<p>HIS Royal Highness Prince Mohamed Bolkiah, Minister of Foreign Affairs and Trade, yesterday commended the United Nation's Millennium Development Goals that have brought about "new confidence in the future" and which has "taught us a lot about ourselves".</p>
 
-<p>Motaz Othman, an area manager for the Islamic Tourism Magazine, who hails from Jordan but is based in London, pointed out "There is a big image for Brunei in the Islamic world because everybody knows that Brunei is committed to its Islamic culture".</p>
+<p>HRH delivered a statement during the High-Level Plenary Meeting of the UN's 65th annual General Assembly on the MDGs at the UN Headquarters in New York in which HRH outlined the Sultanate's progress towards achieving the goals and stressed the need for small, developing nations to achieve deeper levels of regional and international cooperation in order to reach the 2015 target date.</p>
 
-<p>Having attended many previous ATF meetings in Europe and Asia, "I consider Brunei a perfect sample of Islamic tourism for European, African, and American tourists because Brunei offers clean, responsible tourism and it is all family-related. You have it all here. Unlike other tourist destinations, even those of Muslim countries, there is no big problem with drugs, gambling, alcohol or prostitution. So you have a very good sample for the world. I believe this is a perfect situation." </p>
+<p>"We have learned how the Millennium Development Goals can bring our people together, our governments, our business people, our professionals and our families and communities. So far, the goals have done this very successfully. We are starting to feel new confidence in the future and I think we are less frightened by its many challenges," remarked HRH about its overall goal.</p>
 
-<p>However, despite the many positive benefits that Brunei offers as a unique tourist destination from an Islamic point of view, he narrated a story to prove his point of what he considered to be the main stumbling block to furthering Brunei's tourism goals. </p>
+<p>HRH went on to point out that as a result "our government has strengthened policy and legislation. Our public and private sectors are working together in health and education and all ministries have set long-term programmes of development".</p>
 
-<p>"A friend of mine, who is a tour operator, was invited to this ATF as a hosted buyer, and as it was a prestigious destination, his wife wanted to fly out and accompany him to Brunei. But when they applied for a visa at the Brunei Embassy in Amman, she was refused a visa, with officials citing that she had to be 'invited'. How can this be? Is it so complicated to facilitate visas for tourists?" </p>
+<p>Adding all these to the country's comprehensive housing programmes and its commitment to the rule of law, "we can see that work towards the goals has done a great deal to strengthen social welfare".</p>
 
-<p>He went on to say that the Middle East market is a big bonus not only for Brunei, but also for Asean tourism. "It's perfect. We have similar food and cultures with the Asean countries." </p>
+<p>But the pursuit of the MDGs has also taught the people and government of Brunei Darussalam another important lesson, HRH said- one that "has taught us a lot about ourselves".</p>
 
-<p>Motaz used the comparison of Malaysia, explaining why it continues to be so successful in attracting millions of tourists from the Middle East. </p>
+<p>Acknowledging the fact that Brunei is a small, developing nation and that "we cannot do everything on our own", HRH highlighted the importance of the Sultanate's membership in the Asean regional organisation. "It has a great role to play and I think this is because it also has a development target," which HRH noted is presenting challenges to all of its 10-members to truly become an "Asean Community".</p>
 
-    <div class="article-ad">
-  <span>Advertisement</span>
-  <img src=" https://bibd.com.bn/wp-content/uploads/2025/05/A4-Size-21cm-x-29.7cm_b9193f353332aa880dd5cb6417bd0361-724x1024.jpg " alt="Advertisement">
-</div>
+<p>In fact, the establishment of Asean's three pillars for a single community shares the same immediate target date as the eight goals of the UN MDGs, which is 2015, HRH noted.</p>
 
+<p>"Our method is to establish what we describe as 'connectivity' and I am sure that nothing will give us stronger 'connection' than achieving the Millennium Goals together as partners," HRH went on to emphasise, adding: "After all, the goals are at the heart of any real community and the lesson here is an inspiring one. It shows they can be both a national and regional guide."</p>
 
-<p>"It is unfair to compare Brunei to Malaysia because it is a much bigger country and it also offers many other alternatives. Here in Brunei, I believe that the authorities are looking for some class tourism and not just mass tourism. You are targeting rich people, with families, who want to enjoy a safe, peaceful destination. Malaysia attracts the eyes of Arabs and people from the Middle East because they have big promotions and huge alternatives. For instance, out of an Islamic family, the women prefer shopping, the children like to be engaged in a lot of activities and the men can go for other alternatives. Brunei has very limited alternatives for this class of people. Even your Royal Brunei Airlines only flies to Dubai and Jeddah. Yes, a lot is being done, but you are not yet a tourist destination." </p>
+<p>But HRH also noted the difficulties in what he termed as "a lesson that we are still trying to learn" - that concerning the natural environment in general and, specifically, bio-diversity - whereby "we are finding it difficult to reach the targets".</p>
 
-<p>He went on to surmise that it was "because of a prestige issue that you are targeting Europeans". Brunei has focused itself onto the eco-tourism niche. "Many Europeans are fed up of going to bars, clubs and that kind of entertainment when they visit foreign countries, but there is a growing interest in enjoying nature nowadays. And Brunei is doing well with eco-tourism. It is not opening up the country for everyone and thus it is able to keep its country clean along with its culture and heritage." </p>
+<p>Despite the fact that the Sultanate is signatory to key international agreements on the environment, "we have a very real problem", noted HRH, which he summed up quite simply: "We don't know enough.</p>
 
-  </div>
+<p>"Statistics often contradict each other. Basic facts are frequently disputed. Even when we are satisfied with the information we get, we cannot implement recommendations. We can do the planning and pass the legislation. We can even provide much of the physical infrastructure but there is very little else we can do if we don't have enough highly skilled people," HRH listed out to the assembled audience of world leaders and statesmen.</p>
+
+<p>"This is always going to be a big problem because of our low population and our small domestic market," HRH added, pointing to the fact that "unless this situation changes, some of the goals will be very hard to achieve".</p>
+
+<p>But then HRH underscored, in his opinion, the true benefit of the MDGs. Noting, "success cannot depend entirely on each individual country", HRH called for "deep levels of cooperation, especially sharing ideas and expertise", which HRH highlighted "as the biggest single lesson we have learned in the last 10 years" and reaffirmed that Brunei Darussalam "will do whatever we can to strengthen these efforts".</p>
+
+<p>Adopted by world leaders in 2000 and set to be achieved by 2015, the MDGs are both global and local, which are customised by each country to suit their specific development needs. They provide a framework for the entire international community to work together towards a common end - by simply ensuring that human development reaches everyone, everywhere.</p>
+
+<p>The UN's Development Programme believes: "If these goals are achieved, world poverty will be cut by half, tens of millions of lives will be saved, and billions more people will have the opportunity to benefit from the global economy."</p>
+
+<p>The eight goals of the UN Millennium Development Goals are eradicating extreme poverty and hunger; achieving universal primary education; promoting gender equality and empowering women; reducing child mortality; improving maternal health; combating HIV/AIDS, malaria and other diseases; ensuring environmental sustainability and developing a global partnership for development.</p>          </div>
 <!-- Author Box -->
 <div class="author-box">
   <img src="https://bruneibebc.com/wp-content/uploads/2022/11/12-200x200.jpg" alt="Author Photo" class="author-photo">
@@ -576,5 +472,4 @@ header {
 </script>
 </body>
 </html>
-
 
