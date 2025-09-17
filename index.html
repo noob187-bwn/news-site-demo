@@ -365,7 +365,29 @@ footer a:hover {
   .top-story-overlay-desktop h1 { font-size: 1.2rem; }
   .top-story-overlay-desktop p { font-size: 0.9rem; line-height: 1.4; }
   .top-story-overlay-desktop .read-more { color: #FFD700; }
-}</style>
+}
+@media (max-width: 767px) {
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .top-story-section { order: 1; }
+  .economy-section   { order: 2; }
+  .opinion-section   { order: 3; }
+  .analysis-section  { order: 4; }
+  .ad-right, .advertisement { order: 5; }
+  .trending-box      { order: 6; }
+}
+.read-more {
+  display: inline-block;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem; /* add extra space below */
+  font-weight: bold;
+  color: #052962;
+  text-decoration: none;
+}
+</style>
 </head>
 <body>
 
@@ -518,7 +540,7 @@ footer a:hover {
       <section class="trending-box">
         <h2>Trending</h2>
         <div class="trending-video">
-          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Trending Video" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/XWq5kBlakcQ" title="Trending Video" allowfullscreen></iframe>
         </div>
         <ul class="trending-list">
           <li><a href="article8.html">Providing jobs necessary duty</a></li>
