@@ -1,21 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Article Page - The New Brunei Digest</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <style>
-    /* RESET */
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: Georgia, Helvetica, sans-serif; background:#fafafa; color:#111; line-height:1.7; }
-    a { text-decoration:none; color:inherit; }
-    img { max-width:100%; display:block; }
+<style>
+/* RESET */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: Georgia, Helvetica, sans-serif; background:#fafafa; color:#111; line-height:1.7; }
+a { text-decoration:none; color:inherit; }
+img { max-width:100%; display:block; }
 
-/* HEADER (matches main page grid) */
+/* HEADER (grid like homepage) */
 header {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr; /* Opinion | Article | Sidebar */
+  grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
   padding: 1rem;
   border-bottom: 2px solid #ddd;
@@ -24,372 +17,235 @@ header {
   top: 0;
   z-index: 1000;
 }
-
 .logo-container {
-  grid-column: 2;              /* keep masthead centered */
+  grid-column: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.2rem;                 /* reduce vertical spacing */
+  gap: 0.2rem;
+}
+.site-title { text-align: center; font-weight: bold; line-height: 1.1; margin-bottom: 0.2rem; }
+.site-title-small { font-family: 'Playfair Display', serif; font-size: 1rem; color: #111; }
+.site-title-main { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #052962; }
+.site-logo { height: 35px; margin: 0.2rem 0; }
+.date-display { margin-top: 0.5rem; text-align: center; font-style: italic; }
+
+/* GRID LAYOUT */
+main {
+  display:grid;
+  grid-template-columns:1fr 2fr 1fr;
+  gap:2rem;
+  margin:2rem auto;
+  max-width:1200px;
+  padding:0 1rem;
 }
 
-.site-title {
-  text-align: center;
-  font-weight: bold;
-  line-height: 1.1;            /* tighter line spacing */
-  margin-bottom: 0.2rem;       /* small space below titles */
+/* MOBILE HEADER + GRID REORDER */
+@media(max-width:767px){
+  header {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:0.5rem;
+  }
+  .logo-container { grid-column:auto; }
+
+  main { display:flex; flex-direction:column; }
+  .article-column { order:1; }
+  .sidebar { order:2; display:flex; flex-direction:column; }
+  .left-column { order:3; }
+
+  .sidebar .box.advert { order:1; }
+  .left-column { order:2; }
+  .sidebar .box.most-read { order:3; }
+  .sidebar .trending-box { order:4; }
 }
 
-.site-title-small {
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;             /* slightly smaller */
-  color: #111;
-}
-
-.site-title-main {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.2rem;           /* slightly smaller */
-  color: #052962;
-}
-
-.site-logo {
-  height: 35px;                /* reduce logo height */
-  margin: 0.2rem 0;            /* small spacing above/below */
-}
-
-.date-display {
-    margin-top: 0.5rem;
-    text-align: center;
-}
-    /* GRID LAYOUT */
-    main {
-      display:grid;
-      grid-template-columns:1fr 2fr 1fr; /* Opinion | Article | Sidebar */
-      gap:2rem;
-      margin:2rem auto;
-      max-width:1200px;
-      padding:0 1rem;
-    }
-    @media(max-width:767px){
-      main { display:flex; flex-direction:column; }
-      .article-column { order:1; }
-      .sidebar { order:2; display:flex; flex-direction:column; }
-      .left-column { order:3; } /* move Opinion Picks into sidebar flow */
-
-      /* Reorder inside sidebar */
-      .sidebar .box.advert { order:1; }   /* Advertisement */
-      .left-column { order:2; }           /* Opinion Picks (relocated) */
-      .sidebar .box.most-read { order:3; }/* Most Read */
-      .sidebar .trending-box { order:4; } /* Trending */
-    }
-
-    /* ARTICLE */
-    .article-column { display:flex; flex-direction:column; gap:1rem; }
+/* ARTICLE */
+.article-column { display:flex; flex-direction:column; gap:1rem; }
 .article-photo {
   position: relative;
-  margin-bottom: 1rem;
-  overflow: hidden;           /* keep overlay inside */
-  padding-bottom: 8rem;       /* reserve space for overlay */
+  margin-bottom: 8rem; /* space for overlay */
+  overflow: visible;
 }
-
-.article-photo img { 
-  border-radius: 6px; 
-  display: block;
-  width: 100%;
-}
+.article-photo img { border-radius: 6px; width:100%; display:block; }
 
 .overlay-box {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(5,41,98,0.85);
-  color: #fff;
-  padding: 1rem 1.2rem;
-  border-radius: 0 0 6px 6px;
+  position:absolute;
+  top:75%; /* 1/4 from bottom */
+  left:0; right:0;
+  background:rgba(5,41,98,0.85);
+  color:#fff;
+  padding:1rem 1.2rem;
+  border-radius:6px;
 }
-
 @media (max-width: 767px) {
-  .article-photo {
-    padding-bottom: 12rem;    /* more space for taller overlay on mobile */
-  }
-
   .overlay-box {
-    width: 90%;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    margin-top: -25%;
+    background: rgba(5,41,98,0.85);
+    padding: 1rem 1.2rem;
     border-radius: 8px;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
-}    .overlay-box h1 {
-      color:#FFD700;
-      font-size:2rem; margin-bottom:0.5rem; font-family:'Playfair Display',serif;
-    }
-    .overlay-box p {
-      font-size:1.1rem; font-style:italic; margin:0;
-    }
-    .article-meta { font-size:0.9rem; color:#666; margin:1rem 0; }
-    .article-body p { margin-bottom:1rem; text-align:justify; }
-
-    /* SIDEBAR */
-    .sidebar .box {
-      background:#fff; border:1px solid #ddd; padding:1rem;
-      border-radius:6px; margin-bottom:1.5rem;
-    }
-    .sidebar h3 { margin-bottom:0.5rem; color:#052962; }
-    .sidebar ol { padding-left:1.2rem; }
-
-    /* TRENDING BOX */
-    .trending-box {
-      border:2px solid #052962;
-      border-radius:8px;
-      padding:1rem;
-      background:#f0f4f9;
-    }
-    .trending-video {
-      width:100%; height:200px; margin-bottom:1rem;
-      border-radius:6px; overflow:hidden;
-    }
-    .trending-video iframe { width:100%; height:100%; border:none; }
-    .trending-list { list-style:none; padding:0; margin:0; }
-    .trending-list li { margin-bottom:0.5rem; }
-    .trending-list a { color:#052962; font-weight:bold; text-decoration:none; }
-    .trending-list a:hover { text-decoration:underline; }
-
-    /* FOOTER */
-    footer {
-      background:#052962; color:#fff; text-align:center;
-      padding:1.5rem 1rem; margin-top:2rem;
-    }
-    .footer-links {
-      display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;
-      margin-bottom:0.8rem;
-    }
-    .footer-links a { color:#fff; font-weight:bold; }
-    .footer-links a:hover { color:#FFD700; }
-    .footer-bottom { font-size:0.85rem; color:#ccc; }
-
-/* HORIZONTAL SCROLL SECTION */
-.scroll-wrapper {
-  max-width: 1200px;   /* same as main grid */
-  margin: 2rem auto;   /* same top/bottom spacing as main */
-  padding: 0 1rem;     /* same side padding as main */
+  .article-photo { margin-bottom: 0; }
 }
+.overlay-box h1 { color:#FFD700; font-size:2rem; margin-bottom:0.5rem; font-family:'Playfair Display',serif; }
+.overlay-box p { font-size:1.1rem; font-style:italic; margin:0; }
 
+.article-meta { font-size:0.9rem; color:#666; margin:1rem 0; }
+.article-body p { margin-bottom:1rem; text-align:justify; }
+
+/* SHARE BUTTON */
+.share-button {
+  background:none; border:none; font-size:1rem; cursor:pointer;
+  color:#052962; display:flex; align-items:center; gap:0.4rem;
+}
+.share-button:hover { text-decoration:underline; }
+
+/* SIDEBAR */
+.sidebar .box {
+  background:#fff; border:1px solid #ddd; padding:1rem;
+  border-radius:6px; margin-bottom:1.5rem;
+}
+.sidebar h3 { margin-bottom:0.5rem; color:#052962; }
+.sidebar ol { padding-left:1.2rem; }
+
+/* TRENDING BOX */
+.trending-box {
+  border:2px solid #052962; border-radius:8px;
+  padding:1rem; background:#f0f4f9;
+}
+.trending-video { width:100%; height:200px; margin-bottom:1rem; border-radius:6px; overflow:hidden; }
+.trending-video iframe { width:100%; height:100%; border:none; }
+.trending-list { list-style:none; padding:0; margin:0; }
+.trending-list li { margin-bottom:0.5rem; }
+.trending-list a { color:#052962; font-weight:bold; text-decoration:none; }
+.trending-list a:hover { text-decoration:underline; }
+
+/* FOOTER */
+footer {
+  background:#052962; color:#fff; text-align:center;
+  padding:1.5rem 1rem; margin-top:2rem;
+}
+.footer-links {
+  display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;
+  margin-bottom:0.8rem;
+}
+.footer-links a { color:#fff; font-weight:bold; }
+.footer-links a:hover { color:#FFD700; }
+.footer-bottom { font-size:0.85rem; color:#ccc; }
+
+/* HORIZONTAL SCROLL (match Article2–4) */
+.scroll-wrapper {
+  max-width: 1200px;
+  margin: 1.5rem auto;
+  padding: 0 0.5rem;
+}
 .scroll-section {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
-  gap: 20px;
-  padding: 20px 0;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   justify-content: start;
+  background: #f5f7fb;
+  padding: 16px;
+  gap: 16px;
+  border-radius: 8px;
 }
 .scroll-section::-webkit-scrollbar { display: none; }
 
 .scroll-box {
   flex: 0 0 auto;
   min-width: 250px;
-  background: #f9f9f9;
+  background: #fff;
   border-radius: 12px;
   padding: 20px;
   text-decoration: none;
   color: inherit;
   scroll-snap-align: start;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
+.scroll-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
 .scroll-tag {
   display: inline-block;
-  background: #052962;   /* deep blue */
-  color: #fff;           /* white text */
-  font-size: 18px;
+  background: #052962;
+  color: #fff;
+  font-size: 16px;
   font-weight: bold;
-  padding: 5px 10px;
+  padding: 6px 10px;
   border-radius: 4px;
   margin-bottom: 10px;
 }
-
-.scroll-box h3 {
-  margin: 30px 0 5px 0;
-  font-size: 18px;
-  color: #052962;   /* blue font */
-}
-/* QUICK FACTS BOX */
-.quick-facts {
-  background: #fff;
-  border: 2px solid #052962;
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-}
-.quick-facts h3 {
-  margin-bottom: 0.8rem;
-  color: #052962;
-}
-.quick-facts p {
-  margin: 0.5rem 0;
-  font-size: 0.95rem;
-  line-height: 1.4;
-}
-.quick-facts strong {
-  color: #052962;
-
-}
-.opinion-picks {
-  background: #fff;
-  border: 2px solid #052962;   /* deep blue border */
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.opinion-picks h3 {
-  margin-bottom: 0.8rem;
-  color: #052962;
-}
-
-.opinion-picks ul {
-  list-style: disc;         /* show bullets */
-  padding-left: 1.2rem;     /* indent nicely */
-  margin: 0;
-}
-
-.opinion-picks li {
-  margin-bottom: 0.3rem;    /* less vertical space between items */
-  line-height: 1.3;         /* tighter line spacing for wrapped lines */
-}
-.opinion-picks a {
-  color: #052962;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.opinion-picks a:hover {
-  text-decoration: underline;
-}
-
-/* VOICES BOX WITH PORTRAIT PHOTOS */
-.voices {
-  background: #f0f4f9;
-  border: 2px solid #052962;
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.voices h3 {
-  margin-bottom: 1rem;
-  color: #052962;
-}
-
-.voice-item {
-  margin-bottom: 1.5rem;
-}
-
-.voice-item img {
-  width: 200px;          /* narrow width */
-  height: 250px;         /* taller height = portrait */
-  object-fit: cover;    /* crop to fill */
-  border-radius: 6px;   /* slight rounding */
-  border: 2px solid #052962;
-  display: block;
-  margin: 0 auto 0.5rem; /* center horizontally */
-}
-
-.voice-item h4 {
-  margin: 0.3rem 0;
-  font-size: 1rem;
-  color: #052962;
-}
-
-.voice-item blockquote {
-  margin: 0;
-  font-style: italic;
-  color: #333;
-  font-size: 0.95rem;
-  line-height: 1.4;
-}
-/* Ad container - clean */
-.article-ad {
-  text-align: center;
-  margin: 2rem 0;        /* spacing above/below */
-  max-width: 728px;      /* standard leaderboard width */
-  margin-left: auto;
-  margin-right: auto;
-}
-/* Fixed-size ad image */
-.article-ad img {
-  width: 728px;       /* fixed width */
-  height: 250px;       /* fixed height */
-  object-fit: contain; /* fit inside box without stretching */
-  display: block;
-  margin: 0 auto;
-}
 @media (max-width: 767px) {
-  .article-ad img {
-    width: 400px;
-    height: 200px;
-  }
+  .scroll-section { gap: 12px; padding: 12px; }
+  .scroll-box { min-width: 180px; padding: 12px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .scroll-tag { font-size: 14px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 8px; letter-spacing: 0.5px; }
+  .scroll-box h3 { margin: 12px 0 4px 0; font-size: 15px; }
 }
-/* Author Box */
+
+/* QUICK FACTS */
+.quick-facts { background:#fff; border:2px solid #052962; border-radius:8px; padding:1rem; margin-bottom:1.5rem; }
+.quick-facts h3 { margin-bottom:0.8rem; color:#052962; }
+.quick-facts p { margin:0.5rem 0; font-size:0.95rem; line-height:1.4; }
+.quick-facts strong { color:#052962; }
+
+/* OPINION PICKS */
+.opinion-picks { background:#fff; border:2px solid #052962; border-radius:8px; padding:1rem; margin-bottom:1.5rem; }
+.opinion-picks h3 { margin-bottom:0.8rem; color:#052962; }
+.opinion-picks ul { list-style:disc; padding-left:1.2rem; margin:0; }
+.opinion-picks li { margin-bottom:0.3rem; line-height:1.3; }
+.opinion-picks a { color:#052962; font-weight:bold; text-decoration:none; }
+.opinion-picks a:hover { text-decoration:underline; }
+
+/* VOICES */
+.voices { background:#f0f4f9; border:2px solid #052962; border-radius:8px; padding:1rem; margin-bottom:1.5rem; text-align:center; }
+.voices h3 { margin-bottom:1rem; color:#052962; }
+.voice-item { margin-bottom:1.5rem; }
+.voice-item img { width:200px; height:250px; object-fit:cover; border-radius:6px; border:2px solid #052962; display:block; margin:0 auto 0.5rem; }
+.voice-item h4 { margin:0.3rem 0; font-size:1rem; color:#052962; }
+.voice-item blockquote { margin:0; font-style:italic; color:#333; font-size:0.95rem; line-height:1.4; }
+
+/* AD BOX */
+.article-ad { text-align:center; margin:2rem 0; max-width:728px; margin-left:auto; margin-right:auto; }
+.article-ad img { width:728px; height:250px; object-fit:contain; display:block; margin:0 auto; }
+@media (max-width:767px) { .article-ad img { width:400px; height:200px; } }
+
+/* AUTHOR BOX */
 .author-box {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  margin: 2rem 0;
-  padding: 1.2rem;
-  background: #f0f4f9;           /* light blue background */
-  border-left: 4px solid #052962; /* theme accent line */
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  display:flex; align-items:flex-start; gap:1rem;
+  margin:2rem 0; padding:1.2rem;
+  background:#f0f4f9;
+  border-left:4px solid #052962;
+  border-radius:6px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
 }
 .author-photo {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #FFD700; /* golden accent */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width:90px; height:90px; border-radius:50%;
+  object-fit:cover;
+  border:3px solid #FFD700;
+  box-shadow:0 2px 5px rgba(0,0,0,0.1);
 }
 .author-info h4 {
-  margin: 0;
-  font-size: 1.2rem;
-  font-family: 'Playfair Display', serif;
-  color: #052962;
+  margin:0; font-size:1.2rem;
+  font-family:'Playfair Display',serif;
+  color:#052962;
 }
-
 .author-info p {
-  margin: 0.4rem 0 0;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: #444;
+  margin:0.4rem 0 0; font-size:0.95rem; line-height:1.5; color:#444;
 }
-@media (max-width: 767px) {
-  .author-box {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  .author-photo {
-    margin-bottom: 0.8rem;
-  }
-}
-.share-button {
-  background: none;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-  color: #052962; /* theme blue */
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.share-button:hover {
-  text-decoration: underline;
+@media (max-width:767px){
+  .author-box { flex-direction:column; align-items:center; text-align:center; }
+  .author-photo { margin-bottom:0.8rem; }
 }
 </style>
 </head>
@@ -467,7 +323,7 @@ header {
         <img src="https://www.mofe.gov.bn/Images1/News/2023/(05.25)%2029th%20APEC.PNG" alt="Family tourism in Brunei">
         <div class="overlay-box">
           <h1>Brunei may be small, but we have a voice in APEC</h1>
-          <p> The beauty is that in Apec, we participate as equals and we are considered as a very useful member of the grouping because we are an active and positive member. </p>
+          <p> “This summit will hopefully provide the views of thousands of delegates and business leaders to provide us with a better picture of what we are doing.” </p>
         </div>
       </figure>
 <!-- Share Button -->
@@ -479,16 +335,11 @@ header {
       <div class="article-body">
 <p>"APEC is not the answer to everything," said Dato Paduka Timothy Ong, Acting Chairman of the Brunei Economic Development Board, "but it is a rare club that includes the three biggest economies of the world, which gives prestige and value and that in itself is the beauty and the real value that comes with the membership itself."
 <p>Speaking to the Borneo Bulletin in an exclusive interview on the eve of the much-anticipated Asia Pacific Economic Cooperation (Apec) CEO Summit, which is witnessing the biggest attendance so far ever since its inception some 13 years ago, Dato Timothy explained the advantages that Brunei Darussalam's membership of the 21-member organisation brings.
-
 <p>"Despite being the smallest member in Apec, which is reflected because of the size of our economy, trade flows and physical size of it, but in per capita terms, we are significant, in fact close to those of Apec's developed countries. The beauty is that in Apec, we participate as equals and we are considered as a very useful member of the grouping because we are an active and positive member.
 <p>"This is the official recognition that our officials get, which is one of its strengths. Although we are a small country, we get a voice in a group that accounts for half of the trade in the world's economy."
 
 <p>As one of Brunei's prominent economist, Dato Timothy further explained, "Apec is all about conducting trade policies. It's about learning from each other. But we cannot dictate what Apec can do. It cannot change conditions in each member country directly. What we do is we sit down, we look at the common problems, we compare notes and this produces a pressure - a certain kind of peer group pressure - to change because if you want to be the slowest to change or develop, that's fine too. The reports that the ministers present are not secret and this exercises transparency, which can be quite powerful. This is what Apec's approach is like." </p>
 <p>The BEDB Acting Chairman however clarified: "Apec cannot legislate each economy. Each economy joins without surrendering any of its sovereignty. We join because of common challenges, such as environmental concerns, where unless we have a framework with which to talk to each other in a healthy and constructive way about our common problems, where more of our problems in this globalised world are interconnected." </p>
-    <div class="article-ad">
-  <span>Advertisement</span>
-  <img src=" https://bibd.com.bn/wp-content/uploads/2025/05/A4-Size-21cm-x-29.7cm_b9193f353332aa880dd5cb6417bd0361-724x1024.jpg " alt="Advertisement">
-</div>
 <p>As if to further emphasise his point, Dato Timothy used Brunei's hosting of Apec in 2000 as a good example: "This immediately established our credentials as it showed that other countries were comfortable to come over. These major economies would not have done so if they weren't. And that's why Singapore treats it so big." </p>
 <p>Asked what benefits that local SMEs can really attain from its membership, Dato Timothy replied: "There is a lot that we can learn from Apec. But, having said that, there is a lot that we have to do for ourselves. Apec cannot do miracles. For instance, some of the ideas that we learnt from Apec can be seen through the BEDB creating facilities at the iCentre to help ICT start-ups with overall venture capital start-ups to invest in, attracting foreign direct investments with the methanol plant to create spin-offs for local businesses, similar to those made by BLNG or Shell. Similarly, the Ministry of Industry and Primary Resources also offers schemes for SMEs where preferences are given to locals." </p>
 <p>Throughout the 20 years of its growing establishment, the 21-nation organisation has also received its fair share of criticisms of being described as another "talking shop".</p>
@@ -500,6 +351,9 @@ header {
 <p>One of the highlights of the Apec meetings is the 20th anniversary celebration, and the Bulletin asked Dato Timothy what his hopes, dreams and ambitions were for the next 20 years for Apec. </p>
 <p>"What we set out to do in Bogor for developed countries by 2010 and developing countries by 2020 is falling behind. For me, it would have to be if we could renew our commitment towards these goals. Success in life is focusing on a few things. If you try to do too many things, you can't. I see Apec as playing a supporting role for one vision of promoting trade liberalisation and we're making real progress within the next 10 years. Twenty years would be too long. What we should do is accelerate our goals instead in which trade and investment can flow freely." </p>
 <p>But he went on to poignantly emphasise the Pacific Rim's other role. "In a world that is so divided on religious, cultural, economic and political grounds, Apec's relevancy is its economic focus and sustainability where every member country is indeed separated by its religious, cultural, economic and political persuasion, so Apec is something that we need. We shall continue to keep making it better. We all have faults. But an organisation that keeps these countries together is basically very important as we can learn from our problems and share in the solutions with each other and find a common stance." </p>
+
+
+
   </div>
 <!-- Author Box -->
 <div class="author-box">
