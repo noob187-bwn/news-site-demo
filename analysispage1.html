@@ -93,45 +93,93 @@ header {
     margin-top: 0.2rem;
   }
 }
-    /* HORIZONTAL SCROLL SECTION */
-    .scroll-section {
-      display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      gap: 20px;
-      padding: 20px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      justify-content: start;
-    }
-    .scroll-section::-webkit-scrollbar { display: none; }
-    .scroll-box {
-      flex: 0 0 auto;
-      min-width: 250px;
-      background: #f9f9f9;
-      border-radius: 12px;
-      padding: 20px;
-      text-decoration: none;
-      color: inherit;
-      scroll-snap-align: start;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    }
-    .scroll-tag {
-      display: inline-block;
-      background: #052962;
-      color: #fff;
-      font-size: 18px;
-      font-weight: bold;
-      padding: 5px 10px;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-    .scroll-box h3 {
-      margin: 30px 0 5px 0;
-      font-size: 18px;
-      color:#052962;
-    }
+
+/* HORIZONTAL SCROLL SECTION */
+.scroll-section {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  justify-content: start;
+
+  background: #f5f7fb;  /* subtle grey-blue container */
+  padding: 16px;
+  gap: 16px;
+  border-radius: 8px;
+}
+.scroll-section::-webkit-scrollbar { display: none; }
+
+.scroll-box {
+  flex: 0 0 auto;
+  min-width: 250px;     /* desktop width */
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  scroll-snap-align: start;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.scroll-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.scroll-tag {
+  display: inline-block;
+  background: #052962;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.scroll-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+  /* Scroll Section */
+  .scroll-section {
+    gap: 12px;
+    padding: 12px;
+  }
+  .scroll-box {
+    min-width: 180px;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+.scroll-tag {
+  display: inline-block;
+  background: #052962;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;  /* pill shape */
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+  .scroll-box h3 {
+    margin: 12px 0 4px 0;
+    font-size: 15px;
+  }
+@media (max-width: 767px) {
+  .scroll-box {
+    min-width: 180px;
+    padding: 12px;
+  }
+  .scroll-tag {
+    font-size: 12px;
+    padding: 3px 8px;
+  }
+}
+
+
 
     /* Newspaper 3-column grid */
     main {
@@ -686,3 +734,4 @@ p {
 </script>
 </body>
 </html>
+
