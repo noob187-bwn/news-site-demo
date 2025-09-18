@@ -500,13 +500,12 @@ footer {
     <div class="footer-bottom">© 2025 The New Brunei Digest. All rights reserved.</div>
   </footer>
 <script>
-  function updateDate() {
-    const dateEl = document.getElementById('dateDisplay');
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  document.addEventListener("DOMContentLoaded", function() {
+    const dateElement = document.querySelector(".header-date");
     const today = new Date();
-    dateEl.textContent = today.toLocaleDateString('en-GB', options);
-  }
-  updateDate();
+    const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+    dateElement.textContent = today.toLocaleDateString("en-US", options);
+  });
 </script>
 <script>
   function copyLink() {
