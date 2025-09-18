@@ -344,6 +344,19 @@ h3.section-heading::before {
   color:#fff;
   text-decoration: underline;
 }
+.story h2 a {
+  color: #052962;          /* default dark blue */
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  transition: all 0.25s ease;
+}
+
+.story h2 a:hover {
+  background-color: #052962; /* blue background */
+  color: #fff;               /* white text */
+}
 
 /* Tweak font sizes on smaller screens */
 /* Tweak font sizes on smaller screens */
@@ -544,8 +557,8 @@ h3.section-heading::before {
   font-size:0.95rem;
   line-height:1.4;
 }
-/* Newspaper-style paragraphs */
-p {
+/* Newspaper-style paragraphs (only inside articles) */
+.story p {
   text-align: justify;
   text-justify: inter-word;
   margin-bottom: 1rem;
@@ -643,10 +656,9 @@ p {
 <h3 class="section-heading">Analysis</h3>
   <article class="story">
     <img src="https://static.dw.com/image/17602616_605.jpg" alt="Economy Story 1">
-    <h2>Bring back Muslim culture</h2>
+<h2><a href="article2.html">Bring back Muslim culture</a></h2>
     <div class="story-meta">By Waleed PD Mahdini, Sept 8 2025</div>
     <p> DURING the opening of the Sixth Knowledge Convention on Tuesday, His Majesty the Sultan and Yang Di-Pertuan of Brunei Darussalam consented to view the centerpiece of this year's exhibits, namely the Exhibition Gallery set up by the Balai Kenangan of Al-Marhum Sultan Haji Omar 'Ali Saifuddien Sa'adul Khairi Waddien.</p>
-    <a href="article2.html" class="read-more">Read more →</a>
   </article>
 
   <!-- Advertisement -->
