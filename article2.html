@@ -123,29 +123,31 @@ main {
 }
 .article-photo img { border-radius:6px; }
 
+/* Default (desktop) */
 .overlay-box {
-  position:absolute;
-  top:75%; /* start 1/4 from bottom */
-  left:0;
-  right:0;
-  background:rgba(5,41,98,0.85);
-  color:#fff;
-  padding:1rem 1.2rem;
-  border-radius:6px;
+  position: absolute;
+  bottom: 0;          /* sit flush at bottom of image */
+  left: 0;
+  right: 0;
+  background: rgba(5,41,98,0.85);
+  color: #fff;
+  padding: 1rem 1.2rem;
+  border-radius: 0 0 6px 6px; /* rounded only at bottom */
 }
+/* Mobile */
 @media (max-width:767px){
   .overlay-box {
-    position: relative;     /* stays in flow so it pushes content */
-    margin-top: -25%;       /* starts 1/4 from bottom of photo */
+    position: relative;
+    margin-top: -25%;   /* only overlaps 1/4 on small screens */
     background: rgba(5,41,98,0.85);
     color:#fff;
     padding: 1rem 1.2rem;
     border-radius: 8px;
-
     max-width: 90%;
     margin-left: auto;
     margin-right: auto;
   }
+}
   .article-photo {
     margin-bottom: 0;
   }
@@ -232,6 +234,7 @@ footer {
   margin: 2rem auto;
   padding: 0 1rem;
 }
+
 .scroll-section {
   display: flex;
   flex-wrap: nowrap;
@@ -240,12 +243,14 @@ footer {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   justify-content: start;
-  background: #f5f7fb;
+
+  background: #f5f7fb;   /* subtle grey-blue background */
   padding: 16px;
   gap: 16px;
   border-radius: 8px;
 }
 .scroll-section::-webkit-scrollbar { display: none; }
+
 .scroll-box {
   flex: 0 0 auto;
   min-width: 250px;
@@ -259,12 +264,13 @@ footer {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .scroll-box:hover {
-  transform: translateY(-3px);
+  transform: translateY(-5px);
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
+
 .scroll-tag {
   display: inline-block;
-  background: #052962;
+  background: #052962; /* theme blue */
   color: #fff;
   font-size: 16px;
   font-weight: bold;
@@ -272,7 +278,8 @@ footer {
   border-radius: 4px;
   margin-bottom: 10px;
 }
-/* MOBILE overrides */
+
+/* Mobile adjustments */
 @media (max-width: 767px) {
   .scroll-section {
     gap: 12px;
@@ -285,11 +292,10 @@ footer {
     box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   }
   .scroll-tag {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
-    padding: 4px 12px;
-    border-radius: 20px;
-    margin-bottom: 8px;
+    padding: 3px 8px;
+    border-radius: 20px; /* pill shape on mobile */
     letter-spacing: 0.5px;
   }
   .scroll-box h3 {
@@ -297,7 +303,6 @@ footer {
     font-size: 15px;
   }
 }
-
 /* QUICK FACTS BOX */
 .quick-facts {
   background: #fff;
@@ -444,7 +449,7 @@ footer {
   <div class="scroll-section">
     <a href="index.html" class="scroll-box">
       <div class="scroll-tag">Home</div>
-      <h3>Start your day <br> with information <br> you can trust</h3>
+      <h3> Information you can trust</h3>
     </a>
 
     <a href="analysispage1.html" class="scroll-box">
@@ -600,7 +605,4 @@ footer {
 </script>
 </body>
 </html>
-
-
-
 
