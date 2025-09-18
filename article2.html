@@ -1,10 +1,16 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-/* RESET */
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: Georgia, Helvetica, sans-serif; background:#fafafa; color:#111; line-height:1.7; }
-a { text-decoration:none; color:inherit; }
-img { max-width:100%; display:block; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article Page - The New Brunei Digest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* RESET */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: Georgia, Helvetica, sans-serif; background:#fafafa; color:#111; line-height:1.7; }
+    a { text-decoration:none; color:inherit; }
+    img { max-width:100%; display:block; }
 
 /* HEADER (match homepage) */
 header {
@@ -77,161 +83,115 @@ header {
     margin-top: 0.2rem;
   }
 }
-/* GRID LAYOUT */
-main {
-  display:grid;
-  grid-template-columns:1fr 2fr 1fr;
-  gap:2rem;
-  margin:2rem auto;
-  max-width:1200px;
-  padding:0 1rem;
-}
+    /* GRID LAYOUT */
+    main {
+      display:grid;
+      grid-template-columns:1fr 2fr 1fr; /* Opinion | Article | Sidebar */
+      gap:2rem;
+      margin:2rem auto;
+      max-width:1200px;
+      padding:0 1rem;
+    }
+    @media(max-width:767px){
+      main { display:flex; flex-direction:column; }
+      .article-column { order:1; }
+      .sidebar { order:2; display:flex; flex-direction:column; }
+      .left-column { order:3; } /* move Opinion Picks into sidebar flow */
 
-/* MOBILE HEADER + GRID REORDER */
-@media(max-width:767px){
-  header {
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    gap:0.5rem;
-  }
-  .logo-container { grid-column:auto; }
+      /* Reorder inside sidebar */
+      .sidebar .box.advert { order:1; }   /* Advertisement */
+      .left-column { order:2; }           /* Opinion Picks (relocated) */
+      .sidebar .box.most-read { order:3; }/* Most Read */
+      .sidebar .trending-box { order:4; } /* Trending */
+    }
 
-  main { display:flex; flex-direction:column; }
-  .article-column { order:1; }
-  .sidebar { order:2; display:flex; flex-direction:column; }
-  .left-column { order:3; }
-
-  .sidebar .box.advert { order:1; }
-  .left-column { order:2; }
-  .sidebar .box.most-read { order:3; }
-  .sidebar .trending-box { order:4; }
-}
-
-/* ARTICLE */
-.article-column {
-  display:flex;
-  flex-direction:column;
-  gap:1rem;
-}
-
+    /* ARTICLE */
+    .article-column { display:flex; flex-direction:column; gap:1rem; }
 .article-photo {
   position: relative;
-  margin-bottom: 8rem; /* space so overlay can extend */
-  overflow: visible;
+  margin-bottom: 1rem;
+  overflow: hidden;           /* keep overlay inside */
+  padding-bottom: 8rem;       /* reserve space for overlay */
 }
-.article-photo img { border-radius:6px; }
+
+.article-photo img { 
+  border-radius: 6px; 
+  display: block;
+  width: 100%;
+}
 
 .overlay-box {
-  position:absolute;
-  top:75%; /* start 1/4 from bottom */
-  left:0;
-  right:0;
-  background:rgba(5,41,98,0.85);
-  color:#fff;
-  padding:1rem 1.2rem;
-  border-radius:6px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5,41,98,0.85);
+  color: #fff;
+  padding: 1rem 1.2rem;
+  border-radius: 0 0 6px 6px;
 }
-@media (max-width:767px){
+
+@media (max-width: 767px) {
+  .article-photo {
+    padding-bottom: 12rem;    /* more space for taller overlay on mobile */
+  }
+
   .overlay-box {
-    position: relative;     /* stays in flow so it pushes content */
-    margin-top: -25%;       /* starts 1/4 from bottom of photo */
-    background: rgba(5,41,98,0.85);
-    color:#fff;
-    padding: 1rem 1.2rem;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
     border-radius: 8px;
-
-    max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
   }
-  .article-photo {
-    margin-bottom: 0;
-  }
-}
-/* Tighten overlay–share spacing */
-.article-photo {
-  margin-bottom: 0.5rem;  /* smaller than 8rem */
-}
+}    .overlay-box h1 {
+      color:#FFD700;
+      font-size:2rem; margin-bottom:0.5rem; font-family:'Playfair Display',serif;
+    }
+    .overlay-box p {
+      font-size:1.1rem; font-style:italic; margin:0;
+    }
+    .article-meta { font-size:0.9rem; color:#666; margin:1rem 0; }
+    .article-body p { margin-bottom:1rem; text-align:justify; }
 
-@media (max-width:767px){
-  .article-photo {
-    margin-bottom: 0.5rem; /* also smaller for mobile */
-  }
-}
-.overlay-box h1 {
-  color:#FFD700;
-  font-size:2rem;
-  margin-bottom:0.5rem;
-  font-family:'Playfair Display',serif;
-}
-.overlay-box p {
-  font-size:1.1rem;
-  font-style:italic;
-  margin:0;
-}
+    /* SIDEBAR */
+    .sidebar .box {
+      background:#fff; border:1px solid #ddd; padding:1rem;
+      border-radius:6px; margin-bottom:1.5rem;
+    }
+    .sidebar h3 { margin-bottom:0.5rem; color:#052962; }
+    .sidebar ol { padding-left:1.2rem; }
 
-.article-meta { font-size:0.9rem; color:#666; margin:1rem 0; }
-.article-body p { margin-bottom:1rem; text-align:justify; }
+    /* TRENDING BOX */
+    .trending-box {
+      border:2px solid #052962;
+      border-radius:8px;
+      padding:1rem;
+      background:#f0f4f9;
+    }
+    .trending-video {
+      width:100%; height:200px; margin-bottom:1rem;
+      border-radius:6px; overflow:hidden;
+    }
+    .trending-video iframe { width:100%; height:100%; border:none; }
+    .trending-list { list-style:none; padding:0; margin:0; }
+    .trending-list li { margin-bottom:0.5rem; }
+    .trending-list a { color:#052962; font-weight:bold; text-decoration:none; }
+    .trending-list a:hover { text-decoration:underline; }
 
-/* SHARE BUTTON */
-.share-button {
-  background:none;
-  border:none;
-  font-size:1rem;
-  cursor:pointer;
-  color:#052962;
-  display:flex;
-  align-items:center;
-  gap:0.4rem;
-}
-.share-button:hover { text-decoration:underline; }
-
-/* SIDEBAR */
-.sidebar .box {
-  background:#fff; border:1px solid #ddd; padding:1rem;
-  border-radius:6px; margin-bottom:1.5rem;
-}
-.sidebar h3 { margin-bottom:0.5rem; color:#052962; }
-.sidebar ol { padding-left:1.2rem; }
-
-/* TRENDING BOX */
-.trending-box {
-  border:2px solid #052962;
-  border-radius:8px;
-  padding:1rem;
-  background:#f0f4f9;
-}
-.trending-video {
-  width:100%; height:200px; margin-bottom:1rem;
-  border-radius:6px; overflow:hidden;
-}
-.trending-video iframe { width:100%; height:100%; border:none; }
-.trending-list { list-style:none; padding:0; margin:0; }
-.trending-list li { margin-bottom:0.5rem; }
-.trending-list a { color:#052962; font-weight:bold; text-decoration:none; }
-.trending-list a:hover { text-decoration:underline; }
-
-/* FOOTER */
-footer {
-  background:#052962; color:#fff; text-align:center;
-  padding:1.5rem 1rem; margin-top:2rem;
-}
-.footer-links {
-  display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;
-  margin-bottom:0.8rem;
-}
-.footer-links a { color:#fff; font-weight:bold; }
-.footer-links a:hover { color:#FFD700; }
-.footer-bottom { font-size:0.85rem; color:#ccc; }
+    /* FOOTER */
+    footer {
+      background:#052962; color:#fff; text-align:center;
+      padding:1.5rem 1rem; margin-top:2rem;
+    }
+    .footer-links {
+      display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;
+      margin-bottom:0.8rem;
+    }
+    .footer-links a { color:#fff; font-weight:bold; }
+    .footer-links a:hover { color:#FFD700; }
+    .footer-bottom { font-size:0.85rem; color:#ccc; }
 
 /* HORIZONTAL SCROLL SECTION */
-.scroll-wrapper {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
+/* HORIZONTAL SCROLL SECTION */
 .scroll-section {
   display: flex;
   flex-wrap: nowrap;
@@ -240,15 +200,17 @@ footer {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   justify-content: start;
-  background: #f5f7fb;
+
+  background: #f5f7fb;  /* subtle grey-blue container */
   padding: 16px;
   gap: 16px;
   border-radius: 8px;
 }
 .scroll-section::-webkit-scrollbar { display: none; }
+
 .scroll-box {
   flex: 0 0 auto;
-  min-width: 250px;
+  min-width: 250px;     /* desktop width */
   background: #fff;
   border-radius: 12px;
   padding: 20px;
@@ -259,9 +221,10 @@ footer {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .scroll-box:hover {
-  transform: translateY(-3px);
+  transform: translateY(-5px);
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
+
 .scroll-tag {
   display: inline-block;
   background: #052962;
@@ -272,7 +235,8 @@ footer {
   border-radius: 4px;
   margin-bottom: 10px;
 }
-/* MOBILE overrides */
+
+/* Mobile adjustments */
 @media (max-width: 767px) {
   .scroll-section {
     gap: 12px;
@@ -285,11 +249,10 @@ footer {
     box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   }
   .scroll-tag {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
-    padding: 4px 12px;
-    border-radius: 20px;
-    margin-bottom: 8px;
+    padding: 3px 8px;
+    border-radius: 20px;  /* pill shape */
     letter-spacing: 0.5px;
   }
   .scroll-box h3 {
@@ -297,7 +260,6 @@ footer {
     font-size: 15px;
   }
 }
-
 /* QUICK FACTS BOX */
 .quick-facts {
   background: #fff;
@@ -306,36 +268,53 @@ footer {
   padding: 1rem;
   margin-bottom: 1.5rem;
 }
-.quick-facts h3 { margin-bottom: 0.8rem; color: #052962; }
+.quick-facts h3 {
+  margin-bottom: 0.8rem;
+  color: #052962;
+}
 .quick-facts p {
   margin: 0.5rem 0;
   font-size: 0.95rem;
   line-height: 1.4;
 }
-.quick-facts strong { color: #052962; }
+.quick-facts strong {
+  color: #052962;
 
-/* OPINION PICKS */
+}
 .opinion-picks {
   background: #fff;
-  border: 2px solid #052962;
+  border: 2px solid #052962;   /* deep blue border */
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 1.5rem;
 }
-.opinion-picks h3 { margin-bottom: 0.8rem; color: #052962; }
+
+.opinion-picks h3 {
+  margin-bottom: 0.8rem;
+  color: #052962;
+}
+
 .opinion-picks ul {
-  list-style: disc;
-  padding-left: 1.2rem;
+  list-style: disc;         /* show bullets */
+  padding-left: 1.2rem;     /* indent nicely */
   margin: 0;
 }
-.opinion-picks li {
-  margin-bottom: 0.3rem;
-  line-height: 1.3;
-}
-.opinion-picks a { color: #052962; font-weight: bold; text-decoration: none; }
-.opinion-picks a:hover { text-decoration: underline; }
 
-/* VOICES BOX */
+.opinion-picks li {
+  margin-bottom: 0.3rem;    /* less vertical space between items */
+  line-height: 1.3;         /* tighter line spacing for wrapped lines */
+}
+.opinion-picks a {
+  color: #052962;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.opinion-picks a:hover {
+  text-decoration: underline;
+}
+
+/* VOICES BOX WITH PORTRAIT PHOTOS */
 .voices {
   background: #f0f4f9;
   border: 2px solid #052962;
@@ -344,21 +323,32 @@ footer {
   margin-bottom: 1.5rem;
   text-align: center;
 }
-.voices h3 { margin-bottom: 1rem; color: #052962; }
-.voice-item { margin-bottom: 1.5rem; }
+
+.voices h3 {
+  margin-bottom: 1rem;
+  color: #052962;
+}
+
+.voice-item {
+  margin-bottom: 1.5rem;
+}
+
 .voice-item img {
-  width: 200px; height: 250px;
-  object-fit: cover;
-  border-radius: 6px;
+  width: 200px;          /* narrow width */
+  height: 250px;         /* taller height = portrait */
+  object-fit: cover;    /* crop to fill */
+  border-radius: 6px;   /* slight rounding */
   border: 2px solid #052962;
   display: block;
-  margin: 0 auto 0.5rem;
+  margin: 0 auto 0.5rem; /* center horizontally */
 }
+
 .voice-item h4 {
   margin: 0.3rem 0;
   font-size: 1rem;
   color: #052962;
 }
+
 .voice-item blockquote {
   margin: 0;
   font-style: italic;
@@ -366,42 +356,46 @@ footer {
   font-size: 0.95rem;
   line-height: 1.4;
 }
-
-/* ARTICLE AD */
+/* Ad container - clean */
 .article-ad {
   text-align: center;
-  margin: 2rem 0;
-  max-width: 728px;
+  margin: 2rem 0;        /* spacing above/below */
+  max-width: 728px;      /* standard leaderboard width */
   margin-left: auto;
   margin-right: auto;
 }
+/* Fixed-size ad image */
 .article-ad img {
-  width: 728px; height: 250px;
-  object-fit: contain;
+  width: 728px;       /* fixed width */
+  height: 250px;       /* fixed height */
+  object-fit: contain; /* fit inside box without stretching */
   display: block;
   margin: 0 auto;
 }
 @media (max-width: 767px) {
-  .article-ad img { width: 400px; height: 200px; }
+  .article-ad img {
+    width: 400px;
+    height: 200px;
+  }
 }
-
-/* AUTHOR BOX */
+/* Author Box */
 .author-box {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
   margin: 2rem 0;
   padding: 1.2rem;
-  background: #f0f4f9;
-  border-left: 4px solid #052962;
+  background: #f0f4f9;           /* light blue background */
+  border-left: 4px solid #052962; /* theme accent line */
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 .author-photo {
-  width: 90px; height: 90px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #FFD700;
+  border: 3px solid #FFD700; /* golden accent */
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 .author-info h4 {
@@ -410,6 +404,7 @@ footer {
   font-family: 'Playfair Display', serif;
   color: #052962;
 }
+
 .author-info p {
   margin: 0.4rem 0 0;
   font-size: 0.95rem;
@@ -422,11 +417,34 @@ footer {
     align-items: center;
     text-align: center;
   }
-  .author-photo { margin-bottom: 0.8rem; }
+  .author-photo {
+    margin-bottom: 0.8rem;
+  }
+}
+.share-button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #052962; /* theme blue */
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.share-button:hover {
+  text-decoration: underline;
+}
+/* CONTAINER */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;   /* center horizontally */
+  padding: 0 1rem;
 }
 </style>
 </head>
 <body>
+
   <!-- HEADER -->
 <header>
   <div class="logo-container">
@@ -440,27 +458,28 @@ footer {
   </div>
 </header>
 <!-- SCROLL SECTION -->
-<div class="scroll-wrapper">
+<div class="container">
   <div class="scroll-section">
-    <a href="index.html" class="scroll-box">
+    <a href="homepage1.html" class="scroll-box">
       <div class="scroll-tag">Home</div>
-      <h3>Start your day <br> with information <br> you can trust</h3>
+      <h3>Start your day with information you can trust</h3>
     </a>
 
     <a href="analysispage1.html" class="scroll-box">
       <div class="scroll-tag">Analysis</div>
-      <h3>For your <br> daily dose of perspective</h3>
+      <h3>For your daily dose of perspective</h3>
     </a>
     <a href="opinionmain1.html" class="scroll-box">
       <div class="scroll-tag">Opinion</div>
-      <h3>Explore the <br> collective thought</h3>
+      <h3>Explore the collective thought</h3>
     </a>
     <a href="economymain1.html" class="scroll-box">
       <div class="scroll-tag">Economy</div>
-      <h3>What the <br> bottom-line means</h3>
+      <h3>What the bottom-line means</h3>
     </a>
   </div>
-</div>
+<div>
+
   <!-- MAIN GRID -->
   <main>
 <div class="left-column">
@@ -525,7 +544,6 @@ footer {
 <p>"We wanted to make a whole new concept this year and do away with what has become the usual norm these days of officiating an event by touching the plasma ball. In the olden days, burning the gaharu was tradition during major events. So we are hoping to revive this unique Brunei and Islamic culture. The sprinkling of the 'bunga rampai' has also these days all too often been misconceptualised because it should only be sprinkled on people, and certainly not on cars, boats or trucks," explained Hj Johari. </p>
 <p>The former senior newsman also noted that this new focus was hoped to help support the efforts by the Forestry Department and the country's economic diversification of making 'gaharu' wood a viable local commercial product. </p>
 <p>Another first during the opening was the launch of a special DVD containing the newly-arranged 'Al-Asmaa' Al-Husnaa' zikir, Raatib Al-Attaas and the special prayer to protect the monarch and the country, which are handed out to visitors until the exhibition ends on July 31. </p>
-
   </div>
 <!-- Author Box -->
 <div class="author-box">
@@ -600,7 +618,4 @@ footer {
 </script>
 </body>
 </html>
-
-
-
 
