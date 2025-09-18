@@ -114,31 +114,33 @@ main {
 .article-column { display:flex; flex-direction:column; gap:1rem; }
 .article-photo {
   position: relative;
-  margin-bottom: 8rem; /* space for overlay */
-  overflow: visible;
 }
-.article-photo img { border-radius: 6px; width:100%; display:block; }
 
+/* --- Desktop --- */
 .overlay-box {
-  position:absolute;
-  top:75%; /* 1/4 from bottom */
-  left:0; right:0;
-  background:rgba(5,41,98,0.85);
-  color:#fff;
-  padding:1rem 1.2rem;
-  border-radius:6px;
+  position: absolute;
+  bottom: 0;   /* flush to bottom of photo */
+  left: 0;
+  right: 0;
+  background: rgba(5,41,98,0.85);
+  color: #FFD700;
+  padding: 1rem 1.2rem;
+  border-radius: 0 0 6px 6px;
 }
+
+/* --- Mobile --- */
 @media (max-width: 767px) {
   .overlay-box {
-    position: relative;
-    margin-top: -25%;
+    position: relative;         /* back in flow */
+    margin-top: -25%;           /* start 1/4 from bottom, overflows out */
     background: rgba(5,41,98,0.85);
     padding: 1rem 1.2rem;
     border-radius: 8px;
-    max-width: 90%;
+    max-width: 90%;             /* centered card */
     margin-left: auto;
     margin-right: auto;
   }
+}
   .article-photo { margin-bottom: 0; }
 }
 .overlay-box h1 { color:#FFD700; font-size:2rem; margin-bottom:0.5rem; font-family:'Playfair Display',serif; }
@@ -371,7 +373,7 @@ footer {
         <img src="https://www.mofe.gov.bn/Images1/News/2023/(05.25)%2029th%20APEC.PNG" alt="Family tourism in Brunei">
         <div class="overlay-box">
           <h1>Brunei may be small, but we have a voice in APEC</h1>
-          <p> “This summit will hopefully provide the views of thousands of delegates and business leaders to provide us with a better picture of what we are doing.” </p>
+          <p> </p>
         </div>
       </figure>
 <!-- Share Button -->
@@ -476,6 +478,7 @@ footer {
 </script>
 </body>
 </html>
+
 
 
 
