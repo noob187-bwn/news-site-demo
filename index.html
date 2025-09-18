@@ -156,6 +156,19 @@ main {
   margin: 0.5rem 0;
   color:#052962;
 }
+.story h2 a {
+  color: #052962;          /* default text colour */
+  text-decoration: none;
+  display: inline-block;   /* needed for background styling */
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.story h2 a:hover {
+  background-color: #052962; /* dark blue background */
+  color: #fff;               /* white text on hover */
+}
 .story-meta {
   font-size: 0.8rem;
   font-style: italic;
@@ -388,11 +401,15 @@ footer a:hover {
   text-decoration: none;
 }
 /* Newspaper-style paragraphs */
-p {
+.story p {
   text-align: justify;
   text-justify: inter-word;
   margin-bottom: 1rem;
-  text-indent: 2em;   /* indent the first line */
+  text-indent: 2em;
+}
+footer p {
+  text-align: left;
+  text-indent: 0;
 }
 </style>
 </head>
@@ -438,26 +455,23 @@ p {
 
   <article class="story">
     <img src="https://cms-image-bucket-productionv3-ap-northeast-1-a7d2.s3.ap-northeast-1.amazonaws.com/images/7/2/2/6/47856227-3-eng-GB/Cropped-1718779699AP24066235507389.jpg" alt="Opinion Story">
-    <h2>Brunei actively involved in regional fight against piracy</h2>
+<h2><a href="article5.html">Brunei actively involved in regional fight against piracy</a></h2>
     <div class="story-meta">By Waleed PD Mahdini, Sept 12 2025</div>
     <p>"BRUNEI Darussalam is actively involved in Southeast Asia," confirmed a source yesterday about the regional efforts to curb unconventional petty thefts occurring in the South China Sea.</p>
-    <a href="article5.html" class="read-more">Read more →</a>
   </article>
 
   <article class="story">
     <img src="https://www.airforce-technology.com/wp-content/uploads/sites/6/2024/01/Brunei.jpg" alt="Opinion Story">
-    <h2>Brunei explores niche specialty</h2>
+<h2><a href="article6.html">Brunei explores niche specialty</a></h2>
     <div class="story-meta">By Waleed PD Mahdini, Sept 12 2025</div>
     <p>ON THE sidelines of the Brunei Darussalam International Defence Exhibition yesterday, one of the distinguished panel of speakers commented on the uniqueness of BRIDEX, as well as the force-multiplying benefits and prestige that it draws for the Sultanate.</p>
-    <a href="article6.html" class="read-more">Read more →</a>
   </article>
 
   <article class="story">
     <img src="https://www.mofe.gov.bn/Images1/News/2023/(05.25)%2029th%20APEC.PNG" alt="Opinion Story">
-    <h2>Brunei may be small but we have a voice in APEC</h2>
+<h2><a href="article7.html">Brunei may be small, but we have a voice in APEC</a></h2>
     <div class="story-meta">By Waleed PD Mahdini, Sept 12 2025</div>
     <p>"APEC is not the answer to everything," said Dato Paduka Timothy Ong, Acting Chairman of the Brunei Economic Development Board, "but it is a rare club that includes the three biggest economies of the world, which gives prestige and value and that in itself is the beauty and the real value that comes with the membership itself."</p>
-    <a href="article7.html" class="read-more">Read more →</a>
   </article>
 </section>
     <!-- Center Column: Top Story + Economy -->
@@ -478,10 +492,9 @@ p {
 
   <article class="story">
     <img src=" https://thescoop.co/wp-content/uploads/2021/06/wp-1623774531751-1080x768.jpg" alt="Economy Story 1">
-    <h2>Providing jobs necessary duty</h2>
+<h2><a href="article8.html">Providing jobs necessary duty</a></h2>
     <div class="story-meta">By Waleed PD Mahdini, Sept 8 2025</div>
     <p> “HAVING a job is not only about earning a living but equally important it is about honour and it is about self-respect and self-esteem,” said Pehin Datu Singamanteri Colonel (Rtd) Dato Seri Setia (Dr) Awg Hj Mohd Yasmin bin Hj Umar, Minister of Energy at the Prime Minister’s Office, as he laid emphasis on the focus and goal of the Oil & Gas Job Fair 2011 yesterday.</p>
-    <a href="article8.html" class="read-more">Read more →</a>
   </article>
 
   <!-- Advertisement -->
@@ -492,15 +505,13 @@ p {
 
   <article class="story">
     <img src=" https://www.moe.gov.bn/PublishingImages/Lists/Announcement/Latest%20News/SR%20Dato%20Othman%20(3).JPG" alt="Economy Story 2">
-    <h2>Education key to making future a better world</h2>
+<h2><a href="article10.html">Education key to making future a better world</a></h2>
     <div class="story-meta">By Waleed PD Mahdini, Sept 9 2025</div>
     <p> ONE OF the 11 fellows of the Southeast Asian Press Alliance, Aquiles Zonio, who hails from Mindanao, Philippines, is in the country to learn more about the local situation regarding freedom of the press. Having invested 25 years in the media profession, Zonio, a correspondent for the Mindanao Bureau of the Philippine Daily Enquirer met up with the Bulletin to share his findings and ask a few questions of his own.</p>
-    <a href="article10.html" class="read-more">Read more →</a>
     <img src=" https://tadamon.community/uploads/images/IMG_7624-1280x768-1_news_thumbnail_b39f693b-6f58-4d74-9726-039a2fac6ea6.jpg?v=63879963264" alt="Economy Story 2">
-    <h2>Youths urged to develop greater sense of responsibility</h2>
+<h2><a href="article9.html">Youths urged to develop greater sense of responsibility</a></h2>
     <div class="story-meta">By Waleed PD Mahdini, Sept 9 2025</div>
     <p> THE theme "My Country, Brunei Darussalam" certainly carries a very aptly patriotic message to the citizens and residents of the country, which is angled towards a particular emphasis to the country's future generations of leaders - its youth.</p>
-    <a href="article9.html" class="read-more">Read more →</a>
 
   </article>
 </section>
@@ -513,10 +524,9 @@ p {
 
   <article class="story">
     <img src="https://www.eyeonasia.gov.sg/images/asean-countries/asean-banner.jpg" alt="Analysis Story 1">
-    <h2>Achieving MDG as ASEAN community</h2>
+<h2><a href="article3.html">Achieving MDG as ASEAN community</a></h2>
     <div class="story-meta">By Waleed PD Mahdini, Sept 10 2025</div>
     <p>HIS Royal Highness Prince Mohamed Bolkiah, Minister of Foreign Affairs and Trade, yesterday commended the United Nation's Millennium Development Goals that have brought about "new confidence in the future" and which has "taught us a lot about ourselves".</p>
-    <a href="article3.html" class="read-more">Read more →</a>
   </article>
 
   <!-- Advertisement -->
@@ -528,18 +538,16 @@ p {
 
   <article class="story">
     <img src="https://static.dw.com/image/17602616_605.jpg" alt="Analysis Story 2">
-    <h2>Bring back Muslim culture</h2>
+<h2><a href="article2.html">Bring back Muslim culture</a></h2>
     <div class="story-meta">By Waleed PD Mahdini, Sept 10 2025</div>
     <p>DURING the opening of the Sixth Knowledge Convention on Tuesday, His Majesty the Sultan and Yang Di-Pertuan of Brunei Darussalam consented to view the centerpiece of this year's exhibits, namely the Exhibition Gallery set up by the Balai Kenangan of Al-Marhum Sultan Haji Omar 'Ali Saifuddien Sa'adul Khairi Waddien.</p>
-    <a href="article2.html" class="read-more">Read more →</a>
   </article>
 
   <article class="story">
     <img src="https://www.bruneitourism.com/wp-content/uploads/2020/04/ATV-Adventure-Brunei-2020.jpg" alt="Analysis Story 3">
-    <h2>Brunei – perfect place for family tourism</h2>
+<h2><a href="article4.html">Brunei – perfect place for family tourism</a></h2>
     <div class="story-meta">By Waleed PD Mahdini, Sept 10 2025</div>
     <p>BRUNEI Darussalam, on the whole received pleasant and gentle praises by many of the international media that ranged from China to the Middle East, covering the week-long Asean Tourism Forum (ATF), but the issue of visa on arrival was also acknowledged to be a sticking point in the country's bid to improve its inbound tourist volume. Motaz Othman, an area manager for the Islamic Tourism Magazine, who hails from Jordan but is based in London, pointed out "There is a big image for Brunei in the Islamic world because everybody knows that Brunei is committed to its Islamic culture".</p>
-    <a href="article4.html" class="read-more">Read more →</a>
   </article>
       <!-- Trending Box -->
       <section class="trending-box">
