@@ -191,52 +191,74 @@ header {
     .footer-bottom { font-size:0.85rem; color:#ccc; }
 
 /* HORIZONTAL SCROLL SECTION */
-.scroll-wrapper {
-  max-width: 1200px;   /* same as main grid */
-  margin: 2rem auto;   /* same top/bottom spacing as main */
-  padding: 0 1rem;     /* same side padding as main */
-}
-
+/* HORIZONTAL SCROLL SECTION */
 .scroll-section {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
-  gap: 20px;
-  padding: 20px 0;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   justify-content: start;
+
+  background: #f5f7fb;  /* subtle grey-blue container */
+  padding: 16px;
+  gap: 16px;
+  border-radius: 8px;
 }
 .scroll-section::-webkit-scrollbar { display: none; }
 
 .scroll-box {
   flex: 0 0 auto;
-  min-width: 250px;
-  background: #f9f9f9;
+  min-width: 250px;     /* desktop width */
+  background: #fff;
   border-radius: 12px;
   padding: 20px;
   text-decoration: none;
   color: inherit;
   scroll-snap-align: start;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.scroll-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 .scroll-tag {
   display: inline-block;
-  background: #052962;   /* deep blue */
-  color: #fff;           /* white text */
-  font-size: 18px;
+  background: #052962;
+  color: #fff;
+  font-size: 16px;
   font-weight: bold;
-  padding: 5px 10px;
+  padding: 6px 10px;
   border-radius: 4px;
   margin-bottom: 10px;
 }
 
-.scroll-box h3 {
-  margin: 30px 0 5px 0;
-  font-size: 18px;
-  color: #052962;   /* blue font */
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .scroll-section {
+    gap: 12px;
+    padding: 12px;
+  }
+  .scroll-box {
+    min-width: 180px;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .scroll-tag {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 20px;  /* pill shape */
+    letter-spacing: 0.5px;
+  }
+  .scroll-box h3 {
+    margin: 12px 0 4px 0;
+    font-size: 15px;
+  }
 }
 /* QUICK FACTS BOX */
 .quick-facts {
@@ -413,6 +435,12 @@ header {
 .share-button:hover {
   text-decoration: underline;
 }
+/* CONTAINER */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;   /* center horizontally */
+  padding: 0 1rem;
+}
 </style>
 </head>
 <body>
@@ -430,27 +458,28 @@ header {
   </div>
 </header>
 <!-- SCROLL SECTION -->
-<div class="scroll-wrapper">
+<div class="container">
   <div class="scroll-section">
-    <a href="index.html" class="scroll-box">
+    <a href="homepage1.html" class="scroll-box">
       <div class="scroll-tag">Home</div>
-      <h3>Start your day <br> with information <br> you can trust</h3>
+      <h3>Start your day with information you can trust</h3>
     </a>
 
     <a href="analysispage1.html" class="scroll-box">
       <div class="scroll-tag">Analysis</div>
-      <h3>For your <br> daily dose of perspective</h3>
+      <h3>For your daily dose of perspective</h3>
     </a>
     <a href="opinionmain1.html" class="scroll-box">
       <div class="scroll-tag">Opinion</div>
-      <h3>Explore the <br> collective thought</h3>
+      <h3>Explore the collective thought</h3>
     </a>
     <a href="economymain1.html" class="scroll-box">
       <div class="scroll-tag">Economy</div>
-      <h3>What the <br> bottom-line means</h3>
+      <h3>What the bottom-line means</h3>
     </a>
   </div>
-</div>
+<div>
+
   <!-- MAIN GRID -->
   <main>
 <div class="left-column">
@@ -508,10 +537,6 @@ header {
 <p> “Planning is important and all that but ultimately it is your own people who must run it. Have confidence in them. Don’t just depend on consultants,” he explained, adding: “They have no commitment; they are not willing to serve because once they finish their work, they are not bound to stay and follow through. It’s the implementation stage of any project where it is the most important and for this, it’s where your young talent comes in and that’s most important.” </p>
 
 <p>Mr Yeo first shot to prominence when he became the Permanent Secretary for Logistics, Technology Research and Development and Defence Industries at the Ministry of Defence, where he helped turn Singapore’s struggling manufacturer of munitions military into a successful international armaments supplier. </p>
-
-        <img src="https://youcanleadbn.com/wp-content/uploads/2019/05/Sealnet-Project-Brunei-2019.jpg" alt="Top Story">
-
-
 <p>He then moved on to become the Chairman of Singapore’s Economic Development Board in 1986, which oversees the city-states vast local and international investments, when Singapore’s focus began to zoom in on new areas of business opportunities and he oversaw the expansion of its aerospace, electronics and semiconductor industries and biomedical sciences, to name a few that has underpinned Singapore’s economic miracle. He has also been a passionate advocate in nurturing Singaporean SMEs and successfully encouraging its local companies to make direct investments abroad. He was also responsible for expanding Singapore’s economic links with strategic partners further afield from the Middle East, Latin America and Russia. </p>
 
 <p>Mr Yeo has also held many other prestigious posts in the Singaporean hierarchy, such as the Special Adviser for Economic Development in the Prime Minister’s Office and Chairman of the Agency for Science, Technology and Research or A*STAR that oversees Singapore’s scientific research, as well as chairing various public and private company boards. </p>
@@ -625,5 +650,4 @@ header {
 </script>
 </body>
 </html>
-
 
