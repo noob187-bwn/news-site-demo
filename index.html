@@ -413,6 +413,82 @@ footer p {
   text-align: left;
   text-indent: 0;
 }
+/* Search container in header */
+/* Search Toggle Button */
+.search-container {
+  position: absolute;
+  right: 1rem;
+  top: 1.2rem;
+}
+
+.search-toggle {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #052962;
+}
+
+/* Fullscreen Overlay */
+#search-overlay {
+  height: 0%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(5,41,98,0.95);
+  overflow: hidden;
+  transition: 0.4s;
+  z-index: 2000; /* above header */
+}
+
+/* Close button */
+#search-overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  font-size: 2.5rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Centered search box */
+.search-overlay-content {
+  position: relative;
+  top: 35%;
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+
+.search-overlay-content input {
+  padding: 0.8rem;
+  font-size: 1.2rem;
+  border: none;
+  width: 70%;
+  max-width: 400px;
+  border-radius: 4px;
+}
+
+.search-overlay-content button {
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+  background: #FFD700;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.search-overlay-content button:hover {
+  background: #e6c200;
+}
+.search-help {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #ddd;   /* light grey for contrast */
+  font-style: italic;
+  text-align: center;
+}
 </style>
 </head>
 <body>
@@ -431,9 +507,19 @@ footer p {
          alt="Site Logo" class="site-logo">
     <div class="header-date"></div> <!-- auto-filled with JS -->
   </div>
-</header>
+<div class="search-container">
+  <button class="search-toggle" onclick="openSearch()">🔍</button>
+</div>
 
-  <!-- SCROLL SECTION -->
+<!-- Fullscreen Search Overlay -->
+<div id="search-overlay">
+  <span class="closebtn" onclick="closeSearch()">&times;</span>
+  <div class="search-overlay-content">
+    <input type="text" placeholder="Search..." />
+    <button type="submit">Search</button>
+    <p class="search-help">Tip: You can search articles, categories, or authors.</p>
+  </div>
+</div>  <!-- SCROLL SECTION -->
   <div class="scroll-section">
     <a href="analysispage1.html" class="scroll-box">
       <div class="scroll-tag">Analysis</div>
@@ -607,6 +693,14 @@ footer p {
     const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
     dateElement.textContent = today.toLocaleDateString("en-US", options);
   });
+</script>
+<script>
+  function openSearch() {
+    document.getElementById("search-overlay").style.height = "100%";
+  }
+  function closeSearch() {
+    document.getElementById("search-overlay").style.height = "0%";
+  }
 </script>
 </body>
 </html>
