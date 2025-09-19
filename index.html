@@ -377,7 +377,6 @@ footer a:hover {
 
 /* ========================= */
 /* MEDIA QUERIES (Mobile)   */
-/* ========================= */
 @media (max-width: 767px) {
   /* Header */
   header {
@@ -385,6 +384,14 @@ footer a:hover {
     padding: 0.8rem 1rem;
     text-align: center;
   }
+
+  .header-date {
+    font-size: 0.75rem;      /* make it smaller */
+    white-space: nowrap;     /* keep it on one line */
+    overflow: hidden;        /* prevent overflow */
+    text-overflow: ellipsis; /* optional: add "…" if too long */
+  }
+}
   .logo-container { gap: 0.2rem; }
   .site-title-small { font-size: 0.9rem; }
   .site-title-main { font-size: 1.6rem; }
