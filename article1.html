@@ -81,6 +81,7 @@ header {
   .header-date {
     font-size: 0.85rem;
     margin-top: 0.2rem;
+
   }
 }
     /* GRID LAYOUT */
@@ -441,6 +442,100 @@ header {
   margin: 0 auto;   /* center horizontally */
   padding: 0 1rem;
 }
+/* Make header stack logo and bottom row */
+header {
+  display: flex;
+  flex-direction: column;  /* stack logo-container and header-bottom */
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 2px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #fff;
+}
+
+/* Row for date + search */
+.header-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  width: 100%;
+}
+
+.header-date {
+  grid-column: 2;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #444;
+  white-space: nowrap;  /* prevent line break everywhere */
+}
+/* Desktop search bar */
+.search-bar {
+  grid-column: 3;
+  justify-self: end;
+  margin: 0;
+  display: block;
+}
+.search-bar form {
+  display: flex;
+  align-items: center;
+}
+.search-bar input {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 20px 0 0 20px;
+  outline: none;
+}
+.search-bar button {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #ccc;
+  border-left: none;
+  background: #052962;
+  color: #fff;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+}
+.search-bar button:hover {
+  background: #003366;
+}
+
+/* Mobile toggle */
+.search-toggle {
+  display: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #052962;
+}
+
+/* Overlay search for mobile */
+.search-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5,41,98,0.95);
+  padding: 1rem;
+  z-index: 2000;
+}
+.search-overlay input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+}
+
+/* Mobile behaviour */
+@media (max-width: 767px) {
+  .search-bar { display: none; }
+  .search-toggle {
+    display: block;
+    grid-column: 3;
+    justify-self: end;
+  }
+}
 </style>
 </head>
 <body>
@@ -454,15 +549,39 @@ header {
     </div>
     <img src="https://www.information.gov.bn/PublishingImages/aboutINFO/benderbrunei1.jpg"
          alt="Logo" class="site-logo">
-<div class="header-date"></div>
+  </div>
+
+  <!-- Date + search row -->
+  <div class="container">
+    <div class="header-bottom">
+      <div class="header-date"></div>
+
+      <!-- Desktop search bar -->
+      <div class="search-bar">
+        <form action="/search" method="get">
+          <input type="text" name="q" placeholder="Search..." required>
+          <button type="submit">🔍</button>
+        </form>
+      </div>
+
+      <!-- Mobile search toggle -->
+      <div class="search-toggle">🔍</div>
+    </div>
   </div>
 </header>
+
+<!-- Mobile overlay search -->
+<div class="search-overlay">
+  <form action="/search" method="get">
+    <input type="text" name="q" placeholder="Search..." required>
+  </form>
+</div>
 <!-- SCROLL SECTION -->
 <div class="container">
   <div class="scroll-section">
-    <a href="index.html" class="scroll-box">
+    <a href="homepage1.html" class="scroll-box">
       <div class="scroll-tag">Home</div>
-      <h3>Information you can trust</h3>
+      <h3>Start your day with information you can trust</h3>
     </a>
 
     <a href="analysispage1.html" class="scroll-box">
@@ -648,8 +767,14 @@ header {
     });
   }
 </script>
+<script>
+  const toggle = document.querySelector(".search-toggle");
+  const overlay = document.querySelector(".search-overlay");
+
+  toggle.addEventListener("click", () => {
+    overlay.style.display = overlay.style.display === "block" ? "none" : "block";
+  });
+</script>
 </body>
 </html>
-
-
 
