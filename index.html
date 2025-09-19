@@ -378,11 +378,10 @@ footer a:hover {
 /* ========================= */
 /* MEDIA QUERIES (Mobile)   */
 @media (max-width: 767px) {
-  /* Header */
-  header {
-    flex-direction: column;
-    padding: 0.8rem 1rem;
-    text-align: center;
+  .header-date {
+    font-size: 0.75rem;     /* make text smaller */
+    white-space: nowrap;    /* prevent breaking into 2 lines */
+    margin-top: 0.15rem;    /* reduce the space under logo */
   }
 
   .header-date {
@@ -391,7 +390,7 @@ footer a:hover {
     overflow: hidden;        /* prevent overflow */
     text-overflow: ellipsis; /* optional: add "…" if too long */
   }
-}
+
   .logo-container { gap: 0.2rem; }
   .site-title-small { font-size: 0.9rem; }
   .site-title-main { font-size: 1.6rem; }
@@ -762,7 +761,17 @@ footer p {
     const dateElement = document.querySelector(".header-date");
     const today = new Date();
 
-    const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+    let options;
+    if (window.innerWidth <= 767) {
+      // Shorter format for mobile
+      options = { weekday: "short", month: "short", day: "numeric", year: "numeric" };
+      // Example: Fri, Sep 19 2025
+    } else {
+      // Full format for desktop
+      options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+      // Example: Friday, September 19, 2025
+    }
+
     dateElement.textContent = today.toLocaleDateString("en-US", options);
   });
 </script>
