@@ -654,8 +654,10 @@ h3.section-heading::before {
 .header-date {
   grid-column: 2;        /* always centered */
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   color: #444;
+white-space: nowrap;       /* keep it one line */
+  overflow: visible;  
 }
 .search-bar {
   grid-column: 3;        /* always right */
