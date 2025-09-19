@@ -25,15 +25,12 @@ body {
 
 /* HEADER */
 header {
+  position: relative; /* important so .search-bar positions inside header */
   display: flex;
-  justify-content: center;
+  justify-content: center; /* centers the logo-container */
   align-items: center;
-  flex-wrap: wrap;
   padding: 1rem;
   border-bottom: 2px solid #ddd;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
   background: #fff;
 }
 .logo-container {
@@ -413,6 +410,69 @@ footer p {
   text-align: left;
   text-indent: 0;
 }
+/* Desktop search bar */
+.search-bar {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%); /* keeps it vertically centered */
+}
+.search-bar form {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 20px 0 0 20px;
+  outline: none;
+}
+
+.search-bar button {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #ccc;
+  border-left: none;
+  background: #052962;
+  color: #fff;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background: #003366;
+}
+.search-toggle {
+  display: none;
+  margin-left: auto;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.search-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5,41,98,0.95);
+  padding: 1rem;
+  z-index: 2000;
+}
+
+.search-overlay input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+}
+
+/* Responsive behaviour */
+@media (max-width: 767px) {
+  .search-bar { display: none; }
+  .search-toggle { display: block; color: #052962; }
+}
 </style>
 </head>
 <body>
@@ -420,7 +480,6 @@ footer p {
 <div class="container">
 
   <!-- HEADER -->
-<!-- HEADER -->
 <header>
   <div class="logo-container">
     <div class="site-title">
@@ -429,8 +488,23 @@ footer p {
     </div>
     <img src="https://www.information.gov.bn/PublishingImages/aboutINFO/benderbrunei1.jpg" 
          alt="Site Logo" class="site-logo">
-    <div class="header-date"></div> <!-- auto-filled with JS -->
+    <div class="header-date"></div>
   </div>
+
+  <!-- Search bar -->
+  <div class="search-bar">
+    <form action="/search" method="get">
+      <input type="text" name="q" placeholder="Search..." required>
+      <button type="submit">🔍</button>
+    </form>
+  </div>
+<div class="search-toggle">🔍</div>
+
+<div class="search-overlay">
+  <form action="/search" method="get">
+    <input type="text" name="q" placeholder="Search..." required>
+  </form>
+</div>
 </header>
 
   <!-- SCROLL SECTION -->
@@ -606,6 +680,14 @@ footer p {
 
     const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
     dateElement.textContent = today.toLocaleDateString("en-US", options);
+  });
+</script>
+<script>
+  const toggle = document.querySelector(".search-toggle");
+  const overlay = document.querySelector(".search-overlay");
+
+  toggle.addEventListener("click", () => {
+    overlay.style.display = overlay.style.display === "block" ? "none" : "block";
   });
 </script>
 </body>
