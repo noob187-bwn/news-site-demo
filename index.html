@@ -405,7 +405,7 @@ footer a:hover {
   height: 40px;
   width: auto;
   margin-top: 0.3rem;   /* pushes logo down */
-  margin-bottom: 0.1rem; /* keeps date close under logo */
+  margin-bottom: 0.05rem; /* keeps date close under logo */
 }
 
 /* Bring date closer to logo */
@@ -563,6 +563,21 @@ margin-right: 0.5rem;
 @media (max-width: 767px) {
   .search-bar { display: none; }
   .search-toggle { display: block; color: #052962; }
+}
+header.compact {
+  padding: 0.2rem 0.5rem;
+}
+header.compact .site-title-small {
+  font-size: 0.7rem;
+}
+header.compact .site-title-main {
+  font-size: 1.1rem;
+}
+header.compact .site-logo {
+  height: 24px;
+}
+header.compact .header-date {
+  font-size: 0.6rem;
 }
 </style>
 </head>
@@ -781,12 +796,23 @@ margin-right: 0.5rem;
 
     dateElement.textContent = today.toLocaleDateString("en-US", options);
   });
-</script><script>
+</script>
+<script>
   const toggle = document.querySelector(".search-toggle");
   const overlay = document.querySelector(".search-overlay");
 
   toggle.addEventListener("click", () => {
     overlay.style.display = overlay.style.display === "block" ? "none" : "block";
+  });
+</script>
+<script>
+  window.addEventListener("scroll", () => {
+    const header = document.querySelector("header");
+    if (window.scrollY > 50) {
+      header.classList.add("compact");
+    } else {
+      header.classList.remove("compact");
+    }
   });
 </script>
 </body>
