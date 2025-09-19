@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The New Brunei Digest</title>
@@ -70,13 +71,14 @@ header {
 
 /* DATE DISPLAY */
 .header-date {
-  font-size: 0.95rem;
-  font-style: italic;
-  margin-top: 0.3rem;
-  color: #666;
+  grid-column: 2;
   text-align: center;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #666;
+  white-space: nowrap;
+  margin: 0;
 }
-
 /* MOBILE HEADER */
 @media (max-width: 767px) {
   header {
@@ -565,12 +567,123 @@ h3.section-heading::before {
   margin-bottom: 1rem;
   text-indent: 2em;   /* indent the first line */
 }
+/* SEARCH BAR */
+.search-bar {
+  grid-column: 3;     /* place in third column */
+  justify-self: end;  /* stick to the far right of that column */
+  margin: 0;
+}
+.search-bar input {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-width: 200px;
+  font-size: 0.95rem;
+}
+
+.search-bar button {
+  padding: 0.4rem 0.8rem;
+  background: #052962;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background: #FF6600;
+}
+/* ARTICLE DIVIDERS */
+.article-divider {
+  border: none;
+  height: 1px;
+  background: #ddd;       /* light grey line */
+  margin: 1.5rem 0;       /* space above and below */
+}
+/* Date + search row */
+.header-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* left spacer | centered date | right spacer */
+  align-items: center;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+/* Search bar stays right */
+.search-bar form {
+  display: flex;
+  align-items: center;
+}
+.search-bar input {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 20px 0 0 20px;
+  outline: none;
+}
+.search-bar button {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #ccc;
+  border-left: none;
+  background: #052962;
+  color: #fff;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+}
+.search-bar button:hover {
+  background: #003366;
+}
+
+/* Mobile behaviour */
+.search-toggle {
+  margin-left: auto;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #052962;
+  display: none; /* hidden on desktop */
+}
+
+/* Overlay search for mobile */
+.search-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5,41,98,0.95);
+  padding: 1rem;
+  z-index: 2000;
+}
+.search-overlay input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+}
+
+@media (max-width: 767px) {
+  .header-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* equal columns */
+  }
+  .header-date {
+    grid-column: 2;
+    text-align: center;
+    margin: 0;
+  }
+  .search-bar { display: none; }  /* hide full bar */
+  .search-toggle {
+    display: block;
+    grid-column: 3;     /* far-right column */
+    justify-self: end;  /* stick to the right edge */
+  }
+}
   </style>
 </head>
 <body>
 
 
   <!-- HEADER -->
+<!-- HEADER -->
 <header>
   <div class="logo-container">
     <div class="site-title">
@@ -579,9 +692,31 @@ h3.section-heading::before {
     </div>
     <img src="https://www.information.gov.bn/PublishingImages/aboutINFO/benderbrunei1.jpg"
          alt="Site Logo" class="site-logo">
-    <div class="header-date"></div>
+
+    <!-- Date + search row -->
+    <div class="header-bottom">
+      <div class="header-date"></div>
+
+      <!-- Desktop search bar -->
+      <div class="search-bar">
+        <form action="/search" method="get">
+          <input type="text" name="q" placeholder="Search..." required>
+          <button type="submit">🔍</button>
+        </form>
+      </div>
+
+      <!-- Mobile search toggle -->
+      <div class="search-toggle">🔍</div>
+    </div>
   </div>
 </header>
+
+<!-- Mobile overlay search -->
+<div class="search-overlay">
+  <form action="/search" method="get">
+    <input type="text" name="q" placeholder="Search..." required>
+  </form>
+</div>
   <!-- MAIN CONTENT CONTAINER -->
   <div class="container">
 
@@ -650,7 +785,6 @@ h3.section-heading::before {
             <div class="story-meta">By Waleed PD Mahdini, Sept 15 2025</div>
             <p>Despite the fact that Brunei's maritime law enforcement agency is not participating in the two-day conference this year, which is being attended by 150 participants from 24 countries, at the Langkawi International Maritime and Aerospace (LIMA) Exhibition 2009 International Maritime Conference, the Sultanate is one of 14 members of the Regional Cooperation Agreement in Combating Piracy and Armed Robbery against Ships in Asia (ReCAAP), when it joined in 2006.</p>
             <a href="article5.html" class="read-more">Read more →</a>
-
           </div>
         </div>
 <section class="economy-section">
@@ -661,7 +795,7 @@ h3.section-heading::before {
     <div class="story-meta">By Waleed PD Mahdini, Sept 8 2025</div>
     <p> ON THE sidelines of the Brunei Darussalam International Defence Exhibition yesterday, one of the distinguished panel of speakers commented on the uniqueness of BRIDEX, as well as the force-multiplying benefits and prestige that it draws for the Sultanate.</p>
   </article>
-
+<hr class="article-divider">
   <!-- Advertisement -->
   <div class="advertisement">
     <span>Advertisement</span>
@@ -737,6 +871,14 @@ h3.section-heading::before {
   </div>
 </footer>
 <script>
+  const toggle = document.querySelector(".search-toggle");
+  const overlay = document.querySelector(".search-overlay");
+
+  toggle.addEventListener("click", () => {
+    overlay.style.display = overlay.style.display === "block" ? "none" : "block";
+  });
+</script>
+<script>
   document.addEventListener("DOMContentLoaded", function() {
     const dateElement = document.querySelector(".header-date");
     const today = new Date();
@@ -746,4 +888,3 @@ h3.section-heading::before {
 </script>
 </body>
 </html>
-
