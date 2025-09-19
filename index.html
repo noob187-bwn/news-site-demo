@@ -261,6 +261,18 @@ main {
   color: #666;
   margin-bottom: 0.3rem;
 }
+/* Divider-style between stories */
+.story {
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #ddd; /* subtle line */
+}
+
+.story:last-of-type {
+  border-bottom: none;   /* no divider under the last story in each section */
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
 .read-more {
   display:inline-block;
   margin-top:0.5rem;
@@ -578,8 +590,7 @@ margin-right: 0.5rem;
   .search-bar { display: none; }
   .search-toggle { display: block; color: #052962; }
 }
-  font-size: 0.6rem;
-}
+ 
 </style>
 </head>
 <body>
@@ -697,6 +708,8 @@ margin-right: 0.5rem;
 <h2><a href="article10.html">Education key to making future a better world</a></h2>
     <div class="story-meta">By Waleed PD Mahdini, Sept 9 2025</div>
     <p> ONE OF the 11 fellows of the Southeast Asian Press Alliance, Aquiles Zonio, who hails from Mindanao, Philippines, is in the country to learn more about the local situation regarding freedom of the press. Having invested 25 years in the media profession, Zonio, a correspondent for the Mindanao Bureau of the Philippine Daily Enquirer met up with the Bulletin to share his findings and ask a few questions of his own.</p>
+</article>
+<article class="story">
     <img src=" https://tadamon.community/uploads/images/IMG_7624-1280x768-1_news_thumbnail_b39f693b-6f58-4d74-9726-039a2fac6ea6.jpg?v=63879963264" alt="Economy Story 2">
 <h2><a href="article9.html">Youths urged to develop greater sense of responsibility</a></h2>
     <div class="story-meta">By Waleed PD Mahdini, Sept 9 2025</div>
