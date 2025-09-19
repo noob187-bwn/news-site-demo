@@ -47,22 +47,26 @@ header {
   font-weight: bold;
   line-height: 1.1;
 }
+
 .site-title-small {
   font-family: 'Playfair Display', serif;
   font-size: 1.2rem;
   color: #111;
   display: block;
 }
+header {
+    padding: 0.3rem 0.5rem; /* slimmer header */
+  }
 .site-title-main {
   font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
+  font-size: 1.2rem;
   color: #052962;
   display: inline;          /* keep it inline */
   white-space: nowrap;      /* prevent wrapping */
 }
 /* Default (mobile-first) */
 .site-logo {
-  height: 40px;
+  height: 38px;
   width: auto;
 }
 
@@ -87,7 +91,7 @@ header {
   position: absolute;
   left: 50%;
   transform: translateX(-50%); /* this forces true centering */
-  font-size: 0.9rem;
+  font-size: 0.65rem;
   font-style: italic;
   color: #666;
   text-align: center;
@@ -564,24 +568,6 @@ margin-right: 0.5rem;
   .search-bar { display: none; }
   .search-toggle { display: block; color: #052962; }
 }
-header.compact {
-  padding: 0.2rem 0.5rem;
-}
-header.compact .site-title-small {
-  font-size: 0.7rem;
-}
-header.compact .site-title-main {
-  font-size: 1.1rem;
-}
-header.compact .site-logo {
-  height: 24px;
-}
-header.compact .header-date {
-transition: padding 0.3s ease, font-size 0.3s ease, height 0.3s ease;
-header.compact {
-  transform: scale(0.9);   /* shrink header to 90% */
-  padding: 0.2rem 0.5rem;
-}
   font-size: 0.6rem;
 }
 </style>
@@ -808,16 +794,6 @@ header.compact {
 
   toggle.addEventListener("click", () => {
     overlay.style.display = overlay.style.display === "block" ? "none" : "block";
-  });
-</script>
-<script>
-  window.addEventListener("scroll", () => {
-    const header = document.querySelector("header");
-    if (window.scrollY > 50) {
-      header.classList.add("compact");
-    } else {
-      header.classList.remove("compact");
-    }
   });
 </script>
 </body>
