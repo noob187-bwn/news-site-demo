@@ -50,19 +50,17 @@ header {
 
 .site-title-small {
   font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #111;
-  display: block;
+  display: block;   /* each gets its own line */
 }
-header {
-    padding: 0.3rem 0.5rem; /* slimmer header */
-  }
+
 .site-title-main {
   font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: #052962;
-  display: inline;          /* keep it inline */
-  white-space: nowrap;      /* prevent wrapping */
+  display: block;   /* stack under .site-title-small */
+  white-space: normal; /* allow wrapping if needed */
 }
 /* Default (mobile-first) */
 .site-logo {
@@ -400,10 +398,22 @@ footer a:hover {
 }
 
 /* Space between titles (small + main) stays tight */
-.site-title {
-  margin-bottom: 0.3rem; /* adjust as needed */
-}
+@media (max-width: 767px) {
+  .site-title {
+    display: flex;
+    flex-direction: column;  /* stack vertically */
+    align-items: center;     /* keep centered */
+    gap: 0.1rem;             /* small spacing between The / New Brunei Digest */
+  }
 
+  .site-title-small {
+    font-size: 0.9rem;       /* slightly smaller on mobile */
+  }
+
+  .site-title-main {
+    font-size: 1.2rem;
+  }
+}
 /* Add more space between title and logo */
 .site-logo {
   height: 40px;
