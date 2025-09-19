@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The New Brunei Digest</title>
@@ -25,9 +26,8 @@
 /* HEADER (match homepage & articles) */
 header {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-direction: column;  /* stack logo and bottom row */
+  align-items: center;     /* keep logo centered */
   padding: 1rem;
   border-bottom: 2px solid #ddd;
   position: sticky;
@@ -35,7 +35,6 @@ header {
   z-index: 1000;
   background: #fff;
 }
-
 .logo-container {
   display: flex;
   flex-direction: column;
@@ -68,15 +67,6 @@ header {
   width: auto;
 }
 
-/* DATE DISPLAY */
-.header-date {
-  font-size: 0.95rem;
-  font-style: italic;
-  margin-top: 0.3rem;
-  color: #666;
-  text-align: center;
-}
-
 /* MOBILE HEADER */
 @media (max-width: 767px) {
   header {
@@ -88,11 +78,8 @@ header {
   .site-title-small { font-size: 0.9rem; }
   .site-title-main { font-size: 1.6rem; }
   .site-logo { height: 28px; margin: 0.2rem 0; }
-  .header-date {
-    font-size: 0.85rem;
-    margin-top: 0.2rem;
-  }
 }
+
 /* HORIZONTAL SCROLL SECTION */
 .scroll-section {
   display: flex;
@@ -177,6 +164,9 @@ header {
     padding: 3px 8px;
   }
 }
+
+
+
     /* Newspaper 3-column grid */
     main {
       display: grid;
@@ -250,10 +240,11 @@ header {
       margin: 0.5rem 0;
       color:#052962;
     }
+/* Headline hover effect */
 .story h2 a {
   color: #052962;          /* default dark blue */
   text-decoration: none;
-  display: inline-block;   /* ensures background works */
+  display: inline-block;
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
   transition: all 0.25s ease;
@@ -553,14 +544,124 @@ h3.section-heading::before {
   font-size:0.95rem;
   line-height:1.4;
 }
-/* Newspaper-style paragraphs */
-p {
+/* Newspaper-style paragraphs (only inside articles) */
+.story p {
   text-align: justify;
   text-justify: inter-word;
   margin-bottom: 1rem;
   text-indent: 2em;   /* indent the first line */
 }
-  </style>
+/* SEARCH BAR */
+/* Desktop: show search bar, hide toggle */
+.search-bar {
+  grid-column: 3;
+  justify-self: end;
+  margin: 0;
+  display: block;   /* force visible on desktop */
+}
+
+.search-toggle {
+  display: none;    /* hidden on desktop */
+}
+
+/* Mobile: hide bar, show toggle */
+@media (max-width: 767px) {
+  .search-bar {
+    display: none;  /* hide full bar */
+  }
+
+  .search-toggle {
+    display: block;       /* show icon */
+    grid-column: 3;
+    justify-self: end;
+  }
+}
+/* ARTICLE DIVIDERS */
+.article-divider {
+  border: none;
+  height: 1px;
+  background: #ddd;       /* light grey line */
+  margin: 1.5rem 0;       /* space above and below */
+}
+/* Date + search row */
+.header-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* left | center | right */
+  align-items: center;
+  width: 100%;
+}
+/* Search bar stays right */
+.search-bar form {
+  display: flex;
+  align-items: center;
+}
+.search-bar input {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 20px 0 0 20px;
+  outline: none;
+}
+.search-bar button {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #ccc;
+  border-left: none;
+  background: #052962;
+  color: #fff;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+}
+.search-bar button:hover {
+  background: #003366;
+}
+
+@media (max-width: 767px) {
+  .search-bar {
+    display: none; /* hide full search bar */
+  }
+
+  .search-toggle {
+    display: block;       /* show the toggle icon */
+    grid-column: 3;
+    justify-self: end;
+  }
+}
+/* Overlay search for mobile */
+.search-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5,41,98,0.95);
+  padding: 1rem;
+  z-index: 2000;
+}
+.search-overlay input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+}
+
+@media (max-width: 767px) {
+  .header-bottom {
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 0.5rem;
+  }
+  /* You can override styles here if needed */
+}
+.header-date {
+  grid-column: 2;        /* always centered */
+  text-align: center;
+  font-size: 0.9rem;
+  color: #444;
+}
+.search-bar {
+  grid-column: 3;        /* always right */
+  justify-self: end;     /* push to right edge of container */
+}  
+</style>
 </head>
 <body>
 
@@ -574,9 +675,32 @@ p {
     </div>
     <img src="https://www.information.gov.bn/PublishingImages/aboutINFO/benderbrunei1.jpg"
          alt="Site Logo" class="site-logo">
-    <div class="header-date"></div>
   </div>
+
+  <!-- Date + search row (inside container for alignment) -->
+<div class="container">
+  <div class="header-bottom">
+    <div class="header-date"></div>
+
+    <!-- Desktop search bar -->
+    <div class="search-bar">
+      <form action="/search" method="get">
+        <input type="text" name="q" placeholder="Search..." required>
+        <button type="submit">🔍</button>
+      </form>
+    </div>
+
+    <!-- Mobile search toggle -->
+    <div class="search-toggle">🔍</div>
+  </div>
+</div>
 </header>
+<!-- Mobile overlay search -->
+<div class="search-overlay">
+  <form action="/search" method="get">
+    <input type="text" name="q" placeholder="Search..." required>
+  </form>
+</div>
   <!-- MAIN CONTENT CONTAINER -->
   <div class="container">
 
@@ -739,6 +863,14 @@ p {
     dateElement.textContent = today.toLocaleDateString("en-US", options);
   });
 </script>
+<script>
+  const toggle = document.querySelector(".search-toggle");
+  const overlay = document.querySelector(".search-overlay");
+
+  toggle.addEventListener("click", () => {
+    overlay.style.display = overlay.style.display === "block" ? "none" : "block";
+  });
+</script>
+
 </body>
 </html>
-
