@@ -57,11 +57,18 @@ header {
   color: #052962;
   display: block;
 }
+/* Default (mobile-first) */
 .site-logo {
   height: 40px;
   width: auto;
 }
 
+/* Desktop override */
+@media (min-width: 768px) {
+  .site-logo {
+    height: 60px;   /* increase size for desktop */
+  }
+}
 /* Date + search row */
 .header-bottom {
   display: flex;
@@ -376,34 +383,36 @@ footer a:hover {
 }
 
 /* ========================= */
-/* MEDIA QUERIES (Mobile)   */
 @media (max-width: 767px) {
-  .header-date {
-    font-size: 0.75rem;     /* make text smaller */
-    white-space: nowrap;    /* prevent breaking into 2 lines */
-    margin-top: 0.15rem;    /* reduce the space under logo */
-  }
+/* Logo block */
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0; /* remove global gap so we can control individually */
+}
 
-  .header-date {
-    font-size: 0.75rem;      /* make it smaller */
-    white-space: nowrap;     /* keep it on one line */
-    overflow: hidden;        /* prevent overflow */
-    text-overflow: ellipsis; /* optional: add "…" if too long */
-  }
+/* Space between titles (small + main) stays tight */
+.site-title {
+  margin-bottom: 0.3rem; /* adjust as needed */
+}
 
-  .logo-container { gap: 0.2rem; }
-  .site-title-small { font-size: 0.9rem; }
-  .site-title-main { font-size: 1.6rem; }
-  .site-logo { height: 28px; margin: 0.2rem 0; }
+/* Add more space between title and logo */
+.site-logo {
+  height: 40px;
+  width: auto;
+  margin-top: 0.8rem;   /* pushes logo down */
+  margin-bottom: 0.2rem; /* keeps date close under logo */
+}
 
+/* Bring date closer to logo */
 .header-date {
-  font-size: 0.8rem;
-  font-style: italic;   /* makes it italic */
-  margin-top: 0.3rem;
+  margin-top: 0;   /* remove excess space */
+  font-size: 0.9rem;
+  font-style: italic;
   color: #666;
   text-align: center;
 }
-
   /* Scroll Section */
   .scroll-section {
     gap: 12px;
