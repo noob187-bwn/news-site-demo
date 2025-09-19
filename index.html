@@ -26,12 +26,14 @@ body {
 /* HEADER */
 /* Header container */
 header {
+  position: sticky;   /* stick to the viewport */
+  top: 0;             /* distance from top */
+  z-index: 1000;      /* stay above other elements */
   padding: 1rem;
   border-bottom: 2px solid #ddd;
   background: #fff;
   text-align: center;
 }
-
 /* Logo block */
 .logo-container {
   display: flex;
@@ -409,7 +411,8 @@ footer a:hover {
 /* Bring date closer to logo */
 .header-date {
   margin-top: 0;   /* remove excess space */
-  font-size: 0.75rem;
+  font-size: 0.7rem;
+white-space: nowrap;
   font-style: italic;
   color: #666;
   text-align: center;
