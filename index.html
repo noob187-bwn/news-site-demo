@@ -74,40 +74,6 @@ header {
     height: 60px;   /* increase size for desktop */
   }
 }
-/* Date + search row */
-.header-bottom {
-  display: flex;
-  justify-content: space-between; /* push date left, search right */
-  align-items: center;
-  margin-top: 0.5rem;
-  width: 100%;
-  position: relative;
-}
-
-/* Date locked to true center */
-.header-date {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%); /* this forces true centering */
-  font-size: 0.65rem;
-  font-style: italic;
-  color: #666;
-  text-align: center;
-}
-
-/* Search bar stays right */
-.search-bar {
-  margin-left: auto;
-}
-
-.search-toggle {
-  margin-left: auto;
-  font-size: 1.4rem;
-  cursor: pointer;
-  color: #052962;
-  display: none; /* hidden on desktop */
-}
-
 /* Mobile behaviour */
 @media (max-width: 767px) {
   .search-bar { display: none; }       /* hide full bar */
@@ -132,24 +98,6 @@ header {
   font-size: 1rem;
 }
 
-@media (max-width: 767px) {
-  .header-bottom {
-    grid-template-columns: 1fr auto 1fr; /* keep 3 cols: spacer | date | search/icon */
-  }
-
-  .header-date {
-    grid-column: 2;
-    text-align: center;
-    margin: 0;
-  }
-
-  .search-bar { display: none; }     /* hide full bar */
-  .search-toggle {
-    display: block;
-    grid-column: 3;
-    justify-self: end;               /* push to far right */
-  }
-}
 /* HORIZONTAL SCROLL SECTION */
 .scroll-section {
   display: flex;
@@ -589,6 +537,51 @@ margin-right: 0.5rem;
 @media (max-width: 767px) {
   .search-bar { display: none; }
   .search-toggle { display: block; color: #052962; }
+}
+/* Date + search row (UNIFIED) */
+.header-bottom {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* spacer | date | search/toggle */
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* Centered date */
+.header-date {
+  grid-column: 2;
+  justify-self: center;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 0.85rem;      /* desktop size */
+  font-style: italic;
+  color: #666;
+}
+
+/* Desktop search right */
+.search-bar {
+  grid-column: 3;
+  justify-self: end;
+  display: block;
+}
+
+/* Mobile search icon (hidden on desktop) */
+.search-toggle {
+  grid-column: 3;
+  justify-self: end;
+  display: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #052962;
+}
+
+/* Mobile overrides */
+@media (max-width: 767px) {
+  .header-date { font-size: 0.75rem; }  /* mobile size */
+
+  .search-bar { display: none; }
+  .search-toggle { display: block; }
 }
  
 </style>
