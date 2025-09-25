@@ -147,7 +147,6 @@ main {
     margin-left: auto;
     margin-right: auto;
   }
-}
   .article-photo {
     margin-bottom: 0;
   }
@@ -230,8 +229,9 @@ footer {
 
 /* HORIZONTAL SCROLL SECTION */
 .scroll-wrapper {
+  width: 100%;
   max-width: 1200px;
-  margin: 2rem auto;
+  margin: 0 auto;
   padding: 0 1rem;
 }
 
@@ -242,9 +242,8 @@ footer {
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  justify-content: start;
-
-  background: #f5f7fb;   /* subtle grey-blue background */
+  justify-content: flex-start;
+  background: #f5f7fb;
   padding: 16px;
   gap: 16px;
   border-radius: 8px;
@@ -257,8 +256,6 @@ footer {
   background: #fff;
   border-radius: 12px;
   padding: 20px;
-  text-decoration: none;
-  color: inherit;
   scroll-snap-align: start;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -270,7 +267,7 @@ footer {
 
 .scroll-tag {
   display: inline-block;
-  background: #052962; /* theme blue */
+  background: #052962;
   color: #fff;
   font-size: 16px;
   font-weight: bold;
@@ -279,8 +276,8 @@ footer {
   margin-bottom: 10px;
 }
 
-/* Mobile adjustments */
-@media (max-width: 767px) {
+/* MOBILE */
+@media (max-width:767px){
   .scroll-section {
     gap: 12px;
     padding: 12px;
@@ -295,7 +292,7 @@ footer {
     font-size: 12px;
     font-weight: 600;
     padding: 3px 8px;
-    border-radius: 20px; /* pill shape on mobile */
+    border-radius: 20px; /* pill style */
     letter-spacing: 0.5px;
   }
   .scroll-box h3 {
@@ -449,20 +446,22 @@ footer {
   <div class="scroll-section">
     <a href="index.html" class="scroll-box">
       <div class="scroll-tag">Home</div>
-      <h3> Information you can trust</h3>
+      <h3>Information you can trust</h3>
     </a>
 
     <a href="analysispage1.html" class="scroll-box">
       <div class="scroll-tag">Analysis</div>
-      <h3>For your <daily dose of perspective</h3>
+      <h3>For your daily dose of perspective</h3>
     </a>
+
     <a href="opinionmain1.html" class="scroll-box">
       <div class="scroll-tag">Opinion</div>
       <h3>Explore the collective thought</h3>
     </a>
+
     <a href="economymain1.html" class="scroll-box">
       <div class="scroll-tag">Economy</div>
-      <h3>What the <bottom-line means</h3>
+      <h3>What the bottom-line means</h3>
     </a>
   </div>
 </div>
@@ -605,5 +604,4 @@ footer {
 </script>
 </body>
 </html>
-
 
